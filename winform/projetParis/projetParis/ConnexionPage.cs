@@ -10,12 +10,21 @@ using System.Windows.Forms;
 
 namespace projetParis
 {
-    public partial class Form1 : Form
+    public partial class ConnexionPage : Form
     {
-        public Form1()
+        public ConnexionPage()
         {
             InitializeComponent();
         }
 
+        private void labelSlogan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxMdp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

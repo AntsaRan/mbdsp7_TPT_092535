@@ -1,0 +1,16 @@
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.exe
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.deps.json
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.runtimeconfig.json
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.runtimeconfig.dev.json
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.pdb
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csprojAssemblyReference.cache
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.ConnexionPage.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.Properties.Resources.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csproj.GenerateResource.cache
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.AssemblyInfoInputs.cache
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.AssemblyInfo.cs
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csproj.CoreCompileInputs.cache
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.pdb
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.genruntimeconfig.cache
