@@ -31,6 +31,9 @@ namespace projetParis
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnexionPage));
             this.panelBack = new System.Windows.Forms.Panel();
+            this.labelForInsription = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelMdpOublie = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonConnexion = new System.Windows.Forms.Button();
             this.checkBoxSesouvenir = new System.Windows.Forms.CheckBox();
@@ -40,9 +43,6 @@ namespace projetParis
             this.label1 = new System.Windows.Forms.Label();
             this.labelSlogan = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelMdpOublie = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelForInsription = new System.Windows.Forms.LinkLabel();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,6 +62,43 @@ namespace projetParis
             this.panelBack.Name = "panelBack";
             this.panelBack.Size = new System.Drawing.Size(797, 655);
             this.panelBack.TabIndex = 0;
+            // 
+            // labelForInsription
+            // 
+            this.labelForInsription.AutoSize = true;
+            this.labelForInsription.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelForInsription.LinkColor = System.Drawing.Color.Aqua;
+            this.labelForInsription.Location = new System.Drawing.Point(504, 581);
+            this.labelForInsription.Name = "labelForInsription";
+            this.labelForInsription.Size = new System.Drawing.Size(28, 23);
+            this.labelForInsription.TabIndex = 5;
+            this.labelForInsription.TabStop = true;
+            this.labelForInsription.Text = "ici";
+            this.labelForInsription.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labelForInsription_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Black;
+            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(248, 581);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(264, 23);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Nouveau membre ? Inscrivez-vous ";
+            // 
+            // labelMdpOublie
+            // 
+            this.labelMdpOublie.AutoSize = true;
+            this.labelMdpOublie.BackColor = System.Drawing.Color.Black;
+            this.labelMdpOublie.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelMdpOublie.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelMdpOublie.Location = new System.Drawing.Point(248, 545);
+            this.labelMdpOublie.Name = "labelMdpOublie";
+            this.labelMdpOublie.Size = new System.Drawing.Size(169, 23);
+            this.labelMdpOublie.TabIndex = 3;
+            this.labelMdpOublie.Text = "Mot de passe oublié ?";
             // 
             // panel1
             // 
@@ -159,42 +196,6 @@ namespace projetParis
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // labelMdpOublie
-            // 
-            this.labelMdpOublie.AutoSize = true;
-            this.labelMdpOublie.BackColor = System.Drawing.Color.Black;
-            this.labelMdpOublie.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMdpOublie.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelMdpOublie.Location = new System.Drawing.Point(248, 545);
-            this.labelMdpOublie.Name = "labelMdpOublie";
-            this.labelMdpOublie.Size = new System.Drawing.Size(169, 23);
-            this.labelMdpOublie.TabIndex = 3;
-            this.labelMdpOublie.Text = "Mot de passe oublié ?";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(248, 581);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(264, 23);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nouveau membre ? Inscrivez-vous ";
-            // 
-            // labelForInsription
-            // 
-            this.labelForInsription.AutoSize = true;
-            this.labelForInsription.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelForInsription.LinkColor = System.Drawing.Color.Aqua;
-            this.labelForInsription.Location = new System.Drawing.Point(504, 581);
-            this.labelForInsription.Name = "labelForInsription";
-            this.labelForInsription.Size = new System.Drawing.Size(28, 23);
-            this.labelForInsription.TabIndex = 5;
-            this.labelForInsription.TabStop = true;
-            this.labelForInsription.Text = "ici";
-            // 
             // ConnexionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -204,6 +205,7 @@ namespace projetParis
             this.Name = "ConnexionPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConnexionPage";
+            this.Load += new System.EventHandler(this.ConnexionPage_Load);
             this.panelBack.ResumeLayout(false);
             this.panelBack.PerformLayout();
             this.panel1.ResumeLayout(false);

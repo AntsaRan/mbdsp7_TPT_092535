@@ -26,5 +26,18 @@ namespace projetParis
         {
 
         }
+
+        private void ConnexionPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelForInsription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            InscriptionPage inscriptionPage = new InscriptionPage();
+            inscriptionPage.ShowDialog();
+            this.Close();
+        }
     }
 }
