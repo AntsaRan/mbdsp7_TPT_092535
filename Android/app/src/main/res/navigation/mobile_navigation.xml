@@ -11,6 +11,17 @@
         android:name="com.example.bet.ui.ListeMatchs_Fragment"
         android:label="@string/listeMatch"
         tools:layout="@layout/fragment_liste_matchs" />
+
+    <fragment
+        android:id="@+id/nav_profil"
+        android:name="com.example.bet.ui.Profil_Fragment"
+        android:label="@string/profil"
+        tools:layout="@layout/fragment_profil" />
+    <fragment
+        android:id="@+id/nav_calendrier"
+        android:name="com.example.bet.ui.Calendrier_Fragment"
+        android:label="@string/calendrier"
+        tools:layout="@layout/fragment_calendrier" />
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.bet.ui.home.HomeFragment"
