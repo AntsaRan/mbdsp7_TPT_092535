@@ -27,12 +27,14 @@ public class Register extends AppCompatActivity {
     private ImageView imageView;
     private QRGEncoder qrgEncoder;
     private Bitmap bitmapResult;
-
+    private EditText email1;
+    private EditText email2;
+    private EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+/*
         imageView = (ImageView) findViewById(R.id.qr_image);
         editText = (EditText) findViewById(R.id.edt_value);
         Button btnStart = (Button) findViewById(R.id.generate_barcode);
@@ -83,5 +85,7 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+        */
+
     }
 }
