@@ -1,0 +1,7 @@
+.accueilContainer{
+    margin:15px;
+    display: flex;
+}
+.cardheader{
+    justify-content: center;
+}
