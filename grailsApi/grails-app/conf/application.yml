@@ -97,14 +97,14 @@ environments:
     development:
         grails:
             mongodb:
-                url: "mongodb+srv://tptparis:tptparis@clustertpt.nfycx.mongodb.net/tpt?retryWrites=true&w=majority"
+                url: "mongodb+srv://mbds:mbds@clustertpt.nfycx.mongodb.net/tpt?retryWrites=true&w=majority"
     test:
         development:
             grails:
                 mongodb:
-                    url: "mongodb+srv://tptparis:tptparis@clustertpt.nfycx.mongodb.net/tpt?retryWrites=true&w=majority"
+                    url: "mongodb+srv://mbds:mbds@clustertpt.nfycx.mongodb.net/tpt?retryWrites=true&w=majority"
     production:
         development:
             grails:
                 mongodb:
-                    url: "mongodb+srv://tptparis:tptparis@clustertpt.nfycx.mongodb.net/tpt?retryWrites=true&w=majority"
+                    url: "mongodb+srv://mbds:mbds@clustertpt.nfycx.mongodb.net/tpt?retryWrites=true&w=majority"

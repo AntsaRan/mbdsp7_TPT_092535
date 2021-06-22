@@ -2,10 +2,10 @@ package grails.api
 
 import org.bson.types.ObjectId
 
-class Equipe {
+import javax.persistence.Id
 
-    ObjectId _id
-    Integer id
+class Equipe {
+    ObjectId id
     String nom
     String logo
     static constraints = {
