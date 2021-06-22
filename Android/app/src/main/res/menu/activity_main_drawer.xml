@@ -20,6 +20,22 @@
                 android:id="@+id/nav_profil"
                 android:icon="@drawable/ic_profil"
                 android:title="Profil" />
+            <item
+                android:id="@+id/nav_historique_jetons"
+                android:icon="@drawable/ic_history"
+                android:title="Historique des jetons" />
+            <item
+                android:id="@+id/nav_historique_paris"
+                android:icon="@drawable/ic_paris"
+                android:title="Historique des paris" />
+            <item
+                android:id="@+id/nav_achat"
+                android:icon="@drawable/ic_achat"
+                android:title="Achat de jetons" />
+            <item
+                android:id="@+id/nav_vente"
+                android:icon="@drawable/ic_vente"
+                android:title="Vente de jetons" />
         </menu>
     </item>
     <item android:title="Settings">
