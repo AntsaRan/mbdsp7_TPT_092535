@@ -11,18 +11,19 @@
   <!-- Bootstrap Core CSS -->
 
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-</head> 
+</head>
+
 <body>
   <mat-toolbar>
     <mat-toolbar-row class="mat-elevation-z6 uptoolbar">
       <mat-grid-list cols="4" rowHeight="100px" style="width: 100%;">
         <mat-grid-tile>
-          <div class="logotile"> 
+          <div class="logotile">
             <img src="/assets/img/logo.png" width="80" height="80">
-          </div> 
+          </div>
         </mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile> 
+        <mat-grid-tile></mat-grid-tile>
         <mat-grid-tile>
           <div class="rightmenu">
             <a href="#" class="navlink"><button id="context" mat-button color="primary">Connexion</button></a>
@@ -98,7 +99,30 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div class="accueilContainer row ">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <router-outlet></router-outlet>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12  col-xs-12">
+          <mat-card>
+            <mat-card-header class="cardheader">
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Coupons</mat-card-title>
+              <mat-card-subtitle>{{date}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+
+            </mat-card-content>
+            <mat-card-actions class="centeredcardaction">
+              <a href="#" class="navlink">
+                <button id="detailsbutton" mat-raised-button color="primary">
+                  Voir plus
+                </button>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

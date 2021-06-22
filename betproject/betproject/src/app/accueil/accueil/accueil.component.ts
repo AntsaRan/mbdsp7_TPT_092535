@@ -64,4 +64,7 @@ export class AccueilComponent implements OnInit {
   matchs: Match[] = [this.match1,this.match2,this.match3,this.match4,this.match4,
     this.match4,this.match4,this.match4,this.match4,this.match4,this.match4];
 
+    ajaxtest(){
+      
+    }
 }
