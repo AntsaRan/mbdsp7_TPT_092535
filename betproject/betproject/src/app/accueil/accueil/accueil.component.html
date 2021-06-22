@@ -1,43 +1,75 @@
-<div class="accueilContainer row">
-    <div class="col-lg-4 col-md-4 col-sm-4">
-        <mat-card class="example-card">
-            <mat-card-header class="cardheader">
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Matchs du jour</mat-card-title>
-                <mat-card-subtitle>{{date}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list *ngFor="let match of matchs">
-                    <mat-list-item>
-                        <p>{{match.idequipe1}} vs {{match.idequipe2}}</p>
-                        <button>Détails</button>
-                    </mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions>
-        </mat-card>
+<div>
+    <div class="accueilContainer row ">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <mat-card >
+                <mat-card-header class="cardheader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Matchs du jour</mat-card-title>
+                    <mat-card-subtitle>{{date}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content> 
+                    <mat-list class="example-card">
+                        <mat-list-item class="itemlist" *ngFor="let match of matchs">
+                            <div class="listitemcontent">
+                                <span class="nomequipe">{{match.idequipe1}}</span><span> VS </span><span
+                                    class="nomequipe">{{match.idequipe2}}</span>
+                                <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
+                                        color="primary">Détails</button></a>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
 
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-        <mat-list>
-            <mat-list-item>Item 1</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Item 2</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Item 3</mat-list-item>
-        </mat-list>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-        <mat-list>
-            <mat-list-item>Item 1</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Item 2</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Item 3</mat-list-item>
-        </mat-list>
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions class="ceneteredcardaction">
+                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
+                        color="primary">Voir plus</button></a>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12  col-xs-12">
+            <mat-card>
+                <mat-card-header class="cardheader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Matchs phares</mat-card-title>
+                    <mat-card-subtitle>{{date}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content >
+                    <mat-list class="example-card">
+                        <mat-list-item class="itemlist" *ngFor="let match of matchs">
+                            <div class="listitemcontent">
+                                <span class="nomequipe">{{match.idequipe1}}</span><span> VS </span><span
+                                    class="nomequipe">{{match.idequipe2}}</span>
+                                <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
+                                        color="primary">Détails</button></a>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
+
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions  class="ceneteredcardaction">
+                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
+                        color="primary">Voir plus</button></a>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4  col-xs-12">
+            <mat-card>
+                <mat-card-header class="cardheader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Coupons</mat-card-title>
+                    <mat-card-subtitle>{{date}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content >
+          
+                </mat-card-content>
+                <mat-card-actions  class="ceneteredcardaction">
+                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
+                        color="primary">Voir plus</button></a>
+                </mat-card-actions>
+            </mat-card>
+        </div>
     </div>
 </div>

@@ -19,8 +19,8 @@ export class AccueilComponent implements OnInit {
   }
   match1: Match = {
     _id: "1",
-    idequipe1: "1",
-    idequipe2: "2",
+    idequipe1: "equipe 1",
+    idequipe2: "equipe 2",
     date: new Date("21/06/21"),
     lieu: "Paris",
     etat: "terminé",
@@ -30,8 +30,8 @@ export class AccueilComponent implements OnInit {
   }
   match2: Match = {
     _id: "2",
-    idequipe1: "2",
-    idequipe2: "3",
+    idequipe1: "equipe 2",
+    idequipe2: "equipe 3",
     date: new Date("21/06/21"),
     lieu: "Paris",
     etat: "terminé",
@@ -41,8 +41,8 @@ export class AccueilComponent implements OnInit {
   }
   match3: Match = {
     _id: "3",
-    idequipe1: "1",
-    idequipe2: "3",
+    idequipe1: "equipe 1",
+    idequipe2: "equipe 3",
     date: new Date("21/06/21"),
     lieu: "Paris",
     etat: "terminé",
@@ -52,8 +52,8 @@ export class AccueilComponent implements OnInit {
   }
   match4: Match = {
     _id: "4",
-    idequipe1: "3",
-    idequipe2: "4",
+    idequipe1: "equipe 3",
+    idequipe2: "equipe 4",
     date: new Date("21/06/21"),
     lieu: "Paris",
     etat: "terminé",
@@ -61,6 +61,7 @@ export class AccueilComponent implements OnInit {
     scoreeq2: 0,
     idMatchRegle: "1"
   }
-  matchs: Match[] = [this.match1,this.match2,this.match3,this.match4];
+  matchs: Match[] = [this.match1,this.match2,this.match3,this.match4,this.match4,
+    this.match4,this.match4,this.match4,this.match4,this.match4,this.match4];
 
 }
