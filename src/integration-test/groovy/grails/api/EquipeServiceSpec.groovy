@@ -3,14 +3,14 @@ package grails.api
 import grails.testing.mixin.integration.Integration
 import grails.gorm.transactions.Rollback
 import spock.lang.Specification
-import org.hibernate.SessionFactory
+//import org.hibernate.SessionFactory
 
 @Integration
 @Rollback
 class EquipeServiceSpec extends Specification {
 
     EquipeService equipeService
-    SessionFactory sessionFactory
+    //SessionFactory sessionFactory
 
     private Long setupData() {
         // TODO: Populate valid domain instances and return a valid ID
