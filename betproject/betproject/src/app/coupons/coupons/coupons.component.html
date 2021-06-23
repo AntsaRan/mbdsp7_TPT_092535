@@ -1,0 +1,34 @@
+<div class="col-lg-4 col-md-4 col-sm-12  col-xs-12">
+    <mat-card>
+      <mat-card-header class="cardheader">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Coupons</mat-card-title>
+        <mat-card-subtitle>{{date}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list class="example-card">
+            <mat-list-item class="itemlist" *ngFor="let match of couponslist">
+                <div class="listitemcontent">
+                    <span class="nomequipe">{{match.idequipe1}}</span><span> VS </span><span
+                        class="nomequipe">{{match.idequipe2}}</span>
+                    <a href="#" class="navlink">
+                        <button id="detailsbutton" mat-raised-button
+                            color="primary">
+                            Détails
+                        </button>
+                    </a>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions class="centeredcardaction">
+        <a href="#" class="navlink">
+          <button id="detailsbutton" mat-raised-button color="primary">
+            Parier
+          </button>
+        </a> 
+      </mat-card-actions>
+    </mat-card>
+  </div>
