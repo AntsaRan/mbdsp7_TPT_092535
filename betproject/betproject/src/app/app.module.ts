@@ -14,6 +14,7 @@ import { AccueilComponent } from './accueil/accueil/accueil.component';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import { DatePipe } from '@angular/common';
+import { CouponsComponent } from './coupons/coupons/coupons.component';
 const routes: Routes = [
   {
     path: "",
@@ -24,7 +25,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AccueilComponent
+    AccueilComponent,
+    CouponsComponent
   ],
   imports: [
     BrowserModule,

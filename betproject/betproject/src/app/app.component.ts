@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { CartService } from './shared/services/cart.service';
+import { Match } from './shared/models/match.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,10 +9,9 @@ import { DatePipe } from '@angular/common';
 })
 export class AppComponent {
   title = 'betproject';
-  currentdate = new Date();
-  date: string;
-  constructor(private datePipe: DatePipe) {
-    this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
+
+  constructor(private datePipe: DatePipe, private cartserv:CartService) {
+
   }
 
 }
