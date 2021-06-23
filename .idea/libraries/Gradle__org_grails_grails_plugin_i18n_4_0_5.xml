@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.grails:grails-plugin-i18n:4.0.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.grails/grails-plugin-i18n/4.0.5/fd5edb1925874dbccb8372620b4c07fa5ed27d5c/grails-plugin-i18n-4.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.grails/grails-plugin-i18n/4.0.5/8709cf4ebf20eb1f29b2863fdce2bb33517ec5a7/grails-plugin-i18n-4.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

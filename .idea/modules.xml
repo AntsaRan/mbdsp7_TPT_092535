@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.iml" filepath="$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.integrationTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.main.iml" filepath="$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.test.iml" filepath="$PROJECT_DIR$/.idea/modules/grailsapi.grailsApi.test.iml" />
+    </modules>
+  </component>
+</project>
