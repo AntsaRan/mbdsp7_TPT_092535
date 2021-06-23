@@ -7,13 +7,13 @@
     <facet type="web" name="Web Gradle : grailsApi-0.1.war">
       <configuration>
         <webroots>
-          <root url="file://E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\grailsApi\src\main\webapp" relative="/" />
+          <root url="file://E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\src\main\webapp" relative="/" />
           <root url="file://$MODULE_DIR$/../../build/assets" relative="/assets" />
         </webroots>
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/../../out/production/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../grails-app">

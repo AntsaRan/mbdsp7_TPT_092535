@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="grailsapi.grailsApi.integrationTest" target="1.8" />
-      <module name="grailsapi.grailsApi.main" target="1.8" />
-      <module name="grailsapi.grailsApi.test" target="1.8" />
+      <module name="grailsapi.grailsApi.integrationTest" target="11" />
+      <module name="grailsapi.grailsApi.main" target="11" />
+      <module name="grailsapi.grailsApi.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
