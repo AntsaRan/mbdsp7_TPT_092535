@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Match } from 'src/app/shared/models/match.model';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-accueil',
@@ -11,7 +12,7 @@ export class AccueilComponent implements OnInit {
 
   currentdate = new Date();
   date: string;
-  constructor(private datePipe: DatePipe) {
+  constructor(private datePipe: DatePipe, private cartserv:CartService) {
     this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
   }
 
@@ -22,7 +23,7 @@ export class AccueilComponent implements OnInit {
     idequipe1: "equipe 1",
     idequipe2: "equipe 2",
     date: new Date("21/06/21"),
-    lieu: "Paris",
+    lieu: "Cochon",
     etat: "terminé",
     scoreeq1: 2,
     scoreeq2: 0,
@@ -33,7 +34,7 @@ export class AccueilComponent implements OnInit {
     idequipe1: "equipe 2",
     idequipe2: "equipe 3",
     date: new Date("21/06/21"),
-    lieu: "Paris",
+    lieu: "Afrique",
     etat: "terminé",
     scoreeq1: 2,
     scoreeq2: 0,
@@ -55,7 +56,7 @@ export class AccueilComponent implements OnInit {
     idequipe1: "equipe 3",
     idequipe2: "equipe 4",
     date: new Date("21/06/21"),
-    lieu: "Paris",
+    lieu: "Londres",
     etat: "terminé",
     scoreeq1: 2,
     scoreeq2: 0,
@@ -64,7 +65,8 @@ export class AccueilComponent implements OnInit {
   matchs: Match[] = [this.match1,this.match2,this.match3,this.match4,this.match4,
     this.match4,this.match4,this.match4,this.match4,this.match4,this.match4];
 
-    ajaxtest(){
-      
+    add(match){
+      console.log(match.lieu);
+      this.cartserv.add(match);
     }
 }

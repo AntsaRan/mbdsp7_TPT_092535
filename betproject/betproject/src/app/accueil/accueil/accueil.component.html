@@ -1,6 +1,6 @@
 <div>
     <div class="accueilContainer row ">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <mat-card >
                 <mat-card-header class="cardheader">
                     <div mat-card-avatar class="example-header-image"></div>
@@ -13,7 +13,7 @@
                             <div class="listitemcontent">
                                 <span class="nomequipe">{{match.idequipe1}}</span><span> VS </span><span
                                     class="nomequipe">{{match.idequipe2}}</span>
-                                <a href="#" class="navlink" click="ajaxtest()">
+                                <a href="#" class="navlink" (click)="add(match)">
                                     <button id="detailsbutton" mat-raised-button
                                         color="primary">Détails
                                     </button>
@@ -31,7 +31,7 @@
             </mat-card>
 
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12  col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-12  col-xs-12">
             <mat-card>
                 <mat-card-header class="cardheader">
                     <div mat-card-avatar class="example-header-image"></div>
@@ -58,6 +58,6 @@
                 </mat-card-actions>
             </mat-card>
         </div>
-       
+        <app-coupons ></app-coupons>
     </div>
 </div>
