@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.example.bet.R;
 import com.google.zxing.WriterException;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -43,9 +44,14 @@ public class Achat_Fragment extends Fragment  {
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+                IntentIntegrator intentIntegrator = IntentIntegrator.forSupportFragment(Achat_Fragment.this);
                 intentIntegrator.setPrompt("Scan a barcode or QR Code");
-                intentIntegrator.setOrientationLocked(true);
+               /// intentIntegrator.setOrientationLocked(true);
+                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                intentIntegrator.setPrompt("ESCANEAR CODIGO");
+                intentIntegrator.setCameraId(0);
+                intentIntegrator.setBeepEnabled(false);
+                intentIntegrator.setBarcodeImageEnabled(false);
                 intentIntegrator.initiateScan();
             }
         });
@@ -58,6 +64,26 @@ public class Achat_Fragment extends Fragment  {
         mContext = context;
     }
 
+    /**
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
+        if (result != null) {
+            if (result.getContents() == null) {
+                System.out.println("Cancelled");
+                Toast.makeText(getActivity(), "You cancelled the scanning!", Toast.LENGTH_LONG).show();
+            } else {
+                System.out.println("Worked: " + result.getContents());
+                Toast.makeText(getActivity(), "scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
 }

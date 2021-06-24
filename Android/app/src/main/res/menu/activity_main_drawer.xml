@@ -6,8 +6,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_liste_matchs"
-            android:icon="@drawable/ic_list"
+            android:icon="@drawable/ic_match"
             android:title="@string/listeMatch" />
+        <item
+            android:id="@+id/nav_equipe"
+            android:icon="@drawable/ic_equipe"
+            android:title="@string/equipe" />
         <item
             android:id="@+id/nav_calendrier"
             android:icon="@drawable/ic_calendrier"
