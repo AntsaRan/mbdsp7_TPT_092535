@@ -20,7 +20,7 @@ public class EquipeController {
     @Autowired
     EquipeRepository equipeRepository;
 
-    @GetMapping("/equipes")
+    @GetMapping("/getAll")
     public ResponseEntity<List<Equipe>> getAllEquipes(@RequestParam(required = false) String nom){
         try {
             List<Equipe> equipes = new ArrayList<Equipe>();
@@ -30,6 +30,7 @@ public class EquipeController {
             else
                 equipeRepository.findByNomContaining(nom).forEach(equipes::add);
 
+            System.out.println("Equipes "+equipes);
             if (equipes.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
