@@ -1,4 +1,4 @@
-package com.example.bet.ui;
+package com.example.bet.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

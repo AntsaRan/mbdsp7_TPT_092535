@@ -8,23 +8,23 @@
 
     <fragment
         android:id="@+id/nav_liste_matchs"
-        android:name="com.example.bet.ui.ListeMatchs_Fragment"
+        android:name="com.example.bet.fragment.ListeMatchs_Fragment"
         android:label="@string/listeMatch"
         tools:layout="@layout/fragment_liste_matchs" />
 
     <fragment
         android:id="@+id/nav_profil"
-        android:name="com.example.bet.ui.Profil_Fragment"
+        android:name="com.example.bet.fragment.Profil_Fragment"
         android:label="@string/profil"
         tools:layout="@layout/fragment_profil" />
     <fragment
         android:id="@+id/nav_achat"
-        android:name="com.example.bet.ui.Achat_Fragment"
+        android:name="com.example.bet.fragment.Achat_Fragment"
         android:label="@string/achat"
         tools:layout="@layout/fragment_achat" />
     <fragment
         android:id="@+id/nav_calendrier"
-        android:name="com.example.bet.ui.Calendrier_Fragment"
+        android:name="com.example.bet.fragment.Calendrier_Fragment"
         android:label="@string/calendrier"
         tools:layout="@layout/fragment_calendrier" />
     <fragment

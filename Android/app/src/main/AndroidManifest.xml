@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Achat" />
+        <activity android:name=".fragment.Achat" />
         <activity android:name=".Qr" />
         <activity android:name=".Register" />
         <activity android:name=".Login">

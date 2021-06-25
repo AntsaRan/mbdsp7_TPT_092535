@@ -1,4 +1,4 @@
-package com.example.bet.ui;
+package com.example.bet.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;

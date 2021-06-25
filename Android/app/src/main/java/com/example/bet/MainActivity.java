@@ -6,12 +6,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
-import com.example.bet.ui.Achat;
-import com.example.bet.ui.Achat_Fragment;
-import com.example.bet.ui.ListeMatchs_Fragment;
-import com.example.bet.ui.Profil_Fragment;
+import com.example.bet.fragment.Achat;
+import com.example.bet.fragment.ListeMatchs_Fragment;
+import com.example.bet.fragment.Profil_Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
