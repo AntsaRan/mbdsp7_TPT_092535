@@ -55,24 +55,25 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "InseetTeam",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "nom",
-							"value": "New Team",
-							"type": "text"
-						},
-						{
-							"key": "logo",
-							"value": "Awee",
-							"type": "text"
+					"mode": "raw",
+					"raw": "{\"nom\":\"EWEWEW45\",\"logo\":\"http://dummyimage.com/238x100.png/dddddd/000000\"}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					]
+					}
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/equipe",
@@ -84,30 +85,18 @@
 					"path": [
 						"api",
 						"equipe"
-					],
-					"query": [
-						{
-							"key": "nom",
-							"value": "test",
-							"disabled": true
-						},
-						{
-							"key": "logo",
-							"value": "awe",
-							"disabled": true
-						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Delete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/api/equipe?id=60d2460615eb802408add879",
+					"raw": "http://localhost:5000/api/equipe/60d8d83648d51b00dcfcffdd",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -115,13 +104,38 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"equipe"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "60d2460615eb802408add879"
+						"equipe",
+						"60d8d83648d51b00dcfcffdd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editTeam",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nom\":\"Edit\",\"logo\":\"Edited\"}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/equipe/60d8d61aa1db0b13e1735a61",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"equipe",
+						"60d8d61aa1db0b13e1735a61"
 					]
 				}
 			},
@@ -149,47 +163,6 @@
 						{
 							"key": "id",
 							"value": "60d2460615eb802408add879"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "nom",
-							"value": "aaa",
-							"type": "text"
-						},
-						{
-							"key": "logo",
-							"value": "aaaaa",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/equipes?id=60d098ef91a63046171cd602",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"equipes"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "60d098ef91a63046171cd602"
 						}
 					]
 				}
