@@ -20,7 +20,7 @@ public class EquipeController {
     @Autowired
     EquipeRepository equipeRepository;
 
-    @GetMapping("/getAll")
+    @GetMapping("/equipes")
     public ResponseEntity<List<Equipe>> getAllEquipes(@RequestParam(required = false) String nom){
         try {
             List<Equipe> equipes = new ArrayList<Equipe>();
@@ -30,7 +30,7 @@ public class EquipeController {
             else
                 equipeRepository.findByNomContaining(nom).forEach(equipes::add);
 
-            System.out.println("Equipes "+equipes);
+
             if (equipes.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -47,35 +47,41 @@ public class EquipeController {
 
    */
 
-    @PostMapping("/equipes")
-    public ResponseEntity<Equipe> createEquipe(@RequestBody Equipe equipe) {
+    @PostMapping("/equipe")
+    public ResponseEntity<Equipe> createEquipe(@RequestBody String nom , @RequestBody(required = false) String logo) {
         try {
-            Equipe _equipe = equipeRepository.save(new Equipe(equipe.getNom(), equipe.getLogo()));
+            System.out.println("Makato izy" + nom);
+            Equipe _equipe = equipeRepository.save(new Equipe(nom, logo));
             return new ResponseEntity<>(_equipe, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PutMapping("/equipes/{id}")
-    public ResponseEntity<Equipe> updateEquipe(@PathVariable("id") String id, @RequestBody Equipe equipe) {
+    @PutMapping("/equipe/{id}")
+    public ResponseEntity<Equipe> updateEquipe(@RequestParam(required = true) String id, @RequestBody(required = false) String nom , @RequestBody(required = false) String logo) {
         Optional<Equipe> equipeData = equipeRepository.findById(id);
 
         if (equipeData.isPresent()) {
             Equipe _tutorial = equipeData.get();
-            _tutorial.setNom(equipe.getNom());
-            _tutorial.setLogo(equipe.getLogo());
+            _tutorial.setNom(nom);
+            _tutorial.setLogo(nom);
+            System.out.println(" Team updated id : "+id);
             return new ResponseEntity<>(equipeRepository.save(_tutorial), HttpStatus.OK);
         } else {
+            System.out.println("no Team found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/equipes/{id}")
-    public ResponseEntity<HttpStatus> deleteEquipe(@PathVariable("id") String id) {
+    @DeleteMapping("/equipe/{id}")
+    public ResponseEntity<HttpStatus> deleteEquipe(@RequestParam(required = true) String id) {
         try {
+
             equipeRepository.deleteById(id);
+            System.out.println(" Team deleted id : "+id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -85,6 +91,7 @@ public class EquipeController {
     public ResponseEntity<HttpStatus> deleteAllEquipes() {
         try {
             equipeRepository.deleteAll();
+            System.out.println("All Team deleted");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
