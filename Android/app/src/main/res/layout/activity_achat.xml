@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.Achat">
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/label_solde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -23,12 +23,25 @@
         android:layout_marginTop="120dp"
         android:text="Scanner un QRCode"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/label_solde" />
 
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/zxing_barcode_scanner"
-        android:layout_width="415dp"
-        android:layout_height="358dp"
-        tools:layout_editor_absoluteY="373dp"
-        tools:ignore="MissingConstraints" />
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="334dp"
+        android:layout_height="313dp"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@android:color/white"
+        app:flashButtonVisible="true"
+        app:frameAspectRatioHeight="1"
+        app:frameAspectRatioWidth="1"
+        app:frameColor="@android:color/white"
+        app:frameCornersRadius="0dp"
+        app:frameCornersSize="50dp"
+        app:frameSize="0.75"
+        app:frameThickness="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maskColor="#77000000"
+        tools:layout_editor_absoluteY="415dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

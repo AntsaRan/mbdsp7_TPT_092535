@@ -41,7 +41,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+public class Equipe_Fragment extends Fragment{
     PaginationAdapter_Equipe adapter;
     LinearLayoutManager linearLayoutManager;
     private Context mContext;
@@ -57,7 +57,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
     private int currentPage = PAGE_START;
 
     private Equipe_Service movieService;
-
+/*
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -260,7 +260,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
      * @param response extracts List<{@link Movie>} from response
      * @return
      */
-    private List<Movie> fetchResults(retrofit2.Response<MoviesResponse> response) {
+   /* private List<Movie> fetchResults(retrofit2.Response<MoviesResponse> response) {
         MoviesResponse topRatedMovies = response.body();
         return topRatedMovies.getResults();
     }
@@ -356,5 +356,8 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
         Load_Setting();
         super.onResume();
     }
+
+    */
+
 }
 

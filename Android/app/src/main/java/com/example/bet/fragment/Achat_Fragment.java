@@ -1,5 +1,6 @@
 package com.example.bet.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.bet.R;
+import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -22,53 +27,46 @@ public class Achat_Fragment extends Fragment  {
     Button scanBtn;
     TextView messageText, messageFormat;
     private Context mContext;
+    private CodeScanner mCodeScanner;
+
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_achat, container,false);
-        scanBtn=view.findViewById(R.id.button_scan);
-        scanBtn.setOnClickListener(new View.OnClickListener() {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        final Activity activity = getActivity();
+        View root = inflater.inflate(R.layout.fragment_achat, container, false);
+        CodeScannerView scannerView = root.findViewById(R.id.scanner_view);
+        mCodeScanner = new CodeScanner(activity, scannerView);
+        mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
-            public void onClick(View view) {
-                IntentIntegrator intentIntegrator = IntentIntegrator.forSupportFragment(Achat_Fragment.this);
-                intentIntegrator.setPrompt("Scan a barcode or QR Code");
-               /// intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-                intentIntegrator.setPrompt("ESCANEAR CODIGO");
-                intentIntegrator.setCameraId(0);
-                intentIntegrator.setBeepEnabled(false);
-                intentIntegrator.setBarcodeImageEnabled(false);
-                intentIntegrator.initiateScan();
+            public void onDecoded(@NonNull final Result result) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-        return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
-    /**
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-
-        if (result != null) {
-            if (result.getContents() == null) {
-                System.out.println("Cancelled");
-                Toast.makeText(getActivity(), "You cancelled the scanning!", Toast.LENGTH_LONG).show();
-            } else {
-                System.out.println("Worked: " + result.getContents());
-                Toast.makeText(getActivity(), "scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+        scannerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCodeScanner.startPreview();
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+        });
+        return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mCodeScanner.startPreview();
+    }
+
+    @Override
+    public void onPause() {
+        mCodeScanner.releaseResources();
+        super.onPause();
     }
 
 }

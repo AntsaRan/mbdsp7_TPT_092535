@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.bet.fragment.Achat;
+import com.example.bet.fragment.Achat_Fragment;
 import com.example.bet.fragment.ListeMatchs_Fragment;
 import com.example.bet.fragment.Profil_Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -114,10 +115,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 break;
 
             case R.id.nav_achat:
-               // getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Achat_Fragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Achat_Fragment()).commit();
                 //Toast.makeText(Home.this, "Share", Toast.LENGTH_SHORT).show();
-               Intent intent1 = new Intent(MainActivity.this, Achat.class);
+              /* Intent intent1 = new Intent(MainActivity.this, Achat.class);
                 startActivity(intent1);
+
+               */
                 break;
             case R.id.nav_calendrier:
              /*  mAuth.signOut();
