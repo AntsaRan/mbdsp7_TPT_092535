@@ -24,13 +24,19 @@
         </mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile>
+        <mat-grid-tile *ngIf="!islogged">
           <div class="rightmenu">
-            <a href="#" class="navlink"><button id="context" mat-button color="primary">Connexion</button></a>
+            <a class="navlink"(click)="openLoginDialog()"><button id="context" mat-button color="primary">Connexion</button></a>
             <a href="#" class="navlink"><button id="insctext" mat-raised-button color="primary">Inscription</button></a>
           </div>
         </mat-grid-tile>
-      </mat-grid-list>
+        <mat-grid-tile *ngIf="islogged">
+          <div class="rightmenu">
+            <img src="/assets/img/user.png" width="50" height="50">
+            <span class="nameuser">Nom utilisateur</span>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list >
     </mat-toolbar-row>
     <mat-toolbar-row>
       <mat-grid-list cols="7" rowHeight="100%" style="width: 100%;">
@@ -99,11 +105,18 @@
 
     <mat-sidenav-content>
       <div class="accueilContainer row ">
-          <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
+  <footer>
+    <div class="fmd-FooterModuleDefault_GambleResponsibly ">Gambling can be addictive, please play responsibly. For
+      information on support measures, please visit our
+      <span class="fol-LabelLink ">Responsible Gambling Help</span>
+      page.
+      <p style="text-align: right;">Copyright © 2021</p>
+    </div>
+  </footer>
   <!-- jQuery -->
   <script src="/assets/js/jquery.min.js"></script>
 

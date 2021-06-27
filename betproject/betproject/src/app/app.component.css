@@ -177,3 +177,20 @@ margin-left: 7%;
       .mat-toolbar {
         background: #ffc100!important;
       }
+.fmd-FooterModuleDefault_GambleResponsibly{
+    margin: 0 auto;
+    padding: 0 30px;
+    font-size: 11px;
+    line-height: 17px;
+    text-align: left;
+    color: #b5b5b5;
+}
+
+footer{
+    height: 48px;
+    background: #181818;
+}
+.nameuser{
+    margin-left: 15%;
+    font-size: initial;
+}

@@ -15,6 +15,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import { DatePipe } from '@angular/common';
 import { CouponsComponent } from './coupons/coupons/coupons.component';
+import { LoginComponent } from './login/login/login.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 const routes: Routes = [
   {
     path: "",
@@ -26,7 +31,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     AccueilComponent,
-    CouponsComponent
+    CouponsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,7 @@ const routes: Routes = [
     MatSidenavModule, 
     RouterModule.forRoot(routes),
     MatListModule,
-    MatCardModule
+    MatCardModule,MatDialogModule,FormsModule,MatCheckboxModule
     
   ],
   providers: [
