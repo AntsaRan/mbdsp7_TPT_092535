@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface EquipeRepository extends MongoRepository<Equipe, String> {
     List<Equipe> findByNomContaining(String nom);
-
 }

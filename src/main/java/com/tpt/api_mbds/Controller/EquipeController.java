@@ -3,8 +3,10 @@ package com.tpt.api_mbds.Controller;
 import com.tpt.api_mbds.model.Equipe;
 import com.tpt.api_mbds.repository.EquipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -47,11 +49,14 @@ public class EquipeController {
 
    */
 
-    @PostMapping("/equipe")
-    public ResponseEntity<Equipe> createEquipe(@RequestBody String nom , @RequestBody(required = false) String logo) {
+
+    @PostMapping(path = "/equipe")
+    public ResponseEntity<Equipe> createEquipe(@RequestBody Equipe equipe) {
         try {
-            System.out.println("Makato izy" + nom);
-            Equipe _equipe = equipeRepository.save(new Equipe(nom, logo));
+            System.out.println("Makato izy" + equipe.getNom());
+            //header="application/json";
+            Equipe _equipe = equipeRepository.save(new Equipe(equipe.getNom(), equipe.getLogo()));
+
             return new ResponseEntity<>(_equipe, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -59,13 +64,14 @@ public class EquipeController {
     }
 
     @PutMapping("/equipe/{id}")
-    public ResponseEntity<Equipe> updateEquipe(@RequestParam(required = true) String id, @RequestBody(required = false) String nom , @RequestBody(required = false) String logo) {
+    public ResponseEntity<Equipe> updateEquipe(@PathVariable("id") String id,@RequestBody Equipe equipe) {
+        System.out.println(" Makato am PUT id : "+id);
         Optional<Equipe> equipeData = equipeRepository.findById(id);
 
         if (equipeData.isPresent()) {
             Equipe _tutorial = equipeData.get();
-            _tutorial.setNom(nom);
-            _tutorial.setLogo(nom);
+            _tutorial.setNom(equipe.getNom());
+            _tutorial.setLogo(equipe.getLogo());
             System.out.println(" Team updated id : "+id);
             return new ResponseEntity<>(equipeRepository.save(_tutorial), HttpStatus.OK);
         } else {
@@ -75,7 +81,7 @@ public class EquipeController {
     }
 
     @DeleteMapping("/equipe/{id}")
-    public ResponseEntity<HttpStatus> deleteEquipe(@RequestParam(required = true) String id) {
+    public ResponseEntity<HttpStatus> deleteEquipe(@PathVariable("id")String id) {
         try {
 
             equipeRepository.deleteById(id);
