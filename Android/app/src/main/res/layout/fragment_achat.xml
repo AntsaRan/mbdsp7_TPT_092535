@@ -56,7 +56,7 @@
         android:layout_marginTop="16dp"
         android:text="Chad"
         app:layout_constraintStart_toEndOf="@+id/label_vendeur"
-        app:layout_constraintTop_toBottomOf="@+id/label_banque2" />
+        app:layout_constraintTop_toBottomOf="@+id/label_qr" />
 
     <TextView
         android:id="@+id/prix_vendeur"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_vendeur2" />
 
     <EditText
-        android:id="@+id/vendeur"
+        android:id="@+id/nb_qr_achat"
         android:layout_width="130dp"
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
@@ -115,7 +115,7 @@
         android:textColor="@color/colorBlack"
         android:theme="@style/EditStyle"
         app:layout_constraintStart_toEndOf="@+id/label_achat_qr"
-        app:layout_constraintTop_toBottomOf="@+id/label_banque2" />
+        app:layout_constraintTop_toBottomOf="@+id/label_qr" />
 
     <TextView
         android:id="@+id/label_vendeur"
@@ -126,7 +126,7 @@
         android:text="Le nom du vendeur"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_banque2" />
+        app:layout_constraintTop_toBottomOf="@+id/label_qr" />
 
     <TextView
         android:id="@+id/label_vendeur2"
@@ -144,12 +144,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="160dp"
         android:text="Veuillez scanner un QR Code "
         android:textColor="@android:color/holo_blue_light"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scanner_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_banque2" />
+        app:layout_constraintTop_toBottomOf="@+id/bouton_achat_qr" />
 
     <TextView
         android:id="@+id/label_banque"
@@ -165,7 +165,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_jetons" />
 
     <TextView
-        android:id="@+id/label_banque2"
+        android:id="@+id/label_qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
