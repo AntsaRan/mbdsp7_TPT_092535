@@ -2,6 +2,7 @@ package com.tpt.api_mbds.Controller;
 
 import com.tpt.api_mbds.model.Equipe;
 import com.tpt.api_mbds.repository.EquipeRepository;
+import com.tpt.api_mbds.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,28 @@ public class EquipeController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/equipes/getAll")
+    public ResponseEntity<Response<Equipe>> getAll(@RequestParam(required = false) String nom){
+        try {
+            List<Equipe> equipes = new ArrayList<Equipe>();
+            Response<Equipe> retour=new Response<>();
+            if (nom == null)
+                equipeRepository.findAll().forEach(equipes::add);
+            else
+                equipeRepository.findByNomContaining(nom).forEach(equipes::add);
+
+
+            if (equipes.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            retour.setPage(1);
+            retour.setResults(equipes);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
   /*  @GetMapping("/equipes/{id}")
     public ResponseEntity<Equipe> getEquipeById(@PathVariable("id") String id) {
 
@@ -83,7 +106,6 @@ public class EquipeController {
     @DeleteMapping("/equipe/{id}")
     public ResponseEntity<HttpStatus> deleteEquipe(@PathVariable("id")String id) {
         try {
-
             equipeRepository.deleteById(id);
             System.out.println(" Team deleted id : "+id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
