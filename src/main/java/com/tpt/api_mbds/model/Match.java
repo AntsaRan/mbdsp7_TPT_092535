@@ -9,9 +9,9 @@ import java.util.Date;
 public class Match {
     @Id
     private String id;
-    @Id
+
     private String idEquipe1;
-    @Id
+
     private String idEquipe2;
     private Date date;
     private String lieu;
@@ -84,8 +84,7 @@ public class Match {
     }
 
     public Match(String idEquipe1, String idEquipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
-        this.idEquipe1 = idEquipe1;
-        this.idEquipe2 = idEquipe2;
+
         this.date = date;
         this.lieu = lieu;
         this.etat = etat;
