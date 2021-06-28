@@ -91,7 +91,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
 
                 movieVH.mEquipeNom.setText(result.getNom());
 
-
+                System.out.println("LOGO "+result.getLogo());
 
                 Picasso.get().load( result.getLogo())
                         .placeholder(R.drawable.image_placeholder)

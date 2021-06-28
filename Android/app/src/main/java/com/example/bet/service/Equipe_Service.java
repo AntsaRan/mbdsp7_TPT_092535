@@ -14,7 +14,7 @@ public interface Equipe_Service {
 
 
     //Equipe
-    @GET("getAll")//A changer lorsque l'APi sera disponible
+    @GET("equipes/getAll")//A changer lorsque l'APi sera disponible
     Call<Equipe_Response> getAllEquipe();
 
     @POST("equipes/")

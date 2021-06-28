@@ -208,6 +208,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
 
             @Override
             public void onResponse(Call<Equipe_Response> call, retrofit2.Response<Equipe_Response> response) {
+
                 List<Equipe> results = fetchResults(response);
                 adapter.clear();
                 progressBar.setVisibility(View.GONE);
@@ -219,6 +220,8 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
                 rv.setItemAnimator(new DefaultItemAnimator());
 
                 rv.setAdapter(adapter);
+
+
             }
 
 
@@ -262,6 +265,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
     }
 
   private List<Equipe> fetchResults(retrofit2.Response<Equipe_Response> response) {
+        System.out.println("Ito le response"+ response);
         Equipe_Response topRatedMovies = response.body();
         return topRatedMovies.getResults();
     }
@@ -299,9 +303,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
     }
 
     private Call<Equipe_Response> callTopRatedMoviesApi() {
-        return equipeService.getTopRatedMovies(
-                API.API_TOKEN,
-                currentPage
+        return equipeService.getAllEquipe(
         );
     }
 
