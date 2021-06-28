@@ -4,9 +4,7 @@ import androidx.fragment.app.Fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,23 +23,26 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.bet.API.API;
 import com.example.bet.R;
 import com.example.bet.adapter.PaginationAdapter_Equipe;
+import com.example.bet.controleur.ItemClickSupport;
+import com.example.bet.controleur.PaginationScrollListener;
+import com.example.bet.modele.Equipe;
+import com.example.bet.modele.Equipe_Response;
 import com.example.bet.service.Equipe_Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class Equipe_Fragment extends Fragment{
+public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener{
     PaginationAdapter_Equipe adapter;
     LinearLayoutManager linearLayoutManager;
     private Context mContext;
@@ -56,15 +57,15 @@ public class Equipe_Fragment extends Fragment{
     private int TOTAL_PAGES = 500;
     private int currentPage = PAGE_START;
 
-    private Equipe_Service movieService;
-/*
+    private Equipe_Service equipeService;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_favorite, container, false);
         rv = (RecyclerView) view.findViewById(R.id.main_recycler);
         progressBar = (ProgressBar) view.findViewById(R.id.main_progress);
-        adapter = new PaginationAdapter(view.getContext());
+        adapter = new PaginationAdapter_Equipe(view.getContext());
         frameLayout = (FrameLayout) view.findViewById(R.id.frameLayout);
         setHasOptionsMenu(true);
         // rv.setLayoutManager(new GridLayoutManager(this, 2));
@@ -132,7 +133,7 @@ public class Equipe_Fragment extends Fragment{
         super.onAttach(context);
         mContext = context;
 
-        movieService = API.getClient().create(Service.class);
+        equipeService = API.getClient().create(Equipe_Service.class);
     }
 
     @Override
@@ -158,7 +159,7 @@ public class Equipe_Fragment extends Fragment{
 
     private void refreshList() {
 
-        adapter = new PaginationAdapter(view.getContext());
+        adapter = new PaginationAdapter_Equipe(view.getContext());
 
         linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
@@ -167,7 +168,7 @@ public class Equipe_Fragment extends Fragment{
 
         rv.setAdapter(adapter);
         //init service and load data
-        movieService = API.getClient().create(Service.class);
+        equipeService = API.getClient().create(Equipe_Service.class);
 
         loadFirstPage();
     }
@@ -179,31 +180,35 @@ public class Equipe_Fragment extends Fragment{
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         Log.e("TAG", "Position : " + position);
 
-                        Movie movie = (Movie) adapter.getItem(position);
-                        Intent intent = new Intent(view.getContext(), MovieDetails.class);
-                        intent.putExtra("id", movie.getId().toString());
-                        intent.putExtra("title", movie.getTitle());
-                        intent.putExtra("bannerpath", movie.getBackdropPath());
-                        intent.putExtra("overview", movie.getOverview());
-                        intent.putExtra("release", movie.getReleaseDate());
-                        intent.putExtra("profilepath", movie.getPosterPath());
-                        for (int cmpt = 0; cmpt < movie.getGenreIds().size(); cmpt++) {
-                            intent.putExtra("genre" + cmpt, movie.getGenreIds().get(cmpt).toString());
+
+/*
+                        Equipe equipe = (Equipe) adapter.getItem(position);
+                        Intent intent = new Intent(view.getContext(), Equipe_Fragment.class);
+                        intent.putExtra("id", equipe.getId().toString());
+                        intent.putExtra("title", equipe.getTitle());
+                        intent.putExtra("bannerpath", equipe.getBackdropPath());
+                        intent.putExtra("overview", equipe.getOverview());
+                        intent.putExtra("release", equipe.getReleaseDate());
+                        intent.putExtra("profilepath", equipe.getPosterPath());
+                        for (int cmpt = 0; cmpt < equipe.getGenreIds().size(); cmpt++) {
+                            intent.putExtra("genre" + cmpt, equipe.getGenreIds().get(cmpt).toString());
                         }
-                        intent.putExtra("taille", String.valueOf(movie.getGenreIds().size()));
+                        intent.putExtra("taille", String.valueOf(equipe.getGenreIds().size()));
                         startActivity(intent);
+
+ */
                     }
                 });
     }
 
     private void loadFirstPage() {
 
-        callTopRatedMoviesApi().enqueue(new Callback<MoviesResponse>() {
+        callTopRatedMoviesApi().enqueue(new Callback<Equipe_Response>() {
 
 
             @Override
-            public void onResponse(Call<MoviesResponse> call, retrofit2.Response<MoviesResponse> response) {
-                List<Movie> results = fetchResults(response);
+            public void onResponse(Call<Equipe_Response> call, retrofit2.Response<Equipe_Response> response) {
+                List<Equipe> results = fetchResults(response);
                 adapter.clear();
                 progressBar.setVisibility(View.GONE);
 
@@ -218,7 +223,7 @@ public class Equipe_Fragment extends Fragment{
 
 
             @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+            public void onFailure(Call<Equipe_Response> call, Throwable t) {
                 t.printStackTrace();
                 Log.e("EXCEPTION ATO ", t.getMessage());
             }
@@ -228,12 +233,12 @@ public class Equipe_Fragment extends Fragment{
 
     private void searchMovies(String name) {
 
-        callSearchMoviesApi(name).enqueue(new Callback<MoviesResponse>() {
+        callSearchMoviesApi(name).enqueue(new Callback<Equipe_Response>() {
 
 
             @Override
-            public void onResponse(Call<MoviesResponse> call, retrofit2.Response<MoviesResponse> response) {
-                List<Movie> results = fetchSearchResults(response);
+            public void onResponse(Call<Equipe_Response> call, retrofit2.Response<Equipe_Response> response) {
+                List<Equipe> results = fetchSearchResults(response);
                 if (results != null) {
                     adapter.clear();
                     progressBar.setVisibility(View.GONE);
@@ -249,24 +254,20 @@ public class Equipe_Fragment extends Fragment{
 
 
             @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+            public void onFailure(Call<Equipe_Response> call, Throwable t) {
                 t.printStackTrace();
             }
         });
 
     }
 
-    /**
-     * @param response extracts List<{@link Movie>} from response
-     * @return
-     */
-   /* private List<Movie> fetchResults(retrofit2.Response<MoviesResponse> response) {
-        MoviesResponse topRatedMovies = response.body();
+  private List<Equipe> fetchResults(retrofit2.Response<Equipe_Response> response) {
+        Equipe_Response topRatedMovies = response.body();
         return topRatedMovies.getResults();
     }
 
-    private List<Movie> fetchSearchResults(retrofit2.Response<MoviesResponse> response) {
-        MoviesResponse searchResult = new MoviesResponse();
+    private List<Equipe> fetchSearchResults(retrofit2.Response<Equipe_Response> response) {
+        Equipe_Response searchResult = new Equipe_Response();
         if (response.body() != null)
             searchResult = response.body();
 
@@ -275,15 +276,15 @@ public class Equipe_Fragment extends Fragment{
 
     private void loadNextPage() {
 
-        callTopRatedMoviesApi().enqueue(new Callback<MoviesResponse>() {
+        callTopRatedMoviesApi().enqueue(new Callback<Equipe_Response>() {
 
 
             @Override
-            public void onResponse(Call<MoviesResponse> call, retrofit2.Response<MoviesResponse> response) {
+            public void onResponse(Call<Equipe_Response> call, retrofit2.Response<Equipe_Response> response) {
                 adapter.removeLoadingFooter();
                 isLoading = false;
 
-                List<Movie> results = fetchResults(response);
+                List<Equipe> results = fetchResults(response);
                 adapter.addAll(results);
 
                 if (currentPage != TOTAL_PAGES) adapter.addLoadingFooter();
@@ -291,21 +292,21 @@ public class Equipe_Fragment extends Fragment{
             }
 
             @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+            public void onFailure(Call<Equipe_Response> call, Throwable t) {
                 t.printStackTrace();
             }
         });
     }
 
-    private Call<MoviesResponse> callTopRatedMoviesApi() {
-        return movieService.getTopRatedMovies(
+    private Call<Equipe_Response> callTopRatedMoviesApi() {
+        return equipeService.getTopRatedMovies(
                 API.API_TOKEN,
                 currentPage
         );
     }
 
-    private Call<MoviesResponse> callSearchMoviesApi(String name) {
-        return movieService.searchMovies(
+    private Call<Equipe_Response> callSearchMoviesApi(String name) {
+        return equipeService.searchMovies(
                 API.API_TOKEN, name,
                 1
         );
@@ -357,7 +358,7 @@ public class Equipe_Fragment extends Fragment{
         super.onResume();
     }
 
-    */
+
 
 }
 

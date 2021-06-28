@@ -15,7 +15,7 @@ public interface Equipe_Service {
 
     //Equipe
     @GET("getAll")//A changer lorsque l'APi sera disponible
-    Call<List<Equipe>> getAllEquipe();
+    Call<Equipe_Response> getAllEquipe();
 
     @POST("equipes/")
     Call<Equipe_Response> getTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int pageIndex);
