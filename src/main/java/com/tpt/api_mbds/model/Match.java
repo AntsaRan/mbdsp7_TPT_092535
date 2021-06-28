@@ -11,9 +11,9 @@ public class Match {
     @Id
     private String id;
 
-    private ObjectId idEquipe1;
+    private String idEquipe1;
 
-    private ObjectId idEquipe2;
+    private String idEquipe2;
     private Date date;
     private String lieu;
     private String etat;
@@ -28,19 +28,19 @@ public class Match {
         this.id = id;
     }
 
-    public ObjectId getIdEquipe1() {
+    public String getIdEquipe1() {
         return idEquipe1;
     }
 
-    public void setIdEquipe1(ObjectId idEquipe1) {
+    public void setIdEquipe1(String idEquipe1) {
         this.idEquipe1 = idEquipe1;
     }
 
-    public ObjectId getIdEquipe2() {
+    public String getIdEquipe2() {
         return idEquipe2;
     }
 
-    public void setIdEquipe2(ObjectId idEquipe2) {
+    public void setIdEquipe2(String idEquipe2) {
         this.idEquipe2 = idEquipe2;
     }
 
@@ -88,7 +88,7 @@ public class Match {
 
     }
 
-    public Match(ObjectId idEquipe1, ObjectId idEquipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
+    public Match(String idEquipe1, String idEquipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
         this.idEquipe1=idEquipe1;
         this.idEquipe2=idEquipe2;
         this.date = date;
