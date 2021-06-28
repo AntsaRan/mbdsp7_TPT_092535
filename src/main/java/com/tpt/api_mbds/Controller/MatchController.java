@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class MatchController {
     @Autowired
-    MatchRepository equipeRepository;
+    MatchRepository matchRepository;
 
     @GetMapping("/matches")
     public ResponseEntity<List<Match>> getAllEquipes(@RequestParam(required = false) String etat){
@@ -24,9 +24,9 @@ public class MatchController {
             List<Match> matchs = new ArrayList<Match>();
 
             if (etat == null)
-                equipeRepository.findAll().forEach(matchs::add);
+                matchRepository.findAll().forEach(matchs::add);
             else
-                equipeRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
+                matchRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
 
 
             if (matchs.isEmpty()) {
@@ -38,4 +38,18 @@ public class MatchController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping(path = "/match")
+    public ResponseEntity<Match> createEquipe(@RequestBody Match match) {
+        try {
+            System.out.println("Makato izy" + match.getIdEquipe1());
+            //header="application/json";
+            Match _match = matchRepository.save(new Match(match.getIdEquipe1(), match.getIdEquipe2(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2()));
+
+            return new ResponseEntity<>(_match, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
