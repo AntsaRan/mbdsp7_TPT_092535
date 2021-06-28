@@ -65,12 +65,18 @@ public class EquipeController {
         }
     }
 
-  /*  @GetMapping("/equipes/{id}")
-    public ResponseEntity<Equipe> getEquipeById(@PathVariable("id") String id) {
 
+    @GetMapping("/equipe/{id}")
+    public ResponseEntity<Equipe> getEquipeById(@PathVariable("id") String id) {
+        Optional<Equipe> equipeData = equipeRepository.findById(id);
+
+        if (equipeData.isPresent()) {
+            return new ResponseEntity<>(equipeData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-   */
 
 
     @PostMapping(path = "/equipe")
