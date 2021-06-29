@@ -1,11 +1,10 @@
 export class Match {
-    _id: string
-    idequipe1: string
-    idequipe2:string
+    id: string
+    idEquipe1: string
+    idEquipe2:string
     date: Date
     lieu:string
     etat: string
-    scoreeq1:Number
+    scoreEquipe1:Number
     scoreeq2: Number
-    idMatchRegle: string  
 }
