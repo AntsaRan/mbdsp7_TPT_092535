@@ -56,5 +56,13 @@ namespace projetParis
             for(int i=0; i<31; i++) { }
 
         }
+
+        private void labelSeConnecter_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ConnexionPage connexionPage = new ConnexionPage();
+            connexionPage.ShowDialog();
+            this.Close();
+        }
     }
 }

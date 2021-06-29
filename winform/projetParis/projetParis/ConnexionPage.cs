@@ -39,5 +39,13 @@ namespace projetParis
             inscriptionPage.ShowDialog();
             this.Close();
         }
+
+        private void buttonConnexion_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Accueil accueilPage = new Accueil();
+            accueilPage.ShowDialog();
+            this.Close();
+        }
     }
 }

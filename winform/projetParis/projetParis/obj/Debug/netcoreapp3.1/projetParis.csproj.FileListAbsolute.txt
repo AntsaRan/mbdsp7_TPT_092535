@@ -4,7 +4,6 @@ E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Deb
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.runtimeconfig.dev.json
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.dll
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\projetParis.pdb
-E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csprojAssemblyReference.cache
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.ConnexionPage.resources
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.Properties.Resources.resources
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csproj.GenerateResource.cache
@@ -15,3 +14,7 @@ E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Deb
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.pdb
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.genruntimeconfig.cache
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.InscriptionPage.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.Accueil.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.ListeEquipes.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.ListeMatchs.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csprojAssemblyReference.cache

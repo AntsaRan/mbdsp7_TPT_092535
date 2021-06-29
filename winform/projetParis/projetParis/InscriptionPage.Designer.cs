@@ -31,30 +31,30 @@ namespace projetParis
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InscriptionPage));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelSeConnecter = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxNom = new System.Windows.Forms.TextBox();
-            this.textBoxPrenom = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxJour = new System.Windows.Forms.ComboBox();
-            this.comboBoxMois = new System.Windows.Forms.ComboBox();
-            this.comboBoxAnnee = new System.Windows.Forms.ComboBox();
-            this.textBoxPays = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxMail = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxMdp = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxCMdp = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.buttonInscription = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.buttonInscription = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.labelSeConnecter = new System.Windows.Forms.Label();
+            this.textBoxCMdp = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxMdp = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxPays = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxAnnee = new System.Windows.Forms.ComboBox();
+            this.comboBoxMois = new System.Windows.Forms.ComboBox();
+            this.comboBoxJour = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxPrenom = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxNom = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,6 +71,29 @@ namespace projetParis
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(804, 655);
             this.panel1.TabIndex = 0;
+            // 
+            // labelSeConnecter
+            // 
+            this.labelSeConnecter.AutoSize = true;
+            this.labelSeConnecter.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelSeConnecter.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.labelSeConnecter.Location = new System.Drawing.Point(393, 593);
+            this.labelSeConnecter.Name = "labelSeConnecter";
+            this.labelSeConnecter.Size = new System.Drawing.Size(98, 20);
+            this.labelSeConnecter.TabIndex = 3;
+            this.labelSeConnecter.Text = "se connecter";
+            this.labelSeConnecter.Click += new System.EventHandler(this.labelSeConnecter_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(284, 593);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 20);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Déja inscrit ?";
             // 
             // panel2
             // 
@@ -100,91 +123,102 @@ namespace projetParis
             this.panel2.Size = new System.Drawing.Size(445, 400);
             this.panel2.TabIndex = 1;
             // 
-            // pictureBox1
+            // buttonInscription
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(368, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(101, 102);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.buttonInscription.BackColor = System.Drawing.Color.Gold;
+            this.buttonInscription.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonInscription.Location = new System.Drawing.Point(271, 347);
+            this.buttonInscription.Name = "buttonInscription";
+            this.buttonInscription.Size = new System.Drawing.Size(135, 37);
+            this.buttonInscription.TabIndex = 19;
+            this.buttonInscription.Text = "Inscription";
+            this.buttonInscription.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // label9
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(30, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nom *";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(30, 272);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(96, 18);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "mot de passe *";
             // 
-            // textBoxNom
+            // textBoxTel
             // 
-            this.textBoxNom.Location = new System.Drawing.Point(180, 16);
-            this.textBoxNom.Multiline = true;
-            this.textBoxNom.Name = "textBoxNom";
-            this.textBoxNom.PlaceholderText = "Votre nom";
-            this.textBoxNom.Size = new System.Drawing.Size(226, 35);
-            this.textBoxNom.TabIndex = 1;
+            this.textBoxTel.Location = new System.Drawing.Point(180, 296);
+            this.textBoxTel.Multiline = true;
+            this.textBoxTel.Name = "textBoxTel";
+            this.textBoxTel.PlaceholderText = "Votre téléphone";
+            this.textBoxTel.Size = new System.Drawing.Size(226, 35);
+            this.textBoxTel.TabIndex = 17;
             // 
-            // textBoxPrenom
+            // label8
             // 
-            this.textBoxPrenom.Location = new System.Drawing.Point(180, 57);
-            this.textBoxPrenom.Multiline = true;
-            this.textBoxPrenom.Name = "textBoxPrenom";
-            this.textBoxPrenom.PlaceholderText = "Votre prénom";
-            this.textBoxPrenom.Size = new System.Drawing.Size(226, 35);
-            this.textBoxPrenom.TabIndex = 3;
-            this.textBoxPrenom.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(30, 302);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 18);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Téléphone *";
             // 
-            // label2
+            // textBoxCMdp
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(30, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Prénom *";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.textBoxCMdp.Location = new System.Drawing.Point(180, 255);
+            this.textBoxCMdp.Multiline = true;
+            this.textBoxCMdp.Name = "textBoxCMdp";
+            this.textBoxCMdp.PlaceholderText = "Confirmer votre mote de passe";
+            this.textBoxCMdp.Size = new System.Drawing.Size(226, 35);
+            this.textBoxCMdp.TabIndex = 15;
             // 
-            // label3
+            // label7
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(30, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Date de naissance *";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(30, 255);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 18);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Confirmer  ";
             // 
-            // comboBoxJour
+            // textBoxMdp
             // 
-            this.comboBoxJour.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBoxJour.FormattingEnabled = true;
-            this.comboBoxJour.Location = new System.Drawing.Point(180, 98);
-            this.comboBoxJour.Name = "comboBoxJour";
-            this.comboBoxJour.Size = new System.Drawing.Size(51, 28);
-            this.comboBoxJour.TabIndex = 5;
+            this.textBoxMdp.Location = new System.Drawing.Point(180, 214);
+            this.textBoxMdp.Multiline = true;
+            this.textBoxMdp.Name = "textBoxMdp";
+            this.textBoxMdp.PlaceholderText = "Votre mot de passe";
+            this.textBoxMdp.Size = new System.Drawing.Size(226, 35);
+            this.textBoxMdp.TabIndex = 13;
             // 
-            // comboBoxMois
+            // label6
             // 
-            this.comboBoxMois.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBoxMois.FormattingEnabled = true;
-            this.comboBoxMois.Location = new System.Drawing.Point(237, 98);
-            this.comboBoxMois.Name = "comboBoxMois";
-            this.comboBoxMois.Size = new System.Drawing.Size(98, 28);
-            this.comboBoxMois.TabIndex = 6;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(30, 220);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 18);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Mot de passe *";
             // 
-            // comboBoxAnnee
+            // textBoxMail
             // 
-            this.comboBoxAnnee.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBoxAnnee.FormattingEnabled = true;
-            this.comboBoxAnnee.Location = new System.Drawing.Point(341, 98);
-            this.comboBoxAnnee.Name = "comboBoxAnnee";
-            this.comboBoxAnnee.Size = new System.Drawing.Size(65, 28);
-            this.comboBoxAnnee.TabIndex = 7;
+            this.textBoxMail.Location = new System.Drawing.Point(180, 173);
+            this.textBoxMail.Multiline = true;
+            this.textBoxMail.Name = "textBoxMail";
+            this.textBoxMail.PlaceholderText = "Votre adresse mail";
+            this.textBoxMail.Size = new System.Drawing.Size(226, 35);
+            this.textBoxMail.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(30, 179);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 18);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Mail *";
             // 
             // textBoxPays
             // 
@@ -207,124 +241,91 @@ namespace projetParis
             this.label4.Text = "Pays";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // textBoxMail
+            // comboBoxAnnee
             // 
-            this.textBoxMail.Location = new System.Drawing.Point(180, 173);
-            this.textBoxMail.Multiline = true;
-            this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.PlaceholderText = "Votre adresse mail";
-            this.textBoxMail.Size = new System.Drawing.Size(226, 35);
-            this.textBoxMail.TabIndex = 11;
+            this.comboBoxAnnee.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBoxAnnee.FormattingEnabled = true;
+            this.comboBoxAnnee.Location = new System.Drawing.Point(341, 98);
+            this.comboBoxAnnee.Name = "comboBoxAnnee";
+            this.comboBoxAnnee.Size = new System.Drawing.Size(65, 28);
+            this.comboBoxAnnee.TabIndex = 7;
             // 
-            // label5
+            // comboBoxMois
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(30, 179);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 18);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Mail *";
+            this.comboBoxMois.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBoxMois.FormattingEnabled = true;
+            this.comboBoxMois.Location = new System.Drawing.Point(237, 98);
+            this.comboBoxMois.Name = "comboBoxMois";
+            this.comboBoxMois.Size = new System.Drawing.Size(98, 28);
+            this.comboBoxMois.TabIndex = 6;
             // 
-            // textBoxMdp
+            // comboBoxJour
             // 
-            this.textBoxMdp.Location = new System.Drawing.Point(180, 214);
-            this.textBoxMdp.Multiline = true;
-            this.textBoxMdp.Name = "textBoxMdp";
-            this.textBoxMdp.PlaceholderText = "Votre mot de passe";
-            this.textBoxMdp.Size = new System.Drawing.Size(226, 35);
-            this.textBoxMdp.TabIndex = 13;
+            this.comboBoxJour.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBoxJour.FormattingEnabled = true;
+            this.comboBoxJour.Location = new System.Drawing.Point(180, 98);
+            this.comboBoxJour.Name = "comboBoxJour";
+            this.comboBoxJour.Size = new System.Drawing.Size(51, 28);
+            this.comboBoxJour.TabIndex = 5;
             // 
-            // label6
+            // label3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(30, 220);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 18);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Mot de passe *";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(30, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(128, 18);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Date de naissance *";
             // 
-            // textBoxCMdp
+            // textBoxPrenom
             // 
-            this.textBoxCMdp.Location = new System.Drawing.Point(180, 255);
-            this.textBoxCMdp.Multiline = true;
-            this.textBoxCMdp.Name = "textBoxCMdp";
-            this.textBoxCMdp.PlaceholderText = "Confirmer votre mote de passe";
-            this.textBoxCMdp.Size = new System.Drawing.Size(226, 35);
-            this.textBoxCMdp.TabIndex = 15;
+            this.textBoxPrenom.Location = new System.Drawing.Point(180, 57);
+            this.textBoxPrenom.Multiline = true;
+            this.textBoxPrenom.Name = "textBoxPrenom";
+            this.textBoxPrenom.PlaceholderText = "Votre prénom";
+            this.textBoxPrenom.Size = new System.Drawing.Size(226, 35);
+            this.textBoxPrenom.TabIndex = 3;
+            this.textBoxPrenom.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // label7
+            // label2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(30, 255);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 18);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Confirmer  ";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(30, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Prénom *";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBoxTel
+            // textBoxNom
             // 
-            this.textBoxTel.Location = new System.Drawing.Point(180, 296);
-            this.textBoxTel.Multiline = true;
-            this.textBoxTel.Name = "textBoxTel";
-            this.textBoxTel.PlaceholderText = "Votre téléphone";
-            this.textBoxTel.Size = new System.Drawing.Size(226, 35);
-            this.textBoxTel.TabIndex = 17;
+            this.textBoxNom.Location = new System.Drawing.Point(180, 16);
+            this.textBoxNom.Multiline = true;
+            this.textBoxNom.Name = "textBoxNom";
+            this.textBoxNom.PlaceholderText = "Votre nom";
+            this.textBoxNom.Size = new System.Drawing.Size(226, 35);
+            this.textBoxNom.TabIndex = 1;
             // 
-            // label8
+            // label1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(30, 302);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 18);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Téléphone *";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(30, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nom *";
             // 
-            // label9
+            // pictureBox1
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(30, 272);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(96, 18);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "mot de passe *";
-            // 
-            // buttonInscription
-            // 
-            this.buttonInscription.BackColor = System.Drawing.Color.Gold;
-            this.buttonInscription.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonInscription.Location = new System.Drawing.Point(271, 347);
-            this.buttonInscription.Name = "buttonInscription";
-            this.buttonInscription.Size = new System.Drawing.Size(135, 37);
-            this.buttonInscription.TabIndex = 19;
-            this.buttonInscription.Text = "Inscription";
-            this.buttonInscription.UseVisualStyleBackColor = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(284, 593);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 20);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Déja inscrit ?";
-            // 
-            // labelSeConnecter
-            // 
-            this.labelSeConnecter.AutoSize = true;
-            this.labelSeConnecter.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelSeConnecter.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.labelSeConnecter.Location = new System.Drawing.Point(393, 593);
-            this.labelSeConnecter.Name = "labelSeConnecter";
-            this.labelSeConnecter.Size = new System.Drawing.Size(98, 20);
-            this.labelSeConnecter.TabIndex = 3;
-            this.labelSeConnecter.Text = "se connecter";
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(368, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(101, 102);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // InscriptionPage
             // 
