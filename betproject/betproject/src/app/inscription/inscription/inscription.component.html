@@ -1,0 +1,67 @@
+<mat-dialog-content class="mat-typography logindialog">
+    <div class="imglogin">
+        <img src="/assets/img/logo.png" width="80" height="80">
+    </div>
+    <div class="logincontainer">
+        <div class="row">
+            <div>
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Inscription </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form ngForm #loginform class="form" (submit)="onSubmit($event); loginform.reset();">
+                            <mat-form-field class="loginfield">
+                                <input matInput placeholder="Nom" required [(ngModel)]="nom" name="nom">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput placeholder="Prénom" required [(ngModel)]="prenom" name="prenom">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker">
+                                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput placeholder="Pays" required [(ngModel)]="pays" name="pays">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput placeholder="Mail" required [(ngModel)]="mail" name="mail">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input [type]="hide ? 'mdp' : 'text'" matInput placeholder="Mot de passe" required
+                                    [(ngModel)]="mdp" name="mdp">
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput placeholder="Confirmation mot de passe" required
+                                    [(ngModel)]="confirmmdp" name="confirmmdp">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput placeholder="Téléphone" required [(ngModel)]="phone" name="phone">
+                            </mat-form-field>
+                            <br>
+                            <button mat-stroked-button color="primary"  class="btn btnlogin">
+                                S'inscrire
+                            </button>
+                            <div *ngIf="error" class="alert">{{error}}</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
