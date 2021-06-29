@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Match } from 'src/app/shared/models/match.model';
 import { CartService } from 'src/app/shared/services/cart.service';
+import { MatchServiceService } from 'src/app/shared/services/match-service.service';
 
 @Component({
   selector: 'app-accueil',
@@ -9,64 +10,33 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-
+  matches: Match[]=[];
   currentdate = new Date();
   date: string;
-  constructor(private datePipe: DatePipe, private cartserv:CartService) {
+  constructor(
+    private datePipe: DatePipe,
+    private cartserv: CartService,
+    private matchserv: MatchServiceService) {
+
     this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
   }
 
   ngOnInit(): void {
+    this.getMatches();
   }
-  match1: Match = {
-    _id: "1",
-    idequipe1: "equipe 1",
-    idequipe2: "equipe 2",
-    date: new Date("21/06/21"),
-    lieu: "Cochon",
-    etat: "terminé",
-    scoreeq1: 2,
-    scoreeq2: 0,
-    idMatchRegle: "1"
-  }
-  match2: Match = {
-    _id: "2",
-    idequipe1: "equipe 2",
-    idequipe2: "equipe 3",
-    date: new Date("21/06/21"),
-    lieu: "Afrique",
-    etat: "terminé",
-    scoreeq1: 2,
-    scoreeq2: 0,
-    idMatchRegle: "1"
-  }
-  match3: Match = {
-    _id: "3",
-    idequipe1: "equipe 1",
-    idequipe2: "equipe 3",
-    date: new Date("21/06/21"),
-    lieu: "Paris",
-    etat: "terminé",
-    scoreeq1: 2,
-    scoreeq2: 0,
-    idMatchRegle: "1"
-  }
-  match4: Match = {
-    _id: "4",
-    idequipe1: "equipe 3",
-    idequipe2: "equipe 4",
-    date: new Date("21/06/21"),
-    lieu: "Londres",
-    etat: "terminé",
-    scoreeq1: 2,
-    scoreeq2: 0,
-    idMatchRegle: "1"
-  }
-  matchs: Match[] = [this.match1,this.match2,this.match3,this.match4,this.match4,
-    this.match4,this.match4,this.match4,this.match4,this.match4,this.match4];
 
-    add(match){
-      console.log(match.lieu);
-      this.cartserv.add(match);
-    }
+  getMatches() {
+    console.log("getmatches");
+    this.matchserv.getMatches()
+      .subscribe(data => {
+        data.forEach(match=>{         
+          console.log(match.id+ " match")
+          this.matches.push(match);
+        })
+      });
+  }
+  add(match) {
+    console.log(match.lieu);
+    this.cartserv.add(match);
+  }
 }

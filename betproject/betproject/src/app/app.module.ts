@@ -16,14 +16,23 @@ import {MatCardModule} from '@angular/material/card';
 import { DatePipe } from '@angular/common';
 import { CouponsComponent } from './coupons/coupons/coupons.component';
 import { LoginComponent } from './login/login/login.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
+import { InscriptionComponent } from './inscription/inscription/inscription.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FichematchComponent } from './ficheMatch/fichematch/fichematch.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const routes: Routes = [
   {
     path: "",
     component: AccueilComponent,
+  },
+  {
+    path: "detailmatch/:id",
+    component: FichematchComponent,
   }
 ]
 
@@ -32,7 +41,9 @@ const routes: Routes = [
     AppComponent,
     AccueilComponent,
     CouponsComponent,
-    LoginComponent
+    LoginComponent,
+    InscriptionComponent,
+    FichematchComponent
   ],
   imports: [
     BrowserModule,
@@ -45,12 +56,12 @@ const routes: Routes = [
     MatButtonModule,
     MatSidenavModule, 
     RouterModule.forRoot(routes),
-    MatListModule,
-    MatCardModule,MatDialogModule,FormsModule,MatCheckboxModule
+    MatListModule,MatDatepickerModule,HttpClientModule,
+    MatCardModule,MatDialogModule,FormsModule,MatCheckboxModule,MatNativeDateModule
     
   ],
   providers: [
-    DatePipe
+    DatePipe,MatNativeDateModule
   ],
   bootstrap: [AppComponent]
 })
