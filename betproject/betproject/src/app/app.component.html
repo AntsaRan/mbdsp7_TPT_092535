@@ -27,7 +27,7 @@
         <mat-grid-tile *ngIf="!islogged">
           <div class="rightmenu">
             <a class="navlink"(click)="openLoginDialog()"><button id="context" mat-button color="primary">Connexion</button></a>
-            <a href="#" class="navlink"><button id="insctext" mat-raised-button color="primary">Inscription</button></a>
+            <a class="navlink"><button id="insctext" (click)="openSigninDialog()" mat-raised-button color="primary">Inscription</button></a>
           </div>
         </mat-grid-tile>
         <mat-grid-tile *ngIf="islogged">
@@ -51,12 +51,16 @@
         <mat-grid-tile colspan="2">
           <div class="navmenu">
             <div class="navmenuelem">
-              <mat-icon class="example-icon-home">home</mat-icon>
+              <a routerLink="/" class="headerlink">
+                <mat-icon class="example-icon-home">home</mat-icon>
               Home
+              </a>
             </div>
             <div class="navmenuelem">
+              <a routerLink="/jeuresp" class="headerlink">
               <mat-icon class="example-icon-jeuresp">lightbulb</mat-icon>
               Jeu responsable
+              </a>
             </div>
           </div>
         </mat-grid-tile>

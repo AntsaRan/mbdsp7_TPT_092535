@@ -4,6 +4,8 @@ import { CartService } from './shared/services/cart.service';
 import { Match } from './shared/models/match.model';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './login/login/login.component';
+import { InscriptionComponent } from './inscription/inscription/inscription.component';
+import { MatchServiceService } from './shared/services/match-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,13 +13,22 @@ import { LoginComponent } from './login/login/login.component';
 })
 export class AppComponent {
   title = 'betproject';
-  islogged:boolean=false;
+  islogged: boolean = false;
 
-  constructor(private datePipe: DatePipe, private cartserv:CartService,public dialog: MatDialog) {
+  constructor(
+    private datePipe: DatePipe,
+    private cartserv: CartService,
+    public dialog: MatDialog) {
 
   }
-  openLoginDialog(){
+  openLoginDialog() {
     const dialogRef = this.dialog.open(LoginComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openSigninDialog() {
+    const dialogRef = this.dialog.open(InscriptionComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
