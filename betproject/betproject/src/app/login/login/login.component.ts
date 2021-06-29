@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   hide = true;
  // user: User;
   error = "";
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +32,10 @@ export class LoginComponent implements OnInit {
         this.reloadComponent();
       });*/
   }
-
+  openSigninDialog(){
+    const dialogRef = this.dialog.open(InscriptionComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
