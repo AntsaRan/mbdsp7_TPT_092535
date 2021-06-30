@@ -64,6 +64,7 @@ namespace projetParis
             this.dataGridViewEquipe.RowTemplate.Height = 25;
             this.dataGridViewEquipe.Size = new System.Drawing.Size(807, 482);
             this.dataGridViewEquipe.TabIndex = 2;
+            this.dataGridViewEquipe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEquipe_CellClick);
             // 
             // ListeEquipes
             // 

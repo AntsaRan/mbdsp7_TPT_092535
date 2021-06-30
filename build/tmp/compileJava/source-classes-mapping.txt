@@ -1,0 +1,16 @@
+com/tpt/api_mbds/repository/MatchRepository.java
+ com.tpt.api_mbds.repository.MatchRepository
+com/tpt/api_mbds/model/Equipe.java
+ com.tpt.api_mbds.model.Equipe
+com/tpt/api_mbds/Controller/EquipeController.java
+ com.tpt.api_mbds.Controller.EquipeController
+com/tpt/api_mbds/model/Match.java
+ com.tpt.api_mbds.model.Match
+com/tpt/api_mbds/ApiMbdsApplication.java
+ com.tpt.api_mbds.ApiMbdsApplication
+com/tpt/api_mbds/response/Response.java
+ com.tpt.api_mbds.response.Response
+com/tpt/api_mbds/repository/EquipeRepository.java
+ com.tpt.api_mbds.repository.EquipeRepository
+com/tpt/api_mbds/Controller/MatchController.java
+ com.tpt.api_mbds.Controller.MatchController
