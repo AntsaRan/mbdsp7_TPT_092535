@@ -3,17 +3,22 @@ package com.tpt.api_mbds.model;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection="match")
 public class Match {
     @Id
     private String id;
 
-    private String idEquipe1;
+    @DBRef
+    private  Equipe equipe1;
+    @DBRef
+    private  Equipe equipe2;
 
-    private String idEquipe2;
+    //private List<Equipe> equipes;
+
     private Date date;
     private String lieu;
     private String etat;
@@ -28,20 +33,20 @@ public class Match {
         this.id = id;
     }
 
-    public String getIdEquipe1() {
-        return idEquipe1;
+    public Equipe getEquipe1() {
+        return equipe1;
     }
 
-    public void setIdEquipe1(String idEquipe1) {
-        this.idEquipe1 = idEquipe1;
+    public void setEquipe1(Equipe equipe1) {
+        this.equipe1 = equipe1;
     }
 
-    public String getIdEquipe2() {
-        return idEquipe2;
+    public Equipe getEquipe2() {
+        return equipe2;
     }
 
-    public void setIdEquipe2(String idEquipe2) {
-        this.idEquipe2 = idEquipe2;
+    public void setEquipe2(Equipe equipe2) {
+        this.equipe2 = equipe2;
     }
 
     public Date getDate() {
@@ -88,9 +93,9 @@ public class Match {
 
     }
 
-    public Match(String idEquipe1, String idEquipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
-        this.idEquipe1=idEquipe1;
-        this.idEquipe2=idEquipe2;
+    public Match(Equipe equipe1, Equipe equipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
         this.date = date;
         this.lieu = lieu;
         this.etat = etat;
@@ -98,17 +103,14 @@ public class Match {
         this.scoreEquipe2 = scoreEquipe2;
     }
 
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id='" + id + '\'' +
-                ", idEquipe1='" + idEquipe1 + '\'' +
-                ", idEquipe2='" + idEquipe2 + '\'' +
-                ", date=" + date +
-                ", lieu='" + lieu + '\'' +
-                ", etat='" + etat + '\'' +
-                ", scoreEquipe1=" + scoreEquipe1 +
-                ", scoreEquipe2=" + scoreEquipe2 +
-                '}';
+    public Match(String id, Equipe equipe1, Equipe equipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
+        this.id = id;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.date = date;
+        this.lieu = lieu;
+        this.etat = etat;
+        this.scoreEquipe1 = scoreEquipe1;
+        this.scoreEquipe2 = scoreEquipe2;
     }
 }
