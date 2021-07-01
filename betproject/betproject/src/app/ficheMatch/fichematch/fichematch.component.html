@@ -11,40 +11,41 @@
                         <div class="col-lg-2 col-md-2 col-sm-2 logoequipe">
                             <img src="/assets/img/logo.png" width="150" height="150">
                             <div class="labelmatch">
-                                <p>Nom équipe</p>
-                                <a>
+                                <p>{{match.equipe1.nom}}</p>
+                                <a routerLink="/historiqueequipe/{{match.equipe1.id}}">
                                     <p>Historique matchs</p>
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <mat-card class="detailsmatch">
-                                <p>Date: <span>xx-xx-xxxx</span></p>
-                                <p>Heure: <span>10 PM</span></p>
-                                <p>Lieu: <span>Paris</span></p>
-                                <p>Statut: <span>A venir</span></p>
+                                <p> <span style="font-weight: bold;"> Date: </span> <span>{{mnewDat}}</span></p>
+                                <p> <span style="font-weight: bold;"> Heure: </span><span>{{mnewTime }}</span></p>
+                                <p><span style="font-weight: bold;">Lieu:  </span><span>{{match.lieu}}</span></p>
+                                <p><span style="font-weight: bold;">Statut: </span><span>{{etat}}</span></p>
                             </mat-card>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 logoequipe">
                             <img src="/assets/img/logo.png" width="150" height="150">
                             <div class="labelmatch">
-                                <p>Nom équipe</p>
-                                <a>
+                                <p>{{match.equipe2.nom}}</p>
+                                <a routerLink="/historiqueequipe/{{match.equipe2.id}}">
                                     <p>Historique matchs</p>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </mat-card-content>
-                <h4 class="scorematch">Score 1 <span>-</span> Score 2</h4>
+                <h4 class="scorematch" *ngIf="match.etat!='1'">{{match.scoreEquipe1}} <span> -
+                    </span>{{match.scoreEquipe2}}</h4>
                 <mat-divider></mat-divider>
-                <div class="listregles">
+                <div class="listregles"*ngIf="match.etat!='3'">
                     <div class="regletab">
                         <div class="titletype">
                             <h5>Resultat du match</h5>
                         </div>
                         <div class="titleregle row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle " >
+                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle ">
                                 <p class="nomregle">regle1</p>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
@@ -63,7 +64,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
                                 <p class="nomregle">regle1</p>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles">
+                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
                                 <p class="nomregle">regle1</p>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
@@ -79,7 +80,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
                                 <p class="nomregle">regle1</p>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles">
+                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
                                 <p class="nomregle">regle2</p>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
