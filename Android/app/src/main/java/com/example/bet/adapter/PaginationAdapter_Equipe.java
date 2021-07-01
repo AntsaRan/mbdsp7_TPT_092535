@@ -74,7 +74,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
         RecyclerView.ViewHolder viewHolder;
-        View v1 = inflater.inflate(R.layout.fragment_card, parent, false);
+        View v1 = inflater.inflate(R.layout.fragment_card_match, parent, false);
 
         viewHolder = new EquipeVH(v1);
         return viewHolder;
@@ -215,7 +215,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
             notifyDataSetChanged();
         }
     }
-};
+    };
     protected class EquipeVH extends RecyclerView.ViewHolder {
         private TextView mEquipeNom;
         private ImageView mPosterImg;

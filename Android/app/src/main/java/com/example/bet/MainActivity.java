@@ -8,6 +8,7 @@ import android.view.Menu;
 
 import com.example.bet.fragment.Achat;
 import com.example.bet.fragment.Achat_Fragment;
+import com.example.bet.fragment.Calendrier_Fragment;
 import com.example.bet.fragment.Equipe_Fragment;
 import com.example.bet.fragment.ListeMatchs_Fragment;
 import com.example.bet.fragment.Profil_Fragment;
@@ -132,7 +133,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                */
                 break;
             case R.id.nav_calendrier:
-             /*  mAuth.signOut();
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Calendrier_Fragment()).commit();
+                //Toast.makeText(Home.this, "Share", Toast.LENGTH_SHORT).show();
+              /* Intent intent1 = new Intent(MainActivity.this, Achat.class);
+                startActivity(intent1);
+
+               */
+                break;
+              /* case R.id.nav_calendrier:
+                mAuth.signOut();
                 Intent intent = new Intent(Home.this, Login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -147,7 +156,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search, menu);
+       // getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
     }
 

@@ -7,12 +7,6 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <ProgressBar
-        android:id="@+id/main_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler"
@@ -22,7 +16,15 @@
         android:background="@android:color/background_light"
         android:clipToPadding="false"
         android:paddingTop="@dimen/activity_margin_content"
-        android:paddingBottom="@dimen/activity_margin_content" />
+        android:paddingBottom="@dimen/activity_margin_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/main_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
 
 </FrameLayout>
