@@ -177,3 +177,8 @@ margin-left: 7%;
       .mat-toolbar {
         background: #ffc100!important;
       }
+      .centeredcardaction{
+        width: 80px!important;
+        text-align: center;
+        margin: auto;
+    }
