@@ -28,7 +28,6 @@ import { HistoriqueComponent } from './historique/historique/historique.componen
 import {MatTableModule} from '@angular/material/table';
 import { CalendrierComponent } from './calendrier/calendrier/calendrier.component';
 import { HistoriqueRechercheComponent } from './historique-recherche/historique-recherche/historique-recherche.component';
-import { ResultatsComponent } from './historique-recherche/resultats/resultats.component';
 
 const routes: Routes = [
   {
@@ -60,7 +59,7 @@ const routes: Routes = [
     HistoriqueComponent,
     CalendrierComponent,
     HistoriqueRechercheComponent,
-    ResultatsComponent
+    
   ],
   imports: [
     BrowserModule,
