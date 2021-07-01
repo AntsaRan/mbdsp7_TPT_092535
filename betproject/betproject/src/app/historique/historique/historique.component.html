@@ -1,0 +1,45 @@
+<div>
+    <div class="accueilContainer row ">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <mat-card>
+                <img class="historiqueequipe" src="{{image}}" width="150" height="150">
+                <mat-card-header class="cardheader">
+                    <mat-card-title>Nom equipe</mat-card-title>
+                    <mat-card-subtitle>Historique des matchs</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="equipe1">
+                            <th mat-header-cell *matHeaderCellDef>Equipe 1</th>
+                            <td mat-cell *matCellDef="let element">{{element.equipe1.nom}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="scoreEquipe1">
+                            <th mat-header-cell *matHeaderCellDef>Score</th>
+                            <td mat-cell *matCellDef="let element">{{element.scoreEquipe1}} - {{element.scoreEquipe2}}
+                            </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="equipe2">
+                            <th mat-header-cell *matHeaderCellDef>Equipe 2</th>
+                            <td mat-cell *matCellDef="let element">{{element.equipe2.nom}}</td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef>Date</th>
+                            <td mat-cell *matCellDef="let element">{{element.date}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <app-coupons></app-coupons>
+    </div>
+</div>
