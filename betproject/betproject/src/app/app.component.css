@@ -64,6 +64,9 @@ margin-left: 7%;
     top: 13px;
     left: -44px;
 }
+*,*:focus,*:hover{
+    outline:none;
+}
 #context{
     color: black;
 }
@@ -199,4 +202,7 @@ footer{
 }
 .cardheader{
     justify-content: center;
+}
+.menulien{
+    color:white;
 }
