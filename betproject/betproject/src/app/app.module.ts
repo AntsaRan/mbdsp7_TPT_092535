@@ -24,6 +24,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FichematchComponent } from './ficheMatch/fichematch/fichematch.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HistoriqueComponent } from './historique/historique/historique.component';
+import {MatTableModule} from '@angular/material/table';
+import { CalendrierComponent } from './calendrier/calendrier/calendrier.component';
+import { HistoriqueRechercheComponent } from './historique-recherche/historique-recherche/historique-recherche.component';
+import { ResultatsComponent } from './historique-recherche/resultats/resultats.component';
 
 const routes: Routes = [
   {
@@ -33,6 +38,14 @@ const routes: Routes = [
   {
     path: "detailmatch/:id",
     component: FichematchComponent,
+  },
+  {
+    path: "historiqueequipe/:id",
+    component: HistoriqueComponent,
+  },
+  {
+    path:"historiqueGlobal",
+    component:HistoriqueRechercheComponent
   }
 ]
 
@@ -43,7 +56,11 @@ const routes: Routes = [
     CouponsComponent,
     LoginComponent,
     InscriptionComponent,
-    FichematchComponent
+    FichematchComponent,
+    HistoriqueComponent,
+    CalendrierComponent,
+    HistoriqueRechercheComponent,
+    ResultatsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +73,7 @@ const routes: Routes = [
     MatButtonModule,
     MatSidenavModule, 
     RouterModule.forRoot(routes),
-    MatListModule,MatDatepickerModule,HttpClientModule,
+    MatListModule,MatDatepickerModule,HttpClientModule,MatTableModule,
     MatCardModule,MatDialogModule,FormsModule,MatCheckboxModule,MatNativeDateModule
     
   ],
