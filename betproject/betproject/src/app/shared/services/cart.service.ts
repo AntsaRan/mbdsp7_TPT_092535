@@ -7,8 +7,8 @@ import { Paris } from '../models/paris.model';
 })
 export class CartService {
   private _items: { paris: Match }[] = [];
-  constructor() {
 
+  constructor() {
     this._items = JSON.parse(localStorage.getItem('items') ||'[]'); // get the data at lunch 
   }
 
@@ -18,6 +18,9 @@ export class CartService {
     this.syncItems();
   }
 
+  format(){
+    localStorage.clear();
+  }
   add(pari) { 
      this._items.push(pari);
      this.syncItems();
