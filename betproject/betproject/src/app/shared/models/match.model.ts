@@ -1,7 +1,9 @@
+import { Equipe } from "./equipe.model"
+
 export class Match {
     id: string
-    idEquipe1: string
-    idEquipe2:string
+    equipe1: Equipe
+    equipe2:Equipe
     date: Date
     lieu:string
     etat: string

@@ -1,5 +1,5 @@
 export class Equipe {
-    _id: string
+    id: string
     nom: string
     logo:string
 }
