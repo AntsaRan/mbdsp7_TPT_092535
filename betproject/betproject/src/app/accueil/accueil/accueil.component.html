@@ -11,20 +11,22 @@
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist" *ngFor="let match of matches">
                             <div class="listitemcontent">
-                                <span class="nomequipe">{{match.idEquipe1}}</span><span> VS </span><span
-                                    class="nomequipe">{{match.idEquipe2}}</span>
-                                <a routerLink="/detailmatch/{{match._id}}" class="navlink" (click)="add(match)">
+                                <p class="nomequipe">{{match.equipe1.nom}}</p>
+                                <span> VS </span>
+                                <p class="nomequipe">{{match.equipe2.nom}}</p>
+                                <a routerLink="/detailmatch/{{match.id}}" class="navlink">
                                     <button id="detailsbutton" mat-raised-button
                                         color="primary">Détails
                                     </button>
                                 </a>
+                                <mat-divider></mat-divider>
                             </div>
-                            <mat-divider></mat-divider>
+
                         </mat-list-item> 
 
                     </mat-list>
                 </mat-card-content>
-                <mat-card-actions class="ceneteredcardaction">
+                <mat-card-actions class="centeredcardaction">
                     <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
                         color="primary">Voir plus</button></a>
                 </mat-card-actions>
@@ -42,17 +44,22 @@
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist" *ngFor="let match of matches">
                             <div class="listitemcontent">
-                                <span class="nomequipe">{{match.idEquipe1}}</span><span> VS </span><span
-                                    class="nomequipe">{{match.idEquipe2}}</span>
-                                <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
-                                        color="primary">Détails</button></a>
+                                <p class="nomequipe">{{match.equipe1.nom}}</p>
+                                <span> VS </span>
+                                <p class="nomequipe">{{match.equipe2.nom}}</p>
+                                <a routerLink="/detailmatch/{{match.id}}" class="navlink">
+                                    <button id="detailsbutton" mat-raised-button
+                                        color="primary">Détails
+                                    </button>
+                                </a>
+                                <mat-divider></mat-divider>
                             </div>
-                            <mat-divider></mat-divider>
+
                         </mat-list-item>
 
                     </mat-list>
                 </mat-card-content>
-                <mat-card-actions  class="ceneteredcardaction">
+                <mat-card-actions class="centeredcardaction">
                     <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
                         color="primary">Voir plus</button></a>
                 </mat-card-actions>

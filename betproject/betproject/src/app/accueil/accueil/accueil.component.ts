@@ -23,6 +23,7 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMatches();
+    this.cartserv.format();
   }
 
   getMatches() {

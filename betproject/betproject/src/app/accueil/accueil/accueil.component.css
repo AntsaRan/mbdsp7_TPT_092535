@@ -5,6 +5,7 @@
     justify-content: center;
 }
 .nomequipe{
+  display: inline-block;
     margin-left: 27px;
     margin-right: 27px;
 }
@@ -21,11 +22,7 @@
     max-height: 500px;
     overflow: auto;
 }
-.centeredcardaction{
-    width: 80px;
-    text-align: center;
-    margin: auto;
-}
+
 /* width */
 ::-webkit-scrollbar {
     width: 20px;
@@ -47,8 +44,17 @@
   ::-webkit-scrollbar-thumb:hover {
     background: rgb(255, 208, 0);
   }
+
+  .itemlist{
+    height: auto!important;
+  }
 @media screen and (max-width: 1310px) {
     .itemlist{
 height: 70px!important;
     }
+  }
+  .centeredcardaction{
+    text-align: center;
+    width: 101px;
+    margin: auto;
   }
