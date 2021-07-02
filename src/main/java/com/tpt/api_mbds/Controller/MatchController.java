@@ -46,6 +46,28 @@ public class MatchController {
         }
     }
 
+
+    @GetMapping("/matches/equipe/{id}")
+    public ResponseEntity<List<Match>> getMatchesParEquipe(@PathVariable("id") String id){
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+
+                System.out.println("ITO ILAY ID EQUIPE "+id);
+                matchRepository.findMatchByEquipe1_Id(id).forEach(matchs::add);
+                matchRepository.findMatchByEquipe2_Id(id).forEach(matchs::add);
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(matchs, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @GetMapping("/match/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable("id") String id) {
         Optional<Match> matchData = matchRepository.findById(id);

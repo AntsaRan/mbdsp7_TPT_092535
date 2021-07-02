@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface MatchRepository extends MongoRepository<Match, String> {
     List<Match> findMatchByEtatContaining(String etat);
+    List<Match> findMatchByEquipe1_Id(String id);
+    List<Match> findMatchByEquipe2_Id(String id);
 }
