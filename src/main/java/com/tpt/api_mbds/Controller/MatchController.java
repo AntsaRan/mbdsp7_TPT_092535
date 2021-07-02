@@ -5,6 +5,7 @@ import com.tpt.api_mbds.model.Equipe;
 import com.tpt.api_mbds.model.Match;
 import com.tpt.api_mbds.repository.EquipeRepository;
 import com.tpt.api_mbds.repository.MatchRepository;
+import com.tpt.api_mbds.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,28 @@ public class MatchController {
             }
 
             return new ResponseEntity<>(matchs, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/matches/getAll")
+    public ResponseEntity<Response<Match>> getAll(@RequestParam(required = false) String etat){
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+            Response<Match> retour=new Response<>();
+            if (etat == null)
+                matchRepository.findAll().forEach(matchs::add);
+            else
+                matchRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            retour.setPage(1);
+            retour.setResults(matchs);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
