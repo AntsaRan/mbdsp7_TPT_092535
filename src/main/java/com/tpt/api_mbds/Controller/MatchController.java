@@ -45,28 +45,7 @@ public class MatchController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/matches/getAll")
-    public ResponseEntity<Response<Match>> getAll(@RequestParam(required = false) String etat){
-        try {
-            List<Match> matchs = new ArrayList<Match>();
-            Response<Match> retour=new Response<>();
-            if (etat == null)
-                matchRepository.findAll().forEach(matchs::add);
-            else
-                matchRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
 
-
-            if (matchs.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            retour.setPage(1);
-            retour.setResults(matchs);
-            return new ResponseEntity<>(retour, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     @GetMapping("/match/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable("id") String id) {
         Optional<Match> matchData = matchRepository.findById(id);
@@ -131,6 +110,46 @@ public class MatchController {
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    //Partie Mobile
+    @GetMapping("/matches/getAll")
+    public ResponseEntity<Response<Match>> getAll(@RequestParam(required = false) String etat){
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+            Response<Match> retour=new Response<>();
+            if (etat == null)
+                matchRepository.findAll().forEach(matchs::add);
+            else
+                matchRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            retour.setPage(1);
+            retour.setResults(matchs);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/matches/{id}")
+    public ResponseEntity<Response<Match>> getMatchByIdResult(@PathVariable("id") String id) {
+        Optional<Match> matchData = matchRepository.findById(id);
+        Response<Match> retour=new Response<>();
+        List<Match> matchList=new ArrayList<>();
+        if (matchData.isPresent()) {
+            matchList.add(matchData.get());
+            retour.setResults(matchList);
+            retour.setPage(1);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
