@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
        drawer.addDrawerListener(toggle);
        toggle.syncState();
        if (savedInstanceState == null) {
-           getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ListeMatchs_Fragment()).commit();
-           navigationView.setCheckedItem(R.id.nav_liste_matchs);
+           getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Equipe_Fragment()).commit();
+           navigationView.setCheckedItem(R.id.nav_equipe);
 
        }
 
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
                */
                 break;
+
             case R.id.nav_calendrier:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Calendrier_Fragment()).commit();
                 //Toast.makeText(Home.this, "Share", Toast.LENGTH_SHORT).show();

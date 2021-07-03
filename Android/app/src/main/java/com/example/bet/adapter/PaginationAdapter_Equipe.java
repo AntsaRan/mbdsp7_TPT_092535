@@ -74,7 +74,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
         RecyclerView.ViewHolder viewHolder;
-        View v1 = inflater.inflate(R.layout.fragment_card_match, parent, false);
+        View v1 = inflater.inflate(R.layout.fragment_card, parent, false);
 
         viewHolder = new EquipeVH(v1);
         return viewHolder;
@@ -93,7 +93,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
 
                 System.out.println("LOGO "+result.getLogo());
 
-                Picasso.get().load( result.getLogo())
+                Picasso.get().load(BASE_URL_IMG+"/nAU74GmpUk7t5iklEp3bufwDq4n.jpg")
                         .placeholder(R.drawable.image_placeholder)
                         .into(movieVH.mPosterImg);
                 /**

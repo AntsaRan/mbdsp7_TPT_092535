@@ -31,6 +31,7 @@
             android:layout_marginTop="@dimen/activity_margin_quarter"
             android:layout_weight="1"
             android:maxLines="1"
+            android:textAlignment="textStart"
             tools:text="Movie Title"
             tools:visibility="visible" />
 
@@ -41,8 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_margin_half"
-        app:cardBackgroundColor="@color/placeholder_grey"
-        app:cardCornerRadius="3dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false">
 
         <ProgressBar
@@ -52,7 +53,7 @@
             android:layout_height="@dimen/activity_margin"
             android:layout_gravity="center" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/movie_poster"
             android:layout_width="@dimen/poster_thumb_width"
             android:layout_height="@dimen/poster_thumb_height" />

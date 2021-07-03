@@ -8,29 +8,21 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class Match implements Parcelable {
-    public Match(String id, String idEquipe1, String idEquipe2, Date date, String lieu, String etat, int scoreEquipe1, int scoreEquipe2) {
-        this.id = id;
-        this.idEquipe1 = idEquipe1;
-        this.idEquipe2 = idEquipe2;
-        this.date = date;
-        this.lieu = lieu;
-        this.etat = etat;
-        this.scoreEquipe1 = scoreEquipe1;
-        this.scoreEquipe2 = scoreEquipe2;
-    }
+
 
     public Match() {
     }
 
     protected Match(Parcel in) {
         id = in.readString();
-        idEquipe1 = in.readString();
-        idEquipe2 = in.readString();
+        equipe1 = in.readParcelable(Equipe.class.getClassLoader());
+        equipe2 = in.readParcelable(Equipe.class.getClassLoader());
         lieu = in.readString();
         etat = in.readString();
         scoreEquipe1 = in.readInt();
         scoreEquipe2 = in.readInt();
     }
+
 
     public static final Creator<Match> CREATOR = new Creator<Match>() {
         @Override
@@ -52,20 +44,20 @@ public class Match implements Parcelable {
         this.id = id;
     }
 
-    public String getIdEquipe1() {
-        return idEquipe1;
+    public Equipe getEquipe1() {
+        return equipe1;
     }
 
-    public void setIdEquipe1(String idEquipe1) {
-        this.idEquipe1 = idEquipe1;
+    public void setEquipe1(Equipe equipe1) {
+        this.equipe1 = equipe1;
     }
 
-    public String getIdEquipe2() {
-        return idEquipe2;
+    public Equipe getEquipe2() {
+        return equipe2;
     }
 
-    public void setIdEquipe2(String idEquipe2) {
-        this.idEquipe2 = idEquipe2;
+    public void setEquipe2(Equipe equipe2) {
+        this.equipe2 = equipe2;
     }
 
     public Date getDate() {
@@ -110,10 +102,10 @@ public class Match implements Parcelable {
 
     @SerializedName("id")
     private  String id;
-    @SerializedName("idEquipe1")
-    private  String idEquipe1;
-    @SerializedName("idEquipe2")
-    private  String idEquipe2;
+    @SerializedName("equipe1")
+    private  Equipe equipe1;
+    @SerializedName("equipe2")
+    private  Equipe equipe2;
     @SerializedName("date")
     private Date date;
     @SerializedName("lieu")
@@ -133,8 +125,8 @@ public class Match implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
-        parcel.writeString(idEquipe1);
-        parcel.writeString(idEquipe2);
+        parcel.writeParcelable(equipe1, i);
+        parcel.writeParcelable(equipe2, i);
         parcel.writeString(lieu);
         parcel.writeString(etat);
         parcel.writeInt(scoreEquipe1);

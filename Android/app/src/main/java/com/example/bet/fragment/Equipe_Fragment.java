@@ -54,7 +54,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
     private boolean isLoading = false;
     private boolean isLastPage = false;
     // limiting to 5 for this tutorial, since total pages in actual API is very large. Feel free to modify.
-    private int TOTAL_PAGES = 500;
+    private int TOTAL_PAGES = 1;
     private int currentPage = PAGE_START;
 
     private Equipe_Service equipeService;
@@ -81,18 +81,19 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
         rv.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
             protected void loadMoreItems() {
-
-                isLoading = true;
-                currentPage += 1;
-                Log.e("LOAD MORE ITEMS ", Integer.toString(currentPage));
-                Toast.makeText(mContext, "MORE ITEMS", Toast.LENGTH_SHORT).show();
-                // mocking network delay for API call
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadNextPage();
-                    }
-                }, 3000);
+                if(currentPage<TOTAL_PAGES) {
+                    isLoading = true;
+                    currentPage += 1;
+                    Log.e("LOAD MORE ITEMS ", Integer.toString(currentPage));
+                    Toast.makeText(mContext, "MORE ITEMS", Toast.LENGTH_SHORT).show();
+                    // mocking network delay for API call
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadNextPage();
+                        }
+                    }, 3000);
+                }
             }
 
             @Override
