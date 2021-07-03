@@ -89,7 +89,7 @@ public class MatchController {
             Optional<Equipe> equipe2Data = equipeRepository.findById(match.getEquipe2().getId());
             //header="application/json";
             if (equipe1Data.isPresent() && equipe2Data.isPresent()){
-                Match _match = matchRepository.save(new Match(equipe1Data.get(),equipe2Data.get(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2()));
+                Match _match = matchRepository.save(new Match(equipe1Data.get(),equipe2Data.get(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2(),match.getCornerEquipe1(),match.getCornerEquipe2(),match.getPossessionEquipe1(),match.getPossessionEquipe2()));
                 return new ResponseEntity<>(_match, HttpStatus.CREATED);
             }
             else { return new ResponseEntity<>(HttpStatus.NOT_FOUND);}

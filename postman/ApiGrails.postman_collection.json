@@ -9,12 +9,34 @@
 			"name": "Equipe",
 			"item": [
 				{
-					"name": "TestDepoyement",
+					"name": "Heroku GetAllEquipe",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://grails-api.herokuapp.com/api/equipe/getAll",
+							"raw": "https://grails-api.herokuapp.com/api/equipes/getAll",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"equipes",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku GetEquipeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/equipe/60d098ef91a63046171cd600",
 							"protocol": "https",
 							"host": [
 								"grails-api",
@@ -24,7 +46,7 @@
 							"path": [
 								"api",
 								"equipe",
-								"getAll"
+								"60d098ef91a63046171cd600"
 							]
 						}
 					},
@@ -34,7 +56,14 @@
 					"name": "GetAll/ByName",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "nom",
+								"value": "Tin",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "http://localhost:5000/api/equipes",
 							"protocol": "http",
@@ -58,7 +87,28 @@
 					"response": []
 				},
 				{
-					"name": "InseetTeam",
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/equipe/60d098ef91a63046171cd600",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"equipe",
+								"60d098ef91a63046171cd600"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertTeam",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -71,7 +121,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nom\":\"EWEWEW45\",\"logo\":\"http://dummyimage.com/238x100.png/dddddd/000000\"}",
+							"raw": "{\"nom\":\"Barea\",\"logo\":\"http://dummyimage.com/238x100.png/dddddd/000000\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -178,6 +228,49 @@
 			"name": "Match",
 			"item": [
 				{
+					"name": "Heroku GetAllMatches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/matches",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku GetAllMatchesById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/match/60dc55ecf9d59e7169d6684f",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"match",
+								"60dc55ecf9d59e7169d6684f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAllMatches",
 					"request": {
 						"method": "GET",
@@ -192,6 +285,27 @@
 							"path": [
 								"api",
 								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllMatchById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/match/60dc55ecf9d59e7169d6684f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"match",
+								"60dc55ecf9d59e7169d6684f"
 							],
 							"query": [
 								{
@@ -205,13 +319,13 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "InsertMatch",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"idEquipe1\":\"60d098ef91a63046171cd603\",\"idEquipe2\":\"60d098ef91a63046171cd602\",\"date\":\"2021-08-22T18:00:00.000+00:00\",\"lieu\":\"Barea Stade Madagascar\",\"etat\":\"a venir\",\"scoreEquipe1\":null,\"scoreEquipe2\":null}",
+							"raw": "{\"equipe1\":{\"$id\":\"60d098ef91a63046171cd601\"}\r\n,\"equipe2\":{\"$id\":\"60d098ef91a63046171cd602\"}\r\n,\"date\":\"2021-08-22T18:00:00.000+00:00\"\r\n,\"lieu\":\"sasasaas Stadium\"\r\n,\"etat\":\"termine\"\r\n,\"scoreEquipe1\":2\r\n,\"scoreEquipe2\":1}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,6 +342,299 @@
 							"path": [
 								"api",
 								"match"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editMatch",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idEquipe1\":\"60d098ef91a63046171cd603\",\"idEquipe2\":\"60d098ef91a63046171cd602\",\"date\":\"2021-09-22T18:00:00.000+00:00\",\"lieu\":\"Barea Stade Madagascar\",\"etat\":\"terminé\",\"scoreEquipe1\":0,\"scoreEquipe2\":1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/match/60d9af4033d6710a07d92a9f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"match",
+								"60d9af4033d6710a07d92a9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMatch",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/match/60d0d68391a63046172ee9c1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"match",
+								"60d0d68391a63046172ee9c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMatchParEquipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/matches/equipe/60d098ef91a63046171cd602",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"matches",
+								"equipe",
+								"60d098ef91a63046171cd602"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Regles",
+			"item": [
+				{
+					"name": "Heroku GetAllRegles/byTitre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/regles",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"regles"
+							],
+							"query": [
+								{
+									"key": "titre",
+									"value": "ore",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku GetReglebyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/regle/60d0d49891a63046172e5cf5",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"regle",
+								"60d0d49891a63046172e5cf5"
+							],
+							"query": [
+								{
+									"key": "titre",
+									"value": "ore",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllRegles/byTitre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/regles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"regles"
+							],
+							"query": [
+								{
+									"key": "titre",
+									"value": "ore",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReglebyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/regle/60d0d49891a63046172e5cf5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"regle",
+								"60d0d49891a63046172e5cf5"
+							],
+							"query": [
+								{
+									"key": "titre",
+									"value": "ore",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Match_regles",
+			"item": [
+				{
+					"name": "Heroku GetAllMatcRegles/byidMatch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/matchRegles",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"matchRegles"
+							],
+							"query": [
+								{
+									"key": "idMatch",
+									"value": "60dc55ecf9d59e7169d6684f",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku GetMatcReglesbyidMatch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/matchRegles/60e013dcf9d59e7169c80ef2",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"matchRegles",
+								"60e013dcf9d59e7169c80ef2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllMatcRegles/byidMatch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/matchRegles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"matchRegles"
+							],
+							"query": [
+								{
+									"key": "idMatch",
+									"value": "60dc55ecf9d59e7169d6684f",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMatcReglesbyidMatch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/matchRegles/60e013dcf9d59e7169c80ef2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"matchRegles",
+								"60e013dcf9d59e7169c80ef2"
 							]
 						}
 					},

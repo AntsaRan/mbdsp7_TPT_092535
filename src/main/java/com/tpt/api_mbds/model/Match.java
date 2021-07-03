@@ -24,6 +24,11 @@ public class Match {
     private String etat;
     private Integer scoreEquipe1;
     private Integer scoreEquipe2;
+    private Integer cornerEquipe1;
+    private Integer cornerEquipe2;
+    private Integer possessionEquipe1;
+    private Integer possessionEquipe2;
+
 
     public String getId() {
         return id;
@@ -89,21 +94,47 @@ public class Match {
         this.scoreEquipe2 = scoreEquipe2;
     }
 
+    public Integer getCornerEquipe1() {
+        return cornerEquipe1;
+    }
+
+    public void setCornerEquipe1(Integer cornerEquipe1) {
+        this.cornerEquipe1 = cornerEquipe1;
+    }
+
+    public Integer getCornerEquipe2() {
+        return cornerEquipe2;
+    }
+
+    public void setCornerEquipe2(Integer cornerEquipe2) {
+        this.cornerEquipe2 = cornerEquipe2;
+    }
+
+    public Integer getPossessionEquipe1() {
+        return possessionEquipe1;
+    }
+
+    public void setPossessionEquipe1(Integer possessionEquipe1) {
+        this.possessionEquipe1 = possessionEquipe1;
+    }
+
+    public Integer getPossessionEquipe2() {
+        return possessionEquipe2;
+    }
+
+    public void setPossessionEquipe2(Integer possessionEquipe2) {
+        this.possessionEquipe2 = possessionEquipe2;
+    }
+
     public Match() {
 
     }
 
-    public Match(Equipe equipe1, Equipe equipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
-        this.equipe1 = equipe1;
-        this.equipe2 = equipe2;
-        this.date = date;
-        this.lieu = lieu;
-        this.etat = etat;
-        this.scoreEquipe1 = scoreEquipe1;
-        this.scoreEquipe2 = scoreEquipe2;
-    }
+   
 
-    public Match(String id, Equipe equipe1, Equipe equipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2) {
+
+
+    public Match(String id, Equipe equipe1, Equipe equipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2, Integer cornerEquipe1, Integer cornerEquipe2, Integer possessionEquipe1, Integer possessionEquipe2) {
         this.id = id;
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
@@ -112,5 +143,23 @@ public class Match {
         this.etat = etat;
         this.scoreEquipe1 = scoreEquipe1;
         this.scoreEquipe2 = scoreEquipe2;
+        this.cornerEquipe1 = cornerEquipe1;
+        this.cornerEquipe2 = cornerEquipe2;
+        this.possessionEquipe1 = possessionEquipe1;
+        this.possessionEquipe2 = possessionEquipe2;
+    }
+
+    public Match(Equipe equipe1, Equipe equipe2, Date date, String lieu, String etat, Integer scoreEquipe1, Integer scoreEquipe2, Integer cornerEquipe1, Integer cornerEquipe2, Integer possessionEquipe1, Integer possessionEquipe2) {
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.date = date;
+        this.lieu = lieu;
+        this.etat = etat;
+        this.scoreEquipe1 = scoreEquipe1;
+        this.scoreEquipe2 = scoreEquipe2;
+        this.cornerEquipe1 = cornerEquipe1;
+        this.cornerEquipe2 = cornerEquipe2;
+        this.possessionEquipe1 = possessionEquipe1;
+        this.possessionEquipe2 = possessionEquipe2;
     }
 }
