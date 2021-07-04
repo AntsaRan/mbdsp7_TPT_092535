@@ -126,7 +126,7 @@ public class Equipe_Fragment extends Fragment implements SearchView.OnQueryTextL
 
         super.onCreateOptionsMenu(menu, inflater);
 
-        super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override

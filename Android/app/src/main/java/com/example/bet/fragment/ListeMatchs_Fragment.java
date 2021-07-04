@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.bet.API.API;
+import com.example.bet.Match_Details;
 import com.example.bet.R;
 import com.example.bet.adapter.PaginationAdapter_Match;
 import com.example.bet.controleur.ItemClickSupport;
@@ -126,8 +128,6 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
         searchView.setQueryHint("Search");
 
         super.onCreateOptionsMenu(menu, inflater);
-
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -183,22 +183,29 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
                         Log.e("TAG", "Position : " + position);
 
 
-/*
-                        Equipe equipe = (Equipe) adapter.getItem(position);
-                        Intent intent = new Intent(view.getContext(), Equipe_Fragment.class);
-                        intent.putExtra("id", equipe.getId().toString());
-                        intent.putExtra("title", equipe.getTitle());
-                        intent.putExtra("bannerpath", equipe.getBackdropPath());
-                        intent.putExtra("overview", equipe.getOverview());
-                        intent.putExtra("release", equipe.getReleaseDate());
-                        intent.putExtra("profilepath", equipe.getPosterPath());
-                        for (int cmpt = 0; cmpt < equipe.getGenreIds().size(); cmpt++) {
-                            intent.putExtra("genre" + cmpt, equipe.getGenreIds().get(cmpt).toString());
+
+                        Match match = (Match) adapter.getItem(position);
+                        Intent intent = new Intent(view.getContext(), Match_Details.class);
+                       /* intent.putExtra("id", match.getId().toString());
+                        intent.putExtra("equipe1", match.getEquipe1());
+                        intent.putExtra("equipe2", match.getEquipe2());
+                        intent.putExtra("date", match.getDate());
+                        intent.putExtra("lieu", match.getLieu());
+                        intent.putExtra("etat", match.getEtat());
+                        intent.putExtra("scoreEquipe1", match.getScoreEquipe1());
+                        intent.putExtra("scoreEquipe2", match.getScoreEquipe2());
+
+                        */
+                        intent.putExtra("match",match);
+                     /*   for (int cmpt = 0; cmpt < match.getGenreIds().size(); cmpt++) {
+                            intent.putExtra("genre" + cmpt, match.getGenreIds().get(cmpt).toString());
                         }
-                        intent.putExtra("taille", String.valueOf(equipe.getGenreIds().size()));
+                        intent.putExtra("taille", String.valueOf(match.getGenreIds().size()));
+
+                      */
                         startActivity(intent);
 
- */
+
                     }
                 });
     }

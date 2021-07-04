@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.example.bet.modele.Equipe;
 import com.example.bet.R;
 import com.example.bet.modele.Match;
 import com.squareup.picasso.Picasso;
@@ -238,11 +237,11 @@ public class PaginationAdapter_Match extends Adapter<RecyclerView.ViewHolder> im
         public MatchVH(View itemView) {
             super(itemView);
 
-            mEquipeNom1 = (TextView) itemView.findViewById(R.id.movie_title);
+            mEquipeNom1 = (TextView) itemView.findViewById(R.id.nomEquipe1);
             mPosterImg1 = (ImageView) itemView.findViewById(R.id.movie_poster);
             mProgress1 = (ProgressBar) itemView.findViewById(R.id.movie_progress);
 
-            mEquipeNom2 = (TextView) itemView.findViewById(R.id.movie_title2);
+            mEquipeNom2 = (TextView) itemView.findViewById(R.id.nomEquipe2);
             mPosterImg2 = (ImageView) itemView.findViewById(R.id.movie_poster2);
             mProgress2 = (ProgressBar) itemView.findViewById(R.id.movie_progress2);
 

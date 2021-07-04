@@ -224,7 +224,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
         public EquipeVH(View itemView) {
             super(itemView);
 
-            mEquipeNom = (TextView) itemView.findViewById(R.id.movie_title);
+            mEquipeNom = (TextView) itemView.findViewById(R.id.nomEquipe1);
             mPosterImg = (ImageView) itemView.findViewById(R.id.movie_poster);
             mProgress = (ProgressBar) itemView.findViewById(R.id.movie_progress);
         }
