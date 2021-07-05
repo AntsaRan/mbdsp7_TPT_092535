@@ -2,7 +2,6 @@ package com.example.bet.fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +19,10 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.bet.R;
 import com.google.zxing.Result;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 public class Achat_Fragment extends Fragment  {
-    Button scanBtn;
-    TextView messageText, messageFormat;
+    Button acheter_Qr;
+    TextView prixAchat,nomVendeur;
     private Context mContext;
     private CodeScanner mCodeScanner;
 
@@ -36,6 +33,12 @@ public class Achat_Fragment extends Fragment  {
         final Activity activity = getActivity();
         View root = inflater.inflate(R.layout.fragment_achat, container, false);
         CodeScannerView scannerView = root.findViewById(R.id.scanner_view);
+        acheter_Qr=(Button)root.findViewById(R.id.bouton_achat_qr);
+        prixAchat=(TextView)root.findViewById(R.id.nomVendeur);
+        nomVendeur=(TextView)root.findViewById(R.id.prix_vendeur);
+        acheter_Qr.setVisibility(View.GONE);
+        prixAchat.setVisibility(View.GONE);
+        nomVendeur.setVisibility(View.GONE);
         mCodeScanner = new CodeScanner(activity, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
@@ -44,6 +47,10 @@ public class Achat_Fragment extends Fragment  {
                     @Override
                     public void run() {
                         Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                        prixAchat.setVisibility(View.VISIBLE);
+                        nomVendeur.setVisibility(View.VISIBLE);
+                        acheter_Qr.setVisibility(View.VISIBLE);
+
                     }
                 });
             }

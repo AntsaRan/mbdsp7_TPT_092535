@@ -46,7 +46,7 @@ public class Profil_Fragment extends Fragment {
         final String qrText="thongsangchad@gmail.com|24/04/2001|3000";
         Button btnStart = (Button) view.findViewById(R.id.button_generate);
         final Button btnSave = (Button) view.findViewById(R.id.button_save);
-
+        btnSave.setVisibility(View.GONE);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

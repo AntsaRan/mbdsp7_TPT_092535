@@ -12,6 +12,7 @@ import com.example.bet.fragment.Calendrier_Fragment;
 import com.example.bet.fragment.Equipe_Fragment;
 import com.example.bet.fragment.ListeMatchs_Fragment;
 import com.example.bet.fragment.Profil_Fragment;
+import com.example.bet.fragment.Vente_Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -106,10 +107,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_liste_matchs:
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ListeMatchs_Fragment()).commit();
 
-                break;
 
             case R.id.nav_profil:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Profil_Fragment()).commit();
@@ -132,7 +130,18 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
                */
                 break;
+            case R.id.nav_liste_matchs:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ListeMatchs_Fragment()).addToBackStack(null).commit();
 
+                break;
+            case R.id.nav_vente:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Vente_Fragment()).commit();
+                //Toast.makeText(Home.this, "Share", Toast.LENGTH_SHORT).show();
+              /* Intent intent1 = new Intent(MainActivity.this, Achat.class);
+                startActivity(intent1);
+
+               */
+                break;
             case R.id.nav_calendrier:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Calendrier_Fragment()).commit();
                 //Toast.makeText(Home.this, "Share", Toast.LENGTH_SHORT).show();
