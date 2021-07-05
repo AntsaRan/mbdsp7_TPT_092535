@@ -1,34 +1,38 @@
 <div>
     <div class="accueilContainer row ">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <mat-card >
+            <mat-card>
                 <mat-card-header class="cardheader">
                     <div mat-card-avatar class="example-header-image"></div>
                     <mat-card-title>Matchs du jour</mat-card-title>
                     <mat-card-subtitle>{{date}}</mat-card-subtitle>
                 </mat-card-header>
-                <mat-card-content> 
+                <mat-card-content>
+                    <div class="">
+                        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                    </div>
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist" *ngFor="let match of matches">
                             <div class="listitemcontent">
                                 <p class="nomequipe">{{match.equipe1.nom}}</p>
+                                <img src="{{match.equipe1.logo}}" class="logoequipe">
                                 <span> VS </span>
+                                <img src="{{match.equipe2.logo}}" class="logoequipe">
                                 <p class="nomequipe">{{match.equipe2.nom}}</p>
                                 <a routerLink="/detailmatch/{{match.id}}" class="navlink">
-                                    <button id="detailsbutton" mat-raised-button
-                                        color="primary">Détails
+                                    <button id="detailsbutton" mat-raised-button color="primary">Détails
                                     </button>
                                 </a>
                                 <mat-divider></mat-divider>
                             </div>
 
-                        </mat-list-item> 
+                        </mat-list-item>
 
                     </mat-list>
                 </mat-card-content>
                 <mat-card-actions class="centeredcardaction">
-                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
-                        color="primary">Voir plus</button></a>
+                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button color="primary">Voir
+                            plus</button></a>
                 </mat-card-actions>
             </mat-card>
 
@@ -40,7 +44,10 @@
                     <mat-card-title>Matchs phares</mat-card-title>
                     <mat-card-subtitle>{{date}}</mat-card-subtitle>
                 </mat-card-header>
-                <mat-card-content >
+                <mat-card-content>
+                    <div class="">
+                        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                    </div>
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist" *ngFor="let match of matches">
                             <div class="listitemcontent">
@@ -48,8 +55,7 @@
                                 <span> VS </span>
                                 <p class="nomequipe">{{match.equipe2.nom}}</p>
                                 <a routerLink="/detailmatch/{{match.id}}" class="navlink">
-                                    <button id="detailsbutton" mat-raised-button
-                                        color="primary">Détails
+                                    <button id="detailsbutton" mat-raised-button color="primary">Détails
                                     </button>
                                 </a>
                                 <mat-divider></mat-divider>
@@ -60,11 +66,11 @@
                     </mat-list>
                 </mat-card-content>
                 <mat-card-actions class="centeredcardaction">
-                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button
-                        color="primary">Voir plus</button></a>
+                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button color="primary">Voir
+                            plus</button></a>
                 </mat-card-actions>
             </mat-card>
         </div>
-        <app-coupons ></app-coupons>
+        <app-coupons></app-coupons>
     </div>
 </div>

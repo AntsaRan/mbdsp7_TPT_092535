@@ -13,6 +13,7 @@ export class AccueilComponent implements OnInit {
   matches: Match[]=[];
   currentdate = new Date();
   date: string;
+  loading:boolean=true;
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
@@ -33,7 +34,9 @@ export class AccueilComponent implements OnInit {
         data.forEach(match=>{         
           console.log(match.id+ " match")
           this.matches.push(match);
+
         })
+        this.loading=false;
       });
   }
   add(match) {

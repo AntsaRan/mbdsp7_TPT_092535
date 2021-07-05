@@ -46,11 +46,11 @@
   }
 
   .itemlist{
-    height: auto!important;
+    height:90px!important;
   }
 @media screen and (max-width: 1310px) {
     .itemlist{
-height: 70px!important;
+height: 100px!important;
     }
   }
   .centeredcardaction{
@@ -58,3 +58,15 @@ height: 70px!important;
     width: 101px;
     margin: auto;
   }
+.spinnerimg{
+  width: 20%;
+  height: 20%;
+  text-align: center;
+  margin: auto;
+}
+
+.logoequipe{
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
