@@ -41,9 +41,9 @@ namespace projetParis
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(152, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 36);
+            this.label1.Size = new System.Drawing.Size(210, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Liste Equipes";
+            this.label1.Text = "Liste des Equipes";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonRefresh
@@ -75,6 +75,7 @@ namespace projetParis
             this.Controls.Add(this.label1);
             this.Name = "ListeEquipes";
             this.Size = new System.Drawing.Size(829, 715);
+            this.Load += new System.EventHandler(this.ListeEquipes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEquipe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

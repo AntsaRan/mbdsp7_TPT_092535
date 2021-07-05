@@ -28,7 +28,8 @@ namespace projetParis
             this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
             //Add Bouton Modifier
-            if (isFirstAffichage) {
+            if (isFirstAffichage)
+            {
                 DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
                 btnEdit.HeaderText = "Edit";
                 btnEdit.Name = "buttonEdit";
@@ -44,7 +45,7 @@ namespace projetParis
                 this.dataGridViewEquipe.Columns.Add(btnSuppr);
                 this.isFirstAffichage = false;
             };
-           
+
         }
 
         private void dataGridViewEquipe_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -56,6 +57,31 @@ namespace projetParis
                 MessageBox.Show(id +" Row Clicked");
                 
             }
+        }
+
+        private void ListeEquipes_Load(object sender, EventArgs e)
+        {
+            EquipeService equipeService = new EquipeService();
+            this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
+            //Add Bouton Modifier
+            if (isFirstAffichage)
+            {
+                DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
+                btnEdit.HeaderText = "Edit";
+                btnEdit.Name = "buttonEdit";
+                btnEdit.Text = "Modifier";
+                btnEdit.UseColumnTextForButtonValue = true;
+                this.dataGridViewEquipe.Columns.Add(btnEdit);
+                //Add Bouton Supprimer
+                DataGridViewButtonColumn btnSuppr = new DataGridViewButtonColumn();
+                btnSuppr.HeaderText = "Delete";
+                btnSuppr.Name = "buttonSupprimer";
+                btnSuppr.Text = "Supprimer";
+                btnSuppr.UseColumnTextForButtonValue = true;
+                this.dataGridViewEquipe.Columns.Add(btnSuppr);
+                this.isFirstAffichage = false;
+            };
         }
     }
 }

@@ -19,7 +19,7 @@ namespace projetParis
 
         private void labelSlogan_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void textBoxMdp_TextChanged(object sender, EventArgs e)
@@ -42,6 +42,7 @@ namespace projetParis
 
         private void buttonConnexion_Click(object sender, EventArgs e)
         {
+           
             this.Hide();
             Accueil accueilPage = new Accueil();
             accueilPage.ShowDialog();

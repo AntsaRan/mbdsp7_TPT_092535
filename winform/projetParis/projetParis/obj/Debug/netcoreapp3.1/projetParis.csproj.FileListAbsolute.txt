@@ -25,3 +25,8 @@ E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Deb
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csproj.CopyComplete
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\Antlr3.Runtime.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\WebGrease.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\Json.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\bin\Debug\netcoreapp3.1\System.Text.Json.dll
