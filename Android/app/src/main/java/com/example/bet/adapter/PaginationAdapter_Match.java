@@ -95,7 +95,7 @@ public class PaginationAdapter_Match extends Adapter<RecyclerView.ViewHolder> im
 
                     matchVH.score1.setText(String.valueOf(result.getScoreEquipe1()));
                     matchVH.score2.setText(String.valueOf(result.getScoreEquipe2()));
-
+                    matchVH.date.setText(result.getDate().toString());
 
                    // System.out.println("LOGO "+result.getLogo());
 
@@ -230,6 +230,7 @@ public class PaginationAdapter_Match extends Adapter<RecyclerView.ViewHolder> im
         private TextView mEquipeNom2;
         private TextView score1;
         private TextView score2;
+        private TextView date;
         private ImageView mPosterImg1;
         private ImageView mPosterImg2;
         private ProgressBar mProgress1;
@@ -244,7 +245,7 @@ public class PaginationAdapter_Match extends Adapter<RecyclerView.ViewHolder> im
             mEquipeNom2 = (TextView) itemView.findViewById(R.id.nomEquipe2);
             mPosterImg2 = (ImageView) itemView.findViewById(R.id.movie_poster2);
             mProgress2 = (ProgressBar) itemView.findViewById(R.id.movie_progress2);
-
+            date = (TextView) itemView.findViewById(R.id.date);
             score1 = (TextView) itemView.findViewById(R.id.score1);
             score2 = (TextView) itemView.findViewById(R.id.score2);
         }

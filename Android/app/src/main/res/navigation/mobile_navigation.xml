@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_liste_matchs">
+    app:startDestination="@+id/nav_profil">
 
 
     <fragment
@@ -11,7 +11,11 @@
         android:name="com.example.bet.fragment.ListeMatchs_Fragment"
         android:label="@string/listeMatch"
         tools:layout="@layout/fragment_liste_matchs" />
-
+    <fragment
+        android:id="@+id/nav_equipe"
+        android:name="com.example.bet.fragment.Equipe_Fragment"
+        android:label="@string/equipe"
+        tools:layout="@layout/fragment_equipe_list" />
     <fragment
         android:id="@+id/nav_profil"
         android:name="com.example.bet.fragment.Profil_Fragment"
@@ -38,6 +42,13 @@
         android:name="com.example.bet.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_vente"
+        android:name="com.example.bet.fragment.Vente_Fragment"
+        android:label="@string/vente"
+        tools:layout="@layout/fragment_vente" />
+
 
     <fragment
         android:id="@+id/nav_slideshow"

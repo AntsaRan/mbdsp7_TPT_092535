@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
        drawer.addDrawerListener(toggle);
        toggle.syncState();
        if (savedInstanceState == null) {
-           getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Equipe_Fragment()).commit();
-           navigationView.setCheckedItem(R.id.nav_equipe);
+           getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Profil_Fragment()).commit();
+           navigationView.setCheckedItem(R.id.nav_profil);
 
        }
 
@@ -106,10 +106,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
         switch (menuItem.getItemId()) {
 
 
             case R.id.nav_profil:
+                getSupportFragmentManager().clearFragmentResultListener(null);
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Profil_Fragment()).commit();
 
                 break;
@@ -170,11 +172,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         return true;
     }
 */
-    @Override
+/*    @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+ */
 
 }

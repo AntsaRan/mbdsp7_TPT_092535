@@ -39,3 +39,4 @@ build/classes/java/test/com/tpt/api_mbds/ApiMbdsApplicationTests.class
 build/resources/main/application.properties
 build/tmp/compileJava/source-classes-mapping.txt
 build/tmp/compileTestJava/source-classes-mapping.txt
+*.class

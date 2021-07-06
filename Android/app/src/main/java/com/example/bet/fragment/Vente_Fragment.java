@@ -43,7 +43,7 @@ public class Vente_Fragment extends Fragment {
         imageView = (ImageView) view.findViewById(R.id.qr_image);
 
         Button btnStart = (Button) view.findViewById(R.id.button_generate);
-
+        editText=(EditText)view.findViewById(R.id.nb_qr_vente);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class Vente_Fragment extends Fragment {
                 int height = point.y;
                 int smallerDimension = width < height ? width : height;
                 smallerDimension = smallerDimension * 3 / 4;
-                editText=(EditText)view.findViewById(R.id.nb_qr_vente);
+
                 String qrText="Chad|"+editText.getText();
                 qrgEncoder = new QRGEncoder(qrText, null, QRGContents.Type.TEXT, smallerDimension);
                 try {
