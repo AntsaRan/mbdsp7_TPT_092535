@@ -15,6 +15,7 @@ public class Utilisateur {
     private String pseudo;
     private String pwd;
     private int jetons;
+    private String mail;
 
     public int getId() {
         return id;
@@ -72,10 +73,18 @@ public class Utilisateur {
         this.jetons = jetons;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons) {
+    public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons,String mail) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -83,33 +92,9 @@ public class Utilisateur {
         this.pseudo = pseudo;
         this.pwd = pwd;
         this.jetons = jetons;
+        this.mail = mail;
     }
 
-    public Utilisateur getAllUser(OracleConnection co) throws SQLException {
 
-        Utilisateur val=new Utilisateur();
-        Statement statement = null;
-        try{
-
-            statement = co.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("select * from UTILISATEUR ");
-            while (resultSet.next()){
-
-             val.setId(resultSet.getInt(1));
-             val.setNom(resultSet.getString(2));
-             val.setPrenom(resultSet.getString(3));
-             val.setDateNaissance(resultSet.getDate(4));
-             val.setPseudo(resultSet.getString(5));
-             val.setPwd(resultSet.getString(6));
-             val.setJetons(resultSet.getInt(7));
-            }
-        }
-        finally{
-            if(statement!=null)
-                statement.close();
-        }
-        return val;
-    }
 
 }
