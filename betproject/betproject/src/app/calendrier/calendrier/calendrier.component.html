@@ -1,0 +1,46 @@
+<div>
+    <div class="accueilContainer row ">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <mat-card>
+                <mat-card-header class="cardheader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Calendrier</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        <span>Date: </span>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <button id="searchbtn" mat-raised-button>Search</button>
+                    </div>
+                    <div class="">
+                        <mat-progress-bar *ngIf="" mode="indeterminate"></mat-progress-bar>
+                    </div>
+                    <mat-list class="example-card">
+                        <mat-list-item class="itemlist" *ngFor="">
+                            <div class="listitemcontent">
+                                <p class="nomequipe"></p>
+                                <img src="" class="logoequipe">
+                                <span> VS </span>
+                                <img src="" class="logoequipe">
+                                <p class="nomequipe"></p>
+                                <a routerLink="" class="navlink">
+                                    <button id="detailsbutton" mat-raised-button color="primary">Détails
+                                    </button>
+                                </a>
+                                <mat-divider></mat-divider>
+                            </div>
+
+                        </mat-list-item>
+
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <app-coupons></app-coupons>
+    </div>
+</div>
