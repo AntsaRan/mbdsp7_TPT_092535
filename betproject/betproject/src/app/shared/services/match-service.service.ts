@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MatchRegles } from '../models/matchregles.model';
 import { Match } from '../models/match.model';
 import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Equipe } from '../models/equipe.model';
@@ -21,10 +22,13 @@ export class MatchServiceService {
   }
 
   getMatchByEquipe(id):Observable<Match[]>{
-    return this.http.get<Match[]>(this.uri+"/match/equipe"+id);
-  }
-  getEquipebyId(id):Observable<Equipe>{
-    return this.http.get<Equipe>(this.uri+"/equipe/"+id);
+    return this.http.get<Match[]>(this.uri+"/match/equipe/"+id);
   }
 
+  getMatchByDate(id):Observable<Match[]>{
+    return this.http.get<Match[]>(this.uri+"/match/equipe/"+id);
+  }
+  getMatchRegles(id):Observable<MatchRegles>{
+    return this.http.get<MatchRegles>(this.uri+"/matchregles/"+id);
+  }
 }
