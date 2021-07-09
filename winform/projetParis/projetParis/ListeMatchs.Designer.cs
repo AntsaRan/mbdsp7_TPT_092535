@@ -44,6 +44,7 @@ namespace projetParis
             this.label1.Size = new System.Drawing.Size(204, 36);
             this.label1.TabIndex = 1;
             this.label1.Text = "Liste des Matchs";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonRefresh
             // 

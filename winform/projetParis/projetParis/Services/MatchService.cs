@@ -35,6 +35,26 @@ namespace projetParis.Services
             }
         }
 
+        public Object InsertMatch()
+        {
+            try
+            {
+                HttpClient clint = new HttpClient();
+                clint.BaseAddress = new Uri(url);
+                HttpResponseMessage response = clint.GetAsync("matches").Result;
+
+                /**System.Diagnostics.Debug.WriteLine("ito ilay json" + response.Content);               
+                var matchss = response.Content.ReadAsStringAsync().Result;
+                System.Diagnostics.Debug.WriteLine("ito ilay json22" + matchss.ToString()); **/
+                Object matchs = response.Content.ReadAsAsync<IEnumerable<Match>>().Result;
+                return matchs;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public MatchService()
         {
 
