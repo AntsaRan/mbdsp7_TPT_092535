@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Match } from 'src/app/shared/models/match.model';
+import { EquipeService } from 'src/app/shared/services/equipe.service';
 import { MatchServiceService } from 'src/app/shared/services/match-service.service';
 
 @Component({
@@ -17,16 +18,17 @@ export class HistoriqueComponent implements OnInit {
   mnewDat: String;
   mnewTime: String;
   image:String;
+  nom:String;
 
-  constructor(private route: ActivatedRoute,private matchserv: MatchServiceService) { }
+  constructor(private route: ActivatedRoute,private matchserv: MatchServiceService,private equipeserv:EquipeService) { }
 
   ngOnInit(): void {
-    this.getMatchsbyEquipe();
+    this.getMatchsbyEquipe(this.id);
     this.getEquipebyId(this.id);
   }
 
-  getMatchsbyEquipe() {
-    this.matchserv.getMatches()
+  getMatchsbyEquipe(id) {
+    this.matchserv.getMatchByEquipe(id)
       .subscribe(matchs => {
         matchs.forEach(match=>{         
           console.log(match.id+ " match")
@@ -39,10 +41,11 @@ export class HistoriqueComponent implements OnInit {
       });
   }
   getEquipebyId(id) {
-    this.matchserv.getEquipebyId(id)
+    this.equipeserv.getEquipebyId(id)
       .subscribe(equipe => {
         console.log(equipe.logo + " LOOOOOOOGO");
         this.image=equipe.logo;
+        this.nom=equipe.nom;
       });
   }
   
