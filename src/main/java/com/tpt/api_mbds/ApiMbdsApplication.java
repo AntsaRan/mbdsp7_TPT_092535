@@ -43,15 +43,16 @@ public class ApiMbdsApplication {
         }
     }
 
-    @PostMapping(path="/authentification",produces = "application/json")
+    @PostMapping(path="/authentification")
     @ResponseBody
-    public String authentification(@RequestBody String mail,@RequestBody String password) throws SQLException {
+    public String authentification(String mail, String pwd) throws SQLException {
         Utilisateur val = new Utilisateur();
         OracleConnection oracleConnection = null;
         try {
             oracleConnection = Connexion.getConnection();
-            System.out.println("le mail de l'user " + mail);
-            val = userController.authentification(oracleConnection,mail,password);
+           // System.out.println("le mail de l'user " + mail);
+            val = userController.authentification(oracleConnection,mail,pwd);
+            //System.out.println("RESULT APRES LE GET " + val.getPrenom());
             return new Gson().toJson(val);
 
         } catch (Exception throwables) {
