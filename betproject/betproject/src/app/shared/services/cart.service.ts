@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Coupon } from '../models/coupon.model';
 import { Match } from '../models/match.model';
+import { Pari } from '../models/pari.model';
 import { Paris } from '../models/paris.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private _items: { paris: Match }[] = [];
+  private _items:  Coupon[] = [];
 
   constructor() {
     this._items = JSON.parse(localStorage.getItem('items') ||'[]'); // get the data at lunch 
