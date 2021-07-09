@@ -8,16 +8,15 @@ import { Match } from '../models/match.model';
   providedIn: 'root'
 })
 export class EquipeService {
-
-  uri = "http://localhost:3000";
-
+  //uri = "http://localhost:3000";
+  uri = "https://apinode-mbds.herokuapp.com"
   constructor(private http: HttpClient) { }
 
   getEquipebyName(nom): Observable<Equipe[]> {
-    return this.http.get<Equipe[]>(this.uri + "/equipenom/"+nom);
+    return this.http.get<Equipe[]>(this.uri + "/equipenom/" + nom);
   }
-  getEquipebyId(id):Observable<Equipe>{
-    return this.http.get<Equipe>(this.uri+"/equipe/"+id);
+  getEquipebyId(id): Observable<Equipe> {
+    return this.http.get<Equipe>(this.uri + "/equipe/" + id);
   }
 
 }
