@@ -7,9 +7,12 @@
                     <mat-card-title>Championnat</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <div class="row">
+                    <div class="">
+                        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                    </div>
+                    <div class="row" *ngIf="!loading">
                         <div class="col-lg-2 col-md-2 col-sm-2 logoequipe">
-                            <img src="/assets/img/logo.png" width="150" height="150">
+                            <img src="{{match.equipe1.logo}}" width="100" height="100">
                             <div class="labelmatch">
                                 <p>{{match.equipe1.nom}}</p>
                                 <a routerLink="/historiqueequipe/{{match.equipe1.id}}">
@@ -21,12 +24,12 @@
                             <mat-card class="detailsmatch">
                                 <p> <span style="font-weight: bold;"> Date: </span> <span>{{mnewDat}}</span></p>
                                 <p> <span style="font-weight: bold;"> Heure: </span><span>{{mnewTime }}</span></p>
-                                <p><span style="font-weight: bold;">Lieu:  </span><span>{{match.lieu}}</span></p>
+                                <p><span style="font-weight: bold;">Lieu: </span><span>{{match.lieu}}</span></p>
                                 <p><span style="font-weight: bold;">Statut: </span><span>{{etat}}</span></p>
                             </mat-card>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 logoequipe">
-                            <img src="/assets/img/logo.png" width="150" height="150">
+                            <img src="{{match.equipe2.logo}}" width="100" height="100">
                             <div class="labelmatch">
                                 <p>{{match.equipe2.nom}}</p>
                                 <a routerLink="/historiqueequipe/{{match.equipe2.id}}">
@@ -36,61 +39,79 @@
                         </div>
                     </div>
                 </mat-card-content>
-                <h4 class="scorematch" *ngIf="match.etat!='1'">{{match.scoreEquipe1}} <span> -
-                    </span>{{match.scoreEquipe2}}</h4>
+                <h4 class="scorematch" *ngIf="!loading && match.etat!='1'">
+                    {{match.scoreEquipe1}} <span> - </span>{{match.scoreEquipe2}}
+                </h4>
                 <mat-divider></mat-divider>
-                <div class="listregles"*ngIf="match.etat!='3'">
-                    <div class="regletab">
-                        <div class="titletype">
-                            <h5>Resultat du match</h5>
-                        </div>
-                        <div class="titleregle row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle ">
-                                <p class="nomregle">regle1</p>
+                <div  *ngIf="!loading">
+                    <div class="listregles" *ngIf="match.etat!='3'">
+                        <div class="regletab">
+                            <div class="titletype">
+                                <h5>{{rcs[0].type}}</h5>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
-                                <p class="nomregle">regle1</p>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
-                                <p class="nomregle">regle1</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="regletab">
-                        <div class="titletype">
-                            <h5>Resultat du match</h5>
-                        </div>
-                        <div class="titleregle row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
-                                <p class="nomregle">regle1</p>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
-                                <p class="nomregle">regle1</p>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
-                                <p class="nomregle">regle1</p>
+                            <div class="titleregle row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle"
+                                    (click)="opencouponform(rcs[0].regles)">
+                                    <p class="nomregle caseregle">{{rcs[0].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcs[0].regles.cote}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle "
+                                    (click)="opencouponform(rcs[1].regles)">
+                                    <p class="nomregle">{{rcs[1].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcs[1].regles.cote}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle"
+                                    (click)="opencouponform(rcs[2].regles)">
+                                    <p class="nomregle">{{rcs[2].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcs[2].regles.cote}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="regletab">
-                        <div class="titletype">
-                            <h5>Resultat du match2</h5>
+                    <div class="listregles" *ngIf="match.etat!='3'">
+                        <div class="regletab">
+                            <div class="titletype">
+                                <h5>{{rcp[0].type}}</h5>
+                            </div>
+                            <div class="titleregle row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle "  (click)="opencouponform(rcp[0].regles)">
+                                    <p class="nomregle">{{rcp[0].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcp[0].regles.cote}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle" (click)="opencouponform(rcp[1].regles)">
+                                    <p class="nomregle">{{rcp[1].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcp[1].regles.cote}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle" (click)="opencouponform(rcp[2].regles)">
+                                    <p class="nomregle">{{rcp[2].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcp[2].regles.cote}}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="titleregle row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
-                                <p class="nomregle">regle1</p>
+                    </div>
+                    <div class="listregles" *ngIf="match.etat!='3'">
+                        <div class="regletab">
+                            <div class="titletype">
+                                <h5>{{rcc[0].type}}</h5>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
-                                <p class="nomregle">regle2</p>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
-                                <p class="nomregle">regle3</p>
+                            <div class="titleregle row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle " (click)="opencouponform(rcc[0].regles)">
+                                    <p class="nomregle">{{rcc[0].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcc[0].regles.cote}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle"  (click)="opencouponform(rcc[1].regles)">
+                                    <p class="nomregle">{{rcc[1].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcc[1].regles.cote}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle"  (click)="opencouponform(rcc[2].regles)">
+                                    <p class="nomregle">{{rcc[2].regles.regle.definition}}</p>
+                                    <p class="nomregle">{{rcc[2].regles.cote}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </mat-card>
-
         </div>
         <app-coupons></app-coupons>
     </div>

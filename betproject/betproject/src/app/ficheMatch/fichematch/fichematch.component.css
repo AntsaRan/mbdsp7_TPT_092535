@@ -46,6 +46,7 @@
 }
 .caseregle:hover{
     background-color: rgb(214, 214, 214);
+    cursor: pointer;
 }
 @media screen and (max-width: 767px) {
     .ligneregles{
