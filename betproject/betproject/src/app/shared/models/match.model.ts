@@ -8,5 +8,5 @@ export class Match {
     lieu:string
     etat: string
     scoreEquipe1:Number
-    scoreeq2: Number
+    scoreEquipe2: Number
 }
