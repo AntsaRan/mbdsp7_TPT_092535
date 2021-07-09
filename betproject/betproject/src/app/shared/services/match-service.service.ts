@@ -10,7 +10,8 @@ import { Equipe } from '../models/equipe.model';
 })
 export class MatchServiceService {
 
-  uri = "http://localhost:3000";
+  //uri = "http://localhost:3000";
+  uri="https://apinode-mbds.herokuapp.com"
 
   constructor(private http:HttpClient) { }
   
