@@ -28,6 +28,9 @@ import { HistoriqueComponent } from './historique/historique/historique.componen
 import {MatTableModule} from '@angular/material/table';
 import { CalendrierComponent } from './calendrier/calendrier/calendrier.component';
 import { HistoriqueRechercheComponent } from './historique-recherche/historique-recherche/historique-recherche.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AddcouponComponent } from './addcoupon/addcoupon/addcoupon.component';
 
 const routes: Routes = [
   {
@@ -45,6 +48,10 @@ const routes: Routes = [
   {
     path:"historiqueGlobal",
     component:HistoriqueRechercheComponent
+  },
+  {
+    path:"calendrier",
+    component:CalendrierComponent,
   }
 ]
 
@@ -59,6 +66,7 @@ const routes: Routes = [
     HistoriqueComponent,
     CalendrierComponent,
     HistoriqueRechercheComponent,
+    AddcouponComponent,
     
   ],
   imports: [
@@ -69,8 +77,8 @@ const routes: Routes = [
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatSidenavModule, 
+    MatButtonModule,MatProgressBarModule,
+    MatSidenavModule, MatProgressSpinnerModule,
     RouterModule.forRoot(routes),
     MatListModule,MatDatepickerModule,HttpClientModule,MatTableModule,
     MatCardModule,MatDialogModule,FormsModule,MatCheckboxModule,MatNativeDateModule
