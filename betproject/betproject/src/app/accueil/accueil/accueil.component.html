@@ -19,13 +19,12 @@
                                 <span> VS </span>
                                 <img src="{{match.equipe2.logo}}" class="logoequipe">
                                 <p class="nomequipe">{{match.equipe2.nom}}</p>
-                                <a routerLink="/detailmatch/{{match.id}}" class="navlink">
-                                    <button id="detailsbutton" mat-raised-button color="primary">Détails
-                                    </button>
-                                </a>
                                 <mat-divider></mat-divider>
                             </div>
-
+                            <a routerLink="/detailmatch/{{match.id}}" class="navlink">
+                                <button id="detailsbutton" mat-raised-button color="primary">Détails
+                                </button>
+                            </a>
                         </mat-list-item>
 
                     </mat-list>
