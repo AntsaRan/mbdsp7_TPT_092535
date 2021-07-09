@@ -1,0 +1,23 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Equipe } from '../models/equipe.model';
+import { Match } from '../models/match.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EquipeService {
+
+  uri = "http://localhost:3000";
+
+  constructor(private http: HttpClient) { }
+
+  getEquipebyName(nom): Observable<Equipe[]> {
+    return this.http.get<Equipe[]>(this.uri + "/equipenom/"+nom);
+  }
+  getEquipebyId(id):Observable<Equipe>{
+    return this.http.get<Equipe>(this.uri+"/equipe/"+id);
+  }
+
+}
