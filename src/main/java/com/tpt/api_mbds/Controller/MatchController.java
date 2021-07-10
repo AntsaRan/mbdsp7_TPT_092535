@@ -1,14 +1,18 @@
 package com.tpt.api_mbds.Controller;
 
 
+import com.tpt.api_mbds.model.Equipe;
 import com.tpt.api_mbds.model.Match;
+import com.tpt.api_mbds.repository.EquipeRepository;
 import com.tpt.api_mbds.repository.MatchRepository;
+import com.tpt.api_mbds.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +22,8 @@ import java.util.Optional;
 public class MatchController {
     @Autowired
     MatchRepository matchRepository;
+    @Autowired
+    EquipeRepository equipeRepository;
 
     @GetMapping("/matches")
     public ResponseEntity<List<Match>> getAllMatches(@RequestParam(required = false) String etat){
@@ -39,6 +45,29 @@ public class MatchController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping("/matches/equipe/{id}")
+    public ResponseEntity<List<Match>> getMatchesParEquipe(@PathVariable("id") String id){
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+
+                System.out.println("ITO ILAY ID EQUIPE "+id);
+                matchRepository.findMatchByEquipe1_Id(id).forEach(matchs::add);
+                matchRepository.findMatchByEquipe2_Id(id).forEach(matchs::add);
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(matchs, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @GetMapping("/match/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable("id") String id) {
         Optional<Match> matchData = matchRepository.findById(id);
@@ -50,18 +79,25 @@ public class MatchController {
         }
     }
 
+
+
     @PostMapping(path = "/match")
     public ResponseEntity<Match> createMatch(@RequestBody Match match) {
         try {
-            System.out.println("Makato izy" + match.getIdEquipe1());
+            System.out.println("ID EQUIPE1 voalohany "+match.getEquipe1().getId());
+            Optional<Equipe> equipe1Data = equipeRepository.findById(match.getEquipe1().getId());
+            Optional<Equipe> equipe2Data = equipeRepository.findById(match.getEquipe2().getId());
             //header="application/json";
-            Match _match = matchRepository.save(new Match(match.getIdEquipe1(), match.getIdEquipe2(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2()));
-
-            return new ResponseEntity<>(_match, HttpStatus.CREATED);
+            if (equipe1Data.isPresent() && equipe2Data.isPresent()){
+                Match _match = matchRepository.save(new Match(equipe1Data.get(),equipe2Data.get(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2(),match.getCornerEquipe1(),match.getCornerEquipe2(),match.getPossessionEquipe1(),match.getPossessionEquipe2()));
+                return new ResponseEntity<>(_match, HttpStatus.CREATED);
+            }
+            else { return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @PutMapping("/match/{id}")
     public ResponseEntity<Match> updateMatch(@PathVariable("id") String id,@RequestBody Match match) {
@@ -70,8 +106,8 @@ public class MatchController {
 
         if (matchData.isPresent()) {
             Match _match = matchData.get();
-            _match.setIdEquipe1(match.getIdEquipe1());
-            _match.setIdEquipe2(match.getIdEquipe2());
+            _match.setEquipe1(match.getEquipe1());
+            _match.setEquipe2(match.getEquipe2());
             _match.setDate(match.getDate());
             _match.setEtat(match.getEtat());
             _match.setLieu(match.getLieu());
@@ -85,6 +121,8 @@ public class MatchController {
         }
     }
 
+
+
     @DeleteMapping("/match/{id}")
     public ResponseEntity<HttpStatus> deleteMatch(@PathVariable("id")String id) {
         try {
@@ -94,6 +132,46 @@ public class MatchController {
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    //Partie Mobile
+    @GetMapping("/matches/getAll")
+    public ResponseEntity<Response<Match>> getAll(@RequestParam(required = false) String etat){
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+            Response<Match> retour=new Response<>();
+            if (etat == null)
+                matchRepository.findAll().forEach(matchs::add);
+            else
+                matchRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            retour.setPage(1);
+            retour.setResults(matchs);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/matches/{id}")
+    public ResponseEntity<Response<Match>> getMatchByIdResult(@PathVariable("id") String id) {
+        Optional<Match> matchData = matchRepository.findById(id);
+        Response<Match> retour=new Response<>();
+        List<Match> matchList=new ArrayList<>();
+        if (matchData.isPresent()) {
+            matchList.add(matchData.get());
+            retour.setResults(matchList);
+            retour.setPage(1);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
