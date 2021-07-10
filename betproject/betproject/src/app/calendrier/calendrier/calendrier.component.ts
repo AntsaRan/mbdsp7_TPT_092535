@@ -11,6 +11,7 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 export class CalendrierComponent implements OnInit {
 
   loading: boolean = true;
+  date: Date = null;
 
   constructor(private datePipe: DatePipe,
     private cartserv: CartService,
@@ -19,10 +20,10 @@ export class CalendrierComponent implements OnInit {
   ngOnInit(): void {
   }
   getMatchByDate() {
-  
-    this.matchserv.getMatches()
+    console.log(this.date.toJSON());
+    this.matchserv.getMatchByDate(this.date)
       .subscribe(matches => {
-        
+
       })
 
   }

@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import { InscriptionComponent } from './inscription/inscription/inscription.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FichematchComponent } from './ficheMatch/fichematch/fichematch.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -85,6 +85,7 @@ const routes: Routes = [
     
   ],
   providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' } ,
     DatePipe,MatNativeDateModule
   ],
   bootstrap: [AppComponent]
