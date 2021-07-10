@@ -1,21 +1,49 @@
 package com.example.bet;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.bet.API.API;
+import com.example.bet.modele.Equipe;
+import com.example.bet.modele.Equipe_Response;
 import com.example.bet.modele.Match;
+import com.example.bet.modele.MatchRegle;
+import com.example.bet.modele.MatchRegle_Response;
+import com.example.bet.service.Equipe_Service;
+import com.example.bet.service.MatchRegle_Service;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class Match_Details extends AppCompatActivity {
 
     TextView score1,score2,nomTeam1,nomTeam2,etat,lieu,corner1,corner2,possession1,possession2;
     ImageView img1,img2;
+    ProgressBar bar;
+    MatchRegle_Service service;
+    String id;
+
+    /////
+    TextView quote1,quote2,quote3,quote4,quote5,quote6,quote7,quote8,quote9;
+    TextView titre1,titre2,titre3;
+    Button button1,button2,button3,button4,button5,button6,button7,button8,button9;
+    ImageView background1,background2,background3, background_mini1,background_mini2,background_mini3;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +70,42 @@ public class Match_Details extends AppCompatActivity {
         possession2.setText(String.valueOf(match.getPossessionEquipe2())+"%");
         lieu.setText(match.getEtat());
         etat.setText(match.getLieu());
+        ////---------------------///////
 
+        quote1=findViewById(R.id.quote1);
+        quote2=findViewById(R.id.quote2);
+        quote3=findViewById(R.id.quote3);
+        quote4=findViewById(R.id.quote4);
+        quote5=findViewById(R.id.quote5);
+        quote6=findViewById(R.id.quote6);
+        quote7=findViewById(R.id.quote7);
+        quote8=findViewById(R.id.quote8);
+        quote9=findViewById(R.id.quote9);
+
+        titre1=findViewById(R.id.titre1);
+        titre2=findViewById(R.id.titre2);
+        titre3=findViewById(R.id.titre3);
+
+        button1=findViewById(R.id.button1);
+        button2=findViewById(R.id.button2);
+        button3=findViewById(R.id.button3);
+        button4=findViewById(R.id.button4);
+        button5=findViewById(R.id.button5);
+        button6=findViewById(R.id.button6);
+        button7=findViewById(R.id.button7);
+        button8=findViewById(R.id.button8);
+        button9=findViewById(R.id.button9);
+
+        background1=findViewById(R.id.background1);
+        background2=findViewById(R.id.background2);
+        background3=findViewById(R.id.background3);
+
+        background_mini1=findViewById(R.id.background_mini1);
+        background_mini2=findViewById(R.id.background_mini2);
+        background_mini3=findViewById(R.id.background_mini3);
+        ////---------------------///////
+        id=match.getId();
+        loadFirstPage();
        /* Picasso.get()
                 .load(post_URL+intent.getStringExtra("bannerpath"))
                 .into(banner);
@@ -52,5 +115,47 @@ public class Match_Details extends AppCompatActivity {
 
         Log.e("MATCH ITOOOO", "ALLO : " + match.getLieu());
         */
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        service = API.getClient().create(MatchRegle_Service.class);
+    }
+
+    private void loadFirstPage() {
+
+        callToGetRegles(id).enqueue(new Callback<MatchRegle_Response>() {
+
+
+            @Override
+            public void onResponse(Call<MatchRegle_Response> call, retrofit2.Response<MatchRegle_Response> response) {
+
+                List<MatchRegle> results = fetchResults(response);
+
+                bar.setVisibility(View.GONE);
+
+
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<MatchRegle_Response> call, Throwable t) {
+                t.printStackTrace();
+                Log.e("EXCEPTION ATO ", t.getMessage());
+            }
+        });
+
+    }
+    private List<MatchRegle> fetchResults(retrofit2.Response<MatchRegle_Response> response) {
+        System.out.println("Ito le response"+ response);
+        MatchRegle_Response allRegles = response.body();
+        return allRegles.getResults();
+    }
+
+    private Call<MatchRegle_Response> callToGetRegles(String id) {
+        return service.getByID(id);
     }
 }

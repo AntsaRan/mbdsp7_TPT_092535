@@ -26,7 +26,7 @@ public class Login extends AppCompatActivity {
         mPasswordField = (EditText) findViewById(R.id.editTextTextPassword2);
         progress = new ProgressDialog(Login.this);
         registerText = (TextView) findViewById(R.id.textView3);
-        mLoginBtn = (Button) findViewById(R.id.button3);
+        mLoginBtn = (Button) findViewById(R.id.button2);
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
