@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://grails-api.herokuapp.com/oracle/test",
+							"raw": "https://grails-api.herokuapp.com/oracle/getAllUser",
 							"protocol": "https",
 							"host": [
 								"grails-api",
@@ -23,7 +23,7 @@
 							],
 							"path": [
 								"oracle",
-								"test"
+								"getAllUser"
 							],
 							"query": [
 								{
@@ -75,8 +75,13 @@
 							],
 							"query": [
 								{
-									"key": "er",
-									"value": "wew",
+									"key": "mail",
+									"value": "toto@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "pwd",
+									"value": "qqqq",
 									"disabled": true
 								}
 							]
