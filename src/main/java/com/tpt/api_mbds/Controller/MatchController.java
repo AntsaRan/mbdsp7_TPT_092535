@@ -1,20 +1,26 @@
 package com.tpt.api_mbds.Controller;
 
 
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.tpt.api_mbds.model.Equipe;
 import com.tpt.api_mbds.model.Match;
 import com.tpt.api_mbds.repository.EquipeRepository;
 import com.tpt.api_mbds.repository.MatchRepository;
 import com.tpt.api_mbds.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -26,12 +32,14 @@ public class MatchController {
     EquipeRepository equipeRepository;
 
     @GetMapping("/matches")
-    public ResponseEntity<List<Match>> getAllMatches(@RequestParam(required = false) String etat){
+    public ResponseEntity<List<Match>> getAllMatches(@RequestParam(required = false) String etat ) throws ParseException {
         try {
             List<Match> matchs = new ArrayList<Match>();
 
-            if (etat == null)
+
+            if (etat == null )
                 matchRepository.findAll().forEach(matchs::add);
+
             else
                 matchRepository.findMatchByEtatContaining(etat).forEach(matchs::add);
 
@@ -42,7 +50,35 @@ public class MatchController {
 
             return new ResponseEntity<>(matchs, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw e;
+
+        }
+    }
+
+
+    @GetMapping("/matchespardate/{date}")
+    public ResponseEntity<List<Match>> getMatchesParDate(@PathVariable("date") String date) throws ParseException {
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+
+            DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
+            ISO8601DateFormat df = new ISO8601DateFormat();
+            Date d = df.parse(date);
+
+            System.out.println("ITO ILAY Date  "+d);
+
+            matchRepository.findMatchByDate(d).forEach(matchs::add);
+
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(matchs, HttpStatus.OK);
+        } catch (Exception e) {
+           throw e;
         }
     }
 

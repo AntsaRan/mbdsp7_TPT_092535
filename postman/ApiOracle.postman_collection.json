@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "a7761a8b-3106-4e54-b475-88970dd6cf4a",
+		"name": "ApiOracle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Utilisateur",
+			"item": [
+				{
+					"name": "HerokuGetAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/oracle/test",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"test"
+							],
+							"query": [
+								{
+									"key": "titre",
+									"value": "ore",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HerokuAuthentificate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mail",
+									"value": "toto@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "pwd",
+									"value": "qqqq",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/oracle/authentification",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"authentification"
+							],
+							"query": [
+								{
+									"key": "er",
+									"value": "wew",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/oracle/getAllUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"getAllUser"
+							],
+							"query": [
+								{
+									"key": "titre",
+									"value": "ore",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentificate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mail",
+									"value": "toto@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "pwd",
+									"value": "qqqq",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/oracle/authentification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"authentification"
+							],
+							"query": [
+								{
+									"key": "er",
+									"value": "wew",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
