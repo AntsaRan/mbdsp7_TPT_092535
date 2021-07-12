@@ -252,7 +252,7 @@
         android:id="@+id/titre2"
         android:layout_width="103dp"
         android:layout_height="21dp"
-        android:text="Possession"
+        android:text="Corner"
         android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -638,8 +638,11 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/background_mini3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="510dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

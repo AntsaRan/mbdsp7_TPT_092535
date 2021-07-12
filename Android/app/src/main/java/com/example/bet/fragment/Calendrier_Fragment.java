@@ -37,7 +37,7 @@ public class Calendrier_Fragment extends Fragment {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
                 //String selectedDate = sdf.format(new Date(calendarView.getDate()));
               //  Toast.makeText(getApplicationContext(), ""+dayOfMonth, 0).show();// TODO Auto-generated method stub
                GregorianCalendar greg=new GregorianCalendar(year,month,dayOfMonth);

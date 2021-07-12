@@ -19,8 +19,10 @@ import com.example.bet.R;
 import com.example.bet.modele.Match;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -95,7 +97,9 @@ public class PaginationAdapter_Match extends Adapter<RecyclerView.ViewHolder> im
 
                     matchVH.score1.setText(String.valueOf(result.getScoreEquipe1()));
                     matchVH.score2.setText(String.valueOf(result.getScoreEquipe2()));
-                    matchVH.date.setText(result.getDate().toString());
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+                    matchVH.date.setText(sdf.format(result.getDate()));
 
                    // System.out.println("LOGO "+result.getLogo());
 

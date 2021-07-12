@@ -10,12 +10,12 @@ public class Regle_Cote implements Parcelable {
     @SerializedName("regle")
     private  Regle regle;
     @SerializedName("cote")
-    private  int cote;
+    private  double cote;
 
     public Regle_Cote() {
     }
 
-    public Regle_Cote(Regle regle, int cote) {
+    public Regle_Cote(Regle regle, double cote) {
         this.regle = regle;
         this.cote = cote;
     }
@@ -28,11 +28,11 @@ public class Regle_Cote implements Parcelable {
         this.regle = regle;
     }
 
-    public int getCote() {
+    public double getCote() {
         return cote;
     }
 
-    public void setCote(int cote) {
+    public void setCote(double cote) {
         this.cote = cote;
     }
 
@@ -61,6 +61,6 @@ public class Regle_Cote implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeParcelable(regle, i);
-        parcel.writeInt(cote);
+        parcel.writeDouble(cote);
     }
 }
