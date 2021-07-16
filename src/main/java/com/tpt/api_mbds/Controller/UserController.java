@@ -48,7 +48,7 @@ public class UserController {
             String requete ="select * from UTILISATEUR where mail='"+mail+"' and pwd='"+password+"'";
             ResultSet resultSet = statement.executeQuery("select * from UTILISATEUR where mail='"+mail+"' and pwd='"+password+"'");
             while (resultSet.next()){
-                System.out.println("ID AVANT " + resultSet.getInt(1));
+                //System.out.println("ID AVANT " + resultSet.getInt(1));
                 val.setId(resultSet.getInt(1));
                 val.setNom(resultSet.getString(2));
                 val.setPrenom(resultSet.getString(3));

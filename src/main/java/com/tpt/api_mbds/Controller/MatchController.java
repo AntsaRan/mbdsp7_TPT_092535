@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -64,16 +62,28 @@ public class MatchController {
             DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
             ISO8601DateFormat df = new ISO8601DateFormat();
-            Date d = df.parse(date);
+            Date date1 = df.parse(date);
+            LocalDate localdate1 = date1.toInstant().atZone(ZoneId.of("Etc/GMT+3")).toLocalDate();
+            Date date11 = Date.from(localdate1.atStartOfDay(ZoneId.of("Etc/GMT+3")).toInstant());
+            LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Etc/GMT+3")).toLocalDate();
 
-            System.out.println("ITO ILAY Date  "+d);
 
-            matchRepository.findMatchByDate(d).forEach(matchs::add);
+            System.out.println("ITO ILAY Date1  "+date1);
+            System.out.println("ITO ILAY Date1 Faharoa  "+date11);
+            System.out.println("ITO ILAY LOCALDate2  "+localdate2);
+            localdate2 = localdate2.plusDays(1);
+            System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
+            Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Etc/GMT+3")).toInstant());
+            System.out.println("ITO ILAY Date2  "+date2);
+            System.out.println("ZONE ID  "+ZoneId.of("Etc/GMT+3"));
+
+
+            matchRepository.findMatchesByDateBetween(date11,date2).forEach(matchs::add);
 
 
 
             if (matchs.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
             }
 
             return new ResponseEntity<>(matchs, HttpStatus.OK);

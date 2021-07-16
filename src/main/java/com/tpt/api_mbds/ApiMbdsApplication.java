@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -45,15 +47,19 @@ public class ApiMbdsApplication {
 
     @PostMapping(path="/authentification")
     @ResponseBody
-    public String authentification(String mail, String pwd) throws SQLException {
+    public ResponseEntity<String> authentification(String mail, String pwd) throws SQLException {
         Utilisateur val = new Utilisateur();
         OracleConnection oracleConnection = null;
         try {
             oracleConnection = Connexion.getConnection();
            // System.out.println("le mail de l'user " + mail);
             val = userController.authentification(oracleConnection,mail,pwd);
+            if(val.getId()==0){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
             //System.out.println("RESULT APRES LE GET " + val.getPrenom());
-            return new Gson().toJson(val);
+            return new ResponseEntity<>(new Gson().toJson(val), HttpStatus.OK);
+
 
         } catch (Exception throwables) {
             throw throwables;
