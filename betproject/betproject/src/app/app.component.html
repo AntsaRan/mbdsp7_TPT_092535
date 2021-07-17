@@ -32,8 +32,9 @@
         </mat-grid-tile>
         <mat-grid-tile *ngIf="islogged">
           <div class="rightmenu">
-            <img src="/assets/img/user.png" width="50" height="50">
-            <span class="nameuser">Nom utilisateur</span>
+            <img src="/assets/img/user.png" width="30" height="30">
+           <a routerLink="/profil" class="profilink"> <span class="nameuser">{{nomutilisateur}}</span></a>
+           <mat-icon class="iconmenulogout" (click)=logout();>logout</mat-icon>
           </div>
         </mat-grid-tile>
       </mat-grid-list >
@@ -80,25 +81,25 @@
   </mat-toolbar>
 
 
-  <mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav-container class="example-sidenav-container"> 
     <mat-sidenav #sidenav class="example-sidenav">
       <h3 class="title">Menu</h3>
       <ul class="menulist">
         <li class="menuelement">
           <mat-icon class="iconmenu">calendar_today</mat-icon>
-          <a routerLink="/calendrier" class="menulien">Calendrier</a>
+          <a routerLink="/calendrier" class="menulien" (click)="sidenav.toggle()">Calendrier</a>
         </li>
         <li class="menuelement">
           <mat-icon class="iconmenu">local_fire_department</mat-icon>
-          <a routerLink="/top50" class="menulien">Top 50</a>
+          <a routerLink="/top50" class="menulien" (click)="sidenav.toggle()">Top 50</a>
         </li>
         <li class="menuelement">
           <mat-icon class="iconmenu">history</mat-icon>
-         <a routerLink="/historiqueGlobal" class="menulien">Historique</a> 
+         <a routerLink="/historiqueGlobal" class="menulien" (click)="sidenav.toggle()">Historique</a> 
         </li>
         <li class="menuelement">
           <mat-icon class="iconmenu">view_list</mat-icon>
-          <a routerLink="/mesparis" class="menulien"> Mes Paris</a> 
+          <a routerLink="/mesparis" class="menulien" (click)="sidenav.toggle()"> Mes Paris</a> 
         </li>
       </ul>
     </mat-sidenav>
