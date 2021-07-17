@@ -1,0 +1,13 @@
+.cardheader{
+    justify-content: center;
+}
+.infogen{
+    padding: 5%;
+}
+.profiltitle{
+    font-weight: bold;
+    display: inline;
+}
+.ligne{
+    margin-bottom: 2%;
+}
