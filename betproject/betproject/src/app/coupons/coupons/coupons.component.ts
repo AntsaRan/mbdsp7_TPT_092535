@@ -46,7 +46,9 @@ export class CouponsComponent implements OnInit {
       }
     });
   }
-
+  parier(){
+    
+  }
   remove(coupon:Coupon){
     this.cartserv.remove(coupon);
   }
