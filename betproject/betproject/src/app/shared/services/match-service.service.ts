@@ -11,7 +11,7 @@ import { Equipe } from '../models/equipe.model';
 export class MatchServiceService {
 
   uri = "http://localhost:8010";
- // uri="https://apinode-mbds.herokuapp.com"
+   // uri="https://apinode-mbds.herokuapp.com"
 
   constructor(private http:HttpClient) { }
   
@@ -26,10 +26,15 @@ export class MatchServiceService {
     return this.http.get<Match[]>(this.uri+"/match/equipe/"+id);
   }
 
+  getMatchRegles(id):Observable<MatchRegles>{
+    return this.http.get<MatchRegles>(this.uri+"/matchregles/"+id);
+  }
+  
   getMatchByDate(date:Date):Observable<Match[]>{
     return this.http.get<Match[]>(this.uri+"/match/date/"+date);
   }
-  getMatchRegles(id):Observable<MatchRegles>{
-    return this.http.get<MatchRegles>(this.uri+"/matchregles/"+id);
+  
+  getMatchBymaxParis(date:Date):Observable<Match[]>{
+    return this.http.get<Match[]>(this.uri+"/match/paris/"+date);
   }
 }
