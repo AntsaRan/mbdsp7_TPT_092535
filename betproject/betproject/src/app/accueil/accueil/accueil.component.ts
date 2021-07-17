@@ -24,7 +24,7 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMatches();
-    this.cartserv.format();
+   // this.cartserv.format();
   }
 
   getMatches() {
@@ -32,15 +32,11 @@ export class AccueilComponent implements OnInit {
     this.matchserv.getMatches()
       .subscribe(data => {
         data.forEach(match=>{         
-          console.log(match.id+ " match")
           this.matches.push(match);
 
         })
         this.loading=false;
       });
   }
-  add(match) {
-    console.log(match.lieu);
-    this.cartserv.add(match);
-  }
+
 }
