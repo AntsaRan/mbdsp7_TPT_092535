@@ -17,27 +17,23 @@
                         </mat-form-field>
                         <button id="searchbtn" mat-raised-button (click)="getMatchByDate()">Search</button>
                     </div>
-                    <div class="">
-                        <mat-progress-bar *ngIf="" mode="indeterminate"></mat-progress-bar>
+                    <div>
+                        <div class="">
+                            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                        </div>
+                        <mat-list class="example-card">
+                            <mat-list-item class="itemlist" *ngFor="let m of match">
+                                <div class="listitemcontent">
+                                    <p class="nomequipe">{{m.equipe1.nom}}</p>
+                                    <img src="{{m.equipe1.logo}}" class="logoequipe">
+                                    <span> VS </span>
+                                    <img src="{{m.equipe2.logo}}" class="logoequipe">
+                                    <p class="nomequipe">{{m.equipe2.nom}}</p>
+                                    <mat-divider></mat-divider>
+                                </div>
+                            </mat-list-item>
+                        </mat-list>
                     </div>
-                    <mat-list class="example-card">
-                        <mat-list-item class="itemlist" *ngFor="">
-                            <div class="listitemcontent">
-                                <p class="nomequipe"></p>
-                                <img src="" class="logoequipe">
-                                <span> VS </span>
-                                <img src="" class="logoequipe">
-                                <p class="nomequipe"></p>
-                                <a routerLink="" class="navlink">
-                                    <button id="detailsbutton" mat-raised-button color="primary">Détails
-                                    </button>
-                                </a>
-                                <mat-divider></mat-divider>
-                            </div>
-
-                        </mat-list-item>
-
-                    </mat-list>
                 </mat-card-content>
             </mat-card>
         </div>
