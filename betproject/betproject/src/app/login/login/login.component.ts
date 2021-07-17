@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,31 +11,44 @@ import { InscriptionComponent } from 'src/app/inscription/inscription/inscriptio
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username = "";
+  email = "";
   password = null;
   hide = true;
- // user: User;
+  // user: User;
   error = "";
-  constructor(public dialog: MatDialog) { }
+  loading: boolean = false;
+  constructor(public dialog: MatDialog, private auth: AuthService, private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
   onSubmit(event) {
-    if (!this.username || !this.password)
+    this.loading = true;
+    console.log(this.email + " eamik")
+    if (!this.email || !this.password)
       return;
 
-   /* this.authservice.logIn(this.username, this.password)
+    this.auth.logIn(this.email, this.password)
       .pipe(first())
       .subscribe(m => {
-        if (!m) 
-        {
-          this.error=" Username or password error";
+        if (!m) {
+          this.loading = false;
+          this.error = " Username or password error";
           return;
         }
+        this.loading = false;
         this.reloadComponent();
-      });*/
+      });
   }
-  openSigninDialog(){
+  reloadComponent() {
+    /* let currentUrl = this.router.url;
+     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+     this.router.onSameUrlNavigation = 'reload';
+     this.router.navigate([currentUrl]);*/
+    window.location.reload();
+
+  }
+  openSigninDialog() {
     const dialogRef = this.dialog.open(InscriptionComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

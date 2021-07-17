@@ -1,6 +1,7 @@
 .logincontainer{
     width: 354px;
     margin: auto;
+    position: relative;
 }
 
 .logindialog{
@@ -19,4 +20,15 @@ text-align: center;
 }
 .loginfield{
     width: 287px;
+}
+.alert{
+    color: red;
+    font-weight: bold;
+}
+.spinner{
+    position: absolute;
+    background: #92929259;
+    width: 586px;
+    height: 437px;
+    z-index: 5;
 }
