@@ -31,6 +31,16 @@ import { HistoriqueRechercheComponent } from './historique-recherche/historique-
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AddcouponComponent } from './addcoupon/addcoupon/addcoupon.component';
+import { MesparisComponent } from './mesParis/mesparis/mesparis.component';
+import { TopparisComponent } from './top50/topparis/topparis.component';
+import { ListematchsComponent } from './listematchs/listematchs/listematchs.component';
+import { ProfilComponent } from './profil/profil/profil.component';
+import { Keepalive, NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
+import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 
 const routes: Routes = [
   {
@@ -52,6 +62,22 @@ const routes: Routes = [
   {
     path:"calendrier",
     component:CalendrierComponent,
+  },
+  {
+    path:"calendrier/:date",
+    component:CalendrierComponent,
+  },
+   {
+    path:"mesparis",
+    component:MesparisComponent,
+  },
+  {
+    path:"top50",
+    component:TopparisComponent,
+  },
+  {
+    path:"profil",
+    component:ProfilComponent,
   }
 ]
 
@@ -67,26 +93,31 @@ const routes: Routes = [
     CalendrierComponent,
     HistoriqueRechercheComponent,
     AddcouponComponent,
+    MesparisComponent,
+    TopparisComponent,
+    ListematchsComponent,
+    ProfilComponent,
     
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatIconModule,
+    MatIconModule,ModalModule,
     MatGridListModule,
-    MatFormFieldModule,
-    MatInputModule,
+    MatFormFieldModule,MomentModule,
+    MatInputModule,NgIdleKeepaliveModule,
     MatButtonModule,MatProgressBarModule,
     MatSidenavModule, MatProgressSpinnerModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes),  NgIdleKeepaliveModule.forRoot(),
     MatListModule,MatDatepickerModule,HttpClientModule,MatTableModule,
     MatCardModule,MatDialogModule,FormsModule,MatCheckboxModule,MatNativeDateModule
     
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' } ,
-    DatePipe,MatNativeDateModule
+    DatePipe,MatNativeDateModule,Keepalive,BsModalService,ComponentLoaderFactory,
+    PositioningService
   ],
   bootstrap: [AppComponent]
 })
