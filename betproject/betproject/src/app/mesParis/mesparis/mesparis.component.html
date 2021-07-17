@@ -1,0 +1,68 @@
+<div>
+    <div class="accueilContainer row ">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <mat-card>
+                <mat-card-header class="cardheader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Mes Paris</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="">
+                        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                    </div>
+                    <mat-list class="example-card">
+                        <mat-list-item class="itemlist">
+                            <div class="listitemcontent row">
+                                <div class="col-lg-2">
+                                    <p>N°</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p>Mise</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p>Date</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p>Heure</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Match</p>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
+                        <mat-list-item class="itemlist">
+                            <div class="listitemcontent row">
+                                <div class="col-lg-2">
+                                    <p>1</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p>100</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p>2021/07/11</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p>10h00</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <img src="/assets/img/logo.png" class="logoequipe">
+                                    <span> VS </span>
+                                    <img src="/assets/img/logo.png" class="logoequipe">
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
+
+                    </mat-list>
+                </mat-card-content>
+                <mat-card-actions class="centeredcardaction">
+                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button color="primary">Voir
+                            plus</button></a>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+        <app-coupons></app-coupons>
+    </div>
+</div>
