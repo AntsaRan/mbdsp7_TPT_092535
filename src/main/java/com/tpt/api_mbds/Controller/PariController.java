@@ -24,6 +24,7 @@ public class PariController {
             Date date = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String strDate= formatter.format(date);
+            System.out.println("Date strDate "+strDate);
             String requete ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",'"+strDate+"')";
             System.out.println(requete);
             ResultSet resultSet = statement.executeQuery(requete);
