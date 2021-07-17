@@ -26,7 +26,7 @@ public class PariController {
             String strDate= formatter.format(date);
             System.out.println("Date strDate "+strDate);
             //String requete2 ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",'"+strDate+"')";
-            String requete ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",'to_date('"+strDate+"','dd/mm/yyyy'))";
+            String requete ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",to_date('"+strDate+"','dd/mm/yyyy'))";
             System.out.println(requete);
             ResultSet resultSet = statement.executeQuery(requete);
         }
