@@ -22,7 +22,7 @@ public class PariController {
         try {
             statement = co.createStatement();
             Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             String strDate= formatter.format(date);
             System.out.println("Date strDate "+strDate);
             String requete ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",'"+strDate+"')";
