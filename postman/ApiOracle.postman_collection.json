@@ -164,6 +164,154 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Pari",
+			"item": [
+				{
+					"name": "Heroku getAllParis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/oracle/getAllParis",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"getAllParis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku getAllParis by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/oracle/getAllParisbyUser/1",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"getAllParisbyUser",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku InsertPari",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUtilisateur\":1,\r\n    \"idMatch\":\"idnana Match\",\r\n    \"matchRegle\":\"Idanlay Regle\",\r\n    \"mise\":999\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/oracle/insertPari",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"insertPari"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertPari",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUtilisateur\":1,\r\n    \"idMatch\":\"OBJET444\",\r\n    \"matchRegle\":\"ITAEO\",\r\n    \"mise\":100.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/oracle/insertPari",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"insertPari"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllParis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/oracle/getAllParis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"getAllParis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllParisbyUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/oracle/getAllParisbyUser/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"getAllParisbyUser",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

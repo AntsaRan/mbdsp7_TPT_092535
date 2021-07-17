@@ -95,6 +95,13 @@ public class Utilisateur {
         this.mail = mail;
     }
 
-
-
+    public Utilisateur(String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons, String mail) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.pseudo = pseudo;
+        this.pwd = pwd;
+        this.jetons = jetons;
+        this.mail = mail;
+    }
 }

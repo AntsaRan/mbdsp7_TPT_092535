@@ -270,6 +270,28 @@
 					"response": []
 				},
 				{
+					"name": "Heroku GetAllMatchesParDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/matchespardate/2021-07-22T20:59:59.000Z",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"matchespardate",
+								"2021-07-22T20:59:59.000Z"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAllMatches",
 					"request": {
 						"method": "GET",
@@ -302,7 +324,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/matchespardate/2021-07-22T00:00:00.000+00:00",
+							"raw": "http://localhost:5000/api/matchespardate/2021-07-22T20:59:59.000Z",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -311,7 +333,7 @@
 							"path": [
 								"api",
 								"matchespardate",
-								"2021-07-22T00:00:00.000+00:00"
+								"2021-07-22T20:59:59.000Z"
 							]
 						}
 					},
