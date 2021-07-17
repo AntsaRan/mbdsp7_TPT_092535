@@ -2,9 +2,8 @@ export class Parieur {
     id: string
     nom: string
     prenom:string
-    dateNaiss:Date
-    pseudo:String
-    pwd:String
-    QRcode:String
+    pseudo:string
+    pwd:string
     jetons:Number
+    mail:string
 }
