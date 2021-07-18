@@ -7,18 +7,32 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bet.API.API;
 import com.example.bet.controleur.NetworkUtils;
+import com.example.bet.modele.MatchRegle;
+import com.example.bet.modele.MatchRegle_Response;
+import com.example.bet.modele.Utilisateur;
+import com.example.bet.service.MatchRegle_Service;
+import com.example.bet.service.Match_Service;
+import com.example.bet.service.Utilisateur_Service;
+
+import java.util.List;
+
+import okhttp3.internal.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class Login extends AppCompatActivity {
     private EditText mEmailField;
     private EditText mPasswordField;
-
+    Utilisateur_Service service;
     private Button mLoginBtn;
     private ProgressDialog progress;
     private TextView registerText;
@@ -32,13 +46,15 @@ public class Login extends AppCompatActivity {
         progress = new ProgressDialog(Login.this);
         registerText = (TextView) findViewById(R.id.textView3);
         mLoginBtn = (Button) findViewById(R.id.button2);
+        service = API.getClient().create(Utilisateur_Service.class);
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
+               // Intent intent = new Intent(Login.this, MainActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                startActivity(intent);
+                startSignIn();
+                //startActivity(intent);
             }
         });
         registerText.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +83,42 @@ public class Login extends AppCompatActivity {
             progress.setCanceledOnTouchOutside(false);
             progress.show();
             if (NetworkUtils.networkStatus(Login.this)) {
+
+                callToSignIn(email,password).enqueue(new Callback<Utilisateur>() {
+
+
+                    @Override
+                    public void onResponse(Call<Utilisateur> call, retrofit2.Response<Utilisateur> response) {
+
+                        Utilisateur results = fetchResults(response);
+
+                        if(results!=null){
+                            System.out.println("RESULTS ID "+results.getId());
+                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            startActivity(intent);
+                        }else{
+                            //System.out.println("RESULTS ID "+results.getId());
+                            Toast.makeText(Login.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
+                            progress.dismiss();
+                        }
+
+                       // bar.setVisibility(View.GONE);
+
+
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<Utilisateur> call, Throwable t) {
+                        t.printStackTrace();
+                        Log.e("EXCEPTION ATO ", t.getMessage());
+                        progress.dismiss();
+                        Toast.makeText(Login.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                /* mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -89,6 +141,23 @@ public class Login extends AppCompatActivity {
                 progress.dismiss();
             }
         }
+    }
+    private Utilisateur fetchResults(retrofit2.Response<Utilisateur> response) {
+        System.out.println("Ito le response" + response.body());
+        Utilisateur utilisateur = null;
+
+        if (response.body()!=null){
+
+            utilisateur = response.body();
+        }
+
+
+        //ASORINA AVEO
+
+        return utilisateur;
+    }
+    private Call<Utilisateur> callToSignIn(String mail, String pwd) {
+        return service.authentification(mail,pwd);
     }
     private void showError(EditText input, String s) {
         input.setError(s);

@@ -10,10 +10,10 @@ import retrofit2.http.Query;
 
 public interface Match_Service {
     //Match
-    @GET("matches/getAll")//A changer lorsque l'APi sera disponible
+    @GET("api/matches/getAll")//A changer lorsque l'APi sera disponible
     Call<Match_Response> getAllMatches();
 
-    @POST("equipes/")
+    @POST("api/equipes/")
     Call<Match_Response> getTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int pageIndex);
     @GET("movie/upcoming")
     Call<Match_Response> getUpComing(@Query("api_key") String apiKey, @Query("page") int pageIndex);

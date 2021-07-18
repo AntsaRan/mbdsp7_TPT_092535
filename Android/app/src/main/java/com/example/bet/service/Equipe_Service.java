@@ -14,10 +14,10 @@ public interface Equipe_Service {
 
 
     //Equipe
-    @GET("equipes/getAll")//A changer lorsque l'APi sera disponible
+    @GET("api/equipes/getAll")//A changer lorsque l'APi sera disponible
     Call<Equipe_Response> getAllEquipe();
 
-    @POST("equipes/")
+    @POST("api/equipes/")
     Call<Equipe_Response> getTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int pageIndex);
     @GET("movie/upcoming")
     Call<Equipe_Response> getUpComing(@Query("api_key") String apiKey, @Query("page") int pageIndex);
