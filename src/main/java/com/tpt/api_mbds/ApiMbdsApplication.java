@@ -85,8 +85,8 @@ public class ApiMbdsApplication {
         try {
 
             oracleConnection = Connexion.getConnection();
-             System.out.println("IDMATCH ANLAY PARI " + pari.getIdMatch());
-             System.out.println("DATE ANLAY PARI " + pari.getDateParis());
+             //System.out.println("IDMATCH ANLAY PARI " + pari.getIdMatch());
+             //System.out.println("DATE ANLAY PARI " + pari.getDateParis());
             pariController.insertPari(oracleConnection,pari);
 
             //System.out.println("RESULT APRES LE GET " + val.getPrenom());
@@ -137,6 +137,31 @@ public class ApiMbdsApplication {
             }
             System.out.println("La liste n'est pas vide ex: " + list.get(0).getId());
             return new ResponseEntity<>(new Gson().toJson(list), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
+    @PostMapping(path="/insertUser",consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> insertUser(@RequestBody Utilisateur utilisateur) throws SQLException, ParseException {
+
+        OracleConnection oracleConnection = null;
+        try {
+
+            oracleConnection = Connexion.getConnection();
+            //System.out.println("Nom ANLAY USER " + utilisateur.getNom());
+            //System.out.println("DATENAISS ANLAY USER JSON " + utilisateur.getDateNaissance());
+
+            String reponse=userController.insertUser(oracleConnection,utilisateur);
+
+            //System.out.println("RESULT APRES LE GET " + val.getPrenom());
+            return new ResponseEntity<>(reponse, HttpStatus.OK);
+
 
         } catch (Exception throwables) {
             throw throwables;

@@ -90,6 +90,36 @@
 					"response": []
 				},
 				{
+					"name": "HerokuInscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Jean\",\r\n    \"prenom\":\"Bas\",\r\n    \"dateNaissance\":\"2000-10-15\",\r\n    \"pseudo\":\"koto\",\r\n    \"pwd\":\"koto\",\r\n    \"jetons\":0,\r\n    \"mail\":\"Jean@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/oracle/insertUser",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"insertUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAllUser",
 					"request": {
 						"method": "GET",
@@ -162,6 +192,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Inscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Jean\",\r\n    \"prenom\":\"Bas\",\r\n    \"dateNaissance\":\"2000-10-15\",\r\n    \"pseudo\":\"koto\",\r\n    \"pwd\":\"koto\",\r\n    \"jetons\":0,\r\n    \"mail\":\"Jean@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/oracle/insertUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"insertUser"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -218,7 +277,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idUtilisateur\":1,\r\n    \"idMatch\":\"idnana Match\",\r\n    \"matchRegle\":\"Idanlay Regle\",\r\n    \"mise\":999\r\n}",
+							"raw": "{\r\n    \"idUtilisateur\":1,\r\n    \"idMatch\":\"ObjectID(sasasaasaasa)\",\r\n    \"matchRegle\":\"ObjectID(sasasaasaasa)\",\r\n    \"mise\":2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,7 +307,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idUtilisateur\":1,\r\n    \"idMatch\":\"OBJET444\",\r\n    \"matchRegle\":\"ITAEO\",\r\n    \"mise\":100.5\r\n}",
+							"raw": "{\r\n    \"idUtilisateur\":1,\r\n    \"idMatch\":\"idnana Match\",\r\n    \"matchRegle\":\"Idanlay Regle\",\r\n    \"mise\":999777\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
