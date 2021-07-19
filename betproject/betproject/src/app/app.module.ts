@@ -40,6 +40,9 @@ import { MomentModule } from 'angular2-moment'; // optional, provides moment-sty
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackbarokComponent } from './coupons/snackbarok/snackbarok.component';
+import { AuthGuard } from './shared/auth.guard';
 
 
 const routes: Routes = [
@@ -70,6 +73,7 @@ const routes: Routes = [
    {
     path:"mesparis",
     component:MesparisComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"top50",
@@ -97,6 +101,7 @@ const routes: Routes = [
     TopparisComponent,
     ListematchsComponent,
     ProfilComponent,
+    SnackbarokComponent,
     
   ],
   imports: [
@@ -107,7 +112,7 @@ const routes: Routes = [
     MatGridListModule,
     MatFormFieldModule,MomentModule,
     MatInputModule,NgIdleKeepaliveModule,
-    MatButtonModule,MatProgressBarModule,
+    MatButtonModule,MatProgressBarModule,MatSnackBarModule,
     MatSidenavModule, MatProgressSpinnerModule,
     RouterModule.forRoot(routes),  NgIdleKeepaliveModule.forRoot(),
     MatListModule,MatDatepickerModule,HttpClientModule,MatTableModule,
