@@ -30,7 +30,7 @@ export class MatchServiceService {
     return this.http.get<MatchRegles>(this.uri+"/matchregles/"+id);
   }
   
-  getMatchByDate(date:Date):Observable<Match[]>{
+  getMatchByDate(date):Observable<Match[]>{
     return this.http.get<Match[]>(this.uri+"/match/date/"+date);
   }
   
