@@ -218,3 +218,6 @@ footer{
     margin-right: 9px;
     margin-left: 18%;
 }
+.iconmenulogout:hover{
+    cursor: pointer;
+}

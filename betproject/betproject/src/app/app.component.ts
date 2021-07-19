@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login/login.component';
 import { InscriptionComponent } from './inscription/inscription/inscription.component';
 import { MatchServiceService } from './shared/services/match-service.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'betproject';
   islogged: boolean = false;
-  nomutilisateur: string="";
+  nomutilisateur: string = "";
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
 
     if (localStorage.getItem('currentUser') != null) {
       this.islogged = true;
-      this.nomutilisateur= localStorage.getItem('username');
+      this.nomutilisateur = localStorage.getItem('username');
     }
   }
   openLoginDialog() {
@@ -42,13 +43,14 @@ export class AppComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-  logout(){
+  logout() {
     this.cartserv.format();
+    this.reloadComponent();
   }
   reloadComponent() {
-
-     this.router.navigate(["/"]);
-   // window.location.reload();
+    window.location.reload();
+    //this.router.navigate(["/"]);
+   
 
   }
 }
