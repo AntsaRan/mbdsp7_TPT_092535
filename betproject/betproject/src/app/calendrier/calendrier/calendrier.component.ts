@@ -16,6 +16,7 @@ export class CalendrierComponent implements OnInit {
   loading: boolean = true;
   date: Date = null;
   datereceived: Date = null;
+  nodata:String;
   constructor(private datePipe: DatePipe,
     private cartserv: CartService,
     private matchserv: MatchServiceService,
@@ -24,16 +25,21 @@ export class CalendrierComponent implements OnInit {
   ngOnInit(): void {
     if (this.route.snapshot.params.date != null) {
       this.datereceived = this.route.snapshot.params.date;
-      this.getMatchByDate();
     }
   }
   getMatchByDate() {
-
-    this.matchserv.getMatches()
+    console.log("Getmatchbydate cal "+ this.date.toISOString())
+    this.match=[];
+    this.matchserv.getMatchByDate(this.date.toISOString())
       .subscribe(matches => {
-        matches.forEach(match => {
-          this.match.push(match);
-        })
+        if(matches){
+          matches.forEach(match => {
+            console.log(match.date + " getby date")
+            this.match.push(match);
+          }) 
+        }else{
+         this.nodata= "Aucun match";
+        }
         this.loading = false;
       })
 
