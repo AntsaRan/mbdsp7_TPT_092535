@@ -13,42 +13,36 @@
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist">
                             <div class="listitemcontent row">
-                                <div class="col-lg-2">
-                                    <p>N°</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <p class="colonne">N°</p>
                                 </div>
-                                <div class="col-lg-2">
-                                    <p>Mise</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <p class="colonne">Mise ( € )</p>
                                 </div>
-                                <div class="col-lg-2">
-                                    <p>Date</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <p class="colonne">Date</p>
                                 </div>
-                                <div class="col-lg-2">
-                                    <p>Heure</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <p>Match</p>
+                                <div class="col-lg-6 col-md- col-sm-4">
+                                    <p class="colonne">Match</p>
                                 </div>
                             </div>
                             <mat-divider></mat-divider>
                         </mat-list-item>
-                        <mat-list-item class="itemlist">
+                        <mat-list-item class="itemlist" *ngFor="let pari of paris">
                             <div class="listitemcontent row">
-                                <div class="col-lg-2">
-                                    <p>1</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <p>{{pari.id}}</p>
                                 </div>
-                                <div class="col-lg-2">
-                                    <p>100</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <p>{{pari.mise}}</p>
                                 </div>
-                                <div class="col-lg-2">
-                                    <p>2021/07/11</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <p>{{pari.date}}</p>
                                 </div>
-                                <div class="col-lg-2">
-                                    <p>10h00</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <img src="/assets/img/logo.png" class="logoequipe">
-                                    <span> VS </span>
-                                    <img src="/assets/img/logo.png" class="logoequipe">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <img src="{{pari.match.equipe1.logo}}" class="logoequipe">
+                                    <span class="vs"> VS </span>
+                                    <img src="{{pari.match.equipe2.logo}}" class="logoequipe">
                                 </div>
                             </div>
                             <mat-divider></mat-divider>
