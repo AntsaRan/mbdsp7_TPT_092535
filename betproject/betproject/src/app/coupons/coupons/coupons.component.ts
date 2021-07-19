@@ -5,8 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { AddcouponComponent } from 'src/app/addcoupon/addcoupon/addcoupon.component';
 import { Coupon } from 'src/app/shared/models/coupon.model';
 import { Match } from 'src/app/shared/models/match.model';
+import { Pari } from 'src/app/shared/models/pari.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { MatchServiceService } from 'src/app/shared/services/match-service.service';
+import { ParisService } from 'src/app/shared/services/paris.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarokComponent } from '../snackbarok/snackbarok.component';
 
 @Component({
   selector: 'app-coupons',
@@ -16,10 +20,14 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 export class CouponsComponent implements OnInit {
   date: string;
   currentdate = new Date();
+  coupons: Coupon[] = [];
+  paris: Pari[] = [];
+  durationInSeconds = 2;
+
   //gain:number=0;
-  
+
   constructor(private datePipe: DatePipe, private cartserv: CartService, private route: ActivatedRoute, public dialog: MatDialog,
-    private matchserv: MatchServiceService) {
+    private parisserv: ParisService, private _snackBar: MatSnackBar) {
     this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
 
   }
@@ -30,10 +38,10 @@ export class CouponsComponent implements OnInit {
     return this.cartserv.items;
   }
   get gain() {
-    let coupons=this.couponslist;
-    let total:number=0;
-    this.couponslist.forEach(c=>{
-      total+=c.mise*c.regle.cote;
+    let coupons = this.couponslist;
+    let total: number = 0;
+    this.couponslist.forEach(c => {
+      total += c.mise * c.regle.cote;
     })
     return total;
   }
@@ -46,10 +54,31 @@ export class CouponsComponent implements OnInit {
       }
     });
   }
-  parier(){
-    
+  parier() {
+    this.coupons = this.cartserv.items;
+    this.coupons.forEach(coupon => {
+      let pari: Pari = new Pari();
+      pari.idTypeRegle = coupon.idTypeRegle;
+      pari.idMatch = coupon.idmatch;
+      pari.idparieur = localStorage.getItem('currentUser');
+      pari.mise = coupon.mise;
+      console.log(pari.mise + "  pari.mise")
+      this.parisserv.insertparis(pari)
+        .subscribe(data => {
+          if (data.insert = "ok") {
+            this.openSnackBar();
+            this.cartserv.remove(coupon);
+          }
+        })
+    })
   }
-  remove(coupon:Coupon){
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarokComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
+  remove(coupon: Coupon) {
     this.cartserv.remove(coupon);
   }
 }
