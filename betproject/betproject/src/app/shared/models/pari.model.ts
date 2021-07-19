@@ -7,7 +7,8 @@ import { ReglesCotes } from "./reglescotes.model"
 export class Pari {
     id: string
     idparieur:string
-    idmatch: string
+    idMatch: string
     idTypeRegle:string
     mise:number
+    dateParis:Date
 }
