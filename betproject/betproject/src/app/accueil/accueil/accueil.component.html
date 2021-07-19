@@ -12,7 +12,8 @@
                         <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
                     </div>
                     <mat-list class="example-card">
-                        <mat-list-item class="itemlist" *ngFor="let match of matches">
+                        <p>{{nodata}}</p>
+                        <mat-list-item class="itemlist" *ngFor="let match of matchesdujour">
                             <div class="listitemcontent">
                                 <p class="nomequipe">{{match.equipe1.nom}}</p>
                                 <img src="{{match.equipe1.logo}}" class="logoequipe">
@@ -30,7 +31,8 @@
                     </mat-list>
                 </mat-card-content>
                 <mat-card-actions class="centeredcardaction">
-                    <a routerLink="/calendrier/{{date}}" class="navlink"><button id="detailsbutton" mat-raised-button color="primary">Voir
+                    <a routerLink="/calendrier/{{date}}" class="navlink"><button id="detailsbutton" mat-raised-button
+                            color="primary">Voir
                             plus</button></a>
                 </mat-card-actions>
             </mat-card>
@@ -40,7 +42,7 @@
             <mat-card>
                 <mat-card-header class="cardheader">
                     <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>Matchs phares</mat-card-title>
+                    <mat-card-title>Liste Matchs</mat-card-title>
                     <mat-card-subtitle>{{date}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
@@ -65,7 +67,8 @@
                     </mat-list>
                 </mat-card-content>
                 <mat-card-actions class="centeredcardaction">
-                    <a routerLink="/top50" class="navlink"><button id="detailsbutton" mat-raised-button color="primary">Voir
+                    <a routerLink="/top50" class="navlink"><button id="detailsbutton" mat-raised-button
+                            color="primary">Voir
                             plus</button></a>
                 </mat-card-actions>
             </mat-card>

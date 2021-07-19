@@ -10,10 +10,12 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-  matches: Match[]=[];
+  matches: Match[] = [];
+  matchesdujour: Match[] = [];
   currentdate = new Date();
   date: string;
-  loading:boolean=true;
+  loading: boolean = true;
+  nodata:string;
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
@@ -24,18 +26,36 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMatches();
-   // this.cartserv.format();
+    this.getMatchesdujour();
+    // this.cartserv.format();
   }
 
   getMatches() {
     console.log("getmatches");
     this.matchserv.getMatches()
       .subscribe(data => {
-        data.forEach(match=>{         
+        data.forEach(match => {
           this.matches.push(match);
 
         })
-        this.loading=false;
+        this.loading = false;
+      });
+  }
+  getMatchesdujour() {
+    console.log("getmatches");
+    this.matchserv.getMatchByDate(this.currentdate.toISOString())
+      .subscribe(data => {
+        if (data) {
+          console.log(" daataaaa");
+          data.forEach(match => {
+            this.matchesdujour.push(match);
+          })
+        }else{
+          console.log("no daataaaa");
+          this.nodata="No data";
+        }
+
+        this.loading = false;
       });
   }
 
