@@ -1,4 +1,5 @@
-﻿using projetParis.Services;
+﻿using projetParis.Formulaires;
+using projetParis.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,6 +83,14 @@ namespace projetParis
                 this.dataGridViewEquipe.Columns.Add(btnSuppr);
                 this.isFirstAffichage = false;
             };
+        }
+
+        private void buttonInsertEquipe_Click(object sender, EventArgs e)
+        {
+
+            InsertEquipe insertForm = new InsertEquipe();
+            insertForm.ShowDialog();
+            
         }
     }
 }

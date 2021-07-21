@@ -31,5 +31,11 @@ namespace projetParis.Model
             Nom = nom;
             Logo = logo;
         }
+
+        public Equipe(string nom, string logo)
+        {
+            Nom = nom;
+            Logo = logo;
+        }
     }
 }

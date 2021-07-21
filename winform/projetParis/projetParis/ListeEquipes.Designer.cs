@@ -32,6 +32,7 @@ namespace projetParis
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.dataGridViewEquipe = new System.Windows.Forms.DataGridView();
+            this.buttonInsertEquipe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEquipe)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +40,7 @@ namespace projetParis
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(152, 12);
+            this.label1.Location = new System.Drawing.Point(152, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(210, 36);
             this.label1.TabIndex = 0;
@@ -48,7 +49,7 @@ namespace projetParis
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(10, 12);
+            this.buttonRefresh.Location = new System.Drawing.Point(10, 52);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(108, 35);
             this.buttonRefresh.TabIndex = 1;
@@ -66,10 +67,21 @@ namespace projetParis
             this.dataGridViewEquipe.TabIndex = 2;
             this.dataGridViewEquipe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEquipe_CellClick);
             // 
+            // buttonInsertEquipe
+            // 
+            this.buttonInsertEquipe.Location = new System.Drawing.Point(601, 52);
+            this.buttonInsertEquipe.Name = "buttonInsertEquipe";
+            this.buttonInsertEquipe.Size = new System.Drawing.Size(216, 35);
+            this.buttonInsertEquipe.TabIndex = 3;
+            this.buttonInsertEquipe.Text = "Ajouter une equipe";
+            this.buttonInsertEquipe.UseVisualStyleBackColor = true;
+            this.buttonInsertEquipe.Click += new System.EventHandler(this.buttonInsertEquipe_Click);
+            // 
             // ListeEquipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonInsertEquipe);
             this.Controls.Add(this.dataGridViewEquipe);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.label1);
@@ -87,5 +99,6 @@ namespace projetParis
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.DataGridView dataGridViewEquipe;
+        private System.Windows.Forms.Button buttonInsertEquipe;
     }
 }

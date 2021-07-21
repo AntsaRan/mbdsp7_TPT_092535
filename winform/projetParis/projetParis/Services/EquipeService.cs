@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using projetParis.Model;
+using Newtonsoft.Json;
 
 namespace projetParis.Services
 {
@@ -18,6 +19,27 @@ namespace projetParis.Services
                 HttpResponseMessage response = clint.GetAsync("equipes").Result;
                 Object equipe = response.Content.ReadAsAsync<IEnumerable<Equipe>>().Result;
                 return equipe;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+        public string insertEquipe(String nom, String logo)
+        {
+            try
+            {
+                Equipe equipe = new Equipe(nom, logo);
+                HttpClient clint = new HttpClient();
+                clint.BaseAddress = new Uri(url);
+                System.Diagnostics.Debug.WriteLine("ito ilay json EQUIPE Avant nom: " + equipe.Nom+ " logo :"+equipe.Logo);
+                var json = JsonConvert.SerializeObject(equipe); // or JsonSerializer.Serialize if using System.Text.Json
+                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+                System.Diagnostics.Debug.WriteLine("ito ilay json EQUIPE Apres"+json);
+                HttpResponseMessage response = clint.PostAsync("equipe", stringContent).Result;
+                return response.Content.ToString();
+
+
             }
             catch(Exception e)
             {
