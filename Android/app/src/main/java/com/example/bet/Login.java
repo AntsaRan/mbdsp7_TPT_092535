@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.example.bet.modele.Utilisateur;
 import com.example.bet.service.MatchRegle_Service;
 import com.example.bet.service.Match_Service;
 import com.example.bet.service.Utilisateur_Service;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -34,8 +36,10 @@ public class Login extends AppCompatActivity {
     private EditText mPasswordField;
     Utilisateur_Service service;
     private Button mLoginBtn;
+    SharedPreferences pref;
     private ProgressDialog progress;
     private TextView registerText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,17 @@ public class Login extends AppCompatActivity {
         registerText = (TextView) findViewById(R.id.textView3);
         mLoginBtn = (Button) findViewById(R.id.button2);
         service = API.getClient().create(Utilisateur_Service.class);
+        pref = getSharedPreferences("user_details",MODE_PRIVATE);
+        if(pref.contains("user") ){
+            Gson gson = new Gson();
+            String json = pref.getString("user", "");
+            Utilisateur utilisateur = gson.fromJson(json, Utilisateur.class);
+            System.out.println("UTILISATEUR "+utilisateur.getNom());
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +108,11 @@ public class Login extends AppCompatActivity {
                         Utilisateur results = fetchResults(response);
 
                         if(results!=null){
+                            SharedPreferences.Editor editor = pref.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(results);
+                            editor.putString("user", json);
+                            editor.commit();
                             System.out.println("RESULTS ID "+results.getId());
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

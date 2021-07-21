@@ -645,4 +645,102 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.72" />
 
+    <ImageView
+        android:id="@+id/mise_bg"
+        android:layout_width="239dp"
+        android:layout_height="226dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.302"
+        app:srcCompat="@drawable/custum_input3" />
+
+    <EditText
+        android:id="@+id/nbr_mise"
+        android:layout_width="130dp"
+        android:layout_height="23dp"
+
+        android:background="@color/design_default_color_background"
+        android:inputType="number"
+        android:textColor="@color/colorBlack"
+        android:theme="@style/EditStyle"
+        app:layout_constraintBottom_toTopOf="@+id/background1"
+        app:layout_constraintEnd_toEndOf="@+id/mise_bg"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/mise_bg"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.479" />
+
+    <TextView
+        android:id="@+id/label_mise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VOTRE MISE"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nbr_mise"
+        app:layout_constraintEnd_toEndOf="@+id/mise_bg"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/mise_bg"
+        app:layout_constraintTop_toTopOf="@+id/mise_bg"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <TextView
+        android:id="@+id/label_jetons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vos jetons : "
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nbr_mise"
+        app:layout_constraintEnd_toEndOf="@+id/mise_bg"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="@+id/mise_bg"
+        app:layout_constraintTop_toTopOf="@+id/mise_bg"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <Button
+        android:id="@+id/btnParier"
+        android:layout_width="92dp"
+        android:layout_height="47dp"
+        android:text="Parier"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/background1"
+        app:layout_constraintEnd_toEndOf="@+id/mise_bg"
+        app:layout_constraintStart_toStartOf="@+id/mise_bg"
+        app:layout_constraintTop_toBottomOf="@+id/nbr_mise" />
+
+    <ImageButton
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/zxing_transparent"
+        app:layout_constraintBottom_toTopOf="@+id/background1"
+        app:layout_constraintEnd_toEndOf="@+id/mise_bg"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/mise_bg"
+        app:layout_constraintTop_toTopOf="@+id/mise_bg"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:srcCompat="@android:drawable/ic_delete" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPari"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="#FFEB3B"
+        android:progressDrawable="@color/colorYellow"
+        android:progressTint="#FFEB3B"
+        app:layout_constraintBottom_toTopOf="@+id/background1"
+        app:layout_constraintEnd_toEndOf="@+id/mise_bg"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/mise_bg"
+        app:layout_constraintTop_toBottomOf="@+id/label_mise"
+        app:layout_constraintVertical_bias="0.186" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

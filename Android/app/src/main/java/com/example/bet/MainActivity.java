@@ -1,6 +1,7 @@
 package com.example.bet;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     FloatingActionButton panierButton;
     ConstraintLayout panier;
     Boolean isAllFabsVisible;
+    SharedPreferences pref;
    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
        drawer.addDrawerListener(toggle);
        toggle.syncState();
+       pref = getSharedPreferences("user_details",MODE_PRIVATE);
        if (savedInstanceState == null) {
            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Profil_Fragment()).commit();
            navigationView.setCheckedItem(R.id.nav_profil);
@@ -152,14 +155,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
                */
                 break;
-              /* case R.id.nav_calendrier:
-                mAuth.signOut();
-                Intent intent = new Intent(Home.this, Login.class);
+              case R.id.nav_logout:
+                pref.edit().clear().commit();
+                Intent intent = new Intent(MainActivity.this, Login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 break;
 
-              */
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

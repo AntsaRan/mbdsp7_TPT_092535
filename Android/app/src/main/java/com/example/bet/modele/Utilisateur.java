@@ -21,7 +21,7 @@ public class Utilisateur implements Parcelable {
     @SerializedName("pwd")
     private  String pwd;
     @SerializedName("jetons")
-    private  int jetons;
+    private  float jetons;
     @SerializedName("mail")
     private  String mail;
 
@@ -31,7 +31,7 @@ public class Utilisateur implements Parcelable {
         prenom = in.readString();
         pseudo = in.readString();
         pwd = in.readString();
-        jetons = in.readInt();
+        jetons = in.readFloat();
         mail = in.readString();
     }
 
@@ -42,7 +42,7 @@ public class Utilisateur implements Parcelable {
         dest.writeString(prenom);
         dest.writeString(pseudo);
         dest.writeString(pwd);
-        dest.writeInt(jetons);
+        dest.writeFloat(jetons);
         dest.writeString(mail);
     }
 
@@ -66,7 +66,7 @@ public class Utilisateur implements Parcelable {
     public Utilisateur() {
     }
 
-    public Utilisateur(String id, String nom, String prenom, java.sql.Date dateNaissance, String pseudo, String pwd, int jetons, String mail) {
+    public Utilisateur(String id, String nom, String prenom, java.sql.Date dateNaissance, String pseudo, String pwd, float jetons, String mail) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -125,11 +125,11 @@ public class Utilisateur implements Parcelable {
         this.pwd = pwd;
     }
 
-    public int getJetons() {
+    public float getJetons() {
         return jetons;
     }
 
-    public void setJetons(int jetons) {
+    public void setJetons(float jetons) {
         this.jetons = jetons;
     }
 

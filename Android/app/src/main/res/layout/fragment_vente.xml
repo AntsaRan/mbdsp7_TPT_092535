@@ -42,7 +42,7 @@
 
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/zxing_status_text"
+        android:background="@color/placeholder_grey"
         android:inputType="number"
         android:textColor="@color/colorBlack"
         android:theme="@style/EditStyle"
