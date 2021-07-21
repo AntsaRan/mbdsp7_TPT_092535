@@ -90,6 +90,24 @@ public class PariController {
         }
         return list;
     }
+    public float getAllMisebyUser(OracleConnection co,int id) throws SQLException {
 
+        float result=0f;
+        Statement statement = null;
+        try{
+            statement = co.createStatement();
+            String request="select SUM (mise)  from PARI where IDUTILISATEUR="+id;
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+               result=resultSet.getFloat(1);
+            }
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+        }
+        return result;
+    }
 
 }

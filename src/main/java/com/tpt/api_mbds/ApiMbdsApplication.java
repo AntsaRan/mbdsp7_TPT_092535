@@ -3,10 +3,8 @@ package com.tpt.api_mbds;
 import com.google.gson.Gson;
 import com.tpt.api_mbds.Controller.PariController;
 import com.tpt.api_mbds.Controller.UserController;
-import com.tpt.api_mbds.model.Connexion;
-import com.tpt.api_mbds.model.Fichier;
-import com.tpt.api_mbds.model.Pari;
-import com.tpt.api_mbds.model.Utilisateur;
+import com.tpt.api_mbds.model.*;
+import com.tpt.api_mbds.response.Response;
 import oracle.jdbc.OracleConnection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -171,7 +169,75 @@ public class ApiMbdsApplication {
         }
     }
 
+    //GetMise
+    @GetMapping(path="/getAllMise/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllMiseByUser(@PathVariable("id") int id) throws SQLException {
+        float result=0f;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            result = pariController.getAllMisebyUser(oracleConnection,id);
+            if(result==0f){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La somme mise: " + result);
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
 
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+    /////////////////API MOBILE/////////////////////
+    @GetMapping(path="/getAllParisbyUserM/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllParisbyUserM(@PathVariable("id") int id) throws SQLException {
+        Response<Pari> result = new Response<>();
+        ArrayList<Pari> list=new ArrayList<Pari>();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            list = pariController.getAllParisbyUser(oracleConnection,id);
+            result.setResults(list);
+            result.setPage(1);
+            if(list.isEmpty()){
+
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + list.get(0).getId());
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+    @GetMapping(path="/getAllMiseM/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllMiseByUserM(@PathVariable("id") int id) throws SQLException {
+        float result=0f;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            result = pariController.getAllMisebyUser(oracleConnection,id);
+            if(result==0f){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La somme mise: " + result);
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
 
     public static void main(String[] args) {
        SpringApplication.run(ApiMbdsApplication.class, args);
