@@ -13,13 +13,21 @@ export class AddcouponComponent implements OnInit {
     private dialogRef: MatDialogRef<AddcouponComponent>,
     @Inject(MAT_DIALOG_DATA) data) { }
 
-  mise: Number;
+  mise = null;
   error = "";
   ngOnInit(): void {
   }
   addcoupon() {
   }
   onSubmit(event) {
-    this.dialogRef.close({ mise: this.mise });
+    if (!this.mise) {
+      this.error = "Renseignez tous les champs obligatoires";
+    }else if(this.mise<1){
+      this.error = "La mise doit être supérieur à 1€";
+
+    }else{
+      this.dialogRef.close({ mise: this.mise });
+
+    }
   }
 }
