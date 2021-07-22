@@ -1,4 +1,3 @@
-let Match = require('../model/matchs');
 const url = "https://grails-api.herokuapp.com/api";
 //const https = require('https');
 
@@ -11,7 +10,6 @@ function getEquipes(req, res) {
     fetch(url + "/equipes")
         .then(response => response.json())
         .then(data => {
-            console.log(JSON.stringify(data) + " DATA")
             res.json(data);
         })
         .catch(err =>
@@ -20,7 +18,6 @@ function getEquipes(req, res) {
 
 // Récupérer une equipe par son id (GET)
 function getEquipebyId(req, res) {
-    console.log(`getEquipebyId ` + req.params.id)
     let equipeid = req.params.id;
     fetch(url + "/equipe/"+equipeid)
     .then(response => response.json())
@@ -32,7 +29,6 @@ function getEquipebyId(req, res) {
 }
 // Récupérer une equipe par son id (GET)
 function getequipebyName(req, res) {
-    console.log(`getEquipebyNAme` + req.params.nom)
     let name = req.params.nom;
     fetch(url + "/equipes?nom="+name)
     .then(response => response.json())
