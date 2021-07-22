@@ -35,12 +35,32 @@ namespace projetParis
 
         private void dataGridViewEquipe_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex==3)
+           
+            if (e.ColumnIndex==1)
             {
+                EquipeService equipeService = new EquipeService();
                 DataGridViewRow row = this.dataGridViewEquipe.Rows[e.RowIndex];
                 String id = row.Cells["id"].Value.ToString();
-                MessageBox.Show(id +" Row Clicked");
+                string response = equipeService.deleteEquipe(id);
+                dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
+                this.dataGridViewEquipe.Refresh();
+                this.dataGridViewEquipe.Update();
+                MessageBox.Show("Team with id: "+id+" deleted");
                 
+            }
+            if (e.ColumnIndex == 0)
+            {
+                DataGridViewRow row = this.dataGridViewEquipe.Rows[e.RowIndex];
+                string id = row.Cells["id"].Value.ToString();
+                string nom = row.Cells["nom"].Value.ToString();
+                string logo = row.Cells["logo"].Value.ToString();
+                
+                
+                updateEquipe updateEquipe = new updateEquipe(this, id, nom, logo);
+                updateEquipe.UdpateEventHandler += F2_updateEventHandler2;
+                updateEquipe.ShowDialog();
+               
+               
             }
         }
 
@@ -84,6 +104,12 @@ namespace projetParis
         }
 
         private void F2_updateEventHandler1(object sender , InsertEquipe.UpdateEventArgs args)
+        {
+            EquipeService equipeService = new EquipeService();
+            this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
+        }
+        private void F2_updateEventHandler2(object sender, updateEquipe.UpdateEventArgs args)
         {
             EquipeService equipeService = new EquipeService();
             this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

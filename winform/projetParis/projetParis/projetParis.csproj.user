@@ -10,6 +10,9 @@
     <Compile Update="Formulaires\InsertEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formulaires\updateEquipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="InscriptionPage.cs">
       <SubType>Form</SubType>
     </Compile>

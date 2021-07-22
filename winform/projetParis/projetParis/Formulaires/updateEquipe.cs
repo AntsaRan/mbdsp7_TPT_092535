@@ -9,12 +9,17 @@ using System.Windows.Forms;
 
 namespace projetParis.Formulaires
 {
-    public partial class InsertEquipe : Form
+    public partial class updateEquipe : Form
     {
-        public Form listeEquipe;
-        public InsertEquipe(ListeEquipes listeEquipe)
+        string id;    
+        public updateEquipe(ListeEquipes listeEquipe,string id1,string nom,string logo)
         {
+            
+
             InitializeComponent();
+            this.textBoxName.Text = nom;
+            this.textBoxLogo.Text = logo;
+            this.id = id1;
         }
         public delegate void UpdateDelegate(object sender, UpdateEventArgs args);
         public event UpdateDelegate UdpateEventHandler;
@@ -24,17 +29,7 @@ namespace projetParis.Formulaires
             public string Data { get; set; }
         }
 
-        private void InsertEquipe_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
@@ -42,31 +37,28 @@ namespace projetParis.Formulaires
         private void buttonValider_Click(object sender, EventArgs e)
         {
             EquipeService equipeService = new EquipeService();
-            if (textBoxName.Text=="" || textBoxLogo.Text=="")
+            if (textBoxName.Text == "" || textBoxLogo.Text == "")
             {
                 MessageBox.Show("Veuillez remplir les champs vide");
             }
             else
             {
-                String val = equipeService.insertEquipe(textBoxName.Text, textBoxLogo.Text);
-                var confirmResult = MessageBox.Show("Nouvelle equipe inserée",
+                String val = equipeService.updateEquipe(this.id,textBoxName.Text, textBoxLogo.Text);
+                var confirmResult = MessageBox.Show("Equipe modifiée",
                                      "Message",
                                      MessageBoxButtons.OK);
                 if (confirmResult == DialogResult.OK)
                 {
-                    System.Diagnostics.Debug.WriteLine("METY ILAY OK BUTTON");
+                    //System.Diagnostics.Debug.WriteLine("METY ILAY OK BUTTON");
                     this.Close();
                     update();
-                }                            
+                }
             }
-           
-           
-
         }
         protected void update()
         {
             UpdateEventArgs args = new UpdateEventArgs();
-            UdpateEventHandler.Invoke(this,args);
+            UdpateEventHandler.Invoke(this, args);
         }
     }
 }
