@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-
+  miseTotale: Number = 0;
   loggedIn: boolean = false;
   admin = false;
   private currentUserSubject: BehaviorSubject<Parieur>;
@@ -23,7 +23,10 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  uri = "http://localhost:8010/auth/";
+  uri = "http://localhost:8010/auth";
+  uriPari = "http://localhost:8010/pari";
+
+  //uri = "https://apinode-mbds.herokuapp.com/auth"
 
   public get currentUserValue(): Parieur {
     return this.currentUserSubject.value;
@@ -34,14 +37,12 @@ export class AuthService {
     let user = new Parieur();
     user.mail = mail;
     user.pwd = passowrd;
+
     console.log("user alefa " + user.mail)
     return this.http.post<any>(this.uri + "/login", user)
       .pipe(
         map(user => {
           if (user.user != null) {
-            console.log(user.user.id + " user id");
-            console.log(user.user.jetons + " user JETONS");
-            console.log(user.token + "user token");
             this.setSession(user);
             this.setUserLoggedIn(true);
             return user.user;
@@ -59,6 +60,11 @@ export class AuthService {
   getUserLoggedIn(): Observable<boolean> {
     return this.userLoggedIn.asObservable();
   }
+
+  getUserMise(id): Observable<Number> {
+    console.log("user user mise " + id);
+    return this.http.get<Number>(this.uriPari + "/getAllMise/" + id);
+  }
   private setSession(user) {
     localStorage.setItem('currentUser', user.user.id);
     localStorage.setItem('username', user.user.nom);
@@ -66,6 +72,10 @@ export class AuthService {
     localStorage.setItem('mail', user.user.mail);
     localStorage.setItem('currentToken', user.token);
     localStorage.setItem('jetons', user.user.jetons);
+    localStorage.setItem('datenaiss', user.user.dateNaissance);
+    localStorage.setItem('pseudo', user.user.pseudo);
+    localStorage.setItem('user', JSON.stringify(user.user));
+    localStorage.setItem('miseTotale', JSON.stringify(this.miseTotale));
     this.currentUserSubject.next(user.user);
   }
 
