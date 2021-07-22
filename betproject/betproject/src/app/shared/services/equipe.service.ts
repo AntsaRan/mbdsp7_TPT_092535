@@ -9,7 +9,7 @@ import { Match } from '../models/match.model';
 })
 export class EquipeService {
 uri = "http://localhost:8010";
- // uri = "https://apinode-mbds.herokuapp.com"
+ //uri = "https://apinode-mbds.herokuapp.com"
   constructor(private http: HttpClient) { }
 
   getEquipebyName(nom): Observable<Equipe[]> {
