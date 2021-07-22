@@ -1,0 +1,14 @@
+.dialog{
+    width: 354px;
+    margin: auto;
+    position: relative;
+}
+
+.loginfield{
+    width: 280px;
+}
+.boutonsactions{
+    background-color: #4fa5ff;
+    color: white;
+    float: right;
+}

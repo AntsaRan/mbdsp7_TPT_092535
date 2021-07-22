@@ -1,0 +1,35 @@
+<mat-dialog-content class="mat-typography dialog">
+    <div class="logincontainer">
+        <div class="row">
+            <div>
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        Modifier vos informations
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form ngForm #loginform class="form" (submit)="onSubmit($event); loginform.reset();">
+                            <mat-form-field class="loginfield">
+                                <input matInput type="text" placeholder="Nom" required [(ngModel)]="nom" name="nom">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput type="text" placeholder="Prénom" required [(ngModel)]="prenom" name="prenom">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput type="text" placeholder="E mail" required [(ngModel)]="mail" name="mail">
+                            </mat-form-field>
+                            <br>
+                            <button mat-stroked-button color="primary" class="boutonsactions" (click)="updateinfo()">
+                                Valider
+                            </button>
+                            <div *ngIf="error" class="alert">{{error}}</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
