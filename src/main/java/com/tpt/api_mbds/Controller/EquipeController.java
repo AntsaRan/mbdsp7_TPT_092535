@@ -114,7 +114,7 @@ public class EquipeController {
         try {
             equipeRepository.deleteById(id);
             System.out.println(" Team deleted id : "+id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

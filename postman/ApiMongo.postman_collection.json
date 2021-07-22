@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://grails-api.herokuapp.com/api/equipes/getAll",
+							"raw": "https://grails-api.herokuapp.com/api/equipes",
 							"protocol": "https",
 							"host": [
 								"grails-api",
@@ -23,8 +23,14 @@
 							],
 							"path": [
 								"api",
-								"equipes",
-								"getAll"
+								"equipes"
+							],
+							"query": [
+								{
+									"key": "nom",
+									"value": "ti",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -53,6 +59,96 @@
 					"response": []
 				},
 				{
+					"name": "Heroku InsertTeam",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"02145\",\r\n    \"nom\":\"TESTA\",\r\n    \"logo\":\"http://dummyimage.com/238x100.png/dddddd/000000\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://grails-api.herokuapp.com/api/equipe",
+							"protocol": "https",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"equipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HerokuDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://grails-api.herokuapp.com/api/equipe/60f7ec1e06f4ab1e38e3a19e",
+							"protocol": "http",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"equipe",
+								"60f7ec1e06f4ab1e38e3a19e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku editTeam",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nom\":\"Edit\",\"logo\":\"Edited\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://grails-api.herokuapp.com/api/equipe/60f7ec1e06f4ab1e38e3a19e",
+							"protocol": "http",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"equipe",
+								"60f7ec1e06f4ab1e38e3a19e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAll/ByName",
 					"request": {
 						"method": "GET",
@@ -60,7 +156,8 @@
 							{
 								"key": "nom",
 								"value": "Tin",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -120,7 +217,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nom\":\"Barea\",\"logo\":\"http://dummyimage.com/238x100.png/dddddd/000000\"}",
+							"raw": "{\"nom\":\"TESTA\",\"logo\":\"http://dummyimage.com/238x100.png/dddddd/000000\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -148,7 +245,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/equipe/60d8d83648d51b00dcfcffdd",
+							"raw": "http://localhost:5000/api/equipe/60f9733aae2f694cf1d985f4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -157,7 +254,7 @@
 							"path": [
 								"api",
 								"equipe",
-								"60d8d83648d51b00dcfcffdd"
+								"60f9733aae2f694cf1d985f4"
 							]
 						}
 					},
@@ -178,7 +275,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/equipe/60d8d61aa1db0b13e1735a61",
+							"raw": "http://localhost:5000/api/equipe/60f7ec1e06f4ab1e38e3a19e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -187,35 +284,7 @@
 							"path": [
 								"api",
 								"equipe",
-								"60d8d61aa1db0b13e1735a61"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Request Copy",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/api/equipe/delete/insert?id=60d2460615eb802408add879",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"equipe",
-								"delete",
-								"insert"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "60d2460615eb802408add879"
-								}
+								"60f7ec1e06f4ab1e38e3a19e"
 							]
 						}
 					},
@@ -324,7 +393,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/matchespardate/2021-07-22T20:59:59.000Z",
+							"raw": "http://localhost:5000/api/matchespardate/2021-07-22T21:59:59.000Z",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -333,7 +402,7 @@
 							"path": [
 								"api",
 								"matchespardate",
-								"2021-07-22T20:59:59.000Z"
+								"2021-07-22T21:59:59.000Z"
 							]
 						}
 					},

@@ -46,12 +46,12 @@
 							"formdata": [
 								{
 									"key": "mail",
-									"value": "toto@gmail.com",
+									"value": "rakoto@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "pwd",
-									"value": "qqqq",
+									"value": "rakoto",
 									"type": "text"
 								}
 							],
@@ -96,7 +96,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nom\":\"Jean\",\r\n    \"prenom\":\"Bas\",\r\n    \"dateNaissance\":\"2000-10-15\",\r\n    \"pseudo\":\"koto\",\r\n    \"pwd\":\"koto\",\r\n    \"jetons\":0,\r\n    \"mail\":\"Jean@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"nom\":\"Rakoto\",\r\n    \"prenom\":\"Fra\",\r\n    \"dateNaissance\":\"2000-10-15\",\r\n    \"pseudo\":\"rakoto\",\r\n    \"pwd\":\"rakoto\",\r\n    \"jetons\":0,\r\n    \"mail\":\"rakoto@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -156,12 +156,12 @@
 							"formdata": [
 								{
 									"key": "mail",
-									"value": "toto@gmail.com",
+									"value": "rakoto@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "pwd",
-									"value": "qqqq",
+									"value": "rakoto",
 									"type": "text"
 								}
 							],
