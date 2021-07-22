@@ -43,6 +43,9 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SnackbarokComponent } from './coupons/snackbarok/snackbarok.component';
 import { AuthGuard } from './shared/auth.guard';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { ModifInfosComponent } from './profil/modifInfos/modif-infos/modif-infos.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 const routes: Routes = [
@@ -102,14 +105,15 @@ const routes: Routes = [
     ListematchsComponent,
     ProfilComponent,
     SnackbarokComponent,
+    ModifInfosComponent,
     
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,MatMenuModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,ModalModule,
-    MatGridListModule,
+    MatGridListModule,NgxQRCodeModule,
     MatFormFieldModule,MomentModule,
     MatInputModule,NgIdleKeepaliveModule,
     MatButtonModule,MatProgressBarModule,MatSnackBarModule,
