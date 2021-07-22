@@ -26,18 +26,24 @@
         <mat-grid-tile></mat-grid-tile>
         <mat-grid-tile *ngIf="!islogged">
           <div class="rightmenu">
-            <a class="navlink"(click)="openLoginDialog()"><button id="context" mat-button color="primary">Connexion</button></a>
-            <a class="navlink"><button id="insctext" (click)="openSigninDialog()" mat-raised-button color="primary">Inscription</button></a>
+            <a class="navlink" (click)="openLoginDialog()"><button id="context" mat-button
+                color="primary">Connexion</button></a>
+            <a class="navlink"><button id="insctext" (click)="openSigninDialog()" mat-raised-button
+                color="primary">Inscription</button></a>
           </div>
         </mat-grid-tile>
         <mat-grid-tile *ngIf="islogged">
           <div class="rightmenu">
             <img src="/assets/img/user.png" width="30" height="30">
-           <a routerLink="/profil" class="profilink"> <span class="nameuser">{{nomutilisateur}}</span></a>
-           <mat-icon class="iconmenulogout" (click)="logout()">logout</mat-icon>
+            <a class="profilink" [matMenuTriggerFor]="menu"> <span class="nameuser">{{nomutilisateur}}</span></a>
+            <mat-menu #menu="matMenu">
+              <button routerLink="/profil" mat-menu-item>Profil</button>
+              <button mat-menu-item (click)="logout()">logout</button>
+            </mat-menu>
+            <mat-icon class="iconmenulogout" (click)="logout()">logout</mat-icon>
           </div>
         </mat-grid-tile>
-      </mat-grid-list >
+      </mat-grid-list>
     </mat-toolbar-row>
     <mat-toolbar-row>
       <mat-grid-list cols="7" rowHeight="100%" style="width: 100%;">
@@ -54,13 +60,13 @@
             <div class="navmenuelem">
               <a routerLink="/" class="headerlink">
                 <mat-icon class="example-icon-home">home</mat-icon>
-              Home
+                Home
               </a>
             </div>
             <div class="navmenuelem">
               <a routerLink="/jeuresp" class="headerlink">
-              <mat-icon class="example-icon-jeuresp">lightbulb</mat-icon>
-              Jeu responsable
+                <mat-icon class="example-icon-jeuresp">lightbulb</mat-icon>
+                Jeu responsable
               </a>
             </div>
           </div>
@@ -81,7 +87,7 @@
   </mat-toolbar>
 
 
-  <mat-sidenav-container class="example-sidenav-container"> 
+  <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav class="example-sidenav">
       <h3 class="title">Menu</h3>
       <ul class="menulist">
@@ -95,11 +101,11 @@
         </li>
         <li class="menuelement">
           <mat-icon class="iconmenu">history</mat-icon>
-         <a routerLink="/historiqueGlobal" class="menulien" (click)="sidenav.toggle()">Historique</a> 
+          <a routerLink="/historiqueGlobal" class="menulien" (click)="sidenav.toggle()">Historique</a>
         </li>
         <li class="menuelement">
           <mat-icon class="iconmenu">view_list</mat-icon>
-          <a routerLink="/mesparis" class="menulien" (click)="sidenav.toggle()"> Mes Paris</a> 
+          <a routerLink="/mesparis" class="menulien" (click)="sidenav.toggle()"> Mes Paris</a>
         </li>
       </ul>
     </mat-sidenav>

@@ -211,6 +211,11 @@ footer{
     color:black;
     text-decoration: none;
 }
+
+.profilink{
+    
+    cursor: pointer
+}
 .iconmenulogout{
     font-size: 37px;
     position: relative;
