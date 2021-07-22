@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   email = "";
   password = null;
   hide = true;
-  // user: User;
+  miseUser: Number = 0;
   error = "";
   loading: boolean = false;
   constructor(public dialog: MatDialog, private auth: AuthService, private route: ActivatedRoute,
@@ -35,9 +35,17 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.error = " Username or password error";
           return;
+        } else {
+          console.log(m.id + ' M ID');
+          this.auth.getUserMise(m.id)
+            .subscribe(mise => {
+              this.miseUser = mise;
+              localStorage.setItem('miseUser',this.miseUser.toString());
+            })
+          this.loading = false;
+          this.reloadComponent();
         }
-        this.loading = false;
-        this.reloadComponent();
+
       });
   }
   reloadComponent() {
