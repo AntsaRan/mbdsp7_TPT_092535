@@ -12,34 +12,65 @@
                             <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
                         </div>
                         <div class="row col-lg-12">
-                            <div class="col-lg-6 infogen">
-                                <div  class="ligne">
+                            <div class="col-lg-6 col-md-6 col-sm-6 infogen">
+                                <div class="ligne">
                                     <p class="profiltitle">Nom: </p><span>{{user.nom}}</span>
                                 </div>
-                                <div  class="ligne">
+                                <div class="ligne">
                                     <p class="profiltitle">Prénom:</p> {{user.prenom}}
                                 </div>
-                                <div  class="ligne">
+                                <div class="ligne">
                                     <p class="profiltitle">Mail: </p>{{user.mail}}
                                 </div>
+                                <div class="ligne">
+                                    <p class="profiltitle">Pseudo: </p>{{user2.pseudo}}
+                                </div>
+                                <div class="ligne">
+                                    <p class="profiltitle">Date de naissance: </p>{{user2.dateNaissance| date: 'dd/MM/yyyy'}}
+                                </div>
+                                
                             </div>
-                            <div class="col-lg-6">
-                                <p>Nom</p>
-                                <p>Nom</p>
-                                <p>Nom</p>
-                                <p>Nom</p>
+                            <div class="col-lg-6 col-md-6 col-sm-6 qrcode">
+                                <h4>Votre QR code</h4>
+                                <ngx-qrcode [value]="value"></ngx-qrcode>
+                                <a class="navlink" (click)="openLoginDialog()">
+                                    <button id="modif" mat-raised-button color="primary">
+                                        Modifier les informations
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <mat-divider></mat-divider>
-                        <div class="row col-lg-12" style="margin-top: 5%;">
+                        <div class="row col-lg-12 col-md-12 col-sm-12" style="margin-top: 5%;margin-left: 2%;">
                             <mat-card-header class="cardheader">
                                 <div mat-card-avatar class="example-header-image"></div>
                                 <mat-card-title>Informations sur les jetons</mat-card-title>
                             </mat-card-header>
-                            <p>Nom</p>
-                            <p>Nom</p>
-                            <p>Nom</p>
-                            <p>Nom</p>
+                            <div class="col-lg-12 col-md-12 col-sm-12 infogen">
+                                <div class="ligne">
+                                    <p class="profiltitle">Solde en cours: </p><span>{{user2.jetons}}</span>
+                                </div>
+                                <div class="ligne">
+                                    <p class="profiltitle">Mise en cours:</p> {{mise}}
+                                </div>
+                      
+                            </div>
+                            <div class="boutonsactions">
+                                <a class="navlink">
+                                    <button class="actions" mat-raised-button color="primary">Acheter des
+                                        Jetons
+                                    </button>
+                                </a>
+                                <a class="navlink">
+                                    <button class="actions" mat-raised-button color="primary">Vendre des
+                                        Jetons
+                                    </button>
+                                </a>
+                                <a class="navlink">
+                                    <button class="actionshisto" mat-raised-button color="primary">Histoire transactions
+                                    </button>
+                                </a>
+                            </div>
                         </div>
 
                     </div>

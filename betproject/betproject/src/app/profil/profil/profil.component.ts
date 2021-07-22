@@ -1,6 +1,9 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Parieur } from 'src/app/shared/models/parieur.model';
+import { ModifInfosComponent } from '../modifInfos/modif-infos/modif-infos.component';
 
 @Component({
   selector: 'app-profil',
@@ -10,10 +13,15 @@ import { Parieur } from 'src/app/shared/models/parieur.model';
 export class ProfilComponent implements OnInit {
   loading: boolean = true;
   user: Parieur = new Parieur();
-  constructor(private router: Router) { }
+  user2: Parieur = new Parieur();
+  mise:string;
+  elementType: 'url' | 'canvas' | 'img' = 'url';
+  value = null;
+  constructor(private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('currentUser') != null) {
+     
       console.log(localStorage.getItem('currentUser') + " GGGGGGGGGGGGGGG");
       this.loading = false;
       this.user.id = localStorage.getItem('currentUser');
@@ -21,6 +29,9 @@ export class ProfilComponent implements OnInit {
       this.user.mail = localStorage.getItem('mail');
       this.user.prenom = localStorage.getItem('prenom');
       this.user.nom = localStorage.getItem('username');
+      this.user2=JSON.parse(localStorage.getItem('user'));
+      this.mise=localStorage.getItem('miseTotale');
+      this.value=this.user.id+"|"+this.user.jetons+"|"+this.user.mail+"|"+this.user.prenom+"|"+this.user.nom;
     } else {
       this.reloadComponent();
     }
@@ -32,5 +43,11 @@ export class ProfilComponent implements OnInit {
      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
      this.router.onSameUrlNavigation = 'reload';*/
     //
+  }
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(ModifInfosComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
