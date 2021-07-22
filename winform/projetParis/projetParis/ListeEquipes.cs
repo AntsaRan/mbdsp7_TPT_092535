@@ -29,23 +29,7 @@ namespace projetParis
             this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
             //Add Bouton Modifier
-            if (isFirstAffichage)
-            {
-                DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
-                btnEdit.HeaderText = "Edit";
-                btnEdit.Name = "buttonEdit";
-                btnEdit.Text = "Modifier";
-                btnEdit.UseColumnTextForButtonValue = true;
-                this.dataGridViewEquipe.Columns.Add(btnEdit);
-                //Add Bouton Supprimer
-                DataGridViewButtonColumn btnSuppr = new DataGridViewButtonColumn();
-                btnSuppr.HeaderText = "Delete";
-                btnSuppr.Name = "buttonSupprimer";
-                btnSuppr.Text = "Supprimer";
-                btnSuppr.UseColumnTextForButtonValue = true;
-                this.dataGridViewEquipe.Columns.Add(btnSuppr);
-                this.isFirstAffichage = false;
-            };
+            this.addButton();
 
         }
 
@@ -66,6 +50,20 @@ namespace projetParis
             this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
             //Add Bouton Modifier
+            this.addButton();
+        }
+
+        private void buttonInsertEquipe_Click(object sender, EventArgs e)
+        {
+
+            InsertEquipe insertForm = new InsertEquipe(this);
+            insertForm.UdpateEventHandler += F2_updateEventHandler1;
+            insertForm.ShowDialog();
+            
+        }
+
+        public void addButton()
+        {
             if (isFirstAffichage)
             {
                 DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
@@ -85,12 +83,11 @@ namespace projetParis
             };
         }
 
-        private void buttonInsertEquipe_Click(object sender, EventArgs e)
+        private void F2_updateEventHandler1(object sender , InsertEquipe.UpdateEventArgs args)
         {
-
-            InsertEquipe insertForm = new InsertEquipe();
-            insertForm.ShowDialog();
-            
+            EquipeService equipeService = new EquipeService();
+            this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
         }
     }
 }

@@ -25,14 +25,14 @@ namespace projetParis.Services
                 throw e;
             }
         }
-        public string insertEquipe(String nom, String logo)
+        public String insertEquipe(String nom, String logo)
         {
             try
             {
                 Equipe equipe = new Equipe(nom, logo);
                 HttpClient clint = new HttpClient();
                 clint.BaseAddress = new Uri(url);
-                System.Diagnostics.Debug.WriteLine("ito ilay json EQUIPE Avant nom: " + equipe.Nom+ " logo :"+equipe.Logo);
+                System.Diagnostics.Debug.WriteLine("ito ilay json EQUIPE Avant nom: " + equipe.nom+ " logo :"+equipe.logo);
                 var json = JsonConvert.SerializeObject(equipe); // or JsonSerializer.Serialize if using System.Text.Json
                 var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                 System.Diagnostics.Debug.WriteLine("ito ilay json EQUIPE Apres"+json);

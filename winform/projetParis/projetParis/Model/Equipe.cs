@@ -11,8 +11,8 @@ namespace projetParis.Model
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         private string id;
-        private string nom;
-        private string logo;
+        public string nom;
+        public string logo;
 
        
 
@@ -34,8 +34,8 @@ namespace projetParis.Model
 
         public Equipe(string nom, string logo)
         {
-            Nom = nom;
-            Logo = logo;
+            this.nom = nom;
+            this.logo = logo;
         }
     }
 }
