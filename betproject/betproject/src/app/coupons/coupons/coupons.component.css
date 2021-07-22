@@ -31,7 +31,8 @@
     }
     
     #detailsbutton{
-        background-color: #4fa5ff;
+        background-color: #ffc100;
+        color: rgb(0, 0, 0);
     }
     .example-card{
         max-height: 500px;

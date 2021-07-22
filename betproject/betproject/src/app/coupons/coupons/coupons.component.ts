@@ -58,6 +58,8 @@ export class CouponsComponent implements OnInit {
     this.coupons = this.cartserv.items;
     this.coupons.forEach(coupon => {
       let pari: Pari = new Pari();
+      console.log(coupon.mise + "  coupon.mise")
+      console.log(coupon.idmatch + "  coupon.idmatch")
       pari.idTypeRegle = coupon.idTypeRegle;
       pari.idMatch = coupon.idmatch;
       pari.idparieur = localStorage.getItem('currentUser');
