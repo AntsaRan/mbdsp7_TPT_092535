@@ -124,7 +124,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nom\":\"Edit\",\"logo\":\"Edited\"}",
+							"raw": "{\"nom\":\"Edit2\",\"logo\":\"Edited2\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -132,7 +132,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://grails-api.herokuapp.com/api/equipe/60f7ec1e06f4ab1e38e3a19e",
+							"raw": "http://grails-api.herokuapp.com/api/equipe/60f827208211411302892da6",
 							"protocol": "http",
 							"host": [
 								"grails-api",
@@ -142,7 +142,7 @@
 							"path": [
 								"api",
 								"equipe",
-								"60f7ec1e06f4ab1e38e3a19e"
+								"60f827208211411302892da6"
 							]
 						}
 					},
@@ -753,6 +753,111 @@
 								"api",
 								"matchRegles",
 								"60e013dcf9d59e7169c80ef2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jeton",
+			"item": [
+				{
+					"name": "HerokuGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/jetons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"jetons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HerokuEditJeton",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"prix\":200}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/jeton/60fb06e240a266419201e50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"jeton",
+								"60fb06e240a266419201e50a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/jetons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"jetons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditJeton",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"prix\":200}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/jeton/60fb06e240a266419201e50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"jeton",
+								"60fb06e240a266419201e50a"
 							]
 						}
 					},
