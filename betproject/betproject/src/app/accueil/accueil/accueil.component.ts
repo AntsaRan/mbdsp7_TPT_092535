@@ -43,7 +43,7 @@ export class AccueilComponent implements OnInit {
   }
   getMatchesdujour() {
     console.log("getmatches");
-    this.matchserv.getMatchByDate(this.currentdate.toISOString())
+    this.matchserv.getMatchByDate(this.date)
       .subscribe(data => {
         if (data) {
           console.log(" daataaaa");
