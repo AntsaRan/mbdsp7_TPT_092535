@@ -133,6 +133,12 @@ public class MatchController {
             System.out.println("ID EQUIPE1 voalohany "+match.getEquipe1().getId());
             Optional<Equipe> equipe1Data = equipeRepository.findById(match.getEquipe1().getId());
             Optional<Equipe> equipe2Data = equipeRepository.findById(match.getEquipe2().getId());
+            System.out.println(match.getEquipe1());
+            System.out.println(match.getEquipe2());
+            System.out.println(match.getDate());
+            System.out.println(match.getEtat());
+            System.out.println(match.getScoreEquipe1());
+
             //header="application/json";
             if (equipe1Data.isPresent() && equipe2Data.isPresent()){
                 Match _match = matchRepository.save(new Match(equipe1Data.get(),equipe2Data.get(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2(),match.getCornerEquipe1(),match.getCornerEquipe2(),match.getPossessionEquipe1(),match.getPossessionEquipe2()));
