@@ -11,10 +11,11 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 })
 export class ListematchsComponent implements OnInit {
 
-  matches: Match[]=[];
+  matches: Match[] = [];
   currentdate = new Date();
   date: string;
-  loading:boolean=true;
+  loading: boolean = true;
+  nodata:string="";
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
@@ -30,14 +31,18 @@ export class ListematchsComponent implements OnInit {
 
   getMatches() {
     console.log("getmatches");
-    this.matchserv.getMatches()
+    this.matchserv.getMatchByDate(this.date)
       .subscribe(data => {
-        data.forEach(match=>{         
-          console.log(match.id+ " match")
-          this.matches.push(match);
-
-        })
-        this.loading=false;
+        if (data) {
+          data.forEach(match => {
+            console.log(match.id + " match")
+            this.matches.push(match);
+          })
+        }else{
+          console.log("no daataaaa");
+          this.nodata="No data";
+        }
+        this.loading = false;
       });
   }
 }

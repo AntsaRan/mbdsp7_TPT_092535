@@ -11,6 +11,7 @@
                     <div class="">
                         <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
                     </div>
+                    <p>{{nodata}}</p>
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist" *ngFor="let match of matches">
                             <div class="listitemcontent">
