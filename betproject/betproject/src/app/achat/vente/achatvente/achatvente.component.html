@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <mat-card>
+            <mat-card-header class="cardheader">
+                <mat-card-title class="titre">Achat et vente de jetons</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div class="formachatvente">
+                    <h4>Achat jeton(s)</h4>
+                    <p>Veuillez saisir le montant de votre achat</p>
+                    <form>
+                        <mat-form-field class="loginfield">
+                            <input matInput placeholder="Montant" type="number"  (input)="changemontant()" required [(ngModel)]="amontant"
+                                name="montant">
+                        </mat-form-field>Ariary
+                        <br>
+                        <mat-form-field class="loginfield">
+                            <input matInput placeholder="Jetons" (input)="changejetons()" type="number" required [(ngModel)]="ajetons"
+                                name="ajetons">
+                        </mat-form-field>Jetons
+                        <div *ngIf="error" class="alert">{{error}}</div>
+                    </form>
+                    <button (click)="onsubmitachat()" mat-stroked-button color="primary" class="btn btnlogin">
+                        Acheter
+                    </button>
+                </div>
+                <div>
+                    <h4>Vente jeton(s)</h4>
+                    <p>Combien de jetons voulez-vous mettre sur le marché?</p>
+                    <form>
+                        <mat-form-field class="loginfield">
+                            <input matInput placeholder="Jetons" type="number" required [(ngModel)]="vjetons"
+                                name="vjetons">
+                        </mat-form-field>Jetons
+                        <div *ngIf="error" class="alert">{{error}}</div>
+                    </form>
+                    <button mat-stroked-button color="primary" class="btn btnlogin">
+                        Valider
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <mat-card>
+            <mat-card-header class="cardheader">
+                <mat-card-title>Information sur vos jetons</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div  class="content">
+                    <div>
+                        <p>Solde en cours : </p>
+                        <p>Mise en cours : </p>
+                        <p>Jetons engagés : </p>
+                    </div>
+                </div>
+                <div  class="content2">
+                    <h5>Prix du jeton</h5>
+
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container matColumnDef="devise">
+                            <th mat-header-cell *matHeaderCellDef>Devise </th>
+                            <td mat-cell *matCellDef="let element"> {{element.devise}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="prix">
+                            <th mat-header-cell *matHeaderCellDef> Prix </th>
+                            <td mat-cell *matCellDef="let element"> {{element.prix}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <app-coupons></app-coupons>
+</div>
