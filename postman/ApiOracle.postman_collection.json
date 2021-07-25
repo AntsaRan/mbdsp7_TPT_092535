@@ -271,6 +271,28 @@
 					"response": []
 				},
 				{
+					"name": "HerokugetAllParisbyIdMatch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://grails-api.herokuapp.com/oracle/getAllParisbyIdMatch/60e012dcf9d59e7169c79cea",
+							"protocol": "http",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"getAllParisbyIdMatch",
+								"60e012dcf9d59e7169c79cea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Heroku InsertPari",
 					"request": {
 						"method": "POST",
@@ -365,6 +387,27 @@
 								"oracle",
 								"getAllParisbyUser",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllParisbyIdMatch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/oracle/getAllParisbyIdMatch/60e012dcf9d59e7169c79cea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"getAllParisbyIdMatch",
+								"60e012dcf9d59e7169c79cea"
 							]
 						}
 					},

@@ -90,6 +90,34 @@ public class PariController {
         }
         return list;
     }
+
+    public ArrayList<Pari> getAllParisbyIdMatch(OracleConnection co,String id) throws SQLException {
+
+        ArrayList<Pari> list=new ArrayList<Pari>();
+        Statement statement = null;
+        try{
+            statement = co.createStatement();
+            String request="select * from PARI where IDMATCH='"+id+"'";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                Pari val=new Pari();
+                val.setId(resultSet.getInt(1));
+                val.setIdUtilisateur(resultSet.getInt(2));
+                val.setIdMatch(resultSet.getString(3));
+                val.setMatchRegle(resultSet.getString(4));
+                val.setMise(resultSet.getFloat(5));
+                val.setDateParis(resultSet.getDate(6));
+                list.add(val);
+            }
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+        }
+        return list;
+    }
+
     public float getAllMisebyUser(OracleConnection co,int id) throws SQLException {
 
         float result=0f;

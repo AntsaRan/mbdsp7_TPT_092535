@@ -165,16 +165,67 @@ public class MatchController {
             _match.setLieu(match.getLieu());
             _match.setScoreEquipe1(match.getScoreEquipe1());
             _match.setScoreEquipe2(match.getScoreEquipe2());
+            _match.setCornerEquipe1(match.getCornerEquipe1());
+            _match.setCornerEquipe2(match.getCornerEquipe2());
+            _match.setPossessionEquipe1(match.getPossessionEquipe1());
+            _match.setPossessionEquipe2(match.getPossessionEquipe2());
+
+
             System.out.println(" Team updated id : "+id);
             return new ResponseEntity<>(matchRepository.save(_match), HttpStatus.OK);
         } else {
             System.out.println("no match found");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }
     }
 
+    /*
+    @PutMapping("/matchEtat/{id}")
+    public ResponseEntity<Match> updateMatchEtat(@PathVariable("id") String id,@RequestBody String etat) {
+        System.out.println(" Makato am PUT id : "+id);
+        Optional<Match> matchData = matchRepository.findById(id);
+
+        if (matchData.isPresent()) {
+            Match _match = matchData.get();
+
+            _match.setEtat(etat);
 
 
+
+            System.out.println(" Team updated id : "+id);
+            return new ResponseEntity<>(matchRepository.save(_match), HttpStatus.OK);
+        } else {
+            System.out.println("no match found");
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/matchEtatScores/{id}")
+    public ResponseEntity<Match> updateMatchEtatScores(@PathVariable("id") String id,@RequestBody(required = false) String etat ,@RequestBody Integer scoreEquipe1,@RequestBody Integer scoreEquipe2,@RequestBody Integer cornerEquipe1,@RequestBody Integer cornerEquipe2,@RequestBody Integer possessionEquipe1,@RequestBody Integer possessionEquipe2 ) {
+        System.out.println(" Makato am PUT id : "+id);
+        Optional<Match> matchData = matchRepository.findById(id);
+
+        if (matchData.isPresent()) {
+            Match _match = matchData.get();
+
+            if(etat!=null){  _match.setEtat(etat);}
+
+            _match.setScoreEquipe1(scoreEquipe1);
+            _match.setScoreEquipe2(scoreEquipe2);
+            _match.setCornerEquipe1(cornerEquipe1);
+            _match.setCornerEquipe2(cornerEquipe2);
+            _match.setPossessionEquipe1(possessionEquipe1);
+            _match.setPossessionEquipe2(possessionEquipe2);
+
+
+            System.out.println(" Team updated id : "+id);
+            return new ResponseEntity<>(matchRepository.save(_match), HttpStatus.OK);
+        } else {
+            System.out.println("no match found");
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
+    }
+*/
     @DeleteMapping("/match/{id}")
     public ResponseEntity<HttpStatus> deleteMatch(@PathVariable("id")String id) {
         try {

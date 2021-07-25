@@ -173,6 +173,28 @@ public class ApiMbdsApplication {
         }
     }
 
+    @GetMapping(path="/getAllParisbyIdMatch/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllParisbyIdMatch(@PathVariable("id") String id) throws SQLException {
+        ArrayList<Pari> list=new ArrayList<Pari>();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            list = pariController.getAllParisbyIdMatch(oracleConnection,id);
+            if(list.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + list.get(0).getId());
+            return new ResponseEntity<>(new Gson().toJson(list), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
     @PostMapping(path="/insertUser",consumes = "application/json", produces = "application/json")
     @ResponseBody
     public ResponseEntity<String> insertUser(@RequestBody Utilisateur utilisateur) throws SQLException, ParseException {

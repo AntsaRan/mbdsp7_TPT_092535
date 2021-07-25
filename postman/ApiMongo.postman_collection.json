@@ -496,13 +496,13 @@
 					"response": []
 				},
 				{
-					"name": "editMatch",
+					"name": "HerokueditMatch",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"idEquipe1\":\"60d098ef91a63046171cd603\",\"idEquipe2\":\"60d098ef91a63046171cd602\",\"date\":\"2021-09-22T18:00:00.000+00:00\",\"lieu\":\"Barea Stade Madagascar\",\"etat\":\"terminé\",\"scoreEquipe1\":0,\"scoreEquipe2\":1}",
+							"raw": "{\"equipe1\":{\"id\":\"60d098ef91a63046171cd601\",\"nom\": \"fintone\",\"logo\": \"http://dummyimage.com/207x100.png/ff4444/ffffff\"},\r\n\"equipe2\":{\"id\":\"60d098ef91a63046171cd602\", \"nom\": \"tin\",\"logo\": \"http://dummyimage.com/242x100.png/ff4444/ffffff\"},\r\n\"date\":\"2021-07-22T00:00:00.000+00:00\",\r\n\"lieu\":\"ANTSA Stadium 2\",\r\n\"etat\":\"3\"\r\n,\"scoreEquipe1\":1\r\n,\"scoreEquipe2\":3\r\n,\"cornerEquipe1\":1\r\n,\"cornerEquipe2\":2\r\n,\"possessionEquipe1\":15\r\n,\"possessionEquipe2\":85\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -510,7 +510,38 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/match/60d9af4033d6710a07d92a9f",
+							"raw": "http://grails-api.herokuapp.com/api/match/60fc7bfd73e78056acd91adf",
+							"protocol": "http",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"match",
+								"60fc7bfd73e78056acd91adf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editMatch",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"equipe1\":{\"id\":\"60d098ef91a63046171cd601\",\"nom\": \"fintone\",\"logo\": \"http://dummyimage.com/207x100.png/ff4444/ffffff\"},\r\n\"equipe2\":{\"id\":\"60d098ef91a63046171cd602\", \"nom\": \"tin\",\"logo\": \"http://dummyimage.com/242x100.png/ff4444/ffffff\"},\r\n\"date\":\"2021-07-22T00:00:00.000+00:00\",\r\n\"lieu\":\"ANTSA Stadium 2\",\r\n\"etat\":\"2\"\r\n,\"scoreEquipe1\":3\r\n,\"scoreEquipe2\":3\r\n,\"cornerEquipe1\":1\r\n,\"cornerEquipe2\":2\r\n,\"possessionEquipe1\":25\r\n,\"possessionEquipe2\":75\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/match/60fc7bfd73e78056acd91adf",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -519,7 +550,67 @@
 							"path": [
 								"api",
 								"match",
-								"60d9af4033d6710a07d92a9f"
+								"60fc7bfd73e78056acd91adf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editMatchEtat",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"etat\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/matchEtat/60fc7bfd73e78056acd91adf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"matchEtat",
+								"60fc7bfd73e78056acd91adf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editMatchEtatScore",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"etat\":\"3\",\r\n    \"scoreEquipe1\":3,\r\n    \"scoreEquipe2\":3,\r\n    \"cornerEquipe1\":1,\r\n    \"cornerEquipe2\":2,\r\n    \"possessionEquipe1\":30,\r\n    \"possessionEquipe2\":70\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/matchEtatScores/60fc7bfd73e78056acd91adf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"matchEtatScores",
+								"60fc7bfd73e78056acd91adf"
 							]
 						}
 					},
