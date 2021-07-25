@@ -371,6 +371,82 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "SuperAdmin",
+			"item": [
+				{
+					"name": "AdminAuthetification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pseudo",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/oracle/authentificationAdmin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"oracle",
+								"authentificationAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HerokuAdminAuthetification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pseudo",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://grails-api.herokuapp.com/oracle/authentificationAdmin",
+							"protocol": "http",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"oracle",
+								"authentificationAdmin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

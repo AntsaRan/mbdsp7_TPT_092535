@@ -2,6 +2,7 @@ package com.tpt.api_mbds;
 
 import com.google.gson.Gson;
 import com.tpt.api_mbds.Controller.PariController;
+import com.tpt.api_mbds.Controller.SuperAdminController;
 import com.tpt.api_mbds.Controller.UserController;
 import com.tpt.api_mbds.model.*;
 import com.tpt.api_mbds.response.Response;
@@ -29,6 +30,7 @@ import java.util.Date;
 public class ApiMbdsApplication {
     UserController userController = new UserController();
     PariController pariController = new PariController();
+    SuperAdminController superAdminController= new SuperAdminController();
 
     @GetMapping(path="/getAllUser",produces = "application/json")
     @ResponseBody
@@ -74,6 +76,33 @@ public class ApiMbdsApplication {
             oracleConnection.close();
         }
     }
+
+    @PostMapping(path="/authentificationAdmin",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> authentificationAdmin(String pseudo, String password) throws SQLException {
+
+        SuperAdmin val = new SuperAdmin();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            // System.out.println("le mail de l'user " + mail);
+            val = superAdminController.authentification(oracleConnection,pseudo,password);
+            if(val.getId()==0){
+                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+            }
+            //System.out.println("RESULT APRES LE GET " + val.getPrenom());
+            return new ResponseEntity<>(new Gson().toJson(val), HttpStatus.OK);
+
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
+
 
     @PostMapping(path="/insertPari",consumes = "application/json", produces = "application/json")
     @ResponseBody

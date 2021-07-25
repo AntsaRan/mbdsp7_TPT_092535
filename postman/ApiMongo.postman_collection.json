@@ -42,7 +42,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://grails-api.herokuapp.com/api/equipe/60d098ef91a63046171cd600",
+							"raw": "https://grails-api.herokuapp.com/api/equipe/60d098ef91a63046171cd602",
 							"protocol": "https",
 							"host": [
 								"grails-api",
@@ -52,7 +52,7 @@
 							"path": [
 								"api",
 								"equipe",
-								"60d098ef91a63046171cd600"
+								"60d098ef91a63046171cd602"
 							]
 						}
 					},
@@ -443,7 +443,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"equipe1\":{\"$id\":\"60d098ef91a63046171cd601\"}\r\n,\"equipe2\":{\"$id\":\"60d098ef91a63046171cd602\"}\r\n,\"date\":\"2021-08-22T18:00:00.000+00:00\"\r\n,\"lieu\":\"sasasaas Stadium\"\r\n,\"etat\":\"termine\"\r\n,\"scoreEquipe1\":2\r\n,\"scoreEquipe2\":1}\r\n",
+							"raw": "{\"equipe1\":{\"id\":\"60d098ef91a63046171cd601\",\"nom\": \"fintone\",\"logo\": \"http://dummyimage.com/207x100.png/ff4444/ffffff\"},\r\n\"equipe2\":{\"id\":\"60d098ef91a63046171cd602\", \"nom\": \"tin\",\"logo\": \"http://dummyimage.com/242x100.png/ff4444/ffffff\"},\r\n\"date\":\"2021-07-22T00:00:00.000+00:00\",\r\n\"lieu\":\"ANTSA Stadium\",\r\n\"etat\":\"3\",\"scoreEquipe1\":3\r\n,\"scoreEquipe2\":3\r\n,\"cornerEquipe1\":1\r\n,\"cornerEquipe2\":2\r\n,\"possessionEquipe1\":10\r\n,\"possessionEquipe2\":90\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -457,6 +457,36 @@
 								"localhost"
 							],
 							"port": "5000",
+							"path": [
+								"api",
+								"match"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HerokuInsertMatch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"equipe1\":{\"$id\":\"60d098ef91a63046171cd601\",\"nom\": \"fintone\",\"logo\": \"http://dummyimage.com/207x100.png/ff4444/ffffff\"},\r\n\"equipe2\":{\"$id\":\"60d098ef91a63046171cd602\", \"nom\": \"tin\",\"logo\": \"http://dummyimage.com/242x100.png/ff4444/ffffff\"},\r\n\"date\":\"2021-07-22T00:00:00.000+00:00\",\r\n\"lieu\":\"ANTSA Stadium\",\r\n\"etat\":\"3\",\"scoreEquipe1\":3\r\n,\"scoreEquipe2\":3\r\n,\"cornerEquipe1\":1\r\n,\"cornerEquipe2\":2\r\n,\"possessionEquipe1\":10\r\n,\"possessionEquipe2\":90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://grails-api.herokuapp.com/api/match",
+							"protocol": "http",
+							"host": [
+								"grails-api",
+								"herokuapp",
+								"com"
+							],
 							"path": [
 								"api",
 								"match"
@@ -769,12 +799,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/jetons",
+							"raw": "http://grails-api.herokuapp.com/api/jetons",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"grails-api",
+								"herokuapp",
+								"com"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"jetons"
@@ -798,12 +829,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/jeton/60fb06e240a266419201e50a",
+							"raw": "http://grails-api.herokuapp.com/api/jeton/60fb06e240a266419201e50a",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"grails-api",
+								"herokuapp",
+								"com"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"jeton",
