@@ -21,7 +21,7 @@
                             <br>
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker">
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="Datedenaissance" name="Datedenaissance">
                                 <mat-datepicker-toggle matSuffix [for]="picker">
                                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                 </mat-datepicker-toggle>
@@ -29,7 +29,7 @@
                             </mat-form-field>
                             <br>
                             <mat-form-field class="loginfield">
-                                <input matInput placeholder="Pays" required [(ngModel)]="pays" name="pays">
+                                <input matInput placeholder="Pseudo" required [(ngModel)]="pseudo" name="pseudo">
                             </mat-form-field>
                             <br>
                             <mat-form-field class="loginfield">
@@ -50,11 +50,7 @@
                                     [(ngModel)]="confirmmdp" name="confirmmdp">
                             </mat-form-field>
                             <br>
-                            <mat-form-field class="loginfield">
-                                <input matInput placeholder="Téléphone" required [(ngModel)]="phone" name="phone">
-                            </mat-form-field>
-                            <br>
-                            <button mat-stroked-button color="primary"  class="btn btnlogin">
+                            <button mat-stroked-button color="primary" type="submit" class="btn btnlogin">
                                 S'inscrire
                             </button>
                             <div *ngIf="error" class="alert">{{error}}</div>
