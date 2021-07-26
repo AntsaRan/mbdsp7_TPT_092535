@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Match } from 'src/app/shared/models/match.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { MatchServiceService } from 'src/app/shared/services/match-service.service';
+import { Const } from 'src/app/shared/const/const';
 
 @Component({
   selector: 'app-accueil',
