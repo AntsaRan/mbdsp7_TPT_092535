@@ -13,11 +13,11 @@
             </div>
             <div class="col-lg-5 col-lg-5 col-lg-5">
               <p>{{coupon.regle.cote}}</p>
-              <p class="mise">Mise : {{coupon.mise}}</p>
+              <p class="mise">Mise : {{coupon.mise}} coupons</p>
               <span>
                 <mat-icon class="editicon" (click)="opencouponform(coupon)">edit</mat-icon>
               </span>
-              <p class="regledef">Gain possible : {{coupon.mise * coupon.regle.cote}} EUR</p>
+              <p class="regledef">Gain possible Coupons : {{coupon.mise * coupon.regle.cote}} Coupons</p>
             </div>
             <div class="col-lg-1 col-lg-1 col-lg-1">
                 <mat-icon class="clear" (click)="remove(coupon)">clear</mat-icon>

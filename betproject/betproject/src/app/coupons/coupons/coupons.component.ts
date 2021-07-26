@@ -11,7 +11,7 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 import { ParisService } from 'src/app/shared/services/paris.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarokComponent } from '../snackbarok/snackbarok.component';
-
+import { Const } from 'src/app/shared/const/const';
 @Component({
   selector: 'app-coupons',
   templateUrl: './coupons.component.html',
@@ -23,6 +23,7 @@ export class CouponsComponent implements OnInit {
   coupons: Coupon[] = [];
   paris: Pari[] = [];
   durationInSeconds = 2;
+  prixjeton:any;
 
   //gain:number=0;
 
@@ -32,6 +33,8 @@ export class CouponsComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.prixjeton=Const.prixJeton;
+
   }
 
   get couponslist() {
@@ -41,7 +44,7 @@ export class CouponsComponent implements OnInit {
     let coupons = this.couponslist;
     let total: number = 0;
     this.couponslist.forEach(c => {
-      total += c.mise * c.regle.cote;
+      total += c.mise * c.regle.cote*this.prixjeton;
     })
     return total;
   }
