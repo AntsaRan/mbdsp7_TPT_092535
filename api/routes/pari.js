@@ -18,7 +18,7 @@ function insertpari(req, res) {
         json: true,
         body: {
             idUtilisateur:  pari.idparieur,
-            idMatch: pari.idmatch,
+            idMatch: pari.idMatch,
             matchRegle:pari.idTypeRegle,
             mise:pari.mise
         }
@@ -48,5 +48,16 @@ function getParisByUSer(req, res) {
             console.log(err))
 }
 
+function getAllMise(req, res) {
+    console.log(`getAllMise`+req.params.id);
+    fetch(url + "/getAllMise/"+req.params.id)
+        .then(response =>response.json())
+        .then(data => {
+            console.log(JSON.stringify(data) + " MISE")
+            res.json(data);
+        })
+        .catch(err =>
+            console.log(err))
+}
 
-module.exports = { insertpari,getParisByUSer};
+module.exports = { insertpari,getParisByUSer,getAllMise};
