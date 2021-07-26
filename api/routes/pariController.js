@@ -15,6 +15,9 @@ let pari = require('./pari')
     console.log( " tody e ");
     pari.getParisByUSer(req,res);
   })
-
+  router.get('/getAllMise/:id',function(req,res){
+    console.log( " tody e ");
+    pari.getAllMise(req,res);
+  })
 
   module.exports = router;
