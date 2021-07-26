@@ -87,5 +87,20 @@ export class AuthService {
     }
   }
 
+  inscription(parieur: Parieur,date) {
+    console.log("inscription auth")
+    var body={parieur,date}
+    return this.http.post<any>(this.uri + "/sign", body)
+      .pipe(
+        map(user => {
+          if (user) {
+            console.log(" nety inscri");
+          } else {
+            return null;
+          }
+        }),
+        catchError(this.handleError<any>('### catchError: login'))
+      );
+  }
 }
 
