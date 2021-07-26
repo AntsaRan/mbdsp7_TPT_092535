@@ -1,5 +1,5 @@
 {
-  "name": "assignments-api",
+  "name": "apinode",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -18,7 +18,12 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.2",
     "multer": "^1.4.2",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2. 6.1",
+    "request": "^2.88.2",
     "save": "^2.4.0"
+  },
+  "engine": {
+    "node": "v14.16.0",
+    "npm": "6.14.11"
   }
 }
