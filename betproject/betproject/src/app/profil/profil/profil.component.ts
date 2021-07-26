@@ -21,15 +21,14 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('currentUser') != null) {
-     
-      console.log(localStorage.getItem('currentUser') + " GGGGGGGGGGGGGGG");
-      this.loading = false;
-      this.user.id = localStorage.getItem('currentUser');
-      this.user.jetons = Number.parseInt(localStorage.getItem('jetons'));
-      this.user.mail = localStorage.getItem('mail');
-      this.user.prenom = localStorage.getItem('prenom');
-      this.user.nom = localStorage.getItem('username');
       this.user2=JSON.parse(localStorage.getItem('user'));
+     // console.log(localStorage.getItem('currentUser') + " GGGGGGGGGGGGGGG");
+      this.loading = false;
+      this.user.id =  this.user2.id;
+      this.user.jetons = this.user2.jetons;
+      this.user.mail =  this.user2.mail;
+      this.user.prenom = this.user2.prenom;
+      this.user.nom = this.user2.nom;
       this.mise=localStorage.getItem('miseTotale');
       this.value=this.user.id+"|"+this.user.jetons+"|"+this.user.mail+"|"+this.user.prenom+"|"+this.user.nom;
     } else {
