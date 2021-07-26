@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class ParisService {
 
-  uri = "http://localhost:8010/pari";
-  //  uri="https://apinode-mbds.herokuapp.com/pari"
+  //uri = "http://localhost:8010/pari";
+  uri="https://apinode-mbds.herokuapp.com/pari"
 
   constructor(private http: HttpClient) { }
 

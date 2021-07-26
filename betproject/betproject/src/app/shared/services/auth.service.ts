@@ -23,10 +23,11 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  uri = "http://localhost:8010/auth";
-  uriPari = "http://localhost:8010/pari";
+  //uri = "http://localhost:8010/auth";
+  //uriPari = "http://localhost:8010/pari";
 
-  //uri = "https://apinode-mbds.herokuapp.com/auth"
+  uri = "https://apinode-mbds.herokuapp.com/auth"
+  uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
   public get currentUserValue(): Parieur {
     return this.currentUserSubject.value;
@@ -87,9 +88,9 @@ export class AuthService {
     }
   }
 
-  inscription(parieur: Parieur,date) {
+  inscription(parieur: Parieur, date) {
     console.log("inscription auth")
-    var body={parieur,date}
+    var body = { parieur, date }
     return this.http.post<any>(this.uri + "/sign", body)
       .pipe(
         map(user => {
