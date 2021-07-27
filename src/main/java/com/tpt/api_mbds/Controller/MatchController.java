@@ -364,27 +364,32 @@ public class MatchController {
         } catch (Exception e) {
             throw e;
         }
+    }
 
-        /*
-         ///////////////////////////CROWN/////////////////////////////
-    @PutMapping(path="/StartMatch/{id}",produces = "application/json")
+    @PutMapping(path="/StartOneMatch/{id}",produces = "application/json")
     @ResponseBody
-    public ResponseEntity<String> startCron(@PathVariable("id") String id) throws SQLException {
+    public ResponseEntity<String> startCronPerMatch(@PathVariable("id") String id) throws SQLException {
         try {
             Optional<Match> matchData = matchRepository.findById(id);
-            if (matchData.isPresent()) {
+
+
+            if (matchData.isEmpty()) {
+                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+            }
+
+            Timer t = new Timer();
+
                 TimerExample start = new TimerExample("start", matchData.get(),matchRepository);
-                TimerExample end = new TimerExample("end", matchData.get(),matchRepository);
-                Timer t = new Timer();
                 t.scheduleAtFixedRate(start, 0, 10 * 1000);
 
-                t.scheduleAtFixedRate(end, 10000, 1000);
-                return new ResponseEntity<>(new Gson().toJson(matchData.get()), HttpStatus.OK);
-            } else return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 
+                TimerExample end = new TimerExample("end",matchData.get(),matchRepository);
+                t.scheduleAtFixedRate(end, 10000, 1000);
+
+            return new ResponseEntity<>(new String("MATCHE "+id+" STARTED"), HttpStatus.OK);
         } catch (Exception e) {
             throw e;
         }
-        */
     }
+
 }
