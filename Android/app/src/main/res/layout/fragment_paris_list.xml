@@ -12,28 +12,29 @@
     <TableRow android:visibility="visible">
 
         <TextView
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
             android:layout_column="1"
-            android:gravity="center"
             android:padding="10dp"
             android:text="ID"
-            android:textSize="14dp"
-            android:textStyle="bold"
 
-            />
+            android:textAlignment="viewStart"
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
         <TextView
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
             android:layout_column="1"
-            android:gravity="center"
             android:padding="10dp"
             android:text="MISE"
-            android:textSize="14dp"
-            android:textStyle="bold"
 
-            />
+            android:textAlignment="viewStart"
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_column="1"
-            android:gravity="center"
             android:padding="10dp"
             android:text="DATE"
             android:textSize="14dp"
@@ -43,7 +44,6 @@
 
         <TextView
             android:layout_column="1"
-            android:gravity="center"
             android:padding="10dp"
             android:text="MATCH"
             android:textSize="14dp"
@@ -53,7 +53,6 @@
 
         <TextView
             android:layout_column="1"
-            android:gravity="center"
             android:padding="10dp"
             android:text="TYPE"
             android:textSize="14dp"

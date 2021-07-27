@@ -27,12 +27,17 @@ import com.example.bet.controleur.ItemClickSupport;
 import com.example.bet.controleur.PaginationScrollListener;
 import com.example.bet.modele.Equipe;
 import com.example.bet.modele.Equipe_Response;
+import com.example.bet.modele.Match;
 import com.example.bet.modele.Match_Response;
 import com.example.bet.modele.Paris_Match;
 import com.example.bet.modele.Paris_Response;
+import com.example.bet.modele.Regle;
+import com.example.bet.modele.Regle_Response;
 import com.example.bet.modele.Utilisateur;
 import com.example.bet.service.Equipe_Service;
+import com.example.bet.service.Match_Service;
 import com.example.bet.service.Paris_Service;
+import com.example.bet.service.Regle_Service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,6 +45,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Paris_Fragment extends Fragment implements  MenuItem.OnActionExpandListener {
     PaginationAdapter_Paris adapter;
@@ -58,6 +64,8 @@ public class Paris_Fragment extends Fragment implements  MenuItem.OnActionExpand
     private int currentPage = PAGE_START;
 
     private Paris_Service paris_service;
+    private Regle_Service regle_service;
+    private Match_Service match_service;
 private Utilisateur utilisateur;
     @Nullable
     @Override
@@ -127,6 +135,8 @@ private Utilisateur utilisateur;
         mContext = context;
 
         paris_service = API.getClient().create(Paris_Service.class);
+        regle_service = API.getClient().create(Regle_Service.class);
+        match_service = API.getClient().create(Match_Service.class);
     }
 
     @Override
@@ -240,17 +250,60 @@ private Utilisateur utilisateur;
         if(response.body()!=null){
             list=new ArrayList<>();
             for(int i=0;i<result.getResults().size();i++){
-                Paris_Match paris=new Paris_Match();
+                final Paris_Match paris=new Paris_Match();
                 paris.setDateParis(result.getResults().get(i).getDateParis().toString());
                 paris.setId(result.getResults().get(i).getId());
                 paris.setMise(result.getResults().get(i).getMise());
+                /////
+                callGetMatchById(result.getResults().get(i).getIdMatch()).enqueue(new Callback<Match_Response>() {
+                    @Override
+                    public void onResponse(Call<Match_Response> call, Response<Match_Response> response) {
+                        List<Match> results = fetchResultsMatch(response);
+                        paris.setMatch(results.get(0));
+                        System.out.println("MATCH NALAINA"+paris.getMatch().getLieu());
+                    }
+
+                    @Override
+                    public void onFailure(Call<Match_Response> call, Throwable t) {
+
+                    }
+                });
+
+                callGetRegleById(result.getResults().get(i).getMatchRegle()).enqueue(new Callback<Regle_Response>() {
+                    @Override
+                    public void onResponse(Call<Regle_Response> call, Response<Regle_Response> response) {
+                        List<Regle> results = fetchResultsRegle(response);
+                        paris.setRegle(results.get(0));
+                        System.out.println("MATCH NALAINA"+paris.getRegle().getDefinition());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Regle_Response> call, Throwable t) {
+
+                    }
+                });
+                /////
                 list.add(paris);
             }
         }
-
+        System.out.println("ZAY VOA VITA ");
         return list;
     }
+    private List<Match> fetchResultsMatch(retrofit2.Response<Match_Response> response) {
+        System.out.println("Ito le response" + response);
+        Match_Response result = response.body();
 
+
+        return result.getResults();
+    }
+    private List<Regle> fetchResultsRegle(retrofit2.Response<Regle_Response> response) {
+        System.out.println("Ito le response" + response);
+        Regle_Response result = response.body();
+
+
+        return result.getResults();
+    }
 
    private void loadNextPage() {
 
@@ -281,7 +334,12 @@ private Utilisateur utilisateur;
     private Call<Paris_Response> callGetAllParis(String idUtilisateur) {
         return paris_service.getAllParisByUser(idUtilisateur);
     }
-
+    private Call<Regle_Response> callGetRegleById(String idRegle) {
+        return regle_service.getByID(idRegle);
+    }
+    private Call<Match_Response> callGetMatchById(String idMatch) {
+        return match_service.getByID(idMatch);
+    }
     @Override
     public boolean onMenuItemActionExpand(MenuItem menuItem) {
         return false;

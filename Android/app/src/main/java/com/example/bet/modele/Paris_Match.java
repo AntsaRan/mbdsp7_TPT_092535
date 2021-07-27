@@ -14,8 +14,8 @@ public class Paris_Match implements Parcelable {
     private  String idUtilisateur;
     @SerializedName("match")
     private  Match match;
-    @SerializedName("matchRegle")
-    private  MatchRegle matchRegle;
+    @SerializedName("regle")
+    private  Regle regle;
     @SerializedName("mise")
     private  float mise;
     @SerializedName("dateParis")
@@ -48,12 +48,12 @@ public class Paris_Match implements Parcelable {
         this.match = match;
     }
 
-    public MatchRegle getMatchRegle() {
-        return matchRegle;
+    public Regle getRegle() {
+        return regle;
     }
 
-    public void setMatchRegle(MatchRegle matchRegle) {
-        this.matchRegle = matchRegle;
+    public void setRegle(Regle regle) {
+        this.regle = regle;
     }
 
     public float getMise() {
@@ -72,11 +72,11 @@ public class Paris_Match implements Parcelable {
         this.dateParis = dateParis;
     }
 
-    public Paris_Match(String id, String idUtilisateur, Match match, MatchRegle matchRegle, float mise, String dateParis) {
+    public Paris_Match(String id, String idUtilisateur, Match match, Regle regle, float mise, String dateParis) {
         this.id = id;
         this.idUtilisateur = idUtilisateur;
         this.match = match;
-        this.matchRegle = matchRegle;
+        this.regle = regle;
         this.mise = mise;
         this.dateParis = dateParis;
     }
@@ -85,7 +85,7 @@ public class Paris_Match implements Parcelable {
         id = in.readString();
         idUtilisateur = in.readString();
         match = in.readParcelable(Match.class.getClassLoader());
-        matchRegle = in.readParcelable(MatchRegle.class.getClassLoader());
+        regle = in.readParcelable(Regle.class.getClassLoader());
         mise = in.readFloat();
         dateParis = in.readString();
     }
@@ -112,7 +112,7 @@ public class Paris_Match implements Parcelable {
         parcel.writeString(id);
         parcel.writeString(idUtilisateur);
         parcel.writeParcelable(match, i);
-        parcel.writeParcelable(matchRegle, i);
+        parcel.writeParcelable(regle, i);
         parcel.writeFloat(mise);
         parcel.writeString(dateParis);
     }

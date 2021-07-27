@@ -271,35 +271,7 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
 
     }
 
-    private void searchMovies(String name) {
 
-        callSearchMoviesApi(name).enqueue(new Callback<Match_Response>() {
-
-
-            @Override
-            public void onResponse(Call<Match_Response> call, retrofit2.Response<Match_Response> response) {
-                List<Match> results = fetchSearchResults(response);
-                if (results != null) {
-                    adapter.clear();
-                    progressBar.setVisibility(View.GONE);
-
-                    adapter.addAll(results);
-                    if (currentPage <= TOTAL_PAGES) adapter.addLoadingFooter();
-                    else isLastPage = true;
-
-                    rv.setItemAnimator(new DefaultItemAnimator());
-                    rv.setAdapter(adapter);
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<Match_Response> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
-    }
 
     private List<Match> fetchResults(retrofit2.Response<Match_Response> response) {
         System.out.println("Ito le response"+ response);
@@ -344,12 +316,6 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
         );
     }
 
-    private Call<Match_Response> callSearchMoviesApi(String name) {
-        return matchService.searchMovies(
-                API.API_TOKEN, name,
-                1
-        );
-    }
 
     @Override
     public boolean onMenuItemActionExpand(MenuItem menuItem) {
@@ -369,11 +335,7 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
     @Override
     public boolean onQueryTextChange(String s) {
 
-        if (s != "")
-            searchMovies(s);
-        else
-            loadFirstPage();
-        adapter.getFilter().filter(s);
+
         return false;
     }
 

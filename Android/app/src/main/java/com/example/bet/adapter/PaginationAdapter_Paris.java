@@ -86,6 +86,10 @@ public class PaginationAdapter_Paris extends RecyclerView.Adapter<RecyclerView.V
                     matchVH.idParis.setText(result.getId());
                     matchVH.mise.setText(String.valueOf(result.getMise()));
                     matchVH.idParis.setText(result.getId());
+                    if(result.getMatch()!=null && result.getRegle()!=null){
+                        matchVH.match.setText(result.getMatch().getEquipe1().getNom()+" VS "+ result.getMatch().getEquipe2().getNom());
+                        matchVH.type.setText(result.getRegle().getDefinition());
+                    }
 
                     SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
                     matchVH.date.setText(result.getDateParis());
