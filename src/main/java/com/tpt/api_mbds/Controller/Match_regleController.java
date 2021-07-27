@@ -48,9 +48,10 @@ public class Match_regleController {
             ObjectId idMatchRecherche = new ObjectId(idMatch);
             Match_regle match_regleData = match_regleRepository.findMatch_regleByIdMatch(idMatchRecherche);
 
-            System.out.println("ITO Raha nahita izy  "+match_regleData.getId());
+
 
             if (match_regleData!=null) {
+                System.out.println("ITO Raha nahita izy  "+match_regleData.getId());
                 return new ResponseEntity<>(match_regleData, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);

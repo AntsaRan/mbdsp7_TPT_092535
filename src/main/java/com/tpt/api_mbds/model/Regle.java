@@ -9,6 +9,7 @@ public class Regle {
     private String id;
     private String titre;
     private String definition;
+    private Integer ordre;
 
     public String getId() {
         return id;
@@ -34,12 +35,27 @@ public class Regle {
         this.definition = definition;
     }
 
+    public Integer getOrdre() {
+        return ordre;
+    }
+
+    public void setOrdre(Integer ordre) {
+        this.ordre = ordre;
+    }
+
     public Regle() {
     }
+
 
     public Regle(String titre, String definition) {
         this.titre = titre;
         this.definition = definition;
+    }
+
+    public Regle(String titre, String definition, Integer ordre) {
+        this.titre = titre;
+        this.definition = definition;
+        this.ordre = ordre;
     }
 
     public Regle(String id, String titre, String definition) {

@@ -1,17 +1,16 @@
 package com.tpt.api_mbds.model;
 
-
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
-
 @Document(collection="match_regle")
-public class Match_regle {
+public class Match_regleToInsert {
     @Id
     private String id;
 
-    private  String idMatch;
+    private ObjectId idMatch;
 
     private List<RegleCote> regles;
 
@@ -23,11 +22,11 @@ public class Match_regle {
         this.id = id;
     }
 
-    public String getIdMatch() {
+    public ObjectId getIdMatch() {
         return idMatch;
     }
 
-    public void setIdMatch(String idMatch) {
+    public void setIdMatch(ObjectId idMatch) {
         this.idMatch = idMatch;
     }
 
@@ -39,18 +38,17 @@ public class Match_regle {
         this.regles = regles;
     }
 
-    public Match_regle() {
+    public Match_regleToInsert() {
     }
 
-    public Match_regle(String idMatch, List<RegleCote> regles) {
-        this.idMatch = idMatch;
-        this.regles = regles;
-    }
-
-    public Match_regle(String id, String idMatch, List<RegleCote> regles) {
+    public Match_regleToInsert(String id, ObjectId idMatch, List<RegleCote> regles) {
         this.id = id;
         this.idMatch = idMatch;
         this.regles = regles;
     }
 
+    public Match_regleToInsert(ObjectId idMatch, List<RegleCote> regles) {
+        this.idMatch = idMatch;
+        this.regles = regles;
+    }
 }

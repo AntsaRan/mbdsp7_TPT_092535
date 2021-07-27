@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RegleRepository  extends MongoRepository<Regle, String> {
     List<Regle> findReglesByTitreContaining(String titre);
+    List<Regle> findAllByOrderByOrdreAsc();
 }

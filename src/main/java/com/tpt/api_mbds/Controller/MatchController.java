@@ -3,12 +3,10 @@ package com.tpt.api_mbds.Controller;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.google.gson.Gson;
-import com.tpt.api_mbds.model.Equipe;
-import com.tpt.api_mbds.model.Match;
-import com.tpt.api_mbds.model.TimerExample;
-import com.tpt.api_mbds.repository.EquipeRepository;
-import com.tpt.api_mbds.repository.MatchRepository;
+import com.tpt.api_mbds.model.*;
+import com.tpt.api_mbds.repository.*;
 import com.tpt.api_mbds.response.Response;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -22,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -31,6 +30,12 @@ public class MatchController {
     MatchRepository matchRepository;
     @Autowired
     EquipeRepository equipeRepository;
+    @Autowired
+    Match_regleRepository match_regleRepository;
+    @Autowired
+    RegleRepository regleRepository;
+    @Autowired
+    Match_regleToInsertRepository match_regleToInsertRepository;
 
     @GetMapping("/matches")
     public ResponseEntity<List<Match>> getAllMatches(@RequestParam(required = false) String etat ) throws ParseException {
@@ -124,11 +129,11 @@ public class MatchController {
 
 
     @PostMapping(path = "/match")
-    public ResponseEntity<Match> createMatch(@RequestBody Match match) {
+    public ResponseEntity<Match> createMatch(@RequestBody MatchToInsert matchToInsert) {
         try {
-            System.out.println("ID EQUIPE1 voalohany "+match.getEquipe1().getId());
-            Optional<Equipe> equipe1Data = equipeRepository.findById(match.getEquipe1().getId());
-            Optional<Equipe> equipe2Data = equipeRepository.findById(match.getEquipe2().getId());
+            System.out.println("ID EQUIPE1 voalohany "+matchToInsert.getIdEquipe1());
+            Optional<Equipe> equipe1Data = equipeRepository.findById(matchToInsert.getIdEquipe1());
+            Optional<Equipe> equipe2Data = equipeRepository.findById(matchToInsert.getIdEquipe2());
             //System.out.println(match.getEquipe1());
             //System.out.println(match.getEquipe2());
             //System.out.println(match.getDate());
@@ -137,7 +142,21 @@ public class MatchController {
 
             //header="application/json";
             if (equipe1Data.isPresent() && equipe2Data.isPresent()){
-                Match _match = matchRepository.save(new Match(equipe1Data.get(),equipe2Data.get(),match.getDate(),match.getLieu(),match.getEtat(),match.getScoreEquipe1(),match.getScoreEquipe2(),match.getCornerEquipe1(),match.getCornerEquipe2(),match.getPossessionEquipe1(),match.getPossessionEquipe2()));
+                List<RegleCote> reglesCote=new ArrayList<>();
+                List<Regle> regle=regleRepository.findAllByOrderByOrdreAsc();
+                int size=regle.size();
+
+                Random random = new Random();
+                //int randomNum = ThreadLocalRandom.current().nextInt(30, 100 + 1);
+
+                for(int i=0;i<size;i++){
+                    RegleCote r1=new RegleCote(regle.get(i), (double) random.nextInt(8));
+                    reglesCote.add(r1);
+                }
+
+                Match _match = matchRepository.save(new Match(equipe1Data.get(),equipe2Data.get(),matchToInsert.getDate(),matchToInsert.getLieu(),"1",0,0,0,0,0,0));
+                ObjectId objId = new ObjectId(_match.getId());
+                Match_regleToInsert match_regleToInsert=match_regleToInsertRepository.save(new Match_regleToInsert(objId,reglesCote));
                 return new ResponseEntity<>(_match, HttpStatus.CREATED);
             }
             else { return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
@@ -271,6 +290,34 @@ public class MatchController {
             return new ResponseEntity<>(retour, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @GetMapping("/matchespardateM/{date}")
+    public ResponseEntity<Response<Match>> getMatchesParDateM(@PathVariable("date") String date) throws ParseException {
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+            DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+            ISO8601DateFormat df = new ISO8601DateFormat();
+            Date date1 = df.parse(date);
+            LocalDate localdate1 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
+            Date date11 = Date.from(localdate1.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
+            LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
+            localdate2 = localdate2.plusDays(1);
+            Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
+
+            Response<Match> retour=new Response<>();
+
+            matchRepository.findMatchesByDateBetween(date11,date2).forEach(matchs::add);
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+            }
+            retour.setResults(matchs);
+            retour.setPage(1);
+            return new ResponseEntity<>(retour, HttpStatus.OK);
+        } catch (Exception e) {
+            throw e;
         }
     }
 

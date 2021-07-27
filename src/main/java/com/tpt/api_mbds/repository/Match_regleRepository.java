@@ -9,5 +9,6 @@ import java.util.List;
 public interface Match_regleRepository extends MongoRepository<Match_regle, String> {
 
     Match_regle findMatch_regleByIdMatch(ObjectId idMatch);
+    Match_regle findByIdMatch(String idMatch);
 
 }
