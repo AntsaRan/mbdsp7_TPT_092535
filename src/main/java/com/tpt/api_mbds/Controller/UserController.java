@@ -1,7 +1,9 @@
 package com.tpt.api_mbds.Controller;
 
+import com.tpt.api_mbds.model.Connexion;
 import com.tpt.api_mbds.model.Utilisateur;
 import oracle.jdbc.OracleConnection;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 
 import java.security.MessageDigest;
 import java.sql.ResultSet;
@@ -120,6 +122,54 @@ public class UserController {
         finally{
             if(statement!=null)
                 statement.close();
+        }
+    }
+
+    public String AjoutJeton( Integer jeton , Integer iduser) throws SQLException {
+        Utilisateur val=new Utilisateur();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            Integer jetonsUserAvant=this.getjetonUser(oracleConnection,iduser);
+            Integer JetonsApres=jetonsUserAvant+jeton;
+            String requete ="update UTILISATEUR set jetons="+JetonsApres+" where id="+iduser+"";
+            System.out.println(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
+            return "Jetons Ajoute";
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+            if(oracleConnection!=null) oracleConnection.close();
+        }
+    }
+    public Integer getjetonUser(OracleConnection co , Integer iduser) throws SQLException {
+        Integer val=0;
+        Statement statement = null;
+
+        try {
+            statement = co.createStatement();
+
+            String requete ="select jetons from UTILISATEUR where id="+iduser+"";
+            System.out.println(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
+            while(resultSet.next()){
+                val=resultSet.getInt(1);
+            }
+            return val;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+
         }
     }
 

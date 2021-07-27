@@ -3,9 +3,11 @@ package com.tpt.api_mbds.Controller;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.google.gson.Gson;
+import com.sun.jdi.event.ExceptionEvent;
 import com.tpt.api_mbds.model.*;
 import com.tpt.api_mbds.repository.*;
 import com.tpt.api_mbds.response.Response;
+import oracle.jdbc.OracleConnection;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,6 +38,8 @@ public class MatchController {
     RegleRepository regleRepository;
     @Autowired
     Match_regleToInsertRepository match_regleToInsertRepository;
+    PariController pariController = new PariController();
+    UserController userController=new UserController();
 
     @GetMapping("/matches")
     public ResponseEntity<List<Match>> getAllMatches(@RequestParam(required = false) String etat ) throws ParseException {
@@ -73,16 +77,10 @@ public class MatchController {
             Date date11 = Date.from(localdate1.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
             LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
 
-            //Date todayDate = new Date();
-            //System.out.println("ITO ILAY Date1  "+date1);
-            //System.out.println("ITO ILAY Date1 Faharoa  "+date11);
-            //System.out.println("ITO ILAY DateAndroany  "+todayDate);
-            //System.out.println("ITO ILAY LOCALDate2  "+localdate2);
             localdate2 = localdate2.plusDays(1);
-            //System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
+
             Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
-            //System.out.println("ITO ILAY Date2  "+date2);
-            //System.out.println("ZONE ID  "+ZoneId.of("Europe/Moscow"));
+
             matchRepository.findMatchesByDateBetween(date11,date2).forEach(matchs::add);
             if (matchs.isEmpty()) {
                 return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
@@ -150,7 +148,7 @@ public class MatchController {
                 //int randomNum = ThreadLocalRandom.current().nextInt(30, 100 + 1);
 
                 for(int i=0;i<size;i++){
-                    RegleCote r1=new RegleCote(regle.get(i), (double) random.nextInt(8));
+                    RegleCote r1=new RegleCote(regle.get(i), (double) random.nextInt(8+ 1 - 2) + 2);
                     reglesCote.add(r1);
                 }
 
@@ -194,53 +192,7 @@ public class MatchController {
         }
     }
 
-    /*
-    @PutMapping("/matchEtat/{id}")
-    public ResponseEntity<Match> updateMatchEtat(@PathVariable("id") String id,@RequestBody String etat) {
-        System.out.println(" Makato am PUT id : "+id);
-        Optional<Match> matchData = matchRepository.findById(id);
 
-        if (matchData.isPresent()) {
-            Match _match = matchData.get();
-
-            _match.setEtat(etat);
-
-
-
-            System.out.println(" Team updated id : "+id);
-            return new ResponseEntity<>(matchRepository.save(_match), HttpStatus.OK);
-        } else {
-            System.out.println("no match found");
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PutMapping("/matchEtatScores/{id}")
-    public ResponseEntity<Match> updateMatchEtatScores(@PathVariable("id") String id,@RequestBody(required = false) String etat ,@RequestBody Integer scoreEquipe1,@RequestBody Integer scoreEquipe2,@RequestBody Integer cornerEquipe1,@RequestBody Integer cornerEquipe2,@RequestBody Integer possessionEquipe1,@RequestBody Integer possessionEquipe2 ) {
-        System.out.println(" Makato am PUT id : "+id);
-        Optional<Match> matchData = matchRepository.findById(id);
-
-        if (matchData.isPresent()) {
-            Match _match = matchData.get();
-
-            if(etat!=null){  _match.setEtat(etat);}
-
-            _match.setScoreEquipe1(scoreEquipe1);
-            _match.setScoreEquipe2(scoreEquipe2);
-            _match.setCornerEquipe1(cornerEquipe1);
-            _match.setCornerEquipe2(cornerEquipe2);
-            _match.setPossessionEquipe1(possessionEquipe1);
-            _match.setPossessionEquipe2(possessionEquipe2);
-
-
-            System.out.println(" Team updated id : "+id);
-            return new ResponseEntity<>(matchRepository.save(_match), HttpStatus.OK);
-        } else {
-            System.out.println("no match found");
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-        }
-    }
-*/
     @DeleteMapping("/match/{id}")
     public ResponseEntity<HttpStatus> deleteMatch(@PathVariable("id")String id) {
         try {
@@ -335,22 +287,22 @@ public class MatchController {
             LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
 
 
-            System.out.println("ITO ILAY Date1  "+date1);
-            System.out.println("ITO ILAY Date1 Faharoa  "+date11);
+            //System.out.println("ITO ILAY Date1  "+date1);
+            //System.out.println("ITO ILAY Date1 Faharoa  "+date11);
 
-            System.out.println("ITO ILAY LOCALDate2  "+localdate2);
+            //System.out.println("ITO ILAY LOCALDate2  "+localdate2);
             localdate2 = localdate2.plusDays(1);
-            System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
+            //System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
             Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
-            System.out.println("ITO ILAY Date2  "+date2);
-            System.out.println("ZONE ID  "+ZoneId.of("Europe/Moscow"));
+            //System.out.println("ITO ILAY Date2  "+date2);
+            //System.out.println("ZONE ID  "+ZoneId.of("Europe/Moscow"));
             matchRepository.findMatchesByDateBetweenAndEtatIs(date11,date2,etat).forEach(matchs::add);
 
             if (matchs.isEmpty()) {
                 return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
             }
             int size=matchs.size();
-            System.out.println("Taille liste = "+size);
+            //System.out.println("Taille liste = "+size);
             Timer t = new Timer();
             for(int i=0;i<size;i++){
                 TimerExample start = new TimerExample("start", matchs.get(0),matchRepository);
@@ -365,10 +317,10 @@ public class MatchController {
             throw e;
         }
     }
-
+/////////////////////Cron with Onl One Match //////////////////////
     @PutMapping(path="/StartOneMatch/{id}",produces = "application/json")
     @ResponseBody
-    public ResponseEntity<String> startCronPerMatch(@PathVariable("id") String id) throws SQLException {
+    public ResponseEntity<String> startCronPerMatch(@PathVariable("id") String id) throws Exception {
         try {
             Optional<Match> matchData = matchRepository.findById(id);
 
@@ -386,10 +338,200 @@ public class MatchController {
                 TimerExample end = new TimerExample("end",matchData.get(),matchRepository);
                 t.scheduleAtFixedRate(end, 10000, 1000);
 
-            return new ResponseEntity<>(new String("MATCHE "+id+" STARTED"), HttpStatus.OK);
+                ///////////////Ito no manao anlay Perte sy Gain/////////////
+                    String response=this.distribuerGain(id);
+
+            return new ResponseEntity<>(new String(response), HttpStatus.OK);
         } catch (Exception e) {
             throw e;
         }
     }
+
+
+
+    ////////////////////////Distribuer Gain If True//////////////////////
+    public String distribuerGain(String idMatch) throws Exception {
+        List<Pari> listePari= this.getAllParibyMatch(idMatch);
+        if(listePari.isEmpty()){return "Pas de paris effectués pour ce match";}
+        int size=listePari.size();
+        for(int i=0;i<size;i++){
+
+            Pari pari1=listePari.get(i);
+
+            //System.out.println("ILAY PARI faha "+i+" ID "+pari1.getId()+" ny ID REGLE_ANY "+pari1.getMatchRegle());
+            String ordre = this.getOrdreByIdRegle(pari1.getMatchRegle());
+            //System.out.println("ILAY ORDRE "+ordre);
+
+            boolean isWinner=this.testRegleGagnant(idMatch,ordre);
+            if(isWinner){
+                Integer coteAnlayMatch=this.getOrdreByIdRegleEnChiffre(pari1.getMatchRegle());
+                //System.out.println("Ordre de la cote "+coteAnlayMatch);
+                Double coteSurlaquelleOnAParier=this.getCote(idMatch,coteAnlayMatch);
+                //System.out.println("COTE NANAOVANA PARI == "+coteSurlaquelleOnAParier);
+                Integer accroissement =pari1.getMise()*coteSurlaquelleOnAParier.intValue();
+                //System.out.println("accroissement == "+accroissement);
+                //System.out.println("mise anlay User == "+pari1.getMise());
+                userController.AjoutJeton(accroissement,pari1.getIdUtilisateur());
+            }
+
+        }
+
+        //System.out.println("ITO ILAY COTE NANAOVANY PARI");
+        return "Match demarré";
+
+    }
+    //////////////////////API TEST////////////////////////////
+    @GetMapping("/TestApi/{id}")
+    public ResponseEntity<Response<Match>> TestNEWFUNCTION(@PathVariable("id") String idMatch) throws Exception {
+       List<Pari> listePari= this.getAllParibyMatch(idMatch);
+        if(listePari.isEmpty()){return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);}
+       int size=listePari.size();
+       for(int i=0;i<size;i++){
+
+           Pari pari1=listePari.get(i);
+
+           //System.out.println("ILAY PARI faha "+i+" ID "+pari1.getId()+" ny ID REGLE_ANY "+pari1.getMatchRegle());
+           String ordre = this.getOrdreByIdRegle(pari1.getMatchRegle());
+           //System.out.println("ILAY ORDRE "+ordre);
+
+           boolean isWinner=this.testRegleGagnant(idMatch,ordre);
+           if(isWinner){
+               Integer coteAnlayMatch=this.getOrdreByIdRegleEnChiffre(pari1.getMatchRegle());
+               //System.out.println("Ordre de la cote "+coteAnlayMatch);
+               Double coteSurlaquelleOnAParier=this.getCote(idMatch,coteAnlayMatch);
+               //System.out.println("COTE NANAOVANA PARI == "+coteSurlaquelleOnAParier);
+               Integer accroissement =pari1.getMise()*coteSurlaquelleOnAParier.intValue();
+               //System.out.println("accroissement == "+accroissement);
+               //System.out.println("mise anlay User == "+pari1.getMise());
+               userController.AjoutJeton(accroissement,pari1.getIdUtilisateur());
+            }
+
+       }
+
+       //System.out.println("ITO ILAY COTE NANAOVANY PARI");
+        return new ResponseEntity<>(null,HttpStatus.OK);
+
+    }
+
+
+    /////////////////////////////FONCTION EXTERNE///////////////////////////////
+    public ArrayList<Pari> getAllParibyMatch(String id) throws SQLException {
+        ArrayList<Pari> list=new ArrayList<Pari>();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            list = pariController.getAllParisbyIdMatch(oracleConnection,id);
+
+            //System.out.println("La liste n'est pas vide ex: " + list.get(0).getId());
+            return list;
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
+    public String getOrdreByIdRegle(String idRegle){
+        try {
+            Optional<Regle> regleData = regleRepository.findById(idRegle);
+            if (regleData.isEmpty()) {
+                return null;
+            }
+            Integer val= regleData.get().getOrdre();
+            String valiny="";
+            if(val==1)valiny="S1";
+            if(val==2)valiny="S0";
+            if(val==3)valiny="S2";
+            if(val==4)valiny="C1";
+            if(val==5)valiny="C0";
+            if(val==6)valiny="C2";
+            if(val==7)valiny="P1";
+            if(val==8)valiny="P0";
+            if(val==9)valiny="P2";
+            return valiny;
+        }
+        catch (Exception e){
+           throw e;
+        }
+    }
+
+    public Integer getOrdreByIdRegleEnChiffre(String idRegle){
+        try {
+            Optional<Regle> regleData = regleRepository.findById(idRegle);
+            if (regleData.isEmpty()) {
+                return null;
+            }
+            Integer val= regleData.get().getOrdre();
+
+            return val;
+        }
+        catch (Exception e){
+            throw e;
+        }
+    }
+
+
+
+        public boolean testRegleGagnant(String idMatch,String ordre) throws Exception {
+        boolean reponse=false;
+        try {
+            List<String> valiny = new ArrayList<>();
+            Optional<Match> matchData = matchRepository.findById(idMatch);
+            if(matchData.isEmpty()){throw new Exception("Pas de Match Correspondant au Pari");}
+            Match match = matchData.get();
+            if (match.getScoreEquipe1() > match.getScoreEquipe2()) valiny.add("S1");
+            if (match.getScoreEquipe1() < match.getScoreEquipe2()) valiny.add("S2");
+            if (match.getScoreEquipe1().equals(match.getScoreEquipe2())) valiny.add("S0");
+            if (match.getCornerEquipe1() > match.getCornerEquipe2()) valiny.add("C1");
+            if (match.getCornerEquipe1() < match.getCornerEquipe2()) valiny.add("C2");
+            if (match.getCornerEquipe1().equals(match.getCornerEquipe2())) valiny.add("C0");
+            if (match.getPossessionEquipe1() > match.getPossessionEquipe2()) valiny.add("P1");
+            if (match.getPossessionEquipe1() < match.getPossessionEquipe2()) valiny.add("P2");
+            if (match.getPossessionEquipe1().equals(match.getPossessionEquipe2())) valiny.add("P0");
+
+           // System.out.println("L'interieur 1 du String " + valiny.get(0));
+           // System.out.println("L'interieur 2 du String " + valiny.get(1));
+           // System.out.println("L'interieur 3 du String " + valiny.get(2));
+
+             reponse = this.testGagnant(valiny, ordre);
+           // System.out.println("ISWINNER " + reponse);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        return reponse;
+        }
+
+        public boolean testGagnant(List<String> liste,String ordre){
+            boolean valiny=false;
+            int size=liste.size();
+            for(int i=0;i<size;i++){
+                if(liste.get(i)==ordre){valiny=true;}
+            }
+            return valiny;
+        }
+
+        public Double getCote(String idMatch,int ordrePourPari) throws Exception {
+        Double valiny=0.0;
+            try {
+                ObjectId idMatchRecherche = new ObjectId(idMatch);
+                Optional<Match_regle> match_regleData = Optional.ofNullable(match_regleRepository.findMatch_regleByIdMatch(idMatchRecherche));
+                if(match_regleData.isEmpty()){
+                    throw new Exception("Match Introuvable");
+                }
+               // System.out.println("ITO ILAY MATCH_REGLE ID "+match_regleData.get().getId());
+
+                valiny=match_regleData.get().getRegles().get(ordrePourPari-1).getCote();
+                //valiny=match_regleData.get().getRegles().indexOf(ordrePourPari);
+
+
+                return valiny;
+            }
+            catch (Exception e){
+                throw e;
+            }
+        }
 
 }

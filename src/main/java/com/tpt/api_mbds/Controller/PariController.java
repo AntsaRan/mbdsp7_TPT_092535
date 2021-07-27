@@ -52,7 +52,7 @@ public class PariController {
                 val.setIdUtilisateur(resultSet.getInt(2));
                 val.setIdMatch(resultSet.getString(3));
                 val.setMatchRegle(resultSet.getString(4));
-                val.setMise(resultSet.getFloat(5));
+                val.setMise(resultSet.getInt(5));
                 val.setDateParis(resultSet.getDate(6));
                 list.add(val);
             }
@@ -79,7 +79,7 @@ public class PariController {
                 val.setIdUtilisateur(resultSet.getInt(2));
                 val.setIdMatch(resultSet.getString(3));
                 val.setMatchRegle(resultSet.getString(4));
-                val.setMise(resultSet.getFloat(5));
+                val.setMise(resultSet.getInt(5));
                 val.setDateParis(resultSet.getDate(6));
                 list.add(val);
             }
@@ -106,7 +106,7 @@ public class PariController {
                 val.setIdUtilisateur(resultSet.getInt(2));
                 val.setIdMatch(resultSet.getString(3));
                 val.setMatchRegle(resultSet.getString(4));
-                val.setMise(resultSet.getFloat(5));
+                val.setMise(resultSet.getInt(5));
                 val.setDateParis(resultSet.getDate(6));
                 list.add(val);
             }

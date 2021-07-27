@@ -83,16 +83,16 @@ public class ApiMbdsApplication {
         }
     }
 
-    @PostMapping(path="/authentificationAdmin",produces = "application/json")
+    @PostMapping(path="/authentificationAdmin",consumes = "application/json",produces = "application/json")
     @ResponseBody
-    public ResponseEntity<String> authentificationAdmin(String pseudo, String password) throws SQLException {
+    public ResponseEntity<String> authentificationAdmin(@RequestBody SuperAdmin admin) throws SQLException {
 
         SuperAdmin val = new SuperAdmin();
         OracleConnection oracleConnection = null;
         try {
             oracleConnection = Connexion.getConnection();
             // System.out.println("le mail de l'user " + mail);
-            val = superAdminController.authentification(oracleConnection,pseudo,password);
+            val = superAdminController.authentification(oracleConnection,admin.getPseudo(),admin.getPassword());
             if(val.getId()==0){
                 return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
             }

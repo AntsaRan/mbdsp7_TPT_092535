@@ -7,13 +7,13 @@ public class Pari {
     private int idUtilisateur;
     private String idMatch;
     private String matchRegle;
-    private float mise;
+    private int mise;
     private Date dateParis;
 
     public Pari() {
     }
 
-    public Pari(int idUtilisateur, String idMatch, String matchRegle, float mise,  Date dateParis) {
+    public Pari(int idUtilisateur, String idMatch, String matchRegle, int mise,  Date dateParis) {
         this.idUtilisateur = idUtilisateur;
         this.idMatch = idMatch;
         this.matchRegle = matchRegle;
@@ -21,7 +21,7 @@ public class Pari {
         this.dateParis=dateParis;
     }
 
-    public Pari(int id, int idUtilisateur, String idMatch, String matchRegle, float mise, Date dateParis) {
+    public Pari(int id, int idUtilisateur, String idMatch, String matchRegle, int mise, Date dateParis) {
         this.id = id;
         this.idUtilisateur = idUtilisateur;
         this.idMatch = idMatch;
@@ -62,11 +62,11 @@ public class Pari {
         this.matchRegle = matchRegle;
     }
 
-    public float getMise() {
+    public int getMise() {
         return mise;
     }
 
-    public void setMise(float mise) {
+    public void setMise(int mise) {
         this.mise = mise;
     }
 
