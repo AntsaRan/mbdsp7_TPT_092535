@@ -5,8 +5,10 @@ import com.tpt.api_mbds.Controller.PariController;
 import com.tpt.api_mbds.Controller.SuperAdminController;
 import com.tpt.api_mbds.Controller.UserController;
 import com.tpt.api_mbds.model.*;
+import com.tpt.api_mbds.repository.MatchRepository;
 import com.tpt.api_mbds.response.Response;
 import oracle.jdbc.OracleConnection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -22,6 +24,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
+import java.util.Timer;
 
 
 @SpringBootApplication
@@ -31,6 +35,8 @@ public class ApiMbdsApplication {
     UserController userController = new UserController();
     PariController pariController = new PariController();
     SuperAdminController superAdminController= new SuperAdminController();
+    @Autowired
+    MatchRepository matchRepository;
 
     @GetMapping(path="/getAllUser",produces = "application/json")
     @ResponseBody
@@ -290,9 +296,36 @@ public class ApiMbdsApplication {
         }
     }
 
+    ///////////////////////////CROWN/////////////////////////////
+   /* @GetMapping(path="/StartMatch/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> startCron(@PathVariable("id") String id) throws SQLException {
+        try {
+            Optional<Match> matchData = matchRepository.findById(id);
+            if(matchData.isPresent()){
+                TimerExample start = new TimerExample("start", matchData.get());
+                TimerExample end = new TimerExample("end", matchData.get());
+                Timer t = new Timer();
+                t.scheduleAtFixedRate(start, 0, 10 * 1000);
+                t.scheduleAtFixedRate(end, 10000, 1000);
+                return new ResponseEntity<>(new Gson().toJson(matchData.get()), HttpStatus.OK);
+            }
+            else   return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+
+        }
+        catch (Exception e){
+            throw e;
+        }
+    } */
+
+
+
     public static void main(String[] args) {
        SpringApplication.run(ApiMbdsApplication.class, args);
-    }
+
+
+
+}
 
 
 

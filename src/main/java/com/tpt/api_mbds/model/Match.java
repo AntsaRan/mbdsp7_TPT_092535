@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Document(collection="match")
 public class Match {
@@ -162,4 +164,26 @@ public class Match {
         this.possessionEquipe1 = possessionEquipe1;
         this.possessionEquipe2 = possessionEquipe2;
     }
+
+    public void startmatch() {
+        this.setEtat("2");
+    }
+
+    public void endmatch() {
+        this.setEtat("3");
+        this.setscores();
+    }
+
+    public void setscores() {
+        Random random = new Random();
+        int randomNum = ThreadLocalRandom.current().nextInt(30, 100 + 1);
+        this.setScoreEquipe1( random.nextInt(8));
+        this.setScoreEquipe2( random.nextInt(8));
+        this.setCornerEquipe1( random.nextInt(8));
+        this.setCornerEquipe2( random.nextInt(8));
+        this.setPossessionEquipe1( random.nextInt(randomNum));
+        this.setPossessionEquipe2( 100-this.getPossessionEquipe1());
+
+    }
+
 }

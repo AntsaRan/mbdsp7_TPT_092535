@@ -2,8 +2,10 @@ package com.tpt.api_mbds.Controller;
 
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+import com.google.gson.Gson;
 import com.tpt.api_mbds.model.Equipe;
 import com.tpt.api_mbds.model.Match;
+import com.tpt.api_mbds.model.TimerExample;
 import com.tpt.api_mbds.repository.EquipeRepository;
 import com.tpt.api_mbds.repository.MatchRepository;
 import com.tpt.api_mbds.response.Response;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,34 +61,27 @@ public class MatchController {
     public ResponseEntity<List<Match>> getMatchesParDate(@PathVariable("date") String date) throws ParseException {
         try {
             List<Match> matchs = new ArrayList<Match>();
-
             DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
             ISO8601DateFormat df = new ISO8601DateFormat();
             Date date1 = df.parse(date);
-            LocalDate localdate1 = date1.toInstant().atZone(ZoneId.of("Etc/GMT+3")).toLocalDate();
-            Date date11 = Date.from(localdate1.atStartOfDay(ZoneId.of("Etc/GMT+3")).toInstant());
-            LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Etc/GMT+3")).toLocalDate();
+            LocalDate localdate1 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
+            Date date11 = Date.from(localdate1.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
+            LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
 
-
-            System.out.println("ITO ILAY Date1  "+date1);
-            System.out.println("ITO ILAY Date1 Faharoa  "+date11);
-            System.out.println("ITO ILAY LOCALDate2  "+localdate2);
+            //Date todayDate = new Date();
+            //System.out.println("ITO ILAY Date1  "+date1);
+            //System.out.println("ITO ILAY Date1 Faharoa  "+date11);
+            //System.out.println("ITO ILAY DateAndroany  "+todayDate);
+            //System.out.println("ITO ILAY LOCALDate2  "+localdate2);
             localdate2 = localdate2.plusDays(1);
-            System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
-            Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Etc/GMT+3")).toInstant());
-            System.out.println("ITO ILAY Date2  "+date2);
-            System.out.println("ZONE ID  "+ZoneId.of("Etc/GMT+3"));
-
-
+            //System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
+            Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
+            //System.out.println("ITO ILAY Date2  "+date2);
+            //System.out.println("ZONE ID  "+ZoneId.of("Europe/Moscow"));
             matchRepository.findMatchesByDateBetween(date11,date2).forEach(matchs::add);
-
-
-
             if (matchs.isEmpty()) {
                 return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
             }
-
             return new ResponseEntity<>(matchs, HttpStatus.OK);
         } catch (Exception e) {
            throw e;
@@ -133,11 +129,11 @@ public class MatchController {
             System.out.println("ID EQUIPE1 voalohany "+match.getEquipe1().getId());
             Optional<Equipe> equipe1Data = equipeRepository.findById(match.getEquipe1().getId());
             Optional<Equipe> equipe2Data = equipeRepository.findById(match.getEquipe2().getId());
-            System.out.println(match.getEquipe1());
-            System.out.println(match.getEquipe2());
-            System.out.println(match.getDate());
-            System.out.println(match.getEtat());
-            System.out.println(match.getScoreEquipe1());
+            //System.out.println(match.getEquipe1());
+            //System.out.println(match.getEquipe2());
+            //System.out.println(match.getDate());
+           // System.out.println(match.getEtat());
+            //System.out.println(match.getScoreEquipe1());
 
             //header="application/json";
             if (equipe1Data.isPresent() && equipe2Data.isPresent()){
@@ -278,4 +274,70 @@ public class MatchController {
         }
     }
 
+
+    ///////////////////////////CROWN/////////////////////////////
+    @PutMapping(path="/StartMatch/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> startCron(@PathVariable("id") String id) throws SQLException {
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+            String etat="1";
+            Date date1 = new Date();
+            LocalDate localdate1 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
+            Date date11 = Date.from(localdate1.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
+            LocalDate localdate2 = date1.toInstant().atZone(ZoneId.of("Europe/Moscow")).toLocalDate();
+
+
+            System.out.println("ITO ILAY Date1  "+date1);
+            System.out.println("ITO ILAY Date1 Faharoa  "+date11);
+
+            System.out.println("ITO ILAY LOCALDate2  "+localdate2);
+            localdate2 = localdate2.plusDays(1);
+            System.out.println("ITO ILAY LOCALDate2 + 1  "+localdate2);
+            Date date2 = Date.from(localdate2.atStartOfDay(ZoneId.of("Europe/Moscow")).toInstant());
+            System.out.println("ITO ILAY Date2  "+date2);
+            System.out.println("ZONE ID  "+ZoneId.of("Europe/Moscow"));
+            matchRepository.findMatchesByDateBetweenAndEtatIs(date11,date2,etat).forEach(matchs::add);
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+            }
+            int size=matchs.size();
+            System.out.println("Taille liste = "+size);
+            Timer t = new Timer();
+            for(int i=0;i<size;i++){
+                TimerExample start = new TimerExample("start", matchs.get(0),matchRepository);
+                t.scheduleAtFixedRate(start, 0, 10 * 1000);
+            }
+            for(int i=0;i<size;i++){
+                TimerExample end = new TimerExample("end",matchs.get(i),matchRepository);
+                t.scheduleAtFixedRate(end, 10000, 1000);
+            }
+            return new ResponseEntity<>(new String("MATCHES STARTED"), HttpStatus.OK);
+        } catch (Exception e) {
+            throw e;
+        }
+
+        /*
+         ///////////////////////////CROWN/////////////////////////////
+    @PutMapping(path="/StartMatch/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> startCron(@PathVariable("id") String id) throws SQLException {
+        try {
+            Optional<Match> matchData = matchRepository.findById(id);
+            if (matchData.isPresent()) {
+                TimerExample start = new TimerExample("start", matchData.get(),matchRepository);
+                TimerExample end = new TimerExample("end", matchData.get(),matchRepository);
+                Timer t = new Timer();
+                t.scheduleAtFixedRate(start, 0, 10 * 1000);
+
+                t.scheduleAtFixedRate(end, 10000, 1000);
+                return new ResponseEntity<>(new Gson().toJson(matchData.get()), HttpStatus.OK);
+            } else return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+
+        } catch (Exception e) {
+            throw e;
+        }
+        */
+    }
 }
