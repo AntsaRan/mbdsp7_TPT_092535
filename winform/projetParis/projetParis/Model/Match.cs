@@ -55,5 +55,13 @@ namespace projetParis.Model
             Equipe1 = equipe1;
             Equipe2 = equipe2;
         }
+
+        public Match(Equipe equipe1, Equipe equipe2,DateTime date, string lieu)
+        {
+            Equipe1 = equipe1;
+            Equipe2 = equipe2;
+            Date = date;
+            Lieu = lieu;         
+        }
     }
 }
