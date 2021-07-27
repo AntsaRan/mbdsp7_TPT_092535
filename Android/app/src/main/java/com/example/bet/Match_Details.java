@@ -1,10 +1,7 @@
 package com.example.bet;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,20 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bet.API.API;
-import com.example.bet.modele.Equipe;
-import com.example.bet.modele.Equipe_Response;
 import com.example.bet.modele.Match;
 import com.example.bet.modele.MatchRegle;
 import com.example.bet.modele.MatchRegle_Response;
 import com.example.bet.modele.RequestPari;
 import com.example.bet.modele.Utilisateur;
-import com.example.bet.service.Equipe_Service;
 import com.example.bet.service.MatchRegle_Service;
 import com.example.bet.service.Paris_Service;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,7 +102,7 @@ public class Match_Details extends AppCompatActivity {
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
-        button3 = findViewById(R.id.button3);
+        button3 = findViewById(R.id.valider);
         button4 = findViewById(R.id.button4);
         button5 = findViewById(R.id.button5);
         button6 = findViewById(R.id.button6);

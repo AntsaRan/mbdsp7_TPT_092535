@@ -127,7 +127,7 @@
 
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/valider"
         android:layout_width="99dp"
         android:layout_height="49dp"
         android:text="Plus pour l'équipe 2"

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bet.API.API;
+import com.example.bet.controleur.DataBaseHelper;
 import com.example.bet.controleur.NetworkUtils;
 import com.example.bet.modele.MatchRegle;
 import com.example.bet.modele.MatchRegle_Response;
@@ -40,6 +41,7 @@ public class Login extends AppCompatActivity {
     private ProgressDialog progress;
     private TextView registerText;
 
+    private DataBaseHelper database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,16 @@ public class Login extends AppCompatActivity {
         mLoginBtn = (Button) findViewById(R.id.button2);
         service = API.getClient().create(Utilisateur_Service.class);
         pref = getSharedPreferences("user_details",MODE_PRIVATE);
-        if(pref.contains("user") ){
+        database=new DataBaseHelper(this);
+
+        if(database.getUtilisateur()!=null){
+            Utilisateur user=database.getUtilisateur();
+            System.out.println("UTILISATEUR "+user.getNom());
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+       /* if(pref.contains("user") ){
             Gson gson = new Gson();
             String json = pref.getString("user", "");
             Utilisateur utilisateur = gson.fromJson(json, Utilisateur.class);
@@ -61,7 +72,7 @@ public class Login extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
-
+*/
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,19 +112,22 @@ public class Login extends AppCompatActivity {
 
                 callToSignIn(email,password).enqueue(new Callback<Utilisateur>() {
 
-
                     @Override
                     public void onResponse(Call<Utilisateur> call, retrofit2.Response<Utilisateur> response) {
 
                         Utilisateur results = fetchResults(response);
-
+                        System.out.println("BODY"+results.getDateNaissance());
                         if(results!=null){
-                            SharedPreferences.Editor editor = pref.edit();
+                           /* SharedPreferences.Editor editor = pref.edit();
                             Gson gson = new Gson();
                             String json = gson.toJson(results);
                             editor.putString("user", json);
                             editor.commit();
-                            System.out.println("RESULTS ID "+results.getId());
+
+                            System.out.println("RESULTS ID "+results.getDateNaissance());
+                            */
+                           database.insertUtilisateur(results);
+
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 

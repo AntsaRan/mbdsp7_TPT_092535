@@ -15,7 +15,7 @@ public class Utilisateur implements Parcelable {
     @SerializedName("prenom")
     private  String prenom;
     @SerializedName("dateNaissance")
-    private java.sql.Date dateNaissance;
+    private String dateNaissance;
     @SerializedName("pseudo")
     private  String pseudo;
     @SerializedName("pwd")
@@ -30,6 +30,7 @@ public class Utilisateur implements Parcelable {
         nom = in.readString();
         prenom = in.readString();
         pseudo = in.readString();
+        dateNaissance  = in.readString();
         pwd = in.readString();
         jetons = in.readFloat();
         mail = in.readString();
@@ -41,6 +42,7 @@ public class Utilisateur implements Parcelable {
         dest.writeString(nom);
         dest.writeString(prenom);
         dest.writeString(pseudo);
+        dest.writeString(dateNaissance);
         dest.writeString(pwd);
         dest.writeFloat(jetons);
         dest.writeString(mail);
@@ -66,7 +68,7 @@ public class Utilisateur implements Parcelable {
     public Utilisateur() {
     }
 
-    public Utilisateur(String id, String nom, String prenom, java.sql.Date dateNaissance, String pseudo, String pwd, float jetons, String mail) {
+    public Utilisateur(String id, String nom, String prenom, String dateNaissance, String pseudo, String pwd, float jetons, String mail) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -101,11 +103,11 @@ public class Utilisateur implements Parcelable {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(java.sql.Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

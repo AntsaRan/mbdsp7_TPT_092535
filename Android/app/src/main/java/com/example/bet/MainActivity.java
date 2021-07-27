@@ -7,11 +7,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.bet.controleur.DataBaseHelper;
 import com.example.bet.fragment.Achat;
 import com.example.bet.fragment.Achat_Fragment;
 import com.example.bet.fragment.Calendrier_Fragment;
 import com.example.bet.fragment.Equipe_Fragment;
 import com.example.bet.fragment.ListeMatchs_Fragment;
+import com.example.bet.fragment.Paris_Fragment;
 import com.example.bet.fragment.Profil_Fragment;
 import com.example.bet.fragment.Vente_Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     ConstraintLayout panier;
     Boolean isAllFabsVisible;
     SharedPreferences pref;
+    DataBaseHelper database;
    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
        panierButton=findViewById(R.id.fab);
        panier=findViewById(R.id.constraint);
        panier.setVisibility(View.GONE);
-       panierButton.setOnClickListener(new View.OnClickListener() {
+       /*panierButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                if(!isAllFabsVisible){
@@ -93,6 +96,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                }
            }
        });
+        */
+       database=new DataBaseHelper(this);
        navigationView.setNavigationItemSelectedListener(this);
        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
        drawer.addDrawerListener(toggle);
@@ -139,6 +144,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ListeMatchs_Fragment()).addToBackStack(null).commit();
 
                 break;
+            case R.id.nav_historique_paris:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Paris_Fragment()).addToBackStack(null).commit();
+
+                break;
             case R.id.nav_vente:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Vente_Fragment()).commit();
                 //Toast.makeText(Home.this, "Share", Toast.LENGTH_SHORT).show();
@@ -156,11 +165,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                */
                 break;
               case R.id.nav_logout:
-                pref.edit().clear().commit();
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                break;
+                  database.deleteUser();
+                  Intent intent = new Intent(MainActivity.this, Login.class);
+                  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                  startActivity(intent);
+                  break;
 
         }
         drawer.closeDrawer(GravityCompat.START);

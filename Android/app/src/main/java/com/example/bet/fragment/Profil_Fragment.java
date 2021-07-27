@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import com.example.bet.Login;
 import com.example.bet.MainActivity;
 import com.example.bet.R;
+import com.example.bet.controleur.DataBaseHelper;
 import com.example.bet.modele.Utilisateur;
 import com.google.gson.Gson;
 import com.google.zxing.WriterException;
@@ -52,6 +53,7 @@ public class Profil_Fragment extends Fragment {
     private TextView nom,mail,jetons,dateNaissance;
     SharedPreferences pref;
     String qrText;
+    private DataBaseHelper database;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,18 +68,20 @@ public class Profil_Fragment extends Fragment {
         jetons=view.findViewById(R.id.jetons);
         dateNaissance=view.findViewById(R.id.date);
 
-        pref = getActivity().getSharedPreferences("user_details",MODE_PRIVATE);
+        database=new DataBaseHelper(getActivity());
 
-        if(pref.contains("user") ){
-            Gson gson = new Gson();
-            String json = pref.getString("user", "");
-            Utilisateur utilisateur = gson.fromJson(json, Utilisateur.class);
+
+
+
+        if(database.getUtilisateur()!=null){
+            Utilisateur utilisateur=database.getUtilisateur();
 
             nom.setText(utilisateur.getNom());
             jetons.setText(String.valueOf(utilisateur.getJetons()));
             System.out.println("JETONS "+utilisateur.getJetons());
             SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-            dateNaissance.setText(sdf.format(utilisateur.getDateNaissance().getTime()));
+          //  dateNaissance.setText(sdf.format(utilisateur.getDateNaissance().getTime()));
+            dateNaissance.setText(utilisateur.getDateNaissance());
             qrText=utilisateur.getNom()+"|"+utilisateur.getMail()+"|"+utilisateur.getJetons()+"|"+utilisateur.getPrenom();
         }
 

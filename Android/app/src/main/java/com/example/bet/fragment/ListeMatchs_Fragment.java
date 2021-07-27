@@ -33,7 +33,9 @@ import com.example.bet.API.API;
 import com.example.bet.Match_Details;
 import com.example.bet.R;
 import com.example.bet.adapter.PaginationAdapter_Match;
+import com.example.bet.controleur.DataBaseHelper;
 import com.example.bet.controleur.ItemClickSupport;
+import com.example.bet.controleur.NetworkUtils;
 import com.example.bet.controleur.PaginationScrollListener;
 import com.example.bet.modele.Equipe;
 import com.example.bet.modele.Match;
@@ -41,6 +43,7 @@ import com.example.bet.modele.Match_Response;
 import com.example.bet.service.Equipe_Service;
 import com.example.bet.service.Match_Service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,7 +65,7 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
     private int currentPage = PAGE_START;
 
     private Match_Service matchService;
-
+    private DataBaseHelper database;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
         setHasOptionsMenu(true);
         // rv.setLayoutManager(new GridLayoutManager(this, 2));
         //linearLayoutManager = new GridLayoutManager(this, 2);
-
+        database=new DataBaseHelper(getActivity());
         linearLayoutManager = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(linearLayoutManager);
 
@@ -134,14 +137,27 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-
+        if(NetworkUtils.networkStatus(getActivity())){
         matchService = API.getClient().create(Match_Service.class);
+        }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loadFirstPage();
+        if(!NetworkUtils.networkStatus(getActivity())){
+            if(database.getOfflineMatch()!=null) {
+                adapter.clear();
+                progressBar.setVisibility(View.GONE);
+                adapter.addAll(database.getOfflineMatch());
+                if (currentPage <= TOTAL_PAGES) adapter.addLoadingFooter();
+                else isLastPage = true;
+                rv.setItemAnimator(new DefaultItemAnimator());
+                rv.setAdapter(adapter);
+            }
+        }else {
+            loadFirstPage();
+        }
     }
 
 
@@ -149,7 +165,21 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        loadFirstPage();
+       /* if(!NetworkUtils.networkStatus(getActivity())){
+            if(database.getOfflineMatch()!=null) {
+                adapter.clear();
+                progressBar.setVisibility(View.GONE);
+                adapter.addAll(database.getOfflineMatch());
+                if (currentPage <= TOTAL_PAGES) adapter.addLoadingFooter();
+                else isLastPage = true;
+                rv.setItemAnimator(new DefaultItemAnimator());
+                rv.setAdapter(adapter);
+            }
+        }else {
+            loadFirstPage();
+        }
+
+        */
     }
 
     @Override
@@ -226,6 +256,9 @@ public class ListeMatchs_Fragment extends Fragment implements SearchView.OnQuery
                 else isLastPage = true;
                 rv.setItemAnimator(new DefaultItemAnimator());
                 rv.setAdapter(adapter);
+                database.deletetablematchs();
+                database.initializeoffline();
+                database.insertofflinematch(results);
             }
 
 
