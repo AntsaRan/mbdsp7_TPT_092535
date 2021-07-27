@@ -1,5 +1,6 @@
 package com.tpt.api_mbds.Controller;
 
+import com.tpt.api_mbds.model.Connexion;
 import com.tpt.api_mbds.model.Pari;
 import oracle.jdbc.OracleConnection;
 
@@ -12,12 +13,13 @@ import java.util.Date;
 import java.util.List;
 
 public class PariController {
-
+    UserController userController=new UserController();
     public PariController() {
     }
 
-    public void insertPari(OracleConnection co , Pari pari) throws SQLException {
+    public String insertPari(OracleConnection co , Pari pari) throws SQLException {
         Pari val=new Pari();
+        String responseToReturn="";
         Statement statement = null;
         try {
             statement = co.createStatement();
@@ -27,8 +29,18 @@ public class PariController {
             System.out.println("Date strDate "+strDate);
             //String requete2 ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",'"+strDate+"')";
             String requete ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",to_date('"+strDate+"','dd-MM-yyyy','NLS_DATE_LANGUAGE = American'))";
+
             System.out.println(requete);
-            ResultSet resultSet = statement.executeQuery(requete);
+            boolean testJetons=userController.testJetonSuffisant(pari.getMise(),pari.getIdUtilisateur());
+            if(testJetons){
+                ResultSet resultSet = statement.executeQuery(requete);
+                String response=userController.EnleveJeton(pari.getMise(),pari.getIdUtilisateur());
+                responseToReturn="Pari inséré";
+                System.out.println(response);
+            }
+            else{responseToReturn="Jetons insuffisants";}
+            return responseToReturn;
+
         }
         catch (Exception e){
             throw e;
@@ -137,5 +149,10 @@ public class PariController {
         }
         return result;
     }
+
+
+
+
+
 
 }

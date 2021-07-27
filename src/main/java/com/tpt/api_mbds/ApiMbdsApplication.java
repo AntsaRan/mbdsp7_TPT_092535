@@ -120,10 +120,10 @@ public class ApiMbdsApplication {
             oracleConnection = Connexion.getConnection();
              //System.out.println("IDMATCH ANLAY PARI " + pari.getIdMatch());
              //System.out.println("DATE ANLAY PARI " + pari.getDateParis());
-            pariController.insertPari(oracleConnection,pari);
+            String response=pariController.insertPari(oracleConnection,pari);
 
             //System.out.println("RESULT APRES LE GET " + val.getPrenom());
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
 
         } catch (Exception throwables) {

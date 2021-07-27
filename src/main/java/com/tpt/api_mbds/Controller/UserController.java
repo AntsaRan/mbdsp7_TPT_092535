@@ -148,6 +148,30 @@ public class UserController {
             if(oracleConnection!=null) oracleConnection.close();
         }
     }
+    public String EnleveJeton( Integer jeton , Integer iduser) throws SQLException {
+        Utilisateur val=new Utilisateur();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            Integer jetonsUserAvant=this.getjetonUser(oracleConnection,iduser);
+            Integer JetonsApres=jetonsUserAvant-jeton;
+            String requete ="update UTILISATEUR set jetons="+JetonsApres+" where id="+iduser+"";
+            System.out.println(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
+            return "Jetons Enleve";
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+            if(oracleConnection!=null) oracleConnection.close();
+        }
+    }
+
     public Integer getjetonUser(OracleConnection co , Integer iduser) throws SQLException {
         Integer val=0;
         Statement statement = null;
@@ -172,6 +196,22 @@ public class UserController {
 
         }
     }
+    public boolean testJetonSuffisant(Integer jetonsAMiser,Integer idUser) throws SQLException {
+        boolean val=false;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            Integer jetonsJoueur = this.getjetonUser(oracleConnection,idUser);
+            if(jetonsJoueur>=jetonsAMiser){val=true;}
 
+        }catch (Exception e){
+            throw e;
+        }
+        finally {
+            if(oracleConnection!=null)oracleConnection.close();
+        }
+        return val;
+
+    }
 
 }
