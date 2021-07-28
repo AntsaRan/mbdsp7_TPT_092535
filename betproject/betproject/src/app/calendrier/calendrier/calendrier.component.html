@@ -30,6 +30,10 @@
                                     <span> VS </span>
                                     <img src="{{m.equipe2.logo}}" class="logoequipe">
                                     <p class="nomequipe">{{m.equipe2.nom}}</p>
+                                    <a routerLink="/detailmatch/{{m.id}}" class="navlink">
+                                        <button id="detailsbutton" mat-raised-button color="primary">Détails
+                                        </button>
+                                    </a>
                                     <mat-divider></mat-divider>
                                 </div>
                             </mat-list-item>
