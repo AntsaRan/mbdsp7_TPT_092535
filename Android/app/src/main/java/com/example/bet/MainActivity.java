@@ -3,10 +3,12 @@ package com.example.bet;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.bet.API.API;
 import com.example.bet.controleur.DataBaseHelper;
 import com.example.bet.fragment.Achat;
 import com.example.bet.fragment.Achat_Fragment;
@@ -16,8 +18,17 @@ import com.example.bet.fragment.ListeMatchs_Fragment;
 import com.example.bet.fragment.Paris_Fragment;
 import com.example.bet.fragment.Profil_Fragment;
 import com.example.bet.fragment.Vente_Fragment;
+import com.example.bet.modele.RequestDevice;
+import com.example.bet.modele.RequestPari;
+import com.example.bet.modele.Utilisateur;
+import com.example.bet.service.Device_Service;
+import com.example.bet.service.MatchRegle_Service;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -31,6 +42,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -41,6 +59,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     Boolean isAllFabsVisible;
     SharedPreferences pref;
     DataBaseHelper database;
+    Device_Service service;
+    Utilisateur user;
    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +117,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
            }
        });
         */
+       service = API.getClient().create(Device_Service.class);
+       GetNotification();
        database=new DataBaseHelper(this);
+       if(database.getUtilisateur()!=null){
+           user=database.getUtilisateur();
+       }
        navigationView.setNavigationItemSelectedListener(this);
        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
        drawer.addDrawerListener(toggle);
@@ -191,5 +216,43 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
 
  */
+  public void GetNotification(){
+      FirebaseApp.initializeApp(this);
 
+      FirebaseMessaging.getInstance().getToken()
+              .addOnCompleteListener(new OnCompleteListener<String>() {
+                  @Override
+                  public void onComplete(@NonNull Task<String> task) {
+                      if (!task.isSuccessful()) {
+                          Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                          return;
+                      }
+
+                      // Get new FCM registration token
+                      String token = task.getResult();
+
+                      // Log and toast
+                      String msg = token;
+                      insertDevice(user.getId(),token).enqueue(new Callback<String>() {
+                          @Override
+                          public void onResponse(Call<String> call, Response<String> response) {
+                              //Do nothing
+                              Log.d("MESSAGE", response.body());
+                          }
+
+                          @Override
+                          public void onFailure(Call<String> call, Throwable t) {
+
+                          }
+                      });
+                      Log.d("token", msg);
+                 }
+
+
+              });
+  }
+    private Call<String> insertDevice(String idUtilisateur, String token) {
+        RequestDevice device=new RequestDevice(idUtilisateur,token);
+        return service.insererDevice(device);
+    }
 }
