@@ -14,7 +14,6 @@ const headers = {
 
 
 function loginUser(req, res) {
-    console.log("LOGIN");
     var mail = req.body.mail;
     var pwd = req.body.pwd;
     const options = {
@@ -26,11 +25,10 @@ function loginUser(req, res) {
         }
     }
     request.post(options, (err, response, body) => {
-        console.log(JSON.stringify(body.date) + "body");
         if (err) {
             return console.log(err);
-        }else if(body){
-            console.log(JSON.stringify(body) + "body nisy");
+        }else if(body!="undefined"){
+         //   console.log(JSON.stringify(body) + "body nisy");
             const token = jwt.sign({ id: body.id }, config.token, {
                 expiresIn: 3600 // expires in 24 hours
             });
@@ -44,9 +42,8 @@ function loginUser(req, res) {
 
 
 function sign(req, res) {
-    console.log("tody ato sign");
     var parieur = req.body.parieur;
-    console.log(req.body.date + " parieur");
+    //console.log(req.body.date + " parieur");
     const options = {
         url: url + '/insertUser',
         json: true,
@@ -65,12 +62,45 @@ function sign(req, res) {
         if (err) {
             return console.log(err);
         }else if(body){
-            console.log(JSON.stringify(body) + "body");
+
             res.status(200).send({msg: body});
         }else{
             res.status(500).send({ msg:" error"});
         }
     });
 } 
+function fireauth(req, res) {
 
-module.exports = { loginUser,sign };
+    var token = req.body.token;
+    var iduser = req.body.iduser;
+    const options = {
+        url: url + '/insererDevice',
+        json: true,
+        body: {
+          idUtilisateur: iduser,
+          token:token
+         }
+    }
+    request.post(options, (err, response, body) => {
+        if (err) {
+            return console.log(err);
+        }else if(body){
+            res.status(200).send({msg: body});
+        }else{
+            res.status(500).send({ msg:" error"});
+        }
+    });
+} 
+function getUserByID(req, res) {
+    console.log(`getUserByID`+req.params.id);
+    fetch(url + "/getUserbyId/"+req.params.id)
+        .then(response =>   
+            response.json())
+        .then(data => {
+           // console.log(JSON.stringify(data) + " getuserbyid");
+            res.json(data);
+        })
+        .catch(err =>
+            console.log(err))
+}
+module.exports = { loginUser,sign ,fireauth,getUserByID};
