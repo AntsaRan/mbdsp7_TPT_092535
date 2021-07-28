@@ -13,4 +13,5 @@ export class Coupon {
     idmatch: string
     idTypeRegle:string
     mise:number
+    respbtn:string
 }
