@@ -43,27 +43,30 @@
                     {{match.scoreEquipe1}} <span> - </span>{{match.scoreEquipe2}}
                 </h4>
                 <mat-divider></mat-divider>
-                <div  *ngIf="!loading">
-                    <div class="listregles" *ngIf="match.etat!='3'">
+                <div *ngIf="!loading">
+                    <div class="listregles" *ngIf="match.etat!='3'" >
                         <div class="regletab">
                             <div class="titletype">
                                 <h5>{{rcs[0].type}}</h5>
                             </div>
-                            <div class="titleregle row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle"
-                                    (click)="opencouponform(rcs[0].regles)">
-                                    <p class="nomregle caseregle">{{rcs[0].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcs[0].regles.cote}}</p>
+                            <div class="titleregle row"> 
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
+                                    <button [id]="'isDisabledrcs0'+match.id"  class="btnregle" (click)="opencouponform(rcs[0].regles,'isDisabledrcs0')">
+                                        <p class="nomregle caseregle">{{rcs[0].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcs[0].regles.cote}}</p>
+                                    </button>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle "
-                                    (click)="opencouponform(rcs[1].regles)">
+                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle ">
+                                    <button [id]="'isDisabledrcs1'+match.id" class="btnregle" (click)="opencouponform(rcs[1].regles,'isDisabledrcs1')">
                                     <p class="nomregle">{{rcs[1].regles.regle.definition}}</p>
                                     <p class="nomregle">{{rcs[1].regles.cote}}</p>
+                                    </button>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle"
-                                    (click)="opencouponform(rcs[2].regles)">
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
+                                    <button [id]="'isDisabledrcs2'+match.id" class="btnregle" (click)="opencouponform(rcs[2].regles,'isDisabledrcs2')">
                                     <p class="nomregle">{{rcs[2].regles.regle.definition}}</p>
                                     <p class="nomregle">{{rcs[2].regles.cote}}</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -74,17 +77,23 @@
                                 <h5>{{rcp[0].type}}</h5>
                             </div>
                             <div class="titleregle row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle "  (click)="opencouponform(rcp[0].regles)">
-                                    <p class="nomregle">{{rcp[0].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcp[0].regles.cote}}</p>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle ">
+                                    <button [id]="'isDisabledrcp0'+match.id"  class="btnregle" (click)="opencouponform(rcp[0].regles,'isDisabledrcp0')">
+                                        <p class="nomregle">{{rcp[0].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcp[0].regles.cote}}</p>
+                                    </button>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle" (click)="opencouponform(rcp[1].regles)">
-                                    <p class="nomregle">{{rcp[1].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcp[1].regles.cote}}</p>
+                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
+                                    <button [id]="'isDisabledrcp1'+match.id" class="btnregle" (click)="opencouponform(rcp[1].regles,'isDisabledrcp1')">
+                                        <p class="nomregle">{{rcp[1].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcp[1].regles.cote}}</p>
+                                    </button>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle" (click)="opencouponform(rcp[2].regles)">
-                                    <p class="nomregle">{{rcp[2].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcp[2].regles.cote}}</p>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
+                                    <button [id]="'isDisabledrcp2'+match.id" class="btnregle" (click)="opencouponform(rcp[2].regles,'isDisabledrcp2')">
+                                        <p class="nomregle">{{rcp[2].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcp[2].regles.cote}}</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -95,17 +104,23 @@
                                 <h5>{{rcc[0].type}}</h5>
                             </div>
                             <div class="titleregle row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle " (click)="opencouponform(rcc[0].regles)">
-                                    <p class="nomregle">{{rcc[0].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcc[0].regles.cote}}</p>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
+                                    <button [id]="'isDisabledrcc0'+match.id" class="btnregle" (click)="opencouponform(rcc[0].regles,'isDisabledrcc0')">
+                                        <p class="nomregle">{{rcc[0].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcc[0].regles.cote}}</p>
+                                    </button>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle"  (click)="opencouponform(rcc[1].regles)">
-                                    <p class="nomregle">{{rcc[1].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcc[1].regles.cote}}</p>
+                                <div class="col-lg-4 col-md-4 col-sm-4 ligneregles caseregle">
+                                    <button [id]="'isDisabledrcc1'+match.id" class="btnregle" (click)="opencouponform(rcc[1].regles,'isDisabledrcc1')">
+                                        <p class="nomregle">{{rcc[1].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcc[1].regles.cote}}</p>
+                                    </button>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle"  (click)="opencouponform(rcc[2].regles)">
-                                    <p class="nomregle">{{rcc[2].regles.regle.definition}}</p>
-                                    <p class="nomregle">{{rcc[2].regles.cote}}</p>
+                                <div class="col-lg-4 col-md-4 col-sm-4 caseregle">
+                                    <button [id]="'isDisabledrcc2'+match.id" class="btnregle" (click)="opencouponform(rcc[2].regles,'isDisabledrcc2')">
+                                        <p class="nomregle">{{rcc[2].regles.regle.definition}}</p>
+                                        <p class="nomregle">{{rcc[2].regles.cote}}</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -113,6 +128,6 @@
                 </div>
             </mat-card>
         </div>
-        <app-coupons></app-coupons>
+        <app-coupons (mise)="ablebtn($event)"></app-coupons>
     </div>
 </div>

@@ -46,7 +46,25 @@
 }
 .caseregle:hover{
     background-color: rgb(214, 214, 214);
+}
+.btnregle{
+    background: white;
+    width: 100%;
+    border: none;
+}
+
+.disabled{
+    background-color: rgb(94, 209, 155);
+    cursor:not-allowed;
+    width: 100%;
+    border: none;
+}
+.enabled{
+    background: white;
+    width: 100%;
+    border: none;
     cursor: pointer;
+
 }
 @media screen and (max-width: 767px) {
     .ligneregles{
