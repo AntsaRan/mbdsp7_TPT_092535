@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { MessagingService } from 'src/app/shared/services/messaging.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +18,9 @@ export class LoginComponent implements OnInit {
   miseUser: Number = 0;
   error = "";
   loading: boolean = false;
+  message;
   constructor(public dialog: MatDialog, private auth: AuthService, private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,private mess:MessagingService) { }
 
   ngOnInit(): void {
   }
@@ -43,6 +45,8 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('miseUser',this.miseUser.toString());
             })
           this.loading = false;
+          this.mess.requestPermission();
+
           this.reloadComponent();
         }
 
