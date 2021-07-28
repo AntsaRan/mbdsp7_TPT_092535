@@ -364,7 +364,7 @@ public class ApiMbdsApplication {
     }
 //////////////TEST/////////////////////////////////////
 
-    @PostMapping(value = "/testNotif", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/testNotif")
     @ResponseBody
     void sendNotificationWebToAllDeviceForUserPro(@RequestParam(required = true) String idUser,@RequestParam(required = true) String title,@RequestParam(required = true) String message) throws SQLException, JSONException{
         ArrayList<Device> listeToken = Device.getAllNotifWeb(idUser);
