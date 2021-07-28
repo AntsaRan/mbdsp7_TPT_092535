@@ -42,6 +42,9 @@ app.route('/equipenom/:nom')
 app.route('/matchregles/:idmatch')
 .get(match.getMatchRegles);
 
+app.route('/regle/:id')
+.get(match.getregleId);
+
 app.route('/match/date/:date')
 .get(match.getMatchDate)
 
