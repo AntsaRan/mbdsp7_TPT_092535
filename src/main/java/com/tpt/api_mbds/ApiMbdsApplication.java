@@ -1,6 +1,7 @@
 package com.tpt.api_mbds;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tpt.api_mbds.Controller.PariController;
 import com.tpt.api_mbds.Controller.SuperAdminController;
 import com.tpt.api_mbds.Controller.UserController;
@@ -8,25 +9,28 @@ import com.tpt.api_mbds.model.*;
 import com.tpt.api_mbds.repository.MatchRepository;
 import com.tpt.api_mbds.response.Response;
 import oracle.jdbc.OracleConnection;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Optional;
-import java.util.Timer;
-
+import java.util.*;
 
 @SpringBootApplication
 @CrossOrigin
@@ -37,6 +41,17 @@ public class ApiMbdsApplication {
     SuperAdminController superAdminController= new SuperAdminController();
     @Autowired
     MatchRepository matchRepository;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+
+
 
     @GetMapping(path="/getAllUser",produces = "application/json")
     @ResponseBody
@@ -317,9 +332,98 @@ public class ApiMbdsApplication {
             throw e;
         }
     } */
+// SEND NOTIFICATION
+    int sendNotificationToWeb(String token,String idUser,String title,String message) throws JSONException {
+        String url = "https://fcm.googleapis.com/fcm/send";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.add("Authorization", "key=AAAAl8TtRzE:APA91bEO6IgPg8_LkuRvUmwSyVRLjKA8IRknrBn6_QHuYGha-Q5pAF-Rs6a-1_K-ddM8izqy08471B53jrFhLj9q2zhlVtCSoiA0W3skF2m6Ff2AXMr8pjwpMjiaHSiM-MqQHe7aStXN");
+        headers.add("Content-Type","application/json");
+        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+
+
+        MultiValueMap<String, String> body = new LinkedMultiValueMap<String, String>();
+
+        JSONObject data = new JSONObject()
+                .put("idUser",idUser)
+                .put("title", title)
+                .put("body", message);
+
+        String jsonBody = new JSONObject()
+                .put("to", token)
+                .put("data", data)
+                .toString();
+
+
+        System.out.println("jsonBody "+jsonBody);
 
 
 
+
+
+        HttpEntity<?> httpEntity = new HttpEntity<Object>(jsonBody, headers);
+
+        ResponseEntity response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);
+        JSONObject json = new JSONObject(response.getBody().toString());
+        int val = json.getInt("success");
+        return val;
+    }
+//////////////
+
+    void sendNotificationWebToAllDeviceForUser(String idUser,String title,String message) throws SQLException, JSONException{
+        ArrayList<Device> listeToken = Device.getAllNotifWeb(idUser);
+        System.out.println("listeToken :"+listeToken.size());
+        for(int i =0;i<listeToken.size();i++){
+            int val = sendNotificationToWeb(listeToken.get(i).getToken(),idUser,title,message);
+            if(val==1)
+                System.out.println("Notification envoyé");
+        }
+    }
+    @PostMapping(value = "/insererDevice", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    String insererNotifWeb(@RequestBody Device n) throws SQLException{
+        OracleConnection co = Connexion.getConnection();
+        String val = "";
+        try{
+            int i = Device.getDoublonNotifWeb(co,n.getIdUser(),n.getToken());
+            if(i==0){
+                Device.insererNotifWeb(co,n.getIdUser(),n.getToken());
+                val = "New device detected";
+            }
+            else
+                val = "device already in database";
+        }
+        finally{
+            co.close();
+        }
+        return val;
+    }
+    public static ArrayList<Device> getAllNotifWeb(String idUser) throws SQLException{
+        OracleConnection co = Connexion.getConnection();
+        ArrayList<Device> val = new ArrayList();
+        Statement statement = null;
+
+        try{
+            statement = co.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select TOKEN from NOTIFWEB where IDUTILISATEUR ='"+idUser+"' ");
+            while (resultSet.next()){
+                Device temp = new Device(idUser,resultSet.getString(1));
+                //int idMatch, int idTeam1, int idTeam2, Date datematch, int nbrMap, String nomTeam1, String nomTeam2
+                val.add(temp);
+            }
+        }
+        finally{
+            if(statement!=null){
+                statement.close();
+            }
+            if(co!=null){
+                co.close();
+            }
+        }
+
+        return val;
+    }
     public static void main(String[] args) {
        SpringApplication.run(ApiMbdsApplication.class, args);
 
