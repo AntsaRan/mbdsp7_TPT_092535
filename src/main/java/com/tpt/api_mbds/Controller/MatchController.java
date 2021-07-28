@@ -4,16 +4,22 @@ package com.tpt.api_mbds.Controller;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.google.gson.Gson;
 import com.sun.jdi.event.ExceptionEvent;
+import com.tpt.api_mbds.ApiMbdsApplication;
 import com.tpt.api_mbds.model.*;
 import com.tpt.api_mbds.repository.*;
 import com.tpt.api_mbds.response.Response;
 import oracle.jdbc.OracleConnection;
 import org.bson.types.ObjectId;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -41,6 +47,13 @@ public class MatchController {
     PariController pariController = new PariController();
     UserController userController=new UserController();
 
+    @Autowired
+    private RestTemplate restTemplate1;
+
+    @Bean
+    public RestTemplate restTemplate1() {
+        return new RestTemplate();
+    }
     @GetMapping("/matches")
     public ResponseEntity<List<Match>> getAllMatches(@RequestParam(required = false) String etat ) throws ParseException {
         try {
@@ -372,7 +385,9 @@ public class MatchController {
                 //System.out.println("accroissement == "+accroissement);
                 //System.out.println("mise anlay User == "+pari1.getMise());
                 userController.AjoutJeton(accroissement,pari1.getIdUtilisateur());
+                sendNotificationWebToAllDeviceForUser(String.valueOf(pari1.getIdUtilisateur()),"FootBet","Felicitations vous avez gagné votre pari");
             }
+
 
         }
 
@@ -380,6 +395,9 @@ public class MatchController {
         return "Match demarré";
 
     }
+
+
+
     //////////////////////API TEST////////////////////////////
     @GetMapping("/TestApi/{id}")
     public ResponseEntity<Response<Match>> TestNEWFUNCTION(@PathVariable("id") String idMatch) throws Exception {
@@ -533,5 +551,54 @@ public class MatchController {
                 throw e;
             }
         }
+
+
+        ///send notification
+        int sendNotificationToWeb(String token,String idUser,String title,String message) throws JSONException {
+            String url = "https://fcm.googleapis.com/fcm/send";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+            headers.add("Authorization", "key=AAAA6b_i18Q:APA91bFj2WxBG2Aro1rv71cCm7rKp0vX7vTmLeBObUNQFUl8eYNAWBYRy8ViRUhbqi-iYDtx-I4ILb9B7x71wBfJucHWEGeX0TSctx_1r4u50xNt5lpz_akgVKVDwJpGmAPRHx1EBEI7");
+            headers.add("Content-Type","application/json");
+            headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+
+
+            MultiValueMap<String, String> body = new LinkedMultiValueMap<String, String>();
+
+            JSONObject data = new JSONObject()
+                    .put("idUser",idUser)
+                    .put("title", title)
+                    .put("body", message);
+
+            String jsonBody = new JSONObject()
+                    .put("to", token)
+                    .put("data", data)
+                    .toString();
+
+
+            System.out.println("jsonBody "+jsonBody);
+
+
+
+
+
+            HttpEntity<?> httpEntity = new HttpEntity<Object>(jsonBody, headers);
+
+            ResponseEntity response = restTemplate1.exchange(url, HttpMethod.POST, httpEntity, String.class);
+            JSONObject json = new JSONObject(response.getBody().toString());
+            int val = json.getInt("success");
+            return val;
+        }
+//////////////
+
+    void sendNotificationWebToAllDeviceForUser(String idUser,String title,String message) throws SQLException, JSONException{
+        ArrayList<Device> listeToken = Device.getAllNotifWeb(idUser);
+        System.out.println("listeToken :"+listeToken.size());
+        for(int i =0;i<listeToken.size();i++){
+            int val = sendNotificationToWeb(listeToken.get(i).getToken(),idUser,title,message);
+            if(val==1)
+                System.out.println("Notification envoyé");
+        }
+    }
 
 }

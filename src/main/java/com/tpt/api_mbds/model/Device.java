@@ -10,15 +10,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Device {
-    String idUser;
+    String idUtilisateur;
     String token;
 
-    public String getIdUser() {
-        return idUser;
+    public String getIdUtilisateur() {
+        return idUtilisateur;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setIdUtilisateur(String idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
     }
 
     public String getToken() {
@@ -32,8 +32,8 @@ public class Device {
     public Device() {
     }
 
-    public Device(String idUser, String token) {
-        this.idUser = idUser;
+    public Device(String idUtilisateur, String token) {
+        this.idUtilisateur = idUtilisateur;
         this.token = token;
     }
 
@@ -43,7 +43,7 @@ public class Device {
         try{
             statement = connection.createStatement();
 
-            statement.executeQuery("insert into NOTIFWEB values(SEQUENCE_NOTIFWEB.NEXTVAL,'"+idUser+"','"+token+"') ");
+            statement.executeQuery("insert into DEVICE values(SEQUENCE_DEVICE.NEXTVAL,'"+idUser+"','"+token+"') ");
         }
         finally{
             if(statement!=null){

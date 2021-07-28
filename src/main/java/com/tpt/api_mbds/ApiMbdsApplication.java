@@ -1,7 +1,6 @@
 package com.tpt.api_mbds;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.tpt.api_mbds.Controller.PariController;
 import com.tpt.api_mbds.Controller.SuperAdminController;
 import com.tpt.api_mbds.Controller.UserController;
@@ -12,9 +11,7 @@ import oracle.jdbc.OracleConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
@@ -27,9 +24,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 @SpringBootApplication
@@ -337,7 +331,7 @@ public class ApiMbdsApplication {
         String url = "https://fcm.googleapis.com/fcm/send";
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.add("Authorization", "key=AAAAl8TtRzE:APA91bEO6IgPg8_LkuRvUmwSyVRLjKA8IRknrBn6_QHuYGha-Q5pAF-Rs6a-1_K-ddM8izqy08471B53jrFhLj9q2zhlVtCSoiA0W3skF2m6Ff2AXMr8pjwpMjiaHSiM-MqQHe7aStXN");
+        headers.add("Authorization", "key=AAAA6b_i18Q:APA91bFj2WxBG2Aro1rv71cCm7rKp0vX7vTmLeBObUNQFUl8eYNAWBYRy8ViRUhbqi-iYDtx-I4ILb9B7x71wBfJucHWEGeX0TSctx_1r4u50xNt5lpz_akgVKVDwJpGmAPRHx1EBEI7");
         headers.add("Content-Type","application/json");
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 
@@ -368,9 +362,11 @@ public class ApiMbdsApplication {
         int val = json.getInt("success");
         return val;
     }
-//////////////
+//////////////TEST/////////////////////////////////////
 
-    void sendNotificationWebToAllDeviceForUser(String idUser,String title,String message) throws SQLException, JSONException{
+    @PostMapping(value = "/testNotif", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    void sendNotificationWebToAllDeviceForUserPro(@RequestParam(required = true) String idUser,@RequestParam(required = true) String title,@RequestParam(required = true) String message) throws SQLException, JSONException{
         ArrayList<Device> listeToken = Device.getAllNotifWeb(idUser);
         System.out.println("listeToken :"+listeToken.size());
         for(int i =0;i<listeToken.size();i++){
@@ -385,9 +381,9 @@ public class ApiMbdsApplication {
         OracleConnection co = Connexion.getConnection();
         String val = "";
         try{
-            int i = Device.getDoublonNotifWeb(co,n.getIdUser(),n.getToken());
+            int i = Device.getDoublonNotifWeb(co,n.getIdUtilisateur(),n.getToken());
             if(i==0){
-                Device.insererNotifWeb(co,n.getIdUser(),n.getToken());
+                Device.insererNotifWeb(co,n.getIdUtilisateur(),n.getToken());
                 val = "New device detected";
             }
             else
@@ -406,7 +402,7 @@ public class ApiMbdsApplication {
         try{
             statement = co.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select TOKEN from NOTIFWEB where IDUTILISATEUR ='"+idUser+"' ");
+            ResultSet resultSet = statement.executeQuery("select TOKEN from DEVICE where IDUTILISATEUR ='"+idUser+"' ");
             while (resultSet.next()){
                 Device temp = new Device(idUser,resultSet.getString(1));
                 //int idMatch, int idTeam1, int idTeam2, Date datematch, int nbrMap, String nomTeam1, String nomTeam2
