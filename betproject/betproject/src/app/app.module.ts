@@ -48,7 +48,6 @@ import { ModifInfosComponent } from './profil/modifInfos/modif-infos/modif-infos
 import { MatMenuModule } from '@angular/material/menu';
 import { AchatventeComponent } from './achat/vente/achatvente/achatvente.component';
 import { JeuComponent } from './jeuresp/jeu/jeu.component';
-import { SearchComponent } from './search/search/search.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
@@ -108,10 +107,7 @@ const routes: Routes = [
     path: "jeuresp",
     component: JeuComponent,
   },
-   {
-    path: "search",
-    component: SearchComponent,
-  }
+
 ]
 
 @NgModule({
@@ -133,9 +129,7 @@ const routes: Routes = [
     SnackbarokComponent,
     ModifInfosComponent,
     AchatventeComponent,
-    JeuComponent,
-    SearchComponent
-
+    JeuComponent
   ],
   imports: [
     BrowserModule, MatMenuModule,
