@@ -6,6 +6,7 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 import { ParisService } from 'src/app/shared/services/paris.service';
 import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Regles } from 'src/app/shared/models/regles.model';
 
 @Component({
   selector: 'app-mesparis',
@@ -13,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./mesparis.component.css']
 })
 export class MesparisComponent implements OnInit {
-  loading: boolean = false;
+  loading: boolean = true;
   paris: Parismatch[] = [];
   nodata: string;
   constructor(public dialog: MatDialog,private parisserv: ParisService, private matchserv: MatchServiceService) { }
@@ -26,27 +27,36 @@ export class MesparisComponent implements OnInit {
   }
   getParisbyuser(id) {
     let matchpari: Match;
+    let regle:string;
     this.parisserv.getPariByIdUser(id)
       .subscribe(data => {
         if (data) {
-          console.log(" daataaaa");
+          this.rearrangeDates(data);
           data.forEach(pari => {
-            console.log(pari.idMatch + " MISEEEEE")
+            this.matchserv.getRegleById(pari.matchRegle)
+            .subscribe(r => {
+              if (r) {
+               // console.log(r.definition);
+                regle=r.definition;
+              }
+            })
             this.matchserv.getMatchById(pari.idMatch)
               .subscribe(match => {
                 if (match) {
-                  console.log(match.date);
                   matchpari = match;
                   let parimatch = new Parismatch();
                   parimatch.id = pari.id;
                   parimatch.date = pari.dateParis;
                   parimatch.match = matchpari;
                   parimatch.mise = pari.mise;
+                  parimatch.regle=regle;
+         
                   this.paris.push(parimatch);
                 }
 
               })
           })
+          this.loading=false;
         } else {
           console.log("no daataaaa");
           this.nodata = "No data";
@@ -56,4 +66,9 @@ export class MesparisComponent implements OnInit {
       });
   }
 
+  rearrangeDates(m: Pari[]) {
+    m.sort((a: Pari, b: Pari) => {
+      return new Date(a.dateParis).getTime() - new Date(b.dateParis).getTime();
+    });
+  }
 }
