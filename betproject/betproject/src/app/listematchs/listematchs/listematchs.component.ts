@@ -15,7 +15,7 @@ export class ListematchsComponent implements OnInit {
   currentdate = new Date();
   date: string;
   loading: boolean = true;
-  nodata:string="";
+  nodata: string = "";
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
@@ -31,18 +31,26 @@ export class ListematchsComponent implements OnInit {
 
   getMatches() {
     console.log("getmatches");
-    this.matchserv.getMatchByDate(this.date)
+    this.matchserv.getMatches()
       .subscribe(data => {
         if (data) {
+          this.rearrangeDates(data);
           data.forEach(match => {
-            console.log(match.id + " match")
+            console.log(match.date + " matchdate")
             this.matches.push(match);
           })
-        }else{
+        } else {
           console.log("no daataaaa");
-          this.nodata="No data";
+          this.nodata = "No data";
         }
         this.loading = false;
       });
   }
+
+  rearrangeDates(m: Match[]) {
+    m.sort((a: Match, b: Match) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+  }
+  //5 8 1 3 2
 }
