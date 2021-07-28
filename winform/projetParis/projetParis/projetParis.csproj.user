@@ -10,6 +10,9 @@
     <Compile Update="Formulaires\InsertEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formulaires\InsertMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formulaires\updateEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -20,6 +23,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ListeMatchs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ListeRegles.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

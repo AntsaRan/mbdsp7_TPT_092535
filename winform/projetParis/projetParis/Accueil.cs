@@ -34,5 +34,26 @@ namespace projetParis
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            listeRegles1.loadData();
+            listeRegles1.BringToFront();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listeEquipes1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Accueil_Load(object sender, EventArgs e)
+        {
+            listeEquipes1.BringToFront();
+        }
     }
 }

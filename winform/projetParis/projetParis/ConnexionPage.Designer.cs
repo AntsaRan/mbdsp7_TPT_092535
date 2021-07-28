@@ -38,7 +38,7 @@ namespace projetParis
             this.buttonConnexion = new System.Windows.Forms.Button();
             this.checkBoxSesouvenir = new System.Windows.Forms.CheckBox();
             this.textBoxMdp = new System.Windows.Forms.TextBox();
-            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.textBoxPseudo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelSlogan = new System.Windows.Forms.Label();
@@ -106,7 +106,7 @@ namespace projetParis
             this.panel1.Controls.Add(this.buttonConnexion);
             this.panel1.Controls.Add(this.checkBoxSesouvenir);
             this.panel1.Controls.Add(this.textBoxMdp);
-            this.panel1.Controls.Add(this.textBoxMail);
+            this.panel1.Controls.Add(this.textBoxPseudo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(174, 197);
@@ -147,14 +147,14 @@ namespace projetParis
             this.textBoxMdp.TabIndex = 3;
             this.textBoxMdp.TextChanged += new System.EventHandler(this.textBoxMdp_TextChanged);
             // 
-            // textBoxMail
+            // textBoxPseudo
             // 
-            this.textBoxMail.Location = new System.Drawing.Point(74, 66);
-            this.textBoxMail.Multiline = true;
-            this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.PlaceholderText = "Votre e-mail";
-            this.textBoxMail.Size = new System.Drawing.Size(327, 46);
-            this.textBoxMail.TabIndex = 2;
+            this.textBoxPseudo.Location = new System.Drawing.Point(74, 66);
+            this.textBoxPseudo.Multiline = true;
+            this.textBoxPseudo.Name = "textBoxPseudo";
+            this.textBoxPseudo.PlaceholderText = "Votre pseudo";
+            this.textBoxPseudo.Size = new System.Drawing.Size(327, 46);
+            this.textBoxPseudo.TabIndex = 2;
             // 
             // label2
             // 
@@ -172,9 +172,9 @@ namespace projetParis
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(74, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 26);
+            this.label1.Size = new System.Drawing.Size(72, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Mail";
+            this.label1.Text = "Pseudo";
             // 
             // labelSlogan
             // 
@@ -194,6 +194,7 @@ namespace projetParis
             this.pictureBox1.Location = new System.Drawing.Point(364, 48);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(97, 101);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -224,7 +225,7 @@ namespace projetParis
         private System.Windows.Forms.Label labelSlogan;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxMdp;
-        private System.Windows.Forms.TextBox textBoxMail;
+        private System.Windows.Forms.TextBox textBoxPseudo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonConnexion;

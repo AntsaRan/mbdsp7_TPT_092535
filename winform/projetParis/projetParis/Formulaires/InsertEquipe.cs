@@ -24,20 +24,7 @@ namespace projetParis.Formulaires
             public string Data { get; set; }
         }
 
-        private void InsertEquipe_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void buttonValider_Click(object sender, EventArgs e)
         {

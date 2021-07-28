@@ -86,6 +86,24 @@ namespace projetParis.Services
             }
         }
 
+        public bool testInsertMatch(string equipe1,string equipe2,DateTime date)
+        {
+            bool val = true;
+
+            if (equipe1.CompareTo(equipe2) == 0)
+            {
+                //System.Diagnostics.Debug.WriteLine("ilay equipe no tsy mety ");
+                val = false;
+            }
+            if (date.CompareTo(DateTime.Today) < 0)
+            {
+                //System.Diagnostics.Debug.WriteLine("ilay Date no tsy mety date selectione "+date+" date today "+ DateTime.Today);
+                val = false;
+            }
+
+            return val;
+        }
+
         public EquipeService() {
         }
     }

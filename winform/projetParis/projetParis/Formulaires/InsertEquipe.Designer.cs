@@ -90,7 +90,7 @@ namespace projetParis.Formulaires
             this.textBoxLogo.Name = "textBoxLogo";
             this.textBoxLogo.Size = new System.Drawing.Size(257, 45);
             this.textBoxLogo.TabIndex = 4;
-            this.textBoxLogo.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+          
             // 
             // label3
             // 
@@ -101,7 +101,7 @@ namespace projetParis.Formulaires
             this.label3.Size = new System.Drawing.Size(95, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Lien du Logo";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+          
             // 
             // buttonValider
             // 
@@ -126,7 +126,7 @@ namespace projetParis.Formulaires
             this.Name = "InsertEquipe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "InsertEquipe";
-            this.Load += new System.EventHandler(this.InsertEquipe_Load);
+         
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

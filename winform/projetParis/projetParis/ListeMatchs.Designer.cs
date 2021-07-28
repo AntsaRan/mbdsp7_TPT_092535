@@ -32,6 +32,7 @@ namespace projetParis
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.dataGridViewMatch = new System.Windows.Forms.DataGridView();
+            this.buttonInsertMatch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMatch)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +40,7 @@ namespace projetParis
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(137, 14);
+            this.label1.Location = new System.Drawing.Point(149, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 36);
             this.label1.TabIndex = 1;
@@ -48,26 +49,38 @@ namespace projetParis
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(13, 14);
+            this.buttonRefresh.Location = new System.Drawing.Point(13, 49);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(105, 36);
             this.buttonRefresh.TabIndex = 2;
             this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // dataGridViewMatch
             // 
             this.dataGridViewMatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMatch.Location = new System.Drawing.Point(13, 70);
+            this.dataGridViewMatch.Location = new System.Drawing.Point(13, 91);
             this.dataGridViewMatch.Name = "dataGridViewMatch";
             this.dataGridViewMatch.RowTemplate.Height = 25;
             this.dataGridViewMatch.Size = new System.Drawing.Size(805, 484);
             this.dataGridViewMatch.TabIndex = 3;
             // 
+            // buttonInsertMatch
+            // 
+            this.buttonInsertMatch.Location = new System.Drawing.Point(602, 49);
+            this.buttonInsertMatch.Name = "buttonInsertMatch";
+            this.buttonInsertMatch.Size = new System.Drawing.Size(216, 35);
+            this.buttonInsertMatch.TabIndex = 4;
+            this.buttonInsertMatch.Text = "Ajouter un match";
+            this.buttonInsertMatch.UseVisualStyleBackColor = true;
+            this.buttonInsertMatch.Click += new System.EventHandler(this.buttonInsertMatch_Click);
+            // 
             // ListeMatchs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonInsertMatch);
             this.Controls.Add(this.dataGridViewMatch);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.label1);
@@ -85,5 +98,6 @@ namespace projetParis
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.DataGridView dataGridViewMatch;
+        private System.Windows.Forms.Button buttonInsertMatch;
     }
 }

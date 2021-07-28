@@ -1,4 +1,6 @@
-﻿using System;
+﻿using projetParis.Model;
+using projetParis.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,11 +44,21 @@ namespace projetParis
 
         private void buttonConnexion_Click(object sender, EventArgs e)
         {
-           
-            this.Hide();
-            Accueil accueilPage = new Accueil();
-            accueilPage.ShowDialog();
-            this.Close();
+            
+            SuperUserService superUserService = new SuperUserService();
+            if(textBoxPseudo.Text=="" || textBoxMdp.Text == "") { MessageBox.Show("Veuillez remplir les champ vide"); }
+            else { 
+                SuperUser response = superUserService.login(textBoxPseudo.Text, textBoxMdp.Text);
+                if (response!=null)
+                {
+                    this.Hide();
+                    Accueil accueilPage = new Accueil();
+                    accueilPage.ShowDialog();
+                    this.Close();
+                }
+                else { MessageBox.Show("Pseudo ou mot de passe incorrect"); }
+               
+            }
         }
     }
 }

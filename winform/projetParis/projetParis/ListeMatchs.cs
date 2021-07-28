@@ -1,4 +1,5 @@
-﻿using projetParis.Services;
+﻿using projetParis.Formulaires;
+using projetParis.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,27 @@ namespace projetParis
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonInsertMatch_Click(object sender, EventArgs e)
+        {
+            InsertMatch insertForm = new InsertMatch();
+            insertForm.UdpateEventHandler += F2_updateEventHandler1;
+            insertForm.ShowDialog();
+        }
+
+        private void F2_updateEventHandler1(object sender, InsertMatch.UpdateEventArgs args)
+        {
+            MatchService matchService = new MatchService();
+            this.dataGridViewMatch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMatch.DataSource = matchService.getAllMatchs();
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            MatchService matchService = new MatchService();
+            this.dataGridViewMatch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMatch.DataSource = matchService.getAllMatchs();
         }
     }
 }

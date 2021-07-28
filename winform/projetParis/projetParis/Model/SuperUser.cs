@@ -7,8 +7,8 @@ namespace projetParis.Model
     class SuperUser
     {
         private int id;
-        private string pseudo;
-        private string password;
+        public string pseudo;
+        public string password;
         private string mail;
 
 
@@ -30,11 +30,19 @@ namespace projetParis.Model
             Mail = mail;
         }
 
+        public SuperUser(string pseudo, string password)
+        {
+            this.pseudo = pseudo;
+            this.password = password;
+        }
+
         public SuperUser(string pseudo, string password, string mail)
         {
             Pseudo = pseudo;
             Password = password;
             Mail = mail;
         }
+
+        
     }
 }
