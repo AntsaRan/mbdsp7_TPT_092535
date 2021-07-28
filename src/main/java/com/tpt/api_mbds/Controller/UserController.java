@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -36,9 +37,9 @@ public class UserController {
         }
     }
 
-    public Utilisateur getAllUser(OracleConnection co) throws SQLException {
+    public ArrayList<Utilisateur> getAllUser(OracleConnection co) throws SQLException {
+        ArrayList<Utilisateur> list=new ArrayList<Utilisateur>();
 
-        Utilisateur val=new Utilisateur();
         Statement statement = null;
         try{
 
@@ -46,6 +47,7 @@ public class UserController {
 
             ResultSet resultSet = statement.executeQuery("select * from UTILISATEUR ");
             while (resultSet.next()){
+                Utilisateur val=new Utilisateur();
                 val.setId(resultSet.getInt(1));
                 val.setNom(resultSet.getString(2));
                 val.setPrenom(resultSet.getString(3));
@@ -54,13 +56,14 @@ public class UserController {
                 val.setPwd(resultSet.getString(6));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
+                list.add(val);
             }
         }
         finally{
             if(statement!=null)
                 statement.close();
         }
-        return val;
+        return list;
     }
 
     public Utilisateur authentification(OracleConnection co , String mail,String password) throws SQLException {
@@ -125,6 +128,7 @@ public class UserController {
         }
     }
 
+
     public String AjoutJeton( Integer jeton , Integer iduser) throws SQLException {
         Utilisateur val=new Utilisateur();
         Statement statement = null;
@@ -148,6 +152,81 @@ public class UserController {
             if(oracleConnection!=null) oracleConnection.close();
         }
     }
+
+
+//////////////////////////Vrai Update fa tsy Manova jetons////////////////////////////
+    public Utilisateur updateUser(Integer id, Utilisateur user) throws SQLException {
+        Utilisateur val=new Utilisateur();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            String strDate= formatter.format(user.getDateNaissance()).toString();
+
+            String requete1 ="update UTILISATEUR set NOM='"+user.getNom()+"',PRENOM='"+user.getPrenom()+"',DATENAISSANCE=to_date('"+strDate+"','dd-MM-yyyy','NLS_DATE_LANGUAGE = American'),PSEUDO='"+user.getPseudo()+"',MAIL='"+user.getMail()+"' where id="+id+"";
+            System.out.println(requete1);
+            statement.executeQuery(requete1);
+            String requete2="select * from UTILISATEUR where ID="+id;
+            System.out.println(requete2);
+            ResultSet resultSet = statement.executeQuery(requete2);
+
+
+            while (resultSet.next()){
+                val.setId(resultSet.getInt(1));
+                val.setNom(resultSet.getString(2));
+                val.setPrenom(resultSet.getString(3));
+                val.setDateNaissance(resultSet.getDate(4));
+                val.setPseudo(resultSet.getString(5));
+                val.setJetons(resultSet.getInt(7));
+                val.setMail(resultSet.getString(8));
+            }
+            return val;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+            if(oracleConnection!=null) oracleConnection.close();
+        }
+    }
+
+    public Utilisateur getUserById(Integer idUser) throws SQLException {
+        Utilisateur val=new Utilisateur();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String requete2="select * from UTILISATEUR where ID="+idUser;
+
+            System.out.println(requete2);
+            ResultSet resultSet = statement.executeQuery(requete2);
+            while (resultSet.next()){
+                val.setId(resultSet.getInt(1));
+                val.setNom(resultSet.getString(2));
+                val.setPrenom(resultSet.getString(3));
+                val.setDateNaissance(resultSet.getDate(4));
+                val.setPseudo(resultSet.getString(5));
+                val.setJetons(resultSet.getInt(7));
+                val.setMail(resultSet.getString(8));
+            }
+            return val;
+        }catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+            if(oracleConnection!=null) oracleConnection.close();
+        }
+
+    }
+
+
     public String EnleveJeton( Integer jeton , Integer iduser) throws SQLException {
         Utilisateur val=new Utilisateur();
         Statement statement = null;

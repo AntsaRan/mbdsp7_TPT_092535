@@ -49,16 +49,18 @@ public class ApiMbdsApplication {
 
     @GetMapping(path="/getAllUser",produces = "application/json")
     @ResponseBody
-    public String getAllUser() throws SQLException {
-        Utilisateur val = new Utilisateur();
+    public ResponseEntity<String> getAllUser() throws SQLException {
+        ArrayList<Utilisateur> list = new ArrayList<Utilisateur>();
         OracleConnection oracleConnection = null;
         try {
             oracleConnection = Connexion.getConnection();
 
-            val = userController.getAllUser(oracleConnection);
-            System.out.println("ito" + val);
-
-            return new Gson().toJson(val);
+            list = userController.getAllUser(oracleConnection);
+            if(list.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + list.get(0).getId());
+            return new ResponseEntity<>(new Gson().toJson(list), HttpStatus.OK);
 
         } catch (Exception throwables) {
             throw throwables;
@@ -67,6 +69,31 @@ public class ApiMbdsApplication {
             oracleConnection.close();
         }
     }
+
+
+    @GetMapping(path="/getUserbyId/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getUserbyId(@PathVariable("id") int id)  throws SQLException {
+        Utilisateur user = new Utilisateur();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            user = userController.getUserById(id);
+            if(user.getId()==0){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println(" pas vide ex: " + user.getId());
+            return new ResponseEntity<>(new Gson().toJson(user), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
+
 
     @PostMapping(path="/authentification",produces = "application/json")
     @ResponseBody
@@ -234,6 +261,27 @@ public class ApiMbdsApplication {
             oracleConnection.close();
         }
     }
+
+    @PutMapping(path="/updateUser/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> updateUser(@PathVariable("id") String id ,@RequestBody Utilisateur utilisateur) throws Exception {
+        Utilisateur val=new Utilisateur();
+        try {
+            val = userController.updateUser(Integer.valueOf(id),utilisateur);
+
+            if(val==null){
+
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + val.getId());
+            return new ResponseEntity<>(new Gson().toJson(val), HttpStatus.OK);
+
+
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
 
     //GetMise
     @GetMapping(path="/getAllMise/{id}",produces = "application/json")
