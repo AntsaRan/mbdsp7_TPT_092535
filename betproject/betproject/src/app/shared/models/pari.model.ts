@@ -8,7 +8,7 @@ export class Pari {
     id: string
     idparieur:string
     idMatch: string
-    idTypeRegle:string
+    matchRegle:string
     mise:number
     dateParis:Date
 }
