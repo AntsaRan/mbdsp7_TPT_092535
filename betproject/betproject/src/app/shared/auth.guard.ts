@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { InscriptionComponent } from '../inscription/inscription/inscription.component';
+import { LoginComponent } from '../login/login/login.component';
 import { AuthService } from './services/auth.service';
 
 @Injectable({
@@ -26,7 +27,7 @@ export class AuthGuard implements CanActivate {
     return false;
   }
   openSigninDialog() {
-    const dialogRef = this.dialog.open(InscriptionComponent);
+    const dialogRef = this.dialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
