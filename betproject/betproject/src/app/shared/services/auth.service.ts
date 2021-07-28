@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { Parieur } from '../models/parieur.model';
 import { catchError, map } from 'rxjs/operators';
+import { MessagingService } from './messaging.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +15,29 @@ export class AuthService {
   admin = false;
   private currentUserSubject: BehaviorSubject<Parieur>;
   public currentUser: Observable<Parieur>;
-  private userLoggedIn = new Subject<boolean>();
+  private userLoggedIn = new Subject<boolean>(); 
 
   constructor(
-    private http: HttpClient, private router: Router) {
+    private http: HttpClient, private router: Router
+    ) {
     this.userLoggedIn.next(false);
     this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  //uri = "http://localhost:8010/auth";
-  //uriPari = "http://localhost:8010/pari";
+  uri = "http://localhost:8010/auth";
+  uriPari = "http://localhost:8010/pari";
 
-  uri = "https://apinode-mbds.herokuapp.com/auth"
-  uriPari = "https://apinode-mbds.herokuapp.com/pari";
+  //uri = "https://apinode-mbds.herokuapp.com/auth"
+  //uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
   public get currentUserValue(): Parieur {
     return this.currentUserSubject.value;
   }
 
+  getUserByID(id):Observable<Parieur>{
+    return this.http.get<Parieur>(this.uri+"/user/"+id);
+  }
   logIn(mail: string, passowrd: string): Observable<any> {
     console.log("LOGIN O")
     let user = new Parieur();
@@ -103,5 +108,22 @@ export class AuthService {
         catchError(this.handleError<any>('### catchError: login'))
       );
   }
+
+  fireauth(iduser:string,token:string ){
+    console.log("inscription auth");
+    var body = { iduser, token }
+    return this.http.post<any>(this.uri + "/firetoken", body)
+      .pipe(
+        map(m => {
+          if (m) {
+            return m;
+          } else {
+            return null;
+          }
+        }),
+        catchError(this.handleError<any>('### catchError: login'))
+      );
+  }
+
 }
 
