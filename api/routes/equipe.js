@@ -33,7 +33,7 @@ function getequipebyName(req, res) {
     fetch(url + "/equipes?nom="+name)
     .then(response => response.json())
     .then(data => {
-        console.log(JSON.stringify(data) + " DATA equipes")
+        //console.log(JSON.stringify(data) + " DATA equipes")
         res.json(data);
     })
     .catch(err =>
