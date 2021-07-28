@@ -47,7 +47,16 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ModifInfosComponent } from './profil/modifInfos/modif-infos/modif-infos.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { AchatventeComponent } from './achat/vente/achatvente/achatvente.component';
-
+import { JeuComponent } from './jeuresp/jeu/jeu.component';
+import { SearchComponent } from './search/search/search.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import * as firebase from 'firebase/app';
+import { MessagingService } from './shared/services/messaging.service';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const routes: Routes = [
   {
@@ -92,8 +101,16 @@ const routes: Routes = [
     component: ProfilComponent,
   },
   {
-    path:"achatvente",
-    component:AchatventeComponent,
+    path: "achatvente",
+    component: AchatventeComponent,
+  },
+  {
+    path: "jeuresp",
+    component: JeuComponent,
+  },
+   {
+    path: "search",
+    component: SearchComponent,
   }
 ]
 
@@ -116,12 +133,14 @@ const routes: Routes = [
     SnackbarokComponent,
     ModifInfosComponent,
     AchatventeComponent,
+    JeuComponent,
+    SearchComponent
 
   ],
   imports: [
     BrowserModule, MatMenuModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
+    MatToolbarModule,MatBadgeModule,
     MatIconModule, ModalModule,
     MatGridListModule, NgxQRCodeModule,
     MatFormFieldModule, MomentModule,
@@ -130,13 +149,16 @@ const routes: Routes = [
     MatSidenavModule, MatProgressSpinnerModule,
     RouterModule.forRoot(routes), NgIdleKeepaliveModule.forRoot(),
     MatListModule, MatDatepickerModule, HttpClientModule, MatTableModule,
-    MatCardModule, MatDialogModule, FormsModule, MatCheckboxModule, MatNativeDateModule
-
+    MatCardModule, MatDialogModule, FormsModule, MatCheckboxModule, MatNativeDateModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     DatePipe, MatNativeDateModule, Keepalive, BsModalService, ComponentLoaderFactory,
-    PositioningService
+    PositioningService,AngularFireMessagingModule,MessagingService
   ],
   bootstrap: [AppComponent]
 })
