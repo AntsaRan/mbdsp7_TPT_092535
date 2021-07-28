@@ -23,11 +23,9 @@ export class AddcouponComponent implements OnInit {
     if (!this.mise) {
       this.error = "Renseignez tous les champs obligatoires";
     }else if(this.mise<1){
-      this.error = "La mise doit être supérieur à 1€";
-
+      this.error = "La mise doit être supérieur à 1 Ar";
     }else{
       this.dialogRef.close({ mise: this.mise });
-
     }
   }
 }
