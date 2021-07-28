@@ -22,4 +22,4 @@ export class ParisService {
   getPariByIdUser(id): Observable<Pari[]> {
     return this.http.get<Pari[]>(this.uri + "/getparisuser/" + id);
   }
-}
+} 
