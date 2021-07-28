@@ -10,9 +10,9 @@ const fetch = require('node-fetch');
 
 
 function insertpari(req, res) {
-    console.log("insertpari request" );
+    //console.log("insertpari request" );
     var pari = req.body;
-    console.log("insertpari request" + pari);
+    //console.log("insertpari request" + pari);
     const options = {
         url: url + '/insertPari',
         json: true,
@@ -24,12 +24,12 @@ function insertpari(req, res) {
         }
     };
     request.post(options, (err, response, body) => {
-        console.log("InsertPARI request");
+       // console.log("InsertPARI request");
        if (err) {
-            console.log("err");
+           // console.log("err");
             return console.log(err);
         }
-            console.log(`Status: ${response.statusCode}`);
+        //    console.log(`Status: ${response.statusCode}`);
             res.status(200).send({ insert:"ok" });
         
     });
@@ -37,11 +37,11 @@ function insertpari(req, res) {
 } 
 
 function getParisByUSer(req, res) {
-    console.log(`getparisuser`+req.params.id);
+ //   console.log(`getparisuser`+req.params.id);
     fetch(url + "/getAllParisbyUser/"+req.params.id)
         .then(response =>response.json())
         .then(data => {
-            console.log(JSON.stringify(data) + " DATA by date")
+          //  console.log(JSON.stringify(data) + " DATA by date")
             res.json(data);
         })
         .catch(err =>
@@ -49,11 +49,11 @@ function getParisByUSer(req, res) {
 }
 
 function getAllMise(req, res) {
-    console.log(`getAllMise`+req.params.id);
+    console.log(`getAllMise `+req.params.id);
     fetch(url + "/getAllMise/"+req.params.id)
         .then(response =>response.json())
         .then(data => {
-            console.log(JSON.stringify(data) + " MISE")
+        // console.log(JSON.stringify(data) + " MISE")
             res.json(data);
         })
         .catch(err =>
