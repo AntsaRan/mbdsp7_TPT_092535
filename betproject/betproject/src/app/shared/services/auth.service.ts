@@ -25,11 +25,11 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  uri = "http://localhost:8010/auth";
-  uriPari = "http://localhost:8010/pari";
+  //uri = "http://localhost:8010/auth";
+  //uriPari = "http://localhost:8010/pari";
 
-  //uri = "https://apinode-mbds.herokuapp.com/auth"
-  //uriPari = "https://apinode-mbds.herokuapp.com/pari";
+  uri = "https://apinode-mbds.herokuapp.com/auth"
+  uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
   public get currentUserValue(): Parieur {
     return this.currentUserSubject.value;

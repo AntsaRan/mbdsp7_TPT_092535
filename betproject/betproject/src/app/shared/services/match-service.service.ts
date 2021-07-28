@@ -4,6 +4,7 @@ import { MatchRegles } from '../models/matchregles.model';
 import { Match } from '../models/match.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Equipe } from '../models/equipe.model';
+import { Regles } from '../models/regles.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class MatchServiceService {
   getMatchById(id): Observable<Match> {
     return this.http.get<Match>(this.uri + "/match/" + id);
   }
+
+  getRegleById(id): Observable<Regles> {
+    return this.http.get<Regles>(this.uri + "/regle/" + id);
+  }
+
 
   getMatchByEquipe(id): Observable<Match[]> {
     return this.http.get<Match[]>(this.uri + "/match/equipe/" + id);
