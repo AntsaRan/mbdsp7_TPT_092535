@@ -34,13 +34,25 @@
         </mat-grid-tile>
         <mat-grid-tile *ngIf="islogged">
           <div class="rightmenu">
+
+            <mat-icon [matMenuTriggerFor]="menunotifs" [matBadge]="nbnotif" matBadgeColor="warn" class="notif"
+              [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()">notifications</mat-icon>
+
+            <mat-menu #menunotifs="matMenu">
+              <div *ngFor="let n of notif">
+                <button mat-menu-item>{{n.body}}</button>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-menu>
             <img src="/assets/img/user.png" width="30" height="30">
             <a class="profilink" [matMenuTriggerFor]="menu"> <span class="nameuser">{{nomutilisateur}}</span></a>
             <mat-menu #menu="matMenu">
               <button routerLink="/profil" mat-menu-item>Profil</button>
-              <button mat-menu-item (click)="logout()">logout</button>
+              <button mat-menu-item (click)="logout()">
+                <mat-icon class="iconmenulogout">logout</mat-icon>
+                Déconnexion
+              </button>
             </mat-menu>
-            <mat-icon class="iconmenulogout" (click)="logout()">logout</mat-icon>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
@@ -60,7 +72,7 @@
             <div class="navmenuelem">
               <a routerLink="/" class="headerlink">
                 <mat-icon class="example-icon-home">home</mat-icon>
-                Home
+                Accueil
               </a>
             </div>
             <div class="navmenuelem">
@@ -73,20 +85,9 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="1">
         </mat-grid-tile>
-        <mat-grid-tile colspan="3">
-          <div class="menuicon">
-            <form action="" style="float: right;">
-              <input class="searchinput" matInput placeholder="Search...">
-              <mat-icon id="searchicon" onclick="">search</mat-icon>
-            </form>
-          </div>
-
-        </mat-grid-tile>
       </mat-grid-list>
     </mat-toolbar-row>
   </mat-toolbar>
-
-
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav class="example-sidenav">
       <h3 class="title">Menu</h3>
@@ -106,6 +107,10 @@
         <li class="menuelement">
           <mat-icon class="iconmenu">view_list</mat-icon>
           <a routerLink="/mesparis" class="menulien" (click)="sidenav.toggle()"> Mes Paris</a>
+        </li>
+        <li class="menuelement">
+          <mat-icon class="iconmenu">paid</mat-icon>
+          <a routerLink="/mesparis" class="menulien" (click)="sidenav.toggle()"> Transactions</a>
         </li>
       </ul>
     </mat-sidenav>
@@ -134,6 +139,30 @@
 
   <!-- Metis Menu Plugin JavaScript -->
   <script src="/assets/js/metisMenu.min.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyB1XqvkjClNswR56VveJGcu6DWTKc7hGco",
+      authDomain: "mbds-5e91b.firebaseapp.com",
+      projectId: "mbds-5e91b",
+      storageBucket: "mbds-5e91b.appspot.com",
+      messagingSenderId: "1003946694596",
+      appId: "1:1003946694596:web:7178143c417a66c740f691",
+      measurementId: "G-KNQR6ERP5Q"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 
 </body>
 

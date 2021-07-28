@@ -1,3 +1,11 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    margin-top: auto;
+}
 .uptoolbar {
     height: 100px;
 }
@@ -111,8 +119,7 @@ margin-left: 7%;
   }
   /**********************************/
   .example-sidenav-container {
-    min-height: 400px;
- }
+    height: calc(100% - 200px); }
 
     .example-sidenav {
         padding: 20px;
@@ -217,12 +224,21 @@ footer{
     cursor: pointer
 }
 .iconmenulogout{
-    font-size: 37px;
     position: relative;
-    top: 19px;
-    margin-right: 9px;
-    margin-left: 18%;
 }
 .iconmenulogout:hover{
     cursor: pointer;
+}
+
+.notif{
+    width: 50px;
+    height: 50px;
+    font-size: 36px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5%;
+    margin-right: 27px;
+}
+.notif:hover{
+   cursor: pointer;
 }
