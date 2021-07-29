@@ -104,6 +104,30 @@ public class MatchController {
         }
     }
 
+    @GetMapping("/matchesOrder")
+    public ResponseEntity<List<Match>> getAllMatchesOrder(@RequestParam(required = true) String etat ) throws ParseException {
+        try {
+            List<Match> matchs = new ArrayList<Match>();
+
+
+            if (etat == null )
+                matchRepository.findAllByDateOrderByDateAsc().forEach(matchs::add);
+
+            else
+                matchRepository.findMatchesByEtatContainingOrderByDateAsc(etat).forEach(matchs::add);
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(matchs, HttpStatus.OK);
+        } catch (Exception e) {
+            throw e;
+
+        }
+    }
+
 
     @GetMapping("/matches/equipe/{id}")
     public ResponseEntity<List<Match>> getMatchesParEquipe(@PathVariable("id") String id){
@@ -125,6 +149,38 @@ public class MatchController {
         }
     }
 
+    @GetMapping("/matchesPlusParie")
+    public ResponseEntity<List<Match>> getMatchesPlusParie() throws SQLException {
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+
+            List<Match> matchs = new ArrayList<Match>();
+            PariController pariController = new PariController();
+
+            List<String> listeIdMatch=pariController.getTopPariByMatch(oracleConnection);
+            Integer taille=listeIdMatch.size();
+            System.out.println("Taille "+taille);
+
+            for(int i=0;i<taille;i++){
+                Optional<Match> val=matchRepository.findById(listeIdMatch.get(i));
+                if(val.isPresent()){matchs.add(val.get());}
+            }
+
+
+
+            if (matchs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(matchs, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        finally {
+         if(oracleConnection!=null)   oracleConnection.close();
+        }
+    }
 
     @GetMapping("/match/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable("id") String id) {
@@ -385,6 +441,9 @@ public class MatchController {
                 //System.out.println("accroissement == "+accroissement);
                 //System.out.println("mise anlay User == "+pari1.getMise());
                 userController.AjoutJeton(accroissement,pari1.getIdUtilisateur());
+                Historique_Jetons historique_jetons=new Historique_Jetons(pari1.getIdUtilisateur(),3,pari1.getMise(),0);
+                Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+                String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
                 sendNotificationWebToAllDeviceForUser(String.valueOf(pari1.getIdUtilisateur()),"FootBet","Felicitations vous avez gagné votre pari");
             }
 

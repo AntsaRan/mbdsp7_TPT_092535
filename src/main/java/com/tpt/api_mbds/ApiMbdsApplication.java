@@ -1,6 +1,7 @@
 package com.tpt.api_mbds;
 
 import com.google.gson.Gson;
+import com.tpt.api_mbds.Controller.Historique_jetonsController;
 import com.tpt.api_mbds.Controller.PariController;
 import com.tpt.api_mbds.Controller.SuperAdminController;
 import com.tpt.api_mbds.Controller.UserController;
@@ -281,7 +282,73 @@ public class ApiMbdsApplication {
             throw e;
         }
     }
+//////////////////Achat Jetons ///////////////////////
+    @PutMapping(path="/addJetonsUser/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> addJetonsUser(@PathVariable("id") String id ,@RequestParam(required = true) Integer jetons) throws Exception {
+        String val="";
+        try {
+            Historique_Jetons historique_jetons=new Historique_Jetons(Integer.valueOf(id),1,jetons,0);
+            Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+            val = userController.AjoutJeton(jetons,Integer.valueOf(id));
+            String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
 
+            if(val==""){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + val);
+            return new ResponseEntity<>(val, HttpStatus.OK);
+
+
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    //////////////////Vente Jetons ///////////////////////
+    @PutMapping(path="/removeJetonsUser/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> removeJetonsUser(@PathVariable("id") String id ,@RequestParam(required = true) Integer jetons) throws Exception {
+        String val="";
+        try {
+            Historique_Jetons historique_jetons=new Historique_Jetons(Integer.valueOf(id),2,jetons,0);
+            Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+            val = userController.EnleveJeton(jetons,Integer.valueOf(id));
+            String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
+
+            if(val==""){
+
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + val);
+            return new ResponseEntity<>(val, HttpStatus.OK);
+
+
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+////////////////////////////////Get Historique Jetons Par User //////////////////////
+@GetMapping(path="/getHistoByUser/{id}",produces = "application/json")
+@ResponseBody
+public ResponseEntity<String> getHistoByUser(@PathVariable("id") int id) throws SQLException {
+    ArrayList<Historique_Jetons> result=new ArrayList<Historique_Jetons>();
+    Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+    try {
+
+        result = historique_jetonsController.getAllHistorique_JetonsbyUser(id);
+        if(result.isEmpty()){
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+        System.out.println("La liste Histo n'est pas vide" + result.get(0).getDateTransaction());
+        return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+    } catch (Exception throwables) {
+        throw throwables;
+    }
+
+}
 
     //GetMise
     @GetMapping(path="/getAllMise/{id}",produces = "application/json")

@@ -1,6 +1,7 @@
 package com.tpt.api_mbds.Controller;
 
 import com.tpt.api_mbds.model.Connexion;
+import com.tpt.api_mbds.model.Historique_Jetons;
 import com.tpt.api_mbds.model.Pari;
 import oracle.jdbc.OracleConnection;
 
@@ -35,6 +36,11 @@ public class PariController {
             if(testJetons){
                 ResultSet resultSet = statement.executeQuery(requete);
                 String response=userController.EnleveJeton(pari.getMise(),pari.getIdUtilisateur());
+                /////Ito miinsert any amlay Historique///////////
+                Historique_Jetons historique_jetons=new Historique_Jetons(pari.getIdUtilisateur(),4,pari.getMise(),0);
+                Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+                String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
+
                 responseToReturn="Pari inséré";
                 System.out.println(response);
             }
@@ -151,7 +157,24 @@ public class PariController {
     }
 
 
-
+    public List<String> getTopPariByMatch(OracleConnection co) throws SQLException {
+        ArrayList<String> list=new ArrayList<String>();
+        Statement statement = null;
+        try{
+            statement = co.createStatement();
+            String request="select IDMATCH,count(*) from PARI group by idMatch ORDER BY 2  desc fetch first 5 rows only";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                String val=resultSet.getString(1);
+                System.out.println("ITO ILAY IDMATCH "+val);
+                list.add(val);
+            }
+            return list;
+        }catch (Exception e){
+            throw  e;
+        }
+    }
 
 
 
