@@ -73,7 +73,9 @@ export class AppComponent implements OnInit {
   }
   logout() {
     this.cartserv.format();
+ 
     this.router.navigate(["/"]);
+    window.location.reload();
   }
   reloadComponent() {
     window.location.reload();
