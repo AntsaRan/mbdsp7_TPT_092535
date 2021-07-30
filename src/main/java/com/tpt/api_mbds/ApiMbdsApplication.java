@@ -333,7 +333,7 @@ public class ApiMbdsApplication {
 @GetMapping(path="/getHistoByUser/{id}",produces = "application/json")
 @ResponseBody
 public ResponseEntity<String> getHistoByUser(@PathVariable("id") int id) throws SQLException {
-    ArrayList<Historique_Jetons> result=new ArrayList<Historique_Jetons>();
+    ArrayList<Histo_jetons_View> result=new ArrayList<Histo_jetons_View>();
     Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
     try {
 
@@ -419,6 +419,36 @@ public ResponseEntity<String> getHistoByUser(@PathVariable("id") int id) throws 
             oracleConnection.close();
         }
     }
+
+
+
+    @GetMapping(path="/getUserbyIdM/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getUserbyIdM(@PathVariable("id") int id)  throws SQLException {
+        Response<Utilisateur> result = new Response<>();
+        List <Utilisateur> list=new ArrayList<>();
+        Utilisateur user = new Utilisateur();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            user = userController.getUserById(id);
+            list.add(user);
+            result.setResults(list);
+            result.setPage(1);
+            if(user.getId()==0){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println(" pas vide ex: " + user.getId());
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
 
     ///////////////////////////CROWN/////////////////////////////
    /* @GetMapping(path="/StartMatch/{id}",produces = "application/json")

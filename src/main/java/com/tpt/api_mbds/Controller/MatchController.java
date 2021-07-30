@@ -163,8 +163,8 @@ public class MatchController {
             System.out.println("Taille "+taille);
 
             for(int i=0;i<taille;i++){
-                Optional<Match> val=matchRepository.findById(listeIdMatch.get(i));
-                if(val.isPresent()){matchs.add(val.get());}
+                Match val=matchRepository.findByIdAndEtat(listeIdMatch.get(i),"1");
+                if(val!=null){matchs.add(val);}
             }
 
 

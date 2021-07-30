@@ -18,6 +18,6 @@ public interface MatchRepository extends MongoRepository<Match, String> {
     List<Match> findMatchesByDateBefore(Date date1,Date date2);
     List<Match> findAllByDateOrderByDateAsc();
     List<Match> findMatchesByEtatContainingOrderByDateAsc(String etat);
-
+    Match findByIdAndEtat(String id,String etat);
 
 }

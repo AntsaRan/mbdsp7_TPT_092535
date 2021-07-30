@@ -1,6 +1,7 @@
 package com.tpt.api_mbds.Controller;
 
 import com.tpt.api_mbds.model.Connexion;
+import com.tpt.api_mbds.model.Histo_jetons_View;
 import com.tpt.api_mbds.model.Historique_Jetons;
 import oracle.jdbc.OracleConnection;
 
@@ -40,22 +41,22 @@ public class Historique_jetonsController {
         return val;
     }
 
-    public ArrayList<Historique_Jetons> getAllHistorique_JetonsbyUser(int id) throws SQLException {
+    public ArrayList<Histo_jetons_View> getAllHistorique_JetonsbyUser(int id) throws SQLException {
 
-        ArrayList<Historique_Jetons> list=new ArrayList<Historique_Jetons>();
+        ArrayList<Histo_jetons_View> list=new ArrayList<Histo_jetons_View>();
         Statement statement = null;
         OracleConnection oracleConnection = null;
         try{
             oracleConnection = Connexion.getConnection();
             statement = oracleConnection.createStatement();
-            String request="select * from historique_jetons where idutilisateur="+id+" order BY datetransaction asc";
+            String request="select * from HISTO_TRANSAC where idutilisateur="+id+" order BY datetransaction asc";
             System.out.println(request);
             ResultSet resultSet = statement.executeQuery(request);
             while (resultSet.next()){
-                Historique_Jetons val=new Historique_Jetons();
+                Histo_jetons_View val=new Histo_jetons_View();
                 val.setId(resultSet.getInt(1));
                 val.setIdUtilisateur(resultSet.getInt(2));
-                val.setIdTransaction(resultSet.getInt(3));
+                val.setIdTransaction(resultSet.getString(3));
                 val.setDateTransaction(resultSet.getDate(4));
                 val.setMontant(resultSet.getInt(5));
                 val.setIdPari(resultSet.getInt(6));
