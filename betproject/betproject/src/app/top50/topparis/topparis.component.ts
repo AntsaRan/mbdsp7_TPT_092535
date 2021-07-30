@@ -11,7 +11,7 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 })
 export class TopparisComponent implements OnInit {
 
-  matches: Match[]=[];
+  matches: any[]=[];
   currentdate = new Date();
   date: string;
   loading:boolean=true;
@@ -27,14 +27,23 @@ export class TopparisComponent implements OnInit {
     this.getMatches();
   }
   getMatches() {
+    let incr=0;
     console.log("getmatches");
-    this.matchserv.getMatches()
-      .subscribe(data => {
-        data.forEach(match=>{         
+    this.matchserv.getTop5matchs()
+      .subscribe((response) => {
+        console.log(response + " DATA TOP 5");
+        response.forEach(match=>{         
           console.log(match.id+ " match")
-          this.matches.push(match);
+          incr++;
+          var m={incr,match};
+          this.matches.push(m); 
+          console.log(m.match.date);
         })
         this.loading=false;
+      },
+      (error)=>{
+        console.error('error caught in component '+ error);
+        //window.location.reload();
       });
   }
 

@@ -4,11 +4,7 @@
 .cardheader{
     justify-content: center;
 }
-.nomequipe{
-  display: inline-block;
-    margin-left: 27px;
-    margin-right: 27px;
-}
+
 .listitemcontent{
     justify-content: center;
     width: 100%;
@@ -69,4 +65,23 @@ height: 100px!important;
   display: inline-block;
   width: 50px;
   height: 50px;
+}
+.titre{
+  font-weight: bold;
+  text-align: center;
+}
+.nomequipe{
+  display: inline-block;
+    margin-left: 27px;
+    margin-right: 27px;
+    width: 66px;
+}
+.datematch{
+  display: inline-block;
+  margin-left: 27px;
+  margin-right: 27px;
+  width: 86px;
+}
+.vs{
+  width: 50px;
 }
