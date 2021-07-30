@@ -46,8 +46,9 @@ export class LoginComponent implements OnInit {
             })
           this.loading = false;
           this.mess.requestPermission();
-
-          this.reloadComponent();
+       
+      
+          //this.reloadComponent();
         }
 
       });
