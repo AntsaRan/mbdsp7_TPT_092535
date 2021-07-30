@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs'
 import { mergeMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
@@ -11,7 +12,7 @@ export class MessagingService {
   public currentMessage:BehaviorSubject<any> = new BehaviorSubject(null);
   public msg$: Observable<any[]> = this.currentMessage.asObservable();
 
-  constructor(private angularFireMessaging: AngularFireMessaging, private auth: AuthService) {
+  constructor(private angularFireMessaging: AngularFireMessaging, private auth: AuthService,private router: Router) {
   }
   requestPermission() {
     let user = localStorage.getItem('currentUser');
@@ -21,6 +22,7 @@ export class MessagingService {
         this.auth.fireauth(user,token)
         .subscribe(m=>{
           console.log(m.msg + " MSG FIRE");
+          window.location.reload();
         })
       },
       (error) => { console.error(error); },

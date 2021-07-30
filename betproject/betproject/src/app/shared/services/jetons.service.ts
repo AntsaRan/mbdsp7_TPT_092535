@@ -12,7 +12,7 @@ import { Regles } from '../models/regles.model';
 export class JetonsService {
 
  // uri = "http://localhost:8010/jetons";
-  uri="https://apinode-mbds.herokuapp.com/jetons"
+  uri="https://apinode-mbds.herokuapp.com/jetons" 
 
   constructor(private http: HttpClient) { }
 
