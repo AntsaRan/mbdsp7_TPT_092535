@@ -98,10 +98,12 @@ const routes: Routes = [
   {
     path: "profil",
     component: ProfilComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "achatvente",
     component: AchatventeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "jeuresp",
