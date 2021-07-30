@@ -24,7 +24,6 @@ export class ProfilComponent implements OnInit {
     if (localStorage.getItem('currentUser') != null) {
       this.user2 = JSON.parse(localStorage.getItem('user'));
       // console.log(localStorage.getItem('currentUser') + " GGGGGGGGGGGGGGG");
-      this.loading = false;
       this.user.id = this.user2.id;
       this.user.mail = this.user2.mail;
       this.user.prenom = this.user2.prenom;
@@ -38,6 +37,8 @@ export class ProfilComponent implements OnInit {
       .subscribe(u=>{
         console.log(u.jetons+ ' U JETONS');
         this.user.jetons=u.jetons;
+        localStorage.setItem('jetonsuser', u.jetons.toString());
+        this.loading=false;
       })
       //this.mise = localStorage.getItem('miseTotale');
       this.value = this.user.id + "|" + this.user.jetons + "|" + this.user.mail + "|" + this.user.prenom + "|" + this.user.nom;
@@ -47,10 +48,6 @@ export class ProfilComponent implements OnInit {
   }
   reloadComponent() {
     this.router.navigate(["/"]);
-    /* 
-     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-     this.router.onSameUrlNavigation = 'reload';*/
-    //
   }
   openLoginDialog() {
     const dialogRef = this.dialog.open(ModifInfosComponent);
