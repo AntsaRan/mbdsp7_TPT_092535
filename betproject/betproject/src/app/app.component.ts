@@ -25,12 +25,12 @@ export class AppComponent implements OnInit {
   hidden = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  notif:any[]=[];
+  notif: any[] = [];
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
     public dialog: MatDialog,
-    private router: Router, private mess: MessagingService,private _snackBar: MatSnackBar) {
+    private router: Router, private mess: MessagingService, private _snackBar: MatSnackBar) {
 
   }
   ngOnInit(): void {
@@ -48,15 +48,15 @@ export class AppComponent implements OnInit {
       }
     })
   }
-  toggleBadgeVisibility(){
-    if(this.nbnotif==0){
+  toggleBadgeVisibility() {
+    if (this.nbnotif == 0) {
       this.hidden = !this.hidden;
-      this.notif=[];
-    }else{
+      this.notif = [];
+    } else {
       this.hidden = !this.hidden;
-      this.nbnotif=0;
+      this.nbnotif = 0;
     }
-  
+
   }
 
   openLoginDialog() {
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
   }
   logout() {
     this.cartserv.format();
-    this.reloadComponent();
+    this.router.navigate(["/"]);
   }
   reloadComponent() {
     window.location.reload();
