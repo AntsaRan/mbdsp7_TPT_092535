@@ -32,7 +32,7 @@
                             <input matInput placeholder="Jetons" type="number" required [(ngModel)]="vjetons"
                                 name="vjetons">
                         </mat-form-field>Jetons
-                        <div *ngIf="error" class="alert">{{error}}</div>
+                        <div *ngIf="errorvente" class="alert">{{errorvente}}</div>
                     </form>
                     <button mat-stroked-button color="primary" class="btn btnlogin">
                         Valider
@@ -50,9 +50,8 @@
             <mat-card-content>
                 <div  class="content">
                     <div>
-                        <p>Solde en cours : </p>
-                        <p>Mise en cours : </p>
-                        <p>Jetons engagés : </p>
+                        <p class="titrep">Solde en cours :</p><p> {{solde}}</p>
+                        <p class="titrep">Mise en cours : </p><p> {{mise}} </p>
                     </div>
                 </div>
                 <div  class="content2">
