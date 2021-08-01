@@ -56,6 +56,9 @@ import { MessagingService } from './shared/services/messaging.service';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {MatBadgeModule} from '@angular/material/badge';
+import { AgmCoreModule } from '@agm/core';
+import { Const} from './shared/const/const';
+import { MapsComponent } from './maps/maps/maps.component';
 
 const routes: Routes = [
   {
@@ -109,6 +112,10 @@ const routes: Routes = [
     path: "jeuresp",
     component: JeuComponent,
   },
+  {
+    path: "maps",
+    component: MapsComponent,
+  }
 
 ]
 
@@ -131,7 +138,8 @@ const routes: Routes = [
     SnackbarokComponent,
     ModifInfosComponent,
     AchatventeComponent,
-    JeuComponent
+    JeuComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule, MatMenuModule,
@@ -149,7 +157,8 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AgmCoreModule.forRoot({apiKey:"AIzaSyCTi2tEOxkSKmmmt-EAi_0WzM9-c6ftMts"})
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
