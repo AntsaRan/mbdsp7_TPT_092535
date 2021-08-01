@@ -17,6 +17,7 @@ import { Notifs } from './shared/models/notifs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   title = 'betproject';
   islogged: boolean = false;
   nomutilisateur: string = "";
