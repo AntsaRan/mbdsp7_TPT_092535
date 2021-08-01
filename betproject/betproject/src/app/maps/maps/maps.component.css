@@ -1,0 +1,67 @@
+.map-container {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 30px;
+  width: 100%;
+}
+
+.map-frame {
+  border: 2px solid rgb(255 193 0);
+  height: 100%;
+  box-shadow: 4px 12px 12px#0000002b;  
+    padding: 0;
+}
+
+#map {
+  height: 100%;
+}
+.contact{
+  font-weight: bold;
+  margin-left: 1%;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-size: 42px;
+  margin-top: 2%;
+}
+/* FORM */
+
+.logincontainer{
+  width: 354px;
+  margin: auto;
+  position: relative;
+}
+
+.logindialog{
+  width: 636px;
+}
+.imglogin{
+width: 50%;
+margin: auto;
+text-align: center;
+}
+
+.btnlogin{
+  background-color: #4fa5ff;
+  color: white;
+  float: right;
+}
+.loginfield{
+  width: 287px;
+}
+.alert{
+  color: red;
+  font-weight: bold;
+}
+.spinner{
+  position: absolute;
+  background: #92929259;
+  width: 586px;
+  height: 437px;
+  z-index: 5;
+}
+.panel-body{
+  display: inline-block;
+}

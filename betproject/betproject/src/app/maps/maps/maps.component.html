@@ -1,0 +1,46 @@
+<h1 class="contact">{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<!--<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>  -->
+<div class="map-container row">
+  <div class="map-frame col-lg-6 col-md-6 col-sm-6">
+    <div id="map"></div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="login-panel panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> Veuillez vous connecter</h3>
+      </div>
+      <form ngForm #loginform class="form" (submit)="onSubmit($event); loginform.reset();">
+        <mat-form-field class="loginfield">
+          <input matInput placeholder="Email" required [(ngModel)]="email" name="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="loginfield">
+          <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" required [(ngModel)]="password"
+            name="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-checkbox class="example-margin">Se souvenir de moi</mat-checkbox>
+        <button mat-stroked-button color="primary" class="btn btnlogin">
+          Se connecter
+        </button>
+        <div *ngIf="error" class="alert"></div>
+        <mat-dialog-actions align="start" style="margin-top: 20px;">
+          <a href="#">
+            <p>Mot de passe oublié?</p>
+          </a>
+          <p>Nouveau sur le site?<span> </span><a> Insrivez vous ici.</a></p>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </div>
+</div>
