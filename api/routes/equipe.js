@@ -27,7 +27,7 @@ function getEquipebyId(req, res) {
     .catch(err =>
         console.log(err))
 }
-// Récupérer une equipe par son id (GET)
+// Récupérer une equipe par son nom (GET)
 function getequipebyName(req, res) {
     let name = req.params.nom;
     fetch(url + "/equipes?nom="+name)
@@ -41,4 +41,5 @@ function getequipebyName(req, res) {
 }
 
 
-module.exports = { getEquipes, postMatchs,getequipebyName, getEquipebyId, updateMatch, deleteMatch };
+
+module.exports = { getEquipes,getequipebyName, getEquipebyId };
