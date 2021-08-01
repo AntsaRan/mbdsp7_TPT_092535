@@ -11,7 +11,7 @@ let port = process.env.PORT || 8010;
 let match = require('./routes/matchs');
 let pari = require('./routes/pari');
 let equipe = require('./routes/equipe');
-let auth = require('./routes/auth')
+let jetonsController = require('./routes/jetonsController')
 
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
@@ -23,12 +23,16 @@ app.use(function (req, res, next) {
 });
 app.use('/auth', AuthController);
 app.use('/pari', pariController);
+app.use('/jetons',jetonsController);
 
 app.route('/getAllMatches')
 .get(match.getMatchs);
 
 app.route('/match/:id')
 .get(match.getMatchbyId);
+
+app.route('/top5matchs')
+.get(match.top5matchs);
 
 app.route('/match/equipe/:id')
 .get(match.getMatchEquipe);
