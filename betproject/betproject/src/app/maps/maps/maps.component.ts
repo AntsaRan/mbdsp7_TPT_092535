@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as L from 'leaflet';
+import { cpuUsage } from 'process';
+import { SnackbarokComponent } from 'src/app/coupons/snackbarok/snackbarok.component';
+import { MailerService } from 'src/app/shared/services/mailer.service';
 
 @Component({
   selector: 'app-maps',
@@ -10,14 +14,13 @@ export class MapsComponent implements OnInit {
 
   private map: L.Map;
   private centroid: L.LatLngExpression = [-18.878594066916172, 47.552341677709514]; //boston
-  email = "";
-  password = null;
-  hide = true;
-  miseUser: Number = 0;
+  email = "";;
+  message = "";
   error = "";
-  loading: boolean = false;
-  message;
-  constructor() { }
+  nom = "";
+  durationInSeconds = 2;
+
+  constructor(private mail: MailerService, private _snackBar: MatSnackBar) { }
 
   private initMap(): void {
     this.map = L.map('map', {
@@ -52,11 +55,21 @@ export class MapsComponent implements OnInit {
 
   }
   onSubmit(event) {
-   
+    this.mail.sendmail(this.message, this.nom, this.email)
+      .subscribe(res => {
+        if (res) {
+          console.log("Ok");
+          this.openSnackBar();
+        }
+      })
   }
   ngOnInit(): void {
     this.initMap();
   }
   title = 'Contact';
-
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarokComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
 }

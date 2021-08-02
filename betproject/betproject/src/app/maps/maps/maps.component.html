@@ -10,36 +10,24 @@
     <div id="map"></div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6">
-    <div class="login-panel panel panel-default">
+    <div class="contact-panel panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"> Veuillez vous connecter</h3>
+        <h3 class="panel-title"> Contactez nous</h3>
       </div>
       <form ngForm #loginform class="form" (submit)="onSubmit($event); loginform.reset();">
-        <mat-form-field class="loginfield">
-          <input matInput placeholder="Email" required [(ngModel)]="email" name="email">
-        </mat-form-field>
+        <label>Nom</label>
+        <input matInput placeholder="Nom" required [(ngModel)]="nom" name="nom" class="form-control contactinput">
+        <label>Email</label>
+        <input matInput placeholder="Email" required [(ngModel)]="email" name="email" class="form-control contactinput">
         <br>
-        <mat-form-field class="loginfield">
-          <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" required [(ngModel)]="password"
-            name="password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
+        <label>Votre message</label>
+        <textarea matInput class="textzone" required [(ngModel)]="message" name="message"
+          class="form-control messagarea"></textarea>
         <br>
         <br>
-        <mat-checkbox class="example-margin">Se souvenir de moi</mat-checkbox>
         <button mat-stroked-button color="primary" class="btn btnlogin">
-          Se connecter
-        </button>
+          Envoyer </button>
         <div *ngIf="error" class="alert"></div>
-        <mat-dialog-actions align="start" style="margin-top: 20px;">
-          <a href="#">
-            <p>Mot de passe oublié?</p>
-          </a>
-          <p>Nouveau sur le site?<span> </span><a> Insrivez vous ici.</a></p>
-        </mat-dialog-actions>
       </form>
     </div>
   </div>

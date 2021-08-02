@@ -4,8 +4,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 30px;
-  width: 100%;
+  padding: 30px;
+  width: 98%;
+  margin: auto;
 }
 
 .map-frame {
@@ -46,10 +47,12 @@ text-align: center;
 .btnlogin{
   background-color: #4fa5ff;
   color: white;
-  float: right;
+ 
 }
 .loginfield{
   width: 287px;
+  margin-right: 5%;
+
 }
 .alert{
   color: red;
@@ -64,4 +67,31 @@ text-align: center;
 }
 .panel-body{
   display: inline-block;
+}
+.contact{
+  width: 85%;
+  margin: auto;
+}
+.textzone{
+  width: 90%;
+  overflow: auto;
+  height: 100px;
+}
+form{
+  padding: 10px;
+}
+.contactinput{
+  width: 80%;
+  margin-bottom: 2%;
+}
+.messagarea{
+  height: 200px;
+  width: 80%;
+}
+.contact-panel{
+  width: 90%;
+  margin: auto;
+}
+.panel-heading{
+  background-color:#ffc100!important;
 }
