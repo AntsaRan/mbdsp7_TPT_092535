@@ -12,7 +12,7 @@ let match = require('./routes/matchs');
 let pari = require('./routes/pari');
 let equipe = require('./routes/equipe');
 let jetonsController = require('./routes/jetonsController')
-
+let mailController= require('./routes/mailController.js')
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -24,6 +24,8 @@ app.use(function (req, res, next) {
 app.use('/auth', AuthController);
 app.use('/pari', pariController);
 app.use('/jetons',jetonsController);
+app.use('/mail',mailController);
+
 
 app.route('/getAllMatches')
 .get(match.getMatchs);
@@ -51,6 +53,8 @@ app.route('/regle/:id')
 
 app.route('/match/date/:date')
 .get(match.getMatchDate)
+app.route('/getAllMatches')
+.get(match.getMatchs);
 
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
