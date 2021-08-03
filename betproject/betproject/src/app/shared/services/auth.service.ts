@@ -15,11 +15,11 @@ export class AuthService {
   admin = false;
   private currentUserSubject: BehaviorSubject<Parieur>;
   public currentUser: Observable<Parieur>;
-  private userLoggedIn = new Subject<boolean>(); 
+  private userLoggedIn = new Subject<boolean>();
 
   constructor(
     private http: HttpClient, private router: Router
-    ) {
+  ) {
     this.userLoggedIn.next(false);
     this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -35,8 +35,8 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  getUserByID(id):Observable<Parieur>{
-    return this.http.get<Parieur>(this.uri+"/user/"+id);
+  getUserByID(id): Observable<Parieur> {
+    return this.http.get<Parieur>(this.uri + "/user/" + id);
   }
   logIn(mail: string, passowrd: string): Observable<any> {
     console.log("LOGIN O")
@@ -109,7 +109,7 @@ export class AuthService {
       );
   }
 
-  fireauth(iduser:string,token:string ){
+  fireauth(iduser: string, token: string) {
     console.log("inscription auth");
     var body = { iduser, token }
     return this.http.post<any>(this.uri + "/firetoken", body)
