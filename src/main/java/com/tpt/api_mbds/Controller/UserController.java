@@ -82,7 +82,38 @@ public class UserController {
                 val.setPrenom(resultSet.getString(3));
                 val.setDateNaissance(resultSet.getDate(4));
                 val.setPseudo(resultSet.getString(5));
-                val.setPwd(resultSet.getString(6));
+                //val.setPwd(resultSet.getString(6));
+                val.setJetons(resultSet.getInt(7));
+                val.setMail(resultSet.getString(8));
+            }
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+        }
+        return val;
+
+    }
+
+    public Utilisateur chechUserMail(OracleConnection co , String mail) throws SQLException {
+        Utilisateur val=new Utilisateur();
+        Statement statement = null;
+        try {
+
+            statement = co.createStatement();
+            String requete ="select * from UTILISATEUR where mail='"+mail+"'";
+            ResultSet resultSet = statement.executeQuery(requete);
+            while (resultSet.next()){
+                //System.out.println("ID AVANT " + resultSet.getInt(1));
+                val.setId(resultSet.getInt(1));
+                val.setNom(resultSet.getString(2));
+                val.setPrenom(resultSet.getString(3));
+                val.setDateNaissance(resultSet.getDate(4));
+                val.setPseudo(resultSet.getString(5));
+                //val.setPwd(resultSet.getString(6));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
             }

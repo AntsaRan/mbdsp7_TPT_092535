@@ -120,6 +120,30 @@ public class ApiMbdsApplication {
         }
     }
 
+    @PostMapping(path="/checkMailUser",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> chechUserMail(String mail) throws SQLException {
+        Utilisateur val = new Utilisateur();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            // System.out.println("le mail de l'user " + mail);
+            val = userController.chechUserMail(oracleConnection,mail);
+            if(val.getId()==0){
+                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+            }
+            //System.out.println("RESULT APRES LE GET " + val.getPrenom());
+            return new ResponseEntity<>(new Gson().toJson(val), HttpStatus.OK);
+
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            oracleConnection.close();
+        }
+    }
+
     @PostMapping(path="/authentificationAdmin",consumes = "application/json",produces = "application/json")
     @ResponseBody
     public ResponseEntity<String> authentificationAdmin(@RequestBody SuperAdmin admin) throws SQLException {
@@ -420,7 +444,28 @@ public ResponseEntity<String> getHistoByUser(@PathVariable("id") int id) throws 
         }
     }
 
+    @GetMapping(path="/getHistoByUserM/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getHistoByUserM(@PathVariable("id") int id) throws SQLException {
+        Response<Histo_jetons_View> resultat = new Response<>();
+        ArrayList<Histo_jetons_View> result=new ArrayList<Histo_jetons_View>();
+        Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+        try {
 
+            result = historique_jetonsController.getAllHistorique_JetonsbyUser(id);
+            if(result.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            resultat.setResults(result);
+            resultat.setPage(1);
+            System.out.println("La liste Histo n'est pas vide" + result.get(0).getDateTransaction());
+            return new ResponseEntity<>(new Gson().toJson(resultat), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+
+    }
 
     @GetMapping(path="/getUserbyIdM/{id}",produces = "application/json")
     @ResponseBody
