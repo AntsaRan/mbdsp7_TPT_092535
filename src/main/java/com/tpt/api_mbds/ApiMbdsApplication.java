@@ -353,6 +353,24 @@ public class ApiMbdsApplication {
         }
     }
 
+    /////////////////////update-MDP////////////////////////
+    @PutMapping(path="/updateMdp/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> updateMdp(@PathVariable("id") String id ,@RequestBody String mdp) throws Exception {
+        try {
+           Utilisateur user= userController.getUserById(Integer.valueOf(id));
+            if(user==null){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            userController.updateUserMdp(Integer.valueOf(id),mdp);
+            System.out.println("User mot de passe updated");
+            return new ResponseEntity<>("User "+id+" password modified", HttpStatus.OK);
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+
 ////////////////////////////////Get Historique Jetons Par User //////////////////////
 @GetMapping(path="/getHistoByUser/{id}",produces = "application/json")
 @ResponseBody

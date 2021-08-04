@@ -225,6 +225,30 @@ public class UserController {
         }
     }
 
+    public void updateUserMdp(Integer id, String mdp) throws SQLException {
+
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String passwordHash=sha256(mdp);
+
+            String requete1 ="update UTILISATEUR set PWD='"+passwordHash+"' where id="+id+"";
+            System.out.println(requete1);
+            statement.executeQuery(requete1);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+            if(oracleConnection!=null) oracleConnection.close();
+        }
+    }
+
+
     public Utilisateur getUserById(Integer idUser) throws SQLException {
         Utilisateur val=new Utilisateur();
         Statement statement = null;
