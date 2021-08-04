@@ -12,8 +12,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class MatchServiceService {
 
-  //uri = "http://localhost:8010";
-  uri="https://apinode-mbds.herokuapp.com"
+  uri = "http://localhost:8010";
+  //uri="https://apinode-mbds.herokuapp.com"
 
   constructor(private http: HttpClient) { }
 

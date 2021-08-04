@@ -13,4 +13,17 @@ export class MailerService {
   sendmail(message,nom,mail): Observable<any> {
     return this.http.post(this.uri + "/mail", {msg:message,nom:nom,mail:mail});
   }
+  
+  sendforgetmail(email):Observable<any>{
+    return this.http.post(this.uri + "/mailforgotten", email);
+
+  }
+
+  forgetpass(mail):Observable<any>{
+    return this.http.post(this.uri+"/mdp",mail);
+  }
+
+  resetpass(mail):Observable<any>{
+    return this.http.post(this.uri+"/resetmdp",mail);
+  }
 }

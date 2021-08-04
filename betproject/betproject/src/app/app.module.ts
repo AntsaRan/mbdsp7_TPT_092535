@@ -59,6 +59,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { AgmCoreModule } from '@agm/core';
 import { Const} from './shared/const/const';
 import { MapsComponent } from './maps/maps/maps.component';
+import { OublimdpComponent } from './oublimdp/oublimdp/oublimdp.component';
+import { NouveaumdpComponent } from './oublimdp/nouveaumdp/nouveaumdp.component';
 
 const routes: Routes = [
   {
@@ -84,6 +86,10 @@ const routes: Routes = [
   {
     path: "calendrier/:date",
     component: CalendrierComponent,
+  },
+  {
+    path: "login",
+    component: LoginComponent,
   },
   {
     path: "mesparis",
@@ -139,7 +145,9 @@ const routes: Routes = [
     ModifInfosComponent,
     AchatventeComponent,
     JeuComponent,
-    MapsComponent
+    MapsComponent,
+    OublimdpComponent,
+    NouveaumdpComponent
   ],
   imports: [
     BrowserModule, MatMenuModule,

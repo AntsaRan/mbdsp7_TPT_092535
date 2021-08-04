@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
+import { OublimdpComponent } from 'src/app/oublimdp/oublimdp/oublimdp.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MessagingService } from 'src/app/shared/services/messaging.service';
 
@@ -62,7 +63,15 @@ export class LoginComponent implements OnInit {
 
   }
   openSigninDialog() {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open(InscriptionComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openForgetMdp() {
+    this.dialog.closeAll();
+    const dialogRef = this.dialog.open(OublimdpComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
