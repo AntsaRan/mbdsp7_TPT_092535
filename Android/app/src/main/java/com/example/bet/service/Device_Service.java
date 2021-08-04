@@ -9,8 +9,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface Device_Service {
-
-
     @POST("oracle/insererDevice")
     Call<String> insererDevice(@Body RequestDevice device);
 }

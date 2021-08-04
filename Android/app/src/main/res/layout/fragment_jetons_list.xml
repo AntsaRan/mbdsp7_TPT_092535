@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintMovieList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1,2,3,4,5"
+    android:layout_margin="8dp"
+    android:background="@android:color/background_light">
+
+    <TableRow android:visibility="visible">
+
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="TYPE"
+
+            android:textAlignment="viewStart"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="DATE"
+            android:textSize="14dp"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="MONTANT"
+            android:textSize="14dp"
+            android:textStyle="bold"
+
+            />
+
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill" />
+    <ProgressBar
+        android:id="@+id/main_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+</TableLayout>

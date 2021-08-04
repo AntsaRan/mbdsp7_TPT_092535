@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                           @Override
                           public void onResponse(Call<String> call, Response<String> response) {
                               //Do nothing
-                              Log.d("MESSAGE", response.body());
+                              Log.d("INSERTION ITO", response.body());
                           }
 
                           @Override
