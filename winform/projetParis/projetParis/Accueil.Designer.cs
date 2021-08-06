@@ -38,6 +38,14 @@ namespace projetParis
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelNavGauche = new System.Windows.Forms.Panel();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.buttonLancerMatch = new System.Windows.Forms.Button();
+            this.buttonHistoriquesJetons = new System.Windows.Forms.Button();
+            this.buttonUtilisateurs = new System.Windows.Forms.Button();
+            this.buttonParis = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -45,22 +53,29 @@ namespace projetParis
             this.buttonMatchs = new System.Windows.Forms.Button();
             this.buttonEquipes = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listeRegles1 = new projetParis.ListeRegles();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFooter = new System.Windows.Forms.Label();
             this.listeEquipes1 = new projetParis.ListeEquipes();
             this.listeMatchs1 = new projetParis.ListeMatchs();
-            this.listeRegles1 = new projetParis.ListeRegles();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.lancerMatch1 = new projetParis.LancerMatch();
             this.panelTopMenu.SuspendLayout();
             this.panelHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelNavGauche.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTopMenu
@@ -146,6 +161,14 @@ namespace projetParis
             // 
             this.panelNavGauche.BackColor = System.Drawing.Color.White;
             this.panelNavGauche.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelNavGauche.Controls.Add(this.pictureBox10);
+            this.panelNavGauche.Controls.Add(this.pictureBox9);
+            this.panelNavGauche.Controls.Add(this.pictureBox7);
+            this.panelNavGauche.Controls.Add(this.pictureBox6);
+            this.panelNavGauche.Controls.Add(this.buttonLancerMatch);
+            this.panelNavGauche.Controls.Add(this.buttonHistoriquesJetons);
+            this.panelNavGauche.Controls.Add(this.buttonUtilisateurs);
+            this.panelNavGauche.Controls.Add(this.buttonParis);
             this.panelNavGauche.Controls.Add(this.pictureBox5);
             this.panelNavGauche.Controls.Add(this.button1);
             this.panelNavGauche.Controls.Add(this.pictureBox3);
@@ -158,10 +181,99 @@ namespace projetParis
             this.panelNavGauche.Size = new System.Drawing.Size(195, 743);
             this.panelNavGauche.TabIndex = 2;
             // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(12, 351);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 13;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(12, 296);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 12;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(12, 239);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 11;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(12, 181);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 10;
+            this.pictureBox6.TabStop = false;
+            // 
+            // buttonLancerMatch
+            // 
+            this.buttonLancerMatch.BackColor = System.Drawing.Color.Transparent;
+            this.buttonLancerMatch.FlatAppearance.BorderSize = 0;
+            this.buttonLancerMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLancerMatch.Location = new System.Drawing.Point(-1, 342);
+            this.buttonLancerMatch.Name = "buttonLancerMatch";
+            this.buttonLancerMatch.Size = new System.Drawing.Size(195, 51);
+            this.buttonLancerMatch.TabIndex = 9;
+            this.buttonLancerMatch.Text = "Lancer Match";
+            this.buttonLancerMatch.UseVisualStyleBackColor = false;
+            this.buttonLancerMatch.Click += new System.EventHandler(this.buttonLancerMatch_Click);
+            // 
+            // buttonHistoriquesJetons
+            // 
+            this.buttonHistoriquesJetons.BackColor = System.Drawing.Color.Transparent;
+            this.buttonHistoriquesJetons.FlatAppearance.BorderSize = 0;
+            this.buttonHistoriquesJetons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHistoriquesJetons.Location = new System.Drawing.Point(0, 285);
+            this.buttonHistoriquesJetons.Name = "buttonHistoriquesJetons";
+            this.buttonHistoriquesJetons.Size = new System.Drawing.Size(195, 51);
+            this.buttonHistoriquesJetons.TabIndex = 8;
+            this.buttonHistoriquesJetons.Text = "Historiques jetons";
+            this.buttonHistoriquesJetons.UseVisualStyleBackColor = false;
+            // 
+            // buttonUtilisateurs
+            // 
+            this.buttonUtilisateurs.BackColor = System.Drawing.Color.Transparent;
+            this.buttonUtilisateurs.FlatAppearance.BorderSize = 0;
+            this.buttonUtilisateurs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUtilisateurs.Location = new System.Drawing.Point(0, 228);
+            this.buttonUtilisateurs.Name = "buttonUtilisateurs";
+            this.buttonUtilisateurs.Size = new System.Drawing.Size(195, 51);
+            this.buttonUtilisateurs.TabIndex = 7;
+            this.buttonUtilisateurs.Text = "Liste des Utilisateurs";
+            this.buttonUtilisateurs.UseVisualStyleBackColor = false;
+            // 
+            // buttonParis
+            // 
+            this.buttonParis.BackColor = System.Drawing.Color.Transparent;
+            this.buttonParis.FlatAppearance.BorderSize = 0;
+            this.buttonParis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonParis.Location = new System.Drawing.Point(0, 171);
+            this.buttonParis.Name = "buttonParis";
+            this.buttonParis.Size = new System.Drawing.Size(195, 51);
+            this.buttonParis.TabIndex = 6;
+            this.buttonParis.Text = "Liste des Paris";
+            this.buttonParis.UseVisualStyleBackColor = false;
+            // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(12, 104);
+            this.pictureBox5.Location = new System.Drawing.Point(12, 126);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(29, 25);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,7 +286,7 @@ namespace projetParis
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 88);
+            this.button1.Location = new System.Drawing.Point(-1, 114);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 51);
             this.button1.TabIndex = 4;
@@ -185,7 +297,7 @@ namespace projetParis
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(12, 57);
+            this.pictureBox3.Location = new System.Drawing.Point(12, 69);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(29, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -194,6 +306,7 @@ namespace projetParis
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(12, 16);
             this.pictureBox2.Name = "pictureBox2";
@@ -207,7 +320,7 @@ namespace projetParis
             this.buttonMatchs.BackColor = System.Drawing.Color.Transparent;
             this.buttonMatchs.FlatAppearance.BorderSize = 0;
             this.buttonMatchs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMatchs.Location = new System.Drawing.Point(0, 47);
+            this.buttonMatchs.Location = new System.Drawing.Point(0, 57);
             this.buttonMatchs.Name = "buttonMatchs";
             this.buttonMatchs.Size = new System.Drawing.Size(195, 51);
             this.buttonMatchs.TabIndex = 1;
@@ -230,6 +343,7 @@ namespace projetParis
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lancerMatch1);
             this.panel1.Controls.Add(this.listeRegles1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.listeEquipes1);
@@ -239,6 +353,14 @@ namespace projetParis
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(829, 743);
             this.panel1.TabIndex = 3;
+            // 
+            // listeRegles1
+            // 
+            this.listeRegles1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listeRegles1.Location = new System.Drawing.Point(0, 0);
+            this.listeRegles1.Name = "listeRegles1";
+            this.listeRegles1.Size = new System.Drawing.Size(829, 643);
+            this.listeRegles1.TabIndex = 4;
             // 
             // panel2
             // 
@@ -280,13 +402,23 @@ namespace projetParis
             this.listeMatchs1.Size = new System.Drawing.Size(829, 743);
             this.listeMatchs1.TabIndex = 0;
             // 
-            // listeRegles1
+            // pictureBox8
             // 
-            this.listeRegles1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listeRegles1.Location = new System.Drawing.Point(0, 0);
-            this.listeRegles1.Name = "listeRegles1";
-            this.listeRegles1.Size = new System.Drawing.Size(829, 643);
-            this.listeRegles1.TabIndex = 4;
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(31, 314);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 12;
+            this.pictureBox8.TabStop = false;
+            // 
+            // lancerMatch1
+            // 
+            this.lancerMatch1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lancerMatch1.Location = new System.Drawing.Point(0, 0);
+            this.lancerMatch1.Name = "lancerMatch1";
+            this.lancerMatch1.Size = new System.Drawing.Size(829, 643);
+            this.lancerMatch1.TabIndex = 5;
             // 
             // Accueil
             // 
@@ -296,6 +428,7 @@ namespace projetParis
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelNavGauche);
             this.Controls.Add(this.panelTopMenu);
+            this.MaximizeBox = false;
             this.Name = "Accueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accueil";
@@ -308,12 +441,17 @@ namespace projetParis
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelNavGauche.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -340,5 +478,15 @@ namespace projetParis
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Button button1;
         private ListeRegles listeRegles1;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Button buttonLancerMatch;
+        private System.Windows.Forms.Button buttonHistoriquesJetons;
+        private System.Windows.Forms.Button buttonUtilisateurs;
+        private System.Windows.Forms.Button buttonParis;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private LancerMatch lancerMatch1;
     }
 }

@@ -19,6 +19,9 @@
     <Compile Update="InscriptionPage.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="LancerMatch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ListeEquipes.cs">
       <SubType>UserControl</SubType>
     </Compile>

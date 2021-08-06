@@ -100,7 +100,7 @@ namespace projetParis
                 btnSuppr.UseColumnTextForButtonValue = true;
                 this.dataGridViewEquipe.Columns.Add(btnSuppr);
                 this.isFirstAffichage = false;
-            };
+            }
         }
 
         private void F2_updateEventHandler1(object sender , InsertEquipe.UpdateEventArgs args)

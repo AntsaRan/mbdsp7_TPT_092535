@@ -27,6 +27,7 @@ namespace projetParis
 
         private void button2_Click(object sender, EventArgs e)
         {
+            listeMatchs1.loadData();
             listeMatchs1.BringToFront();
         }
 
@@ -54,6 +55,12 @@ namespace projetParis
         private void Accueil_Load(object sender, EventArgs e)
         {
             listeEquipes1.BringToFront();
+        }
+
+        private void buttonLancerMatch_Click(object sender, EventArgs e)
+        {
+            lancerMatch1.loadData();
+            lancerMatch1.BringToFront();
         }
     }
 }
