@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MailerService } from 'src/app/shared/services/mailer.service';
+import { NouveaumdpComponent } from '../nouveaumdp/nouveaumdp.component';
 
 @Component({
   selector: 'app-oublimdp',
@@ -25,13 +26,17 @@ export class OublimdpComponent implements OnInit {
   }
 
   onSubmit($event) {
-    if (this.email = "") {
+    console.log(" OUBLI")
+    if (!this.email) {
       this.error = "Email obligatoire";
     } else {
+      console.log(this.email+ " this aemail")
       this.auth.forgetpass(this.email)
         .subscribe(m => {
+          console.log(m.user.id+" RESULTAT");
           if(m){
-            
+            this.dialog.closeAll();
+            const dialogRef = this.dialog.open(NouveaumdpComponent);
           }
           console.log("ok");
         })
@@ -43,7 +48,7 @@ export class OublimdpComponent implements OnInit {
     const dialogRef = this.dialog.open(InscriptionComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-    });
+    }); 
   }
   //console.log(censorEmail("jack.dawson@gmail.com"));
 }
