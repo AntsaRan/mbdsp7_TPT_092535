@@ -11,7 +11,7 @@
                     </div>
                     <div class="panel-body">
                         <form ngForm #loginform class="form" (submit)="onSubmit($event); loginform.reset();">
-                            <label>Renseignez votre adresse email</label>
+                            <label>Renseignez votre nouveau mot de passe</label>
                             <br>
                             <mat-form-field class="loginfield">
                                 <input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" required
@@ -36,7 +36,7 @@
                             </button>
                             <div *ngIf="error" class="alert">{{error}}</div>
                             <mat-dialog-actions align="start" style="margin-top: 20px;">
-                                <p>Nouveau sur le site?<span> </span><a (click)="openLoginDialog()"> Insrivez vous
+                                <p>Nouveau sur le site?<span> </span><a class="inscrilink" (click)="openSignInDialog()"> Insrivez vous
                                         ici.</a></p>
                             </mat-dialog-actions>
                         </form>
