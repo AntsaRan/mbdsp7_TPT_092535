@@ -9,8 +9,8 @@ import { Match } from '../models/match.model';
 })
 export class EquipeService {
 // LIENS DE CONNEXION NODE : 
-uri = "http://localhost:8010";
-// uri = "https://apinode-mbds.herokuapp.com"
+//uri = "http://localhost:8010";
+ uri = "https://apinode-mbds.herokuapp.com"
 
   constructor(private http: HttpClient) { }
 

@@ -12,11 +12,11 @@ import { MessagingService } from './messaging.service';
 export class AuthService {
   // LIENS DE CONNEXION NODE : 
 
-  uri = "http://localhost:8010/auth";
-  uriPari = "http://localhost:8010/pari";
+  //uri = "http://localhost:8010/auth";
+  //uriPari = "http://localhost:8010/pari";
 
-  //uri = "https://apinode-mbds.herokuapp.com/auth"
-  //uriPari = "https://apinode-mbds.herokuapp.com/pari";
+  uri = "https://apinode-mbds.herokuapp.com/auth"
+  uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
   miseTotale: Number = 0;
   loggedIn: boolean = false;

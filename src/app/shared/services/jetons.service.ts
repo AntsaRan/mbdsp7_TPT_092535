@@ -11,8 +11,8 @@ import { Regles } from '../models/regles.model';
 })
 export class JetonsService {
 // LIENS DE CONNEXION NODE : 
- uri = "http://localhost:8010/jetons";
- // uri="https://apinode-mbds.herokuapp.com/jetons" 
+ //uri = "http://localhost:8010/jetons";
+ uri="https://apinode-mbds.herokuapp.com/jetons" 
  
   constructor(private http: HttpClient) { }
 
