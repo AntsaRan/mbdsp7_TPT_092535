@@ -1,2 +1,2 @@
-# mbdsp7_TPT_092535
+# Comment lancer le projet angular
 TP Transversal 
