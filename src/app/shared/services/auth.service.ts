@@ -13,7 +13,7 @@ export class AuthService {
   // LIENS DE CONNEXION NODE : 
 
   //uri = "http://localhost:8010/auth";
-  //uriPari = "http://localhost:8010/pari";
+  // uriPari = "http://localhost:8010/pari";
 
   uri = "https://apinode-mbds.herokuapp.com/auth"
   uriPari = "https://apinode-mbds.herokuapp.com/pari";
@@ -29,7 +29,7 @@ export class AuthService {
     private http: HttpClient, private router: Router
   ) {
     this.userLoggedIn.next(false);
-  
+
   }
 
 
@@ -50,11 +50,9 @@ export class AuthService {
     return this.http.post<any>(this.uri + "/login", user)
       .pipe(
         map(user => {
-          console.log(JSON.stringify(user)+ " user ");
+          console.log(JSON.stringify(user) + " user ");
           if (user.user != null) {
-            console.log(localStorage.getItem('currentUser') + " localStorage.getItem('currentUser')")
-            this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
-            this.currentUser = this.currentUserSubject.asObservable();       
+
             this.setSession(user);
             this.setUserLoggedIn(true);
             return user.user;
@@ -88,6 +86,9 @@ export class AuthService {
     localStorage.setItem('pseudo', user.user.pseudo);
     localStorage.setItem('user', JSON.stringify(user.user));
     localStorage.setItem('miseTotale', JSON.stringify(this.miseTotale));
+    console.log(localStorage.getItem('currentUser') + " localStorage.getItem('currentUser')")
+    this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
     this.currentUserSubject.next(user.user);
   }
 
