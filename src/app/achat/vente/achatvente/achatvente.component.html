@@ -24,20 +24,6 @@
                         Acheter
                     </button>
                 </div>
-                <div>
-                    <h4>Vente jeton(s)</h4>
-                    <p>Combien de jetons voulez-vous mettre sur le marché?</p>
-                    <form>
-                        <mat-form-field class="loginfield">
-                            <input matInput placeholder="Jetons" type="number" required [(ngModel)]="vjetons"
-                                name="vjetons">
-                        </mat-form-field>Jetons
-                        <div *ngIf="errorvente" class="alert">{{errorvente}}</div>
-                    </form>
-                    <button mat-stroked-button color="primary" class="btn btnlogin">
-                        Valider
-                    </button>
-                </div>
             </mat-card-content>
         </mat-card>
 
