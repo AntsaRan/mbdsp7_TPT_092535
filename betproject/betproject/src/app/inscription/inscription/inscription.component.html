@@ -10,7 +10,7 @@
                         <h3 class="panel-title">Inscription </h3>
                     </div>
                     <div class="panel-body">
-                        <form ngForm #loginform class="form" (submit)="onSubmit($event); loginform.reset();">
+                        <form ngForm #loginform class="form" (submit)="onSubmit($event);">
                             <mat-form-field class="loginfield">
                                 <input matInput placeholder="Nom" required [(ngModel)]="nom" name="nom">
                             </mat-form-field>
