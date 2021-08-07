@@ -11,10 +11,10 @@ import { MessagingService } from './messaging.service';
 })
 export class AuthService {
   // LIENS DE CONNEXION NODE : 
-  
+
   uri = "http://localhost:8010/auth";
   uriPari = "http://localhost:8010/pari";
- 
+
   //uri = "https://apinode-mbds.herokuapp.com/auth"
   //uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
@@ -29,11 +29,10 @@ export class AuthService {
     private http: HttpClient, private router: Router
   ) {
     this.userLoggedIn.next(false);
-    this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+  
   }
 
- 
+
   public get currentUserValue(): Parieur {
     return this.currentUserSubject.value;
   }
@@ -51,7 +50,11 @@ export class AuthService {
     return this.http.post<any>(this.uri + "/login", user)
       .pipe(
         map(user => {
+          console.log(JSON.stringify(user)+ " user ");
           if (user.user != null) {
+            console.log(localStorage.getItem('currentUser') + " localStorage.getItem('currentUser')")
+            this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
+            this.currentUser = this.currentUserSubject.asObservable();       
             this.setSession(user);
             this.setUserLoggedIn(true);
             return user.user;
@@ -111,8 +114,8 @@ export class AuthService {
         catchError(this.handleError<any>('### catchError: login'))
       );
   }
-  resetpass(mdp,id):Observable<any>{
-    return this.http.put(this.uri+"/resetmdp",{mdp,id});
+  resetpass(mdp, id): Observable<any> {
+    return this.http.put(this.uri + "/resetmdp", { mdp, id });
   }
 
   fireauth(iduser: string, token: string) {
@@ -130,8 +133,8 @@ export class AuthService {
         catchError(this.handleError<any>('### catchError: login'))
       );
   }
-  updateUser(user):Observable<any>{
-    return this.http.put<any>(this.uri+"/updateuser",user);
+  updateUser(user): Observable<any> {
+    return this.http.put<any>(this.uri + "/updateuser", user);
   }
 }
 
