@@ -78,9 +78,16 @@ function getMatchRegles(req, res) {
 function getMatchDate(req, res) {
     //console.log(`getmatchsdate`+req.params.date);
     fetch(url + "/matchespardate/" + req.params.date)
-        .then(response => response.json())
+        .then(response => 
+            console.log(JSON.stringify(JSON.parse(response.status))+ "response match par date")
+           )
         .then(data => {
-            res.json(data);
+            if(data){
+                console.log(data + " data match dateo")
+                res.json(data);
+            }else{
+                res.json(null);
+            }
         })
         .catch(err =>
             console.log(err))
