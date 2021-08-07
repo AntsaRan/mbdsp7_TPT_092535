@@ -34,7 +34,7 @@
                             </button>
                             <div *ngIf="error" class="alert">{{error}}</div>
                             <mat-dialog-actions align="start" style="margin-top: 20px;">
-                                <a (click)=" openForgetMdp()"> <p>Mot de passe oublié?</p></a>
+                                <a class="inscrilink" (click)=" openForgetMdp()"> <p>Mot de passe oublié?</p></a>
                                <p>Nouveau sur le site?<span> </span><a (click)="openSigninDialog()"> Insrivez vous ici.</a></p>
                             </mat-dialog-actions>
                         </form>
