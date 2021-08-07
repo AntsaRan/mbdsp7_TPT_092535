@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ParisService {
-
+// LIENS DE CONNEXION NODE : 
   uri = "http://localhost:8010/pari";
   //uri="https://apinode-mbds.herokuapp.com/pari"
 

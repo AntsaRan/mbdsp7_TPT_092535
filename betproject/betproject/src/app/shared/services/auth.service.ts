@@ -10,6 +10,14 @@ import { MessagingService } from './messaging.service';
   providedIn: 'root'
 })
 export class AuthService {
+  // LIENS DE CONNEXION NODE : 
+  
+  uri = "http://localhost:8010/auth";
+  uriPari = "http://localhost:8010/pari";
+ 
+  //uri = "https://apinode-mbds.herokuapp.com/auth"
+  //uriPari = "https://apinode-mbds.herokuapp.com/pari";
+
   miseTotale: Number = 0;
   loggedIn: boolean = false;
   admin = false;
@@ -25,12 +33,7 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  //uri = "http://localhost:8010/auth";
-  //uriPari = "http://localhost:8010/pari";
-
-  uri = "https://apinode-mbds.herokuapp.com/auth"
-  uriPari = "https://apinode-mbds.herokuapp.com/pari";
-
+ 
   public get currentUserValue(): Parieur {
     return this.currentUserSubject.value;
   }
@@ -108,6 +111,9 @@ export class AuthService {
         catchError(this.handleError<any>('### catchError: login'))
       );
   }
+  resetpass(mdp,id):Observable<any>{
+    return this.http.put(this.uri+"/resetmdp",{mdp,id});
+  }
 
   fireauth(iduser: string, token: string) {
     console.log("inscription auth");
@@ -124,6 +130,8 @@ export class AuthService {
         catchError(this.handleError<any>('### catchError: login'))
       );
   }
-
+  updateUser(user):Observable<any>{
+    return this.http.put<any>(this.uri+"/updateuser",user);
+  }
 }
 

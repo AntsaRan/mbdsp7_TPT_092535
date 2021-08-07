@@ -10,10 +10,10 @@ import { Regles } from '../models/regles.model';
   providedIn: 'root'
 })
 export class JetonsService {
-
+// LIENS DE CONNEXION NODE : 
  uri = "http://localhost:8010/jetons";
  // uri="https://apinode-mbds.herokuapp.com/jetons" 
-
+ 
   constructor(private http: HttpClient) { }
 
   achatjeton(id:string,jetons:any): Observable<any> {

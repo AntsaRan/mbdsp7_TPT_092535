@@ -6,8 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MailerService {
-  //uri = "http://localhost:8010/mail";
-   uri="https://apinode-mbds.herokuapp.com/mail" 
+  // LIENS DE CONNEXION NODE : 
+  uri = "http://localhost:8010/mail";
+  // uri="https://apinode-mbds.herokuapp.com/mail" 
+
   constructor(private http: HttpClient) { }
 
   sendmail(message,nom,mail): Observable<any> {
@@ -20,10 +22,9 @@ export class MailerService {
   }
 
   forgetpass(mail):Observable<any>{
-    return this.http.post(this.uri+"/mdp",mail);
+    console.log(mail + " MAIL")
+    return this.http.post(this.uri+"/mdp",{mail});
   }
 
-  resetpass(mail):Observable<any>{
-    return this.http.post(this.uri+"/resetmdp",mail);
-  }
+ 
 }
