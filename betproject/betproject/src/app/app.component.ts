@@ -6,10 +6,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './login/login/login.component';
 import { InscriptionComponent } from './inscription/inscription/inscription.component';
 import { MatchServiceService } from './shared/services/match-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessagingService } from './shared/services/messaging.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Notifs } from './shared/models/notifs';
+import { Subscription } from 'rxjs';
+import { NouveaumdpComponent } from './oublimdp/nouveaumdp/nouveaumdp.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,7 @@ import { Notifs } from './shared/models/notifs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+
   title = 'betproject';
   islogged: boolean = false;
   nomutilisateur: string = "";
@@ -27,12 +29,20 @@ export class AppComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   notif: any[] = [];
+  routeQueryParams: Subscription;
+  userretrievemdp:string="";
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
     public dialog: MatDialog,
-    private router: Router, private mess: MessagingService, private _snackBar: MatSnackBar) {
-
+    private router: Router, private route: ActivatedRoute,
+    private mess: MessagingService, private _snackBar: MatSnackBar) {
+      this.routeQueryParams = route.queryParams.subscribe(params => {
+        if (params['v']) {
+          localStorage.setItem('v',params['v']);
+          this.openDialog();
+        }
+      });
   }
   ngOnInit(): void {
     if (localStorage.getItem('currentUser') != null) {
@@ -45,9 +55,17 @@ export class AppComponent implements OnInit {
         this.nbnotif += 1;
         var msg: any = m;
         this.notif.push(msg.data);
-        console.log(JSON.stringify(msg.data) + " m appcompo 37");
+        console.log(JSON.stringify(msg.data) );
       }
     })
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(NouveaumdpComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+      this.router.navigate(['.'], { relativeTo: this.route });
+    });
   }
   toggleBadgeVisibility() {
     if (this.nbnotif == 0) {
