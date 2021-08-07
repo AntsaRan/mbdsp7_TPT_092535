@@ -15,7 +15,7 @@ export class ProfilComponent implements OnInit {
   loading: boolean = true;
   user: Parieur = new Parieur();
   user2: Parieur = new Parieur();
-  mise: string;
+  mise:Number=0;
   elementType: 'url' | 'canvas' | 'img' = 'url';
   value = null;
   constructor(private auth: AuthService, private router: Router, public dialog: MatDialog) { }
@@ -30,8 +30,12 @@ export class ProfilComponent implements OnInit {
       this.user.nom = this.user2.nom;
       this.auth.getUserMise(this.user2.id)
         .subscribe(mise => {
-          this.mise = mise.toString();
-          localStorage.setItem('miseUser',  this.mise.toString());
+          if(mise){
+            console.log(JSON.stringify(mise)+ ' mise');
+            this.mise = mise;
+            localStorage.setItem('miseUser',  this.mise.toString());
+          }
+
         })
       this.auth.getUserByID(this.user2.id)
       .subscribe(u=>{
