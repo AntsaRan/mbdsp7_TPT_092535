@@ -19,10 +19,19 @@
                             </mat-form-field>
                             <br>
                             <mat-form-field class="loginfield">
-                                <input matInput type="text" placeholder="E mail" required [(ngModel)]="mail" name="mail">
+                                <input matInput type="text" placeholder="Pseudo" required [(ngModel)]="pseudo" name="pseudo">
                             </mat-form-field>
                             <br>
-                            <button mat-stroked-button color="primary" class="boutonsactions" (click)="updateinfo()">
+                            <mat-form-field class="loginfield">
+                                <input matInput type="email" placeholder="E mail" required [(ngModel)]="mail" name="mail">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="loginfield">
+                                <input matInput type="text" placeholder="Date de naissance" required [(ngModel)]="datenaiss" name="datenaiss">
+                            </mat-form-field>
+                            <br>
+                        
+                            <button mat-stroked-button color="primary" class="boutonsactions">
                                 Valider
                             </button>
                             <div *ngIf="error" class="alert">{{error}}</div>
