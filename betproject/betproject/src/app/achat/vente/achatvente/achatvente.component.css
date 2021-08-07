@@ -1,0 +1,46 @@
+.btnlogin{
+    background-color: #4fa5ff;
+    color: white;
+}
+.formachatvente{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+.cardheader{
+    margin-top: 5%!important;
+    margin-bottom: 5%;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+.loginfield{
+    width: 287px;
+}
+.titre{
+    text-align: center;
+    margin:auto;
+}
+
+.content{
+    width: 62%;
+    /* background: aqua; */
+    margin: auto;
+    text-align: center;
+}
+.content2{
+    width: 62%;
+    /* background: aqua; */
+    margin: auto;
+}
+table {
+
+    width: 100%;
+  }
+  .alert{
+      color: red;
+      font-weight: bold;
+  }
+  .titrep{
+      display: inline-block;
+      font-weight: bold;
+  }

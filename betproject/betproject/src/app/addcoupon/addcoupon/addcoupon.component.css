@@ -1,0 +1,26 @@
+.logincontainer{
+    width: 354px;
+    margin: auto;
+}
+
+.logindialog{
+    width: 636px;
+}
+.imglogin{
+width: 50%;
+margin: auto;
+text-align: center;
+}
+
+.btnlogin{
+    background-color: #4fa5ff;
+    color: white;
+    float: right;
+}
+.loginfield{
+    width: 287px;
+}
+.alert{
+    font-weight: bold;
+    color: red;
+}

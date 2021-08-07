@@ -1,0 +1,34 @@
+<div>
+    <div class="accueilContainer row ">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <mat-card>
+                <mat-card-header class="cardheader">
+                    <mat-card-title>Historique Equipe</mat-card-title>
+                    <div>
+                        <form action="">
+                            <input [(ngModel)]="searchvalue" class="searchinput" matInput placeholder="Search..."
+                                name="searchvalue">
+                            <mat-icon id="searchicon" (click)="onSubmitsearch()">search</mat-icon>
+                        </form>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list class="example-card">
+                        <mat-list-item class="itemlist" *ngFor="let equipe of equipes">
+                            <div class="listitemcontent">
+                                <img src="{{equipe.logo}}" alt="logo equipe" width="50" height="50">
+                                <p class="nomequipe">{{equipe.nom}}</p>
+                                <a routerLink="/historiqueequipe/id={{equipe.id}}" class="navlink">
+                                    <button id="detailsbutton" mat-raised-button color="primary">Historique
+                                    </button>
+                                </a>
+                                <mat-divider></mat-divider>
+                            </div>
+                        </mat-list-item>
+                    </mat-list> 
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <app-coupons></app-coupons>
+    </div>
+</div>

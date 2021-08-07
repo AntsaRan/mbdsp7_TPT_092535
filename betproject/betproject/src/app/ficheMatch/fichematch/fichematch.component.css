@@ -1,0 +1,78 @@
+.cardheader{
+    justify-content: center;
+}
+.logoequipe{
+    text-align: center;
+}
+.detailsmatch{
+    padding: 35px;
+    text-align: center;
+}
+.labelmatch{
+    text-align: center;
+}
+.scorematch{
+    text-align: center;
+}
+.regletab{
+    width: 86%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.titletype{
+    padding: 12px;
+    background: #ffc100;
+    border-radius: 10px;
+}
+
+.nomregle{
+    text-align: center;
+    padding: 16px;
+    margin: 0;
+}
+.ligneregles{
+    border-color: rgb(112, 112, 112);
+    border-right-style: solid;
+    border-width: 2px;
+    border-left-style: solid;
+}
+.titleregle{
+    border: 2px solid  rgb(112, 112, 112);
+    width: 99%;
+    margin: auto;
+}
+.listregles{
+    margin-top: 40px;
+}
+.caseregle:hover{
+    background-color: rgb(214, 214, 214);
+}
+.btnregle{
+    background: white;
+    width: 100%;
+    border: none;
+}
+
+.disabled{
+    background-color: rgb(94, 209, 155);
+    cursor:not-allowed;
+    width: 100%;
+    border: none;
+}
+.enabled{
+    background: white;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+
+}
+@media screen and (max-width: 767px) {
+    .ligneregles{
+        border-color: rgb(112, 112, 112);
+        border-top-style: solid;
+        border-width: 2px;
+        border-bottom-style: solid;
+        border-right-style: none;
+        border-left-style: none;
+    }
+  }

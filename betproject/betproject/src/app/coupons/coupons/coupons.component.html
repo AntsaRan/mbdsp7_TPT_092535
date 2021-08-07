@@ -1,0 +1,43 @@
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+  <mat-card>
+    <mat-card-header class="cardheader">
+      <mat-card-title>Coupons</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list class="">
+        <mat-list-item class="couponitem" *ngFor="let coupon of couponslist">
+          <div class="row couponrow">
+            <div class="col-lg-6 col-lg-6 col-lg-6">
+              <p class="regledef">{{coupon.regle.regle.definition}}</p>
+              <p class="match">{{coupon.match.equipe1.nom}} VS {{coupon.match.equipe2.nom}}</p>
+            </div>
+            <div class="col-lg-5 col-lg-5 col-lg-5">
+              <p>{{coupon.regle.cote}}</p>
+              <p class="mise">Mise : {{coupon.mise}} Jetons</p>
+              <span>
+                <mat-icon class="editicon" (click)="opencouponform(coupon)">edit</mat-icon>
+              </span>
+              <p class="regledef">Gain possible Jetons : {{coupon.mise * coupon.regle.cote}} Jetons</p>
+            </div>
+            <div class="col-lg-1 col-lg-1 col-lg-1">
+                <mat-icon class="clear" (click)="remove(coupon)">clear</mat-icon>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+        <div class="couponrow">
+          <p class="gaintotal">Gains possible: {{gain}} Ar</p>
+        </div>
+      </mat-list>
+
+    </mat-card-content>
+    <mat-card-actions class="centeredcardaction">
+
+      <a class="navlink">
+        <button id="detailsbutton" mat-raised-button color="primary" (click)="parier()">
+          Parier
+        </button>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

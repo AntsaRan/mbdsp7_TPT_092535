@@ -1,0 +1,97 @@
+.map-container {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
+  width: 98%;
+  margin: auto;
+}
+
+.map-frame {
+  border: 2px solid rgb(255 193 0);
+  height: 100%;
+  box-shadow: 4px 12px 12px#0000002b;  
+    padding: 0;
+}
+
+#map {
+  height: 100%;
+}
+.contact{
+  font-weight: bold;
+  margin-left: 1%;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-size: 42px;
+  margin-top: 2%;
+}
+/* FORM */
+
+.logincontainer{
+  width: 354px;
+  margin: auto;
+  position: relative;
+}
+
+.logindialog{
+  width: 636px;
+}
+.imglogin{
+width: 50%;
+margin: auto;
+text-align: center;
+}
+
+.btnlogin{
+  background-color: #4fa5ff;
+  color: white;
+ 
+}
+.loginfield{
+  width: 287px;
+  margin-right: 5%;
+
+}
+.alert{
+  color: red;
+  font-weight: bold;
+}
+.spinner{
+  position: absolute;
+  background: #92929259;
+  width: 586px;
+  height: 437px;
+  z-index: 5;
+}
+.panel-body{
+  display: inline-block;
+}
+.contact{
+  width: 85%;
+  margin: auto;
+}
+.textzone{
+  width: 90%;
+  overflow: auto;
+  height: 100px;
+}
+form{
+  padding: 10px;
+}
+.contactinput{
+  width: 80%;
+  margin-bottom: 2%;
+}
+.messagarea{
+  height: 200px;
+  width: 80%;
+}
+.contact-panel{
+  width: 90%;
+  margin: auto;
+}
+.panel-heading{
+  background-color:#ffc100!important;
+}
