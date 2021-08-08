@@ -68,6 +68,34 @@ function sign(req, res) {
             res.status(500).send({ msg:" error"});
         }
     });
+}
+function updateuser(req, res) {
+    var parieur = req.body;
+    console.log(req.body.nom + " parieur");
+    const options = {
+        url: url + '/updateUser/'+parieur.id,
+        json: true,
+        body: {
+            nom: parieur.nom,
+            prenom: parieur.prenom,
+            dateNaissance:parieur.dateNaissance,
+            pseudo: parieur.pseudo,
+            pwd: parieur.pwd,
+            jetons: parieur.jetons,
+            mail:parieur.mail
+         }
+
+    }
+    request.put(options, (err, response, body) => {
+        if (err) {
+            return console.log(err);
+        }else if(body){
+            console.log(JSON.stringify(body))
+            res.status(200).send({msg: body});
+        }else{
+            res.status(500).send({ msg:" error"});
+        }
+    });
 } 
 function fireauth(req, res) {
 
@@ -103,4 +131,4 @@ function getUserByID(req, res) {
         .catch(err =>
             console.log(err))
 }
-module.exports = { loginUser,sign ,fireauth,getUserByID};
+module.exports = { loginUser,sign ,fireauth,getUserByID,updateuser};
