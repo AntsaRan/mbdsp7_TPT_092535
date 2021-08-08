@@ -10,6 +10,7 @@
                     <div class="">
                         <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
                     </div>
+                    <p>{{nodata}}</p>
                     <mat-list class="example-card">
                         <mat-list-item class="itemlist">
                             <div class="listitemcontent row">
@@ -17,7 +18,7 @@
                                     <p class="colonne">N°</p>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2">
-                                    <p class="colonne">Mise ( € )</p>
+                                    <p class="colonne">Mise </p>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                     <p class="colonne">Date</p>
@@ -56,10 +57,6 @@
 
                     </mat-list>
                 </mat-card-content>
-                <mat-card-actions class="centeredcardaction">
-                    <a href="#" class="navlink"><button id="detailsbutton" mat-raised-button color="primary">Voir
-                            plus</button></a>
-                </mat-card-actions>
             </mat-card>
 
         </div>

@@ -30,7 +30,7 @@ export class MesparisComponent implements OnInit {
     let regle:string;
     this.parisserv.getPariByIdUser(id)
       .subscribe(data => {
-        if (data) {
+        if (data!=null) {
           this.rearrangeDates(data);
           data.forEach(pari => {
             this.matchserv.getRegleById(pari.matchRegle)
@@ -53,12 +53,13 @@ export class MesparisComponent implements OnInit {
          
                   this.paris.push(parimatch);
                 }
-
               })
           })
+          this.rearrangeDatesPM(this.paris);
           this.loading=false;
         } else {
           console.log("no daataaaa");
+          this.loading=false;
           this.nodata = "No data";
         }
 
@@ -69,6 +70,11 @@ export class MesparisComponent implements OnInit {
   rearrangeDates(m: Pari[]) {
     m.sort((a: Pari, b: Pari) => {
       return new Date(a.dateParis).getTime() - new Date(b.dateParis).getTime();
+    });
+  }
+  rearrangeDatesPM(m: Parismatch[]) {
+    m.sort((a: Parismatch, b: Parismatch) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
   }
 }
