@@ -8,9 +8,9 @@ import { Pari } from '../models/pari.model';
 })
 export class CartService {
   private _items:  Coupon[] = [];
-
+  
   constructor() {
-    this._items = JSON.parse(localStorage.getItem('items') ||'[]'); // get the data at lunch 
+    this._items = JSON.parse(localStorage.getItem('items') ||'[]'); // get the data at launch 
   }
 
   remove(pari) {
