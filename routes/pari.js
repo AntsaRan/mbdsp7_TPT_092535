@@ -17,47 +17,53 @@ function insertpari(req, res) {
         url: url + '/insertPari',
         json: true,
         body: {
-            idUtilisateur:  pari.idparieur,
+            idUtilisateur: pari.idparieur,
             idMatch: pari.idMatch,
-            matchRegle:pari.idTypeRegle,
-            mise:pari.mise
+            matchRegle: pari.idTypeRegle,
+            mise: pari.mise
         }
     };
     request.post(options, (err, response, body) => {
-       // console.log("InsertPARI request");
-       if (err) {
-           // console.log("err");
+        // console.log("InsertPARI request");
+        if (err) {
+            // console.log("err");
             return console.log(err);
         }
         //    console.log(`Status: ${response.statusCode}`);
-            res.status(200).send({ insert:"ok" });
-        
+        res.status(200).send({ insert: "ok" });
+
     });
- 
-} 
+
+}
 
 function getParisByUSer(req, res) {
- //   console.log(`getparisuser`+req.params.id);
-    fetch(url + "/getAllParisbyUser/"+req.params.id)
-        .then(response =>response.json())
+    //   console.log(`getparisuser`+req.params.id);
+    fetch(url + "/getAllParisbyUser/" + req.params.id)
+        .then(response => console.log(JSON.stringify(JSON.parse(response.status))+ " response getParisByUSer"))
         .then(data => {
-          //  console.log(JSON.stringify(data) + " DATA by date")
-            res.json(data);
+            if (data != undefined && data != null) {
+                res.json(data);
+            }
+
         })
         .catch(err =>
             console.log(err))
 }
 
 function getAllMise(req, res) {
-    console.log(`getAllMise `+req.params.id);
-    fetch(url + "/getAllMise/"+req.params.id)
-        .then(response =>response.json())
+    console.log(`getAllMise ` + req.params.id);
+    fetch(url + "/getAllMise/" + req.params.id)
+        .then(response =>  console.log(JSON.stringify(JSON.parse(response.status))+ " response getAllMisee"))
         .then(data => {
-        // console.log(JSON.stringify(data) + " MISE")
-            res.json(data);
+            console.log(data + " MISE")
+            if (data != undefined && data != null) {
+                res.json(data);
+            } else {
+                res.json(null);
+            }
         })
         .catch(err =>
             console.log(err))
 }
 
-module.exports = { insertpari,getParisByUSer,getAllMise};
+module.exports = { insertpari, getParisByUSer, getAllMise };
