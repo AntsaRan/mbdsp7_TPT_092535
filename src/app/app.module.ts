@@ -61,6 +61,9 @@ import { Const} from './shared/const/const';
 import { MapsComponent } from './maps/maps/maps.component';
 import { OublimdpComponent } from './oublimdp/oublimdp/oublimdp.component';
 import { NouveaumdpComponent } from './oublimdp/nouveaumdp/nouveaumdp.component';
+import { AuthInterceptor } from './shared/interceptor/AuthInterceptor';
+import { TransactionsComponent } from './transactions/transactions/transactions.component';
+import { CheckmiseComponent } from './coupons/checkjetons/checkmise/checkmise.component';
 
 const routes: Routes = [
   {
@@ -121,6 +124,11 @@ const routes: Routes = [
   {
     path: "maps",
     component: MapsComponent,
+  },
+  {
+    path:"transactions",
+    component:TransactionsComponent,
+    canActivate: [AuthGuard]
   }
 
 ]
@@ -147,7 +155,9 @@ const routes: Routes = [
     JeuComponent,
     MapsComponent,
     OublimdpComponent,
-    NouveaumdpComponent
+    NouveaumdpComponent,
+    TransactionsComponent,
+    CheckmiseComponent
   ],
   imports: [
     BrowserModule, MatMenuModule,
@@ -170,6 +180,7 @@ const routes: Routes = [
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     DatePipe, MatNativeDateModule, Keepalive, BsModalService, ComponentLoaderFactory,
     PositioningService,AngularFireMessagingModule,MessagingService
   ],
