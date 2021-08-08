@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
         next: HttpHandler): Observable<HttpEvent<any>> {
 
         const idToken = localStorage.getItem("currentToken");
-        console.log(idToken + " AuthInterceptor");
+       // console.log(idToken + " AuthInterceptor");
         if (idToken) {
             const cloned = req.clone({
                 headers: req.headers.set('x-access-token', idToken)
