@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class MailerService {
   // LIENS DE CONNEXION NODE : 
- // uri = "http://localhost:8010/mail";
-  uri="https://apinode-mbds.herokuapp.com/mail" 
+ //uri = "http://localhost:8010/mail";
+   uri="https://apinode-mbds.herokuapp.com/mail" 
 
   constructor(private http: HttpClient) { }
 

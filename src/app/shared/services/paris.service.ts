@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ParisService {
-// LIENS DE CONNEXION NODE : 
+  // LIENS DE CONNEXION NODE : 
   //uri = "http://localhost:8010/pari";
-  uri="https://apinode-mbds.herokuapp.com/pari"
+  uri = "https://apinode-mbds.herokuapp.com/pari"
 
   constructor(private http: HttpClient) { }
 
@@ -22,4 +22,4 @@ export class ParisService {
   getPariByIdUser(id): Observable<Pari[]> {
     return this.http.get<Pari[]>(this.uri + "/getparisuser/" + id);
   }
-} 
+}

@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class MatchServiceService {
   // LIENS DE CONNEXION NODE : 
-  //uri = "http://localhost:8010";
+ // uri = "http://localhost:8010";
   uri="https://apinode-mbds.herokuapp.com"
 
   constructor(private http: HttpClient) { }
