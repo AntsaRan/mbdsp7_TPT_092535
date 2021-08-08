@@ -13,7 +13,7 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 })
 export class CalendrierComponent implements OnInit {
   match: Match[] = [];
-  loading: boolean = true;
+  loading: boolean = false;
   date: Date = null;
   datereceived: Date = null;
   nodata:String;
@@ -29,10 +29,12 @@ export class CalendrierComponent implements OnInit {
   }
   getMatchByDate() {
     console.log("Getmatchbydate cal "+ this.date.toISOString())
+    this.loading=true;
     this.match=[];
     this.matchserv.getMatchByDate(this.date.toISOString())
       .subscribe(matches => {
         if(matches){
+          console.log(matches + " matches date")
           matches.forEach(match => {
             console.log(match.date + " getby date")
             this.match.push(match);
