@@ -78,14 +78,15 @@ function getMatchRegles(req, res) {
 function getMatchDate(req, res) {
     //console.log(`getmatchsdate`+req.params.date);
     fetch(url + "/matchespardate/" + req.params.date)
-        .then(response => 
-            console.log(JSON.stringify(JSON.parse(response.status))+ "response match par date")
-           )
+        .then(response =>
+            console.log(JSON.stringify(JSON.parse(response.status)) + "response match par date")
+        )
         .then(data => {
-            if(data){
+            if (data) {
                 console.log(data + " data match dateo")
                 res.json(data);
-            }else{
+            } else {
+                console.log(" NO DATA");
                 res.json(null);
             }
         })
@@ -100,16 +101,16 @@ function top5matchs(req, res) {
             response.json())
         .then(data => {
             console.log("data top5" + JSON.stringify(data[1]));
-            if(data[0]!=null){
+            if (data[0] != null) {
                 res.json(data);
-            }else{
+            } else {
                 res.json(response.status);
             }
 
         })
         .catch(err =>
-            console.log(err+ " errr "));
-            console.war
+            console.log(err + " errr "));
+    console.war
 }
 
 

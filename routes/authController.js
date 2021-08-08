@@ -4,6 +4,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+var VerifyToken = require('./verifyToken');
 
 let auth = require('./auth')
 
@@ -24,7 +25,6 @@ router.post('/firetoken', function (req, res) {
   auth.fireauth(req, res);
 });
 
-router.get('/user/:id', function (req, res) {
-  auth.getUserByID(req, res);
-});
+router.route('/user/:id')
+.get( function (req, res) {auth.getUserByID(req, res)})
 module.exports = router;

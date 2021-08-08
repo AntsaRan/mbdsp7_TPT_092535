@@ -33,6 +33,23 @@ function achatjetons(req, res) {
     });
 }
 
+function histojetons(req,res){
+  //  http://grails-api.herokuapp.com/oracle/getHistoByUser/51
+console.log("historique jetons");
+  var id =req.params.id;
+console.log(id + ' Id histo')
+    request.get(url+"/getHistoByUser/"+id, (err, response, body) => {
+        if (err) {
+            return console.log(err);
+        } else if (body) {
+            console.log(body + " HISTORIQUE JETONS")
+            res.status(200).send(body);
+        } else {
+            res.status(500).send({ msg: " error" });
+        }
+    });
+}
+
 function sign(req, res) {
     var parieur = req.body.parieur;
     //console.log(req.body.date + " parieur");
@@ -143,4 +160,4 @@ function top5matchs(req, res) {
 
 
 
-module.exports = { top5matchs, getregleId, achatjetons, getMatchbyId, getMatchEquipe, getMatchRegles, getMatchDate };
+module.exports = {histojetons, top5matchs, getregleId, achatjetons, getMatchbyId, getMatchEquipe, getMatchRegles, getMatchDate };

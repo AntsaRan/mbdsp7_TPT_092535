@@ -27,12 +27,12 @@ function loginUser(req, res) {
     request.post(options, (err, response, body) => {
         if (err) {
             return console.log(err);
-        }else if(body!="undefined"){
-         //   console.log(JSON.stringify(body) + "body nisy");
+        }else if(body!=undefined){
+           console.log(JSON.stringify(body) + "body nisy");
             const token = jwt.sign({ id: body.id }, config.token, {
                 expiresIn: 3600 // expires in 24 hours
             });
-            res.status(200).send({ auth: true, user: body, token: token });
+            res.status(200).send({ auth: true, user: body, token: token ,expiresIn:3600});
         }else{
             res.status(200).send({ auth: false, user: null, token: null });
 

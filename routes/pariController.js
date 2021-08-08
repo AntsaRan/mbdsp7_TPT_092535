@@ -4,6 +4,8 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+var VerifyToken = require('./verifyToken');
+
 let pari = require('./pari')
 
   router.post('/insertpari', function(req, res) {
@@ -15,9 +17,7 @@ let pari = require('./pari')
    // console.log( " tody e ");
     pari.getParisByUSer(req,res);
   })
-  router.get('/getAllMise/:id',function(req,res){
-  //  console.log( " tody e ");
-    pari.getAllMise(req,res);
-  })
+  router.route('/getAllMise/:id')
+  .get(function (req, res) {pari.getAllMise(req,res)})
 
   module.exports = router;

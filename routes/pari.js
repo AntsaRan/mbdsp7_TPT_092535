@@ -23,8 +23,9 @@ function insertpari(req, res) {
             mise: pari.mise
         }
     };
+
     request.post(options, (err, response, body) => {
-        // console.log("InsertPARI request");
+        console.log("InsertPARI request");
         if (err) {
             // console.log("err");
             return console.log(err);
@@ -38,32 +39,36 @@ function insertpari(req, res) {
 
 function getParisByUSer(req, res) {
     //   console.log(`getparisuser`+req.params.id);
-    fetch(url + "/getAllParisbyUser/" + req.params.id)
-        .then(response => console.log(JSON.stringify(JSON.parse(response.status))+ " response getParisByUSer"))
-        .then(data => {
-            if (data != undefined && data != null) {
-                res.json(data);
+    request.get(url + "/getAllParisbyUser/" + req.params.id, (err, response, body) => {
+        // console.log("InsertPARI request");
+        if (err) {
+            // console.log("err");
+            return console.log(err);
+        } else {
+            if (body != undefined && body != null) {
+                res.status(200).send(body);
+            } else {
+                res.status(204).send(null);
             }
-
-        })
-        .catch(err =>
-            console.log(err))
+        }
+    });
 }
 
 function getAllMise(req, res) {
-    console.log(`getAllMise ` + req.params.id);
-    fetch(url + "/getAllMise/" + req.params.id)
-        .then(response =>  console.log(JSON.stringify(JSON.parse(response.status))+ " response getAllMisee"))
-        .then(data => {
-            console.log(data + " MISE")
-            if (data != undefined && data != null) {
-                res.json(data);
+    console.log(url + "/getAllMise/" + req.params.id);
+    request.get(url + "/getAllMise/" + req.params.id, (err, response, body) => {
+        // console.log("InsertPARI request");
+        if (err) {
+            // console.log("err");
+            return console.log(err);
+        } else {
+            if (body) {
+                res.status(200).send(body);
             } else {
-                res.json(null);
+                res.status(204).send(null);
             }
-        })
-        .catch(err =>
-            console.log(err))
+        }
+    });
 }
 
 module.exports = { insertpari, getParisByUSer, getAllMise };
