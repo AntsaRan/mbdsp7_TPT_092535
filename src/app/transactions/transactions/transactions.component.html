@@ -1,0 +1,58 @@
+<div>
+    <div class="accueilContainer row ">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <mat-card>
+                <mat-card-header class="cardheader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Mes transactions</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="">
+                        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                    </div>
+                    <p>{{nodata}}</p>
+                    <mat-list class="example-card">
+                        <mat-list-item class="itemlist">
+                            <div class="listitemcontent row">
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p class="colonne">N°</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p class="colonne">Date</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p class="colonne">Montant</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p class="colonne">Type</p>
+                                </div>
+    
+                            </div>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
+                        <mat-list-item class="itemlist" *ngFor="let t of transactions">
+                            <div class="listitemcontent row">
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p>{{t.id}}</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p>{{t.dateTransaction}}</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p>{{t.montant}}</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <p>{{t.idTransaction}}</p>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
+
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+        <app-coupons></app-coupons>
+    </div>
+</div>
