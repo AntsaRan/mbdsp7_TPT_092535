@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarokComponent } from '../snackbarok/snackbarok.component';
 import { Const } from 'src/app/shared/const/const';
 import { LoginComponent } from 'src/app/login/login/login.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { CheckmiseComponent } from '../checkjetons/checkmise/checkmise.component';
 @Component({
   selector: 'app-coupons',
   templateUrl: './coupons.component.html',
@@ -27,11 +29,11 @@ export class CouponsComponent implements OnInit {
   paris: Pari[] = [];
   durationInSeconds = 2;
   prixjeton: any;
-
+  peutparier: boolean = false;
   //gain:number=0;
 
-  constructor(private router: Router,private datePipe: DatePipe, private cartserv: CartService, private route: ActivatedRoute, public dialog: MatDialog,
-    private parisserv: ParisService, private _snackBar: MatSnackBar) {
+  constructor(private router: Router, private datePipe: DatePipe, private cartserv: CartService, private route: ActivatedRoute, public dialog: MatDialog,
+    private parisserv: ParisService, private _snackBar: MatSnackBar, private auth: AuthService) {
     this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
 
   }
@@ -60,32 +62,52 @@ export class CouponsComponent implements OnInit {
       }
     });
   }
+
+  checkuserjetons(id, mise: Number): Number {
+    let jetons;
+
+    return jetons
+  }
+
   parier() {
     if (localStorage.getItem('currentUser')) {
+      let id = localStorage.getItem('currentUser');
       this.coupons = this.cartserv.items;
       this.coupons.forEach(coupon => {
         let pari: Pari = new Pari();
-        console.log(coupon.mise + "  coupon.mise")
-        console.log(coupon.idmatch + "  coupon.idmatch")
         pari.matchRegle = coupon.idTypeRegle;
         pari.idMatch = coupon.idmatch;
-        pari.idparieur = localStorage.getItem('currentUser');
+        pari.idparieur = id;
         pari.mise = coupon.mise;
         console.log(pari.mise + "  pari.mise")
-        this.parisserv.insertparis(pari)
-          .subscribe(data => {
-            if (data.insert = "ok") {
-              this.openSnackBar();
-              this.cartserv.remove(coupon);
+        this.auth.getUserByID(id)
+          .subscribe(u => {
+            if (u.jetons >= coupon.mise) {
+              console.log(" inserer pari ok ")
+              this.parisserv.insertparis(pari)
+                .subscribe(data => {
+                  if (data.insert = "ok") {
+                    this.openSnackBar();
+                    this.cartserv.remove(coupon);
+                  }
+                })
+            } else {
+              this.openSnackBarerror();
             }
           })
+
       })
-    }else{
+    } else {
       this.openLoginDialog();
     }
   }
   openSnackBar() {
     this._snackBar.openFromComponent(SnackbarokComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+  openSnackBarerror() {
+    this._snackBar.openFromComponent(CheckmiseComponent, {
       duration: this.durationInSeconds * 1000,
     });
   }
