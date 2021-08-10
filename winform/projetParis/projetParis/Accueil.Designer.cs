@@ -53,13 +53,16 @@ namespace projetParis
             this.buttonMatchs = new System.Windows.Forms.Button();
             this.buttonEquipes = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listePari1 = new projetParis.ListePari();
+            this.listeUtilisateur1 = new projetParis.ListeUtilisateur();
+            this.lancerMatch1 = new projetParis.LancerMatch();
             this.listeRegles1 = new projetParis.ListeRegles();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFooter = new System.Windows.Forms.Label();
             this.listeEquipes1 = new projetParis.ListeEquipes();
             this.listeMatchs1 = new projetParis.ListeMatchs();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.lancerMatch1 = new projetParis.LancerMatch();
+            this.historiqueUser1 = new projetParis.HistoriqueUser();
             this.panelTopMenu.SuspendLayout();
             this.panelHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -245,6 +248,7 @@ namespace projetParis
             this.buttonHistoriquesJetons.TabIndex = 8;
             this.buttonHistoriquesJetons.Text = "Historiques jetons";
             this.buttonHistoriquesJetons.UseVisualStyleBackColor = false;
+            this.buttonHistoriquesJetons.Click += new System.EventHandler(this.buttonHistoriquesJetons_Click);
             // 
             // buttonUtilisateurs
             // 
@@ -257,6 +261,7 @@ namespace projetParis
             this.buttonUtilisateurs.TabIndex = 7;
             this.buttonUtilisateurs.Text = "Liste des Utilisateurs";
             this.buttonUtilisateurs.UseVisualStyleBackColor = false;
+            this.buttonUtilisateurs.Click += new System.EventHandler(this.buttonUtilisateurs_Click);
             // 
             // buttonParis
             // 
@@ -269,6 +274,7 @@ namespace projetParis
             this.buttonParis.TabIndex = 6;
             this.buttonParis.Text = "Liste des Paris";
             this.buttonParis.UseVisualStyleBackColor = false;
+            this.buttonParis.Click += new System.EventHandler(this.buttonParis_Click);
             // 
             // pictureBox5
             // 
@@ -343,6 +349,9 @@ namespace projetParis
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.historiqueUser1);
+            this.panel1.Controls.Add(this.listePari1);
+            this.panel1.Controls.Add(this.listeUtilisateur1);
             this.panel1.Controls.Add(this.lancerMatch1);
             this.panel1.Controls.Add(this.listeRegles1);
             this.panel1.Controls.Add(this.panel2);
@@ -353,6 +362,30 @@ namespace projetParis
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(829, 743);
             this.panel1.TabIndex = 3;
+            // 
+            // listePari1
+            // 
+            this.listePari1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listePari1.Location = new System.Drawing.Point(0, 0);
+            this.listePari1.Name = "listePari1";
+            this.listePari1.Size = new System.Drawing.Size(829, 643);
+            this.listePari1.TabIndex = 4;
+            // 
+            // listeUtilisateur1
+            // 
+            this.listeUtilisateur1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listeUtilisateur1.Location = new System.Drawing.Point(0, 0);
+            this.listeUtilisateur1.Name = "listeUtilisateur1";
+            this.listeUtilisateur1.Size = new System.Drawing.Size(829, 643);
+            this.listeUtilisateur1.TabIndex = 6;
+            // 
+            // lancerMatch1
+            // 
+            this.lancerMatch1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lancerMatch1.Location = new System.Drawing.Point(0, 0);
+            this.lancerMatch1.Name = "lancerMatch1";
+            this.lancerMatch1.Size = new System.Drawing.Size(829, 643);
+            this.lancerMatch1.TabIndex = 5;
             // 
             // listeRegles1
             // 
@@ -412,13 +445,13 @@ namespace projetParis
             this.pictureBox8.TabIndex = 12;
             this.pictureBox8.TabStop = false;
             // 
-            // lancerMatch1
+            // historiqueUser1
             // 
-            this.lancerMatch1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lancerMatch1.Location = new System.Drawing.Point(0, 0);
-            this.lancerMatch1.Name = "lancerMatch1";
-            this.lancerMatch1.Size = new System.Drawing.Size(829, 643);
-            this.lancerMatch1.TabIndex = 5;
+            this.historiqueUser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.historiqueUser1.Location = new System.Drawing.Point(0, 0);
+            this.historiqueUser1.Name = "historiqueUser1";
+            this.historiqueUser1.Size = new System.Drawing.Size(829, 643);
+            this.historiqueUser1.TabIndex = 7;
             // 
             // Accueil
             // 
@@ -488,5 +521,8 @@ namespace projetParis
         private System.Windows.Forms.Button buttonParis;
         private System.Windows.Forms.PictureBox pictureBox8;
         private LancerMatch lancerMatch1;
+        private ListeUtilisateur listeUtilisateur1;
+        private ListePari listePari1;
+        private HistoriqueUser historiqueUser1;
     }
 }

@@ -16,6 +16,9 @@
     <Compile Update="Formulaires\updateEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="HistoriqueUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="InscriptionPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -28,7 +31,13 @@
     <Compile Update="ListeMatchs.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ListePari.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ListeRegles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ListeUtilisateur.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

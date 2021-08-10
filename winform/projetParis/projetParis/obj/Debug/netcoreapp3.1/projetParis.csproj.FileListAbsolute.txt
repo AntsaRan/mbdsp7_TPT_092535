@@ -34,4 +34,7 @@ E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Deb
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.dll
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.pdb
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.genruntimeconfig.cache
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.ListeUtilisateur.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.HistoriqueUser.resources
+E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.ListePari.resources
 E:\Bossy\M2\TPTProject\mbdsp7_TPT_092535\winform\projetParis\projetParis\obj\Debug\netcoreapp3.1\projetParis.csprojAssemblyReference.cache

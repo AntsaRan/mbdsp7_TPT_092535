@@ -62,5 +62,22 @@ namespace projetParis
             lancerMatch1.loadData();
             lancerMatch1.BringToFront();
         }
+
+        private void buttonUtilisateurs_Click(object sender, EventArgs e)
+        {
+            listeUtilisateur1.loadData();
+            listeUtilisateur1.BringToFront();
+        }
+
+        private void buttonParis_Click(object sender, EventArgs e)
+        {
+            listePari1.loadData();
+            listePari1.BringToFront();
+        }
+
+        private void buttonHistoriquesJetons_Click(object sender, EventArgs e)
+        {
+            historiqueUser1.BringToFront();
+        }
     }
 }
