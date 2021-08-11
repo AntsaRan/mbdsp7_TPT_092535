@@ -13,6 +13,8 @@ let pari = require('./routes/pari');
 let equipe = require('./routes/equipe');
 let jetonsController = require('./routes/jetonsController')
 let mailController= require('./routes/mailController.js')
+let pointcontroller= require('./routes/pointsController.js')
+
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -25,7 +27,7 @@ app.use('/auth', AuthController);
 app.use('/pari', pariController);
 app.use('/jetons',jetonsController);
 app.use('/mail',mailController);
-
+app.use('/point',pointcontroller);
 
 app.route('/getAllMatches')
 .get(match.getMatchs);
