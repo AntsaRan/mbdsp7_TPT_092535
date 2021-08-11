@@ -1,9 +1,16 @@
 package com.tpt.api_mbds.Controller;
 
 import com.tpt.api_mbds.model.Connexion;
+import com.tpt.api_mbds.model.Jeton;
 import com.tpt.api_mbds.model.Utilisateur;
+import com.tpt.api_mbds.repository.JetonRepository;
 import oracle.jdbc.OracleConnection;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.MessageDigest;
 import java.sql.ResultSet;
@@ -11,14 +18,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
+import java.util.*;
+@CrossOrigin(origins = "http://localhost:8081")
+@RestController
+@RequestMapping("/api")
 public class UserController {
+
+
+    JetonRepository jetonRepository;
+    @Autowired
+    public UserController(JetonRepository jetonRepository) {
+        this.jetonRepository = jetonRepository;
+        this.jetonRepository.findAll();
+    }
 
     public UserController() {
     }
+
+    JetonController jetonController=new JetonController();
 
     public static String sha256(final String base) {
         try{
@@ -56,6 +73,7 @@ public class UserController {
                 val.setPwd(resultSet.getString(6));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
+                val.setSolde(resultSet.getDouble(9));
                 list.add(val);
             }
         }
@@ -85,6 +103,7 @@ public class UserController {
                 //val.setPwd(resultSet.getString(6));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
+                val.setSolde(resultSet.getDouble(9));
             }
         }
         catch (Exception e){
@@ -116,6 +135,7 @@ public class UserController {
                 //val.setPwd(resultSet.getString(6));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
+                val.setSolde(resultSet.getDouble(9));
             }
         }
         catch (Exception e){
@@ -145,7 +165,7 @@ public class UserController {
             String strDate= formatter.format(user.getDateNaissance()).toString();
             //System.out.println("Date strDate "+strDate);
             //String requete2 ="insert into PARI columns(columns.idutilisateur, columns.idmatch,columns.matchregle,columns.mise,columns.datepari)values ('"+pari.getIdUtilisateur()+"','"+pari.getIdMatch()+"','"+pari.getMatchRegle()+"',"+pari.getMise()+",'"+strDate+"')";
-            String requete ="insert into UTILISATEUR columns(columns.nom, columns.prenom,columns.datenaissance,columns.pseudo,columns.pwd, columns.jetons,columns.mail) values ('"+user.getNom()+"','"+user.getPrenom()+"',to_date('"+strDate+"','dd-MM-yyyy','NLS_DATE_LANGUAGE = American'),'"+user.getPseudo()+"','"+passwordHash+"',0,'"+user.getMail()+"')";
+            String requete ="insert into UTILISATEUR columns(columns.nom, columns.prenom,columns.datenaissance,columns.pseudo,columns.pwd, columns.jetons,columns.mail,columns.solde) values ('"+user.getNom()+"','"+user.getPrenom()+"',to_date('"+strDate+"','dd-MM-yyyy','NLS_DATE_LANGUAGE = American'),'"+user.getPseudo()+"','"+passwordHash+"',0,'"+user.getMail()+"',10000)";
             System.out.println(requete);
             ResultSet resultSet = statement.executeQuery(requete);
             return "Inscription réussie";
@@ -183,6 +203,74 @@ public class UserController {
             if(oracleConnection!=null) oracleConnection.close();
         }
     }
+////////////////////////////ITO ACHAT AVEC SOLDE /////////////////////////////////
+    public String AchatJeton(OracleConnection oracleConnection, Integer jeton ,Double montantTotal, Integer iduser) throws SQLException {
+
+        Statement statement = null;
+
+        try {
+
+            statement = oracleConnection.createStatement();
+            Integer jetonsUserAvant=this.getjetonUser(oracleConnection,iduser);
+            Double soldeUserAvant =this.getSoldeUser(oracleConnection,iduser);
+            if(soldeUserAvant<montantTotal) {
+
+                return "Solde insuffisant , votre solde "+soldeUserAvant+ " montant total des jetons : "+montantTotal;
+            }
+            Integer jetonsApres=jetonsUserAvant+jeton;
+            String requete ="update UTILISATEUR set jetons="+jetonsApres+" where id="+iduser+"";
+            System.out.println(requete);
+
+            Double soldeapres = soldeUserAvant-montantTotal;
+            String requete2 ="update UTILISATEUR set solde="+soldeapres+" where id="+iduser+"";
+            System.out.println(requete2);
+            statement.executeQuery(requete);
+            statement.executeQuery(requete2);
+            return jeton+" jetons ajouté , reste de votre solde "+soldeapres;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+
+        }
+    }
+    ////////////////////////////ITO Vente AVEC SOLDE /////////////////////////////////
+    public String VenteJeton(OracleConnection oracleConnection, Integer jeton ,Double montantTotal, Integer iduser) throws SQLException {
+
+        Statement statement = null;
+
+        try {
+
+            statement = oracleConnection.createStatement();
+            Integer jetonsUserAvant=this.getjetonUser(oracleConnection,iduser);
+            Double soldeUserAvant =this.getSoldeUser(oracleConnection,iduser);
+            if(jetonsUserAvant<jeton) {
+
+                return "Jetons insuffisants , vos Jetons "+jetonsUserAvant+ "  jetons a vendre: "+jeton;
+            }
+            Integer jetonsApres=jetonsUserAvant-jeton;
+            String requete ="update UTILISATEUR set jetons="+jetonsApres+" where id="+iduser+"";
+            System.out.println(requete);
+
+            Double soldeapres = soldeUserAvant+montantTotal;
+            String requete2 ="update UTILISATEUR set solde="+soldeapres+" where id="+iduser+"";
+            System.out.println(requete2);
+            statement.executeQuery(requete);
+            statement.executeQuery(requete2);
+            return jeton+" jetons vendu , votre solde "+soldeapres;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+
+        }
+    }
 
 
 //////////////////////////Vrai Update fa tsy Manova jetons////////////////////////////
@@ -212,6 +300,7 @@ public class UserController {
                 val.setPseudo(resultSet.getString(5));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
+                val.setSolde(resultSet.getDouble(9));
             }
             return val;
         }
@@ -268,6 +357,7 @@ public class UserController {
                 val.setPseudo(resultSet.getString(5));
                 val.setJetons(resultSet.getInt(7));
                 val.setMail(resultSet.getString(8));
+                val.setSolde(resultSet.getDouble(9));
             }
             return val;
         }catch (Exception e){
@@ -330,6 +420,32 @@ public class UserController {
 
         }
     }
+
+    public double getSoldeUser(OracleConnection co , Integer iduser) throws SQLException {
+        double val=0;
+        Statement statement = null;
+
+        try {
+            statement = co.createStatement();
+
+            String requete ="select solde from UTILISATEUR where id="+iduser+"";
+            System.out.println(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
+            while(resultSet.next()){
+                val=resultSet.getDouble(1);
+            }
+            return val;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+
+        }
+    }
+
     public boolean testJetonSuffisant(Integer jetonsAMiser,Integer idUser) throws SQLException {
         boolean val=false;
         OracleConnection oracleConnection = null;
@@ -344,6 +460,23 @@ public class UserController {
         finally {
             if(oracleConnection!=null)oracleConnection.close();
         }
+        return val;
+
+    }
+
+
+    public boolean testSoldeSuffisant(OracleConnection oracleConnection,Integer jetonsTobuy,Double montantTotal,Integer idUser) throws SQLException {
+        boolean val=false;
+
+        try {
+
+            double soldeJoueur = this.getSoldeUser(oracleConnection,idUser);
+            System.out.println("ITO ILAY SOLDE "+soldeJoueur);
+            if(soldeJoueur>=montantTotal){val=true;}
+        }catch (Exception e){
+            throw e;
+        }
+
         return val;
 
     }

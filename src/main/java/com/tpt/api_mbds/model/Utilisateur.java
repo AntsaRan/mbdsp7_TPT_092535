@@ -16,6 +16,7 @@ public class Utilisateur {
     private String pwd;
     private int jetons;
     private String mail;
+    private double solde;
 
     public int getId() {
         return id;
@@ -81,10 +82,18 @@ public class Utilisateur {
         this.mail = mail;
     }
 
+    public double getSolde() {
+        return solde;
+    }
+
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
+
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons,String mail) {
+    public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons,String mail, double solde) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -93,9 +102,10 @@ public class Utilisateur {
         this.pwd = pwd;
         this.jetons = jetons;
         this.mail = mail;
+        this.solde = solde;
     }
 
-    public Utilisateur(String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons, String mail) {
+    public Utilisateur(String nom, String prenom, Date dateNaissance, String pseudo, String pwd, int jetons, String mail, double solde) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -103,5 +113,6 @@ public class Utilisateur {
         this.pwd = pwd;
         this.jetons = jetons;
         this.mail = mail;
+        this.solde = solde;
     }
 }

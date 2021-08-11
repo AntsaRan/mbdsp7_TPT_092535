@@ -309,47 +309,68 @@ public class ApiMbdsApplication {
 //////////////////Achat Jetons ///////////////////////
     @PutMapping(path="/addJetonsUser/{id}",produces = "application/json")
     @ResponseBody
-    public ResponseEntity<String> addJetonsUser(@PathVariable("id") String id ,@RequestParam(required = true) Integer jetons) throws Exception {
+    public ResponseEntity<String> addJetonsUser(@PathVariable("id") String id ,@RequestParam(required = true) Integer jetons ,@RequestParam(required = true) Double montantTotal) throws Exception {
         String val="";
+        OracleConnection oracleConnection=null;
         try {
             Historique_Jetons historique_jetons=new Historique_Jetons(Integer.valueOf(id),1,jetons,0);
             Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
-            val = userController.AjoutJeton(jetons,Integer.valueOf(id));
+            oracleConnection = Connexion.getConnection();
+            val = userController.AchatJeton(oracleConnection,jetons,montantTotal,Integer.valueOf(id));
             String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
-
             if(val==""){
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
             }
             System.out.println("La liste n'est pas vide ex: " + val);
             return new ResponseEntity<>(val, HttpStatus.OK);
-
-
         }catch (Exception e){
             throw e;
+        }
+        finally {
+            if(oracleConnection!=null){oracleConnection.close();}
         }
     }
 
     //////////////////Vente Jetons ///////////////////////
     @PutMapping(path="/removeJetonsUser/{id}",produces = "application/json")
     @ResponseBody
-    public ResponseEntity<String> removeJetonsUser(@PathVariable("id") String id ,@RequestParam(required = true) Integer jetons) throws Exception {
+    public ResponseEntity<String> removeJetonsUser(@PathVariable("id") String id ,@RequestParam(required = true) Integer jetons,@RequestParam(required = true) Double montantTotal) throws Exception {
         String val="";
+        OracleConnection oracleConnection=null;
         try {
             Historique_Jetons historique_jetons=new Historique_Jetons(Integer.valueOf(id),2,jetons,0);
             Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
-            val = userController.EnleveJeton(jetons,Integer.valueOf(id));
+            oracleConnection = Connexion.getConnection();
+            val = userController.VenteJeton(oracleConnection,jetons,montantTotal,Integer.valueOf(id));
             String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
-
             if(val==""){
-
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
             }
             System.out.println("La liste n'est pas vide ex: " + val);
             return new ResponseEntity<>(val, HttpStatus.OK);
-
-
         }catch (Exception e){
             throw e;
+        }
+        finally {
+            if(oracleConnection!=null){oracleConnection.close();}
+        }
+    }
+
+    ////////////////////////Test SOLDE Avant Jeton ////////////////////////////
+    @GetMapping(path="/testSoldeAvantAchat/{id}",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> testSoldeAvantAchat(@PathVariable("id") int id,@RequestParam(required = true) Integer jetons, @RequestParam(required = true) Double montantTotal)  throws SQLException {
+        boolean val = false;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            val=userController.testSoldeSuffisant(oracleConnection,jetons,montantTotal,id);
+            return new ResponseEntity<>(String.valueOf(val), HttpStatus.OK);
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            if(oracleConnection!=null)oracleConnection.close();
         }
     }
 
