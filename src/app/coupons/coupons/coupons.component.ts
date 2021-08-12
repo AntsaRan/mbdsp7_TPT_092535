@@ -15,6 +15,7 @@ import { Const } from 'src/app/shared/const/const';
 import { LoginComponent } from 'src/app/login/login/login.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CheckmiseComponent } from '../checkjetons/checkmise/checkmise.component';
+import { JetonsService } from 'src/app/shared/services/jetons.service';
 @Component({
   selector: 'app-coupons',
   templateUrl: './coupons.component.html',
@@ -32,13 +33,16 @@ export class CouponsComponent implements OnInit {
   peutparier: boolean = false;
   //gain:number=0;
 
-  constructor(private router: Router, private datePipe: DatePipe, private cartserv: CartService, private route: ActivatedRoute, public dialog: MatDialog,
+  constructor(private router: Router, private datePipe: DatePipe, private jeton: JetonsService,private cartserv: CartService, private route: ActivatedRoute, public dialog: MatDialog,
     private parisserv: ParisService, private _snackBar: MatSnackBar, private auth: AuthService) {
     this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
-
+ 
   }
   ngOnInit(): void {
-    this.prixjeton = Const.prixJeton;
+    this.jeton.getprixjetons()
+    .subscribe(j => {
+      this.prixjeton = j;
+    })
 
   }
 
