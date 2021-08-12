@@ -17,13 +17,17 @@ uri="https://apinode-mbds.herokuapp.com/jetons"
  
   constructor(private http: HttpClient) { }
 
-  achatjeton(id:string,jetons:any): Observable<any> {
+  achatjeton(id:string,jetons:any,montant:any): Observable<any> {
     console.log(jetons + " jetons achatserv")
-    return this.http.put(this.uri + "/achatjeton",{id,jetons});
+    return this.http.put(this.uri + "/achatjeton",{id,jetons,montant});
   }
 
   gethistouser(id:string):Observable<Transaction[]>{
     return this.http.get<Transaction[]>(this.uri+"/histojetons/"+id);
+  }
+
+  getprixjetons():Observable<Number>{
+    return this.http.get<Number>(this.uri+"/getprixjeton");
   }
 
 }
