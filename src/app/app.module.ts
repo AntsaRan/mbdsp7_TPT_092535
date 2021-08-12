@@ -64,6 +64,7 @@ import { NouveaumdpComponent } from './oublimdp/nouveaumdp/nouveaumdp.component'
 import { AuthInterceptor } from './shared/interceptor/AuthInterceptor';
 import { TransactionsComponent } from './transactions/transactions/transactions.component';
 import { CheckmiseComponent } from './coupons/checkjetons/checkmise/checkmise.component';
+import { ConfirmachatComponent } from './achat/vente/achatvente/confirmachat/confirmachat.component';
 
 const routes: Routes = [
   {
@@ -157,7 +158,8 @@ const routes: Routes = [
     OublimdpComponent,
     NouveaumdpComponent,
     TransactionsComponent,
-    CheckmiseComponent
+    CheckmiseComponent,
+    ConfirmachatComponent
   ],
   imports: [
     BrowserModule, MatMenuModule,
