@@ -7,4 +7,5 @@ export class Parieur {
     pwd:string
     jetons:Number
     mail:string
+    solde:Number
 }
