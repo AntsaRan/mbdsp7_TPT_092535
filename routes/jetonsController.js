@@ -24,4 +24,9 @@ router.put('/achatjeton',function(req,res){
     console.log("ACHAT JETON")
     jeton.achatjetons(req,res);
 })
+
+router.get('/getprixjeton',function(req,res){
+  console.log("get JETON")
+  jeton.getprixjeton(req,res);
+})
 module.exports = router;

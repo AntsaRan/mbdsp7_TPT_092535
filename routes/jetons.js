@@ -1,4 +1,5 @@
 const url = "http://grails-api.herokuapp.com/oracle";
+const jetons = "http://grails-api.herokuapp.com/api/jetons"
 //const https = require('https');
 // Récupérer tous les matchs (GET)
 const fetch = require('node-fetch');
@@ -13,32 +14,58 @@ function achatjetons(req, res) {
 
     let id = req.body.id;
     let jeton = req.body.jetons;
-    console.log(jeton + " " + id + " id")
-    const options = {
-        url: url + '/addJetonsUser/' + id,
-        json: true,
-        form: {
-            jetons: jeton
-        }
-    }
-    request.put(options, (err, response, body) => {
-        if (err) {
-            return console.log(err);
-        } else if (body) {
-            console.log(JSON.stringify(body) + " body achat")
-            res.status(200).send({ msg: body });
-        } else {
-            res.status(500).send({ msg: " error" });
-        }
-    });
-}
+    let montant = req.body.montant;
+    fetch(url + "/getUserbyId/" + id)
+        .then(response => response.json())
+        .then(data => {
+            console.log(JSON.stringify(data) + " DATA")
+            let solde = data.solde;
+            console.log(solde + " SOLDE")
+            if (solde >= montant) {
+                console.log(jeton + " " + id + " id")
+                const options = {
+                    url: url + '/addJetonsUser/' + id,
+                    json: true,
+                    form: {
+                        jetons: jeton,
+                        montantTotal: montant
+                    }
+                }
+                request.put(options, (err, response, body) => {
+                    if (err) {
+                        return console.log(err);
+                    } else if (JSON.stringify(response.statusCode)=="200") {
+                        res.status(200).send({ msg: "ok" });
+                    } else {
+                        JSON.stringify(response.statusCode + " code error")
+                        res.status(response.statusCode).send({ msg: " error" });
+                    }
+                });
+            }else{
+                console.log(" SOLDE INS")
+                res.json("SI");
+            }
+        })
+        .catch(err =>
+            console.log(err))
 
-function histojetons(req,res){
-  //  http://grails-api.herokuapp.com/oracle/getHistoByUser/51
-console.log("historique jetons");
-  var id =req.params.id;
-console.log(id + ' Id histo')
-    request.get(url+"/getHistoByUser/"+id, (err, response, body) => {
+}
+function getprixjeton(req,res){
+    fetch(jetons)
+    .then(response => response.json())
+    .then(data => {
+        console.log(JSON.stringify(data[0]) + " data[0].jetons")
+        res.json(data[0].prix);
+    })
+    .catch(err =>
+        console.log(err))
+}
+function histojetons(req, res) {
+    //  http://grails-api.herokuapp.com/oracle/getHistoByUser/51
+    console.log("historique jetons");
+    var id = req.params.id;
+    console.log(id + ' Id histo')
+    request.get(url + "/getHistoByUser/" + id, (err, response, body) => {
         if (err) {
             return console.log(err);
         } else if (body) {
@@ -50,35 +77,6 @@ console.log(id + ' Id histo')
     });
 }
 
-function sign(req, res) {
-    var parieur = req.body.parieur;
-    //console.log(req.body.date + " parieur");
-    const options = {
-        url: url + '/insertUser',
-        json: true,
-        body: {
-            nom: parieur.nom,
-            prenom: parieur.prenom,
-            dateNaissance: req.body.date,
-            pseudo: parieur.pseudo,
-            pwd: parieur.pwd,
-            jetons: 0,
-            mail: parieur.mail
-        }
-
-    }
-    request.post(options, (err, response, body) => {
-        if (err) {
-            return console.log(err);
-        } else if (body) {
-
-            res.status(200).send({ msg: body });
-        } else {
-            res.status(500).send({ msg: " error" });
-        }
-    });
-}
-// Récupérer un match par son id (GET)
 function getregleId(req, res) {
     let rid = req.params.id;
     //  console.log(rid + " rid")
@@ -92,7 +90,6 @@ function getregleId(req, res) {
             console.log(err))
 }
 
-// Récupérer un match par son id (GET)
 function getMatchbyId(req, res) {
     let matchId = req.params.id;
     // console.log(matchId + " matchId")
@@ -159,5 +156,4 @@ function top5matchs(req, res) {
 }
 
 
-
-module.exports = {histojetons, top5matchs, getregleId, achatjetons, getMatchbyId, getMatchEquipe, getMatchRegles, getMatchDate };
+module.exports = { getprixjeton,histojetons, top5matchs, getregleId, achatjetons, getMatchbyId, getMatchEquipe, getMatchRegles, getMatchDate }
