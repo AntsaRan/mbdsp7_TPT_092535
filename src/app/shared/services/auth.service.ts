@@ -13,10 +13,10 @@ import * as moment from 'moment';
 export class AuthService {
   // LIENS DE CONNEXION NODE : 
 
-  //uri = "http://localhost:8010/auth";
-   //uriPari = "http://localhost:8010/pari";
+  uri = "http://localhost:8010/auth";
+  //uriPari = "http://localhost:8010/pari";
 
-  uri = "https://apinode-mbds.herokuapp.com/auth"
+  //uri = "https://apinode-mbds.herokuapp.com/auth"
   uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
   miseTotale: Number = 0;
@@ -77,7 +77,7 @@ export class AuthService {
   }
   private setSession(user) {
 
-    const expiresAt = moment().add(user.expiresIn,'second');
+    const expiresAt = moment().add(user.expiresIn, 'second');
     localStorage.setItem('currentUser', user.user.id);
     localStorage.setItem('username', user.user.nom);
     localStorage.setItem('prenom', user.user.prenom);
@@ -88,7 +88,7 @@ export class AuthService {
     localStorage.setItem('pseudo', user.user.pseudo);
     localStorage.setItem('user', JSON.stringify(user.user));
     localStorage.setItem('miseTotale', JSON.stringify(this.miseTotale));
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
     console.log(localStorage.getItem('currentUser') + " localStorage.getItem('currentUser')")
     this.currentUserSubject = new BehaviorSubject<Parieur>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -99,7 +99,7 @@ export class AuthService {
     const expiration = localStorage.getItem("expires_at");
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
-}    
+  }
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
