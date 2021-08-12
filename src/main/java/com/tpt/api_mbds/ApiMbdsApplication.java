@@ -214,9 +214,58 @@ public class ApiMbdsApplication {
             throw throwables;
         }
         finally {
-            oracleConnection.close();
+            if(oracleConnection!=null){oracleConnection.close();}
         }
     }
+
+    @GetMapping(path="/getCurrentMonthParis",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getCurrentMonthParis() throws SQLException {
+        ArrayList<Pari> list=new ArrayList<Pari>();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+
+            list = pariController.getCurrentMonthParis(oracleConnection);
+            if(list.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste n'est pas vide ex: " + list.get(0).getId());
+
+            return new ResponseEntity<>(new Gson().toJson(list), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            if(oracleConnection!=null){oracleConnection.close();}
+        }
+    }
+
+    @GetMapping(path="/getCountCurrentMonthParis",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getCountCurrentMonthParis() throws SQLException {
+       Integer valiny=0;
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+
+            valiny = pariController.getCountCurrentMonthParis(oracleConnection);
+            if(valiny==0){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println(" nombre de pari ce mois " + valiny);
+
+            return new ResponseEntity<>(new Gson().toJson(valiny), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            if(oracleConnection!=null){oracleConnection.close();}
+        }
+    }
+
 
     @GetMapping(path="/getAllParisbyUser/{id}",produces = "application/json")
     @ResponseBody
@@ -236,7 +285,7 @@ public class ApiMbdsApplication {
             throw throwables;
         }
         finally {
-            oracleConnection.close();
+            if(oracleConnection!=null){oracleConnection.close();}
         }
     }
 
@@ -412,6 +461,92 @@ public ResponseEntity<String> getHistoByUser(@PathVariable("id") int id) throws 
     }
 
 }
+
+////////////////////////////////GET HISTO ACHAT BY MONTH///////////////////////
+    @GetMapping(path="/getAllHistoAchatbyMonth",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllHistorique_JetonsAchatbyMonth() throws SQLException {
+        ArrayList<Histo_jetons_View> result=new ArrayList<Histo_jetons_View>();
+        Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+        try {
+
+            result = historique_jetonsController.getAllHistorique_JetonsAchatbyMonth();
+            if(result.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste Histo n'est pas vide" + result.get(0).getDateTransaction());
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+
+    }
+
+    @GetMapping(path="/getCountHistoAchatbyMonth",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getCountHistorique_JetonsAchatbyMonth() throws SQLException {
+        Integer valiny=0;
+
+        Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+        try {
+
+            valiny =  historique_jetonsController.getCountHistorique_JetonsAchatbyMonth();
+            if(valiny==0){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println(" nombre d'Achat ce mois " + valiny);
+
+            return new ResponseEntity<>(new Gson().toJson(valiny), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+
+    }
+
+    ////////////////////////////////GET HISTO Vente BY MONTH///////////////////////
+    @GetMapping(path="/getAllHistoVentebyMonth",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllHistorique_JetonsVentebyMonth() throws SQLException {
+        ArrayList<Histo_jetons_View> result=new ArrayList<Histo_jetons_View>();
+        Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+        try {
+
+            result = historique_jetonsController.getAllHistorique_JetonsVentebyMonth();
+            if(result.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste Histo n'est pas vide" + result.get(0).getDateTransaction());
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+
+    }
+
+    @GetMapping(path="/getCountHistoVentebyMonth",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getCountHistorique_JetonsVentebyMonth() throws SQLException {
+        Integer valiny=0;
+
+        Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+        try {
+
+            valiny =  historique_jetonsController.getCountHistorique_JetonsVentebyMonth();
+            if(valiny==0){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println(" nombre de Vente ce mois " + valiny);
+
+            return new ResponseEntity<>(new Gson().toJson(valiny), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+
+    }
 
     //GetMise
     @GetMapping(path="/getAllMise/{id}",produces = "application/json")

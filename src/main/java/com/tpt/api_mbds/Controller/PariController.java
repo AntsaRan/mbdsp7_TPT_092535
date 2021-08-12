@@ -82,6 +82,53 @@ public class PariController {
         return list;
     }
 
+    public ArrayList<Pari> getCurrentMonthParis(OracleConnection co) throws SQLException {
+
+        ArrayList<Pari> list=new ArrayList<Pari>();
+        Statement statement = null;
+        try{
+            statement = co.createStatement();
+            String requete="select * from Pari where to_char(datepari, 'mm') = to_char(sysdate, 'mm') and to_char(datepari, 'yyyy') = to_char(sysdate, 'yyyy') order by datepari";
+            System.out.println(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
+            while (resultSet.next()){
+                Pari val=new Pari();
+                val.setId(resultSet.getInt(1));
+                val.setIdUtilisateur(resultSet.getInt(2));
+                val.setIdMatch(resultSet.getString(3));
+                val.setMatchRegle(resultSet.getString(4));
+                val.setMise(resultSet.getInt(5));
+                val.setDateParis(resultSet.getDate(6));
+                list.add(val);
+            }
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+        }
+        return list;
+    }
+
+    public Integer getCountCurrentMonthParis(OracleConnection co) throws SQLException {
+
+        Integer val=0;
+        Statement statement = null;
+        try{
+            statement = co.createStatement();
+            String requete="select COUNT(*) from Pari where to_char(datepari, 'mm') = to_char(sysdate, 'mm') and to_char(datepari, 'yyyy') = to_char(sysdate, 'yyyy') order by datepari";
+            System.out.println(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
+            while (resultSet.next()){
+               val=resultSet.getInt(1);
+            }
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+        }
+        return val;
+    }
+
     public ArrayList<Pari> getAllParisbyUser(OracleConnection co,int id) throws SQLException {
 
         ArrayList<Pari> list=new ArrayList<Pari>();

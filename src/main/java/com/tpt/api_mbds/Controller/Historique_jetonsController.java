@@ -70,4 +70,107 @@ public class Historique_jetonsController {
         return list;
     }
 
+
+    public ArrayList<Histo_jetons_View> getAllHistorique_JetonsAchatbyMonth() throws SQLException {
+
+        ArrayList<Histo_jetons_View> list=new ArrayList<Histo_jetons_View>();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try{
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String request="select * from HISTO_TRANSAC where to_char(datetransaction, 'mm') = to_char(sysdate, 'mm') and to_char(datetransaction, 'yyyy') = to_char(sysdate, 'yyyy') and nomtransaction = 'Achat' order by datetransaction";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                Histo_jetons_View val=new Histo_jetons_View();
+                val.setId(resultSet.getInt(1));
+                val.setIdUtilisateur(resultSet.getInt(2));
+                val.setIdTransaction(resultSet.getString(3));
+                val.setDateTransaction(resultSet.getDate(4));
+                val.setMontant(resultSet.getInt(5));
+                val.setIdPari(resultSet.getInt(6));
+                list.add(val);
+            }
+        }
+        finally{
+            if(statement!=null)statement.close();
+            if(oracleConnection!=null)oracleConnection.close();
+        }
+        return list;
+    }
+
+    public Integer getCountHistorique_JetonsAchatbyMonth() throws SQLException {
+
+        Integer valiny=0;
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try{
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String request="select COUNT(*) from HISTO_TRANSAC where to_char(datetransaction, 'mm') = to_char(sysdate, 'mm') and to_char(datetransaction, 'yyyy') = to_char(sysdate, 'yyyy') and nomtransaction = 'Achat' order by datetransaction";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+               valiny=resultSet.getInt(1);
+            }
+        }
+        finally{
+            if(statement!=null)statement.close();
+            if(oracleConnection!=null)oracleConnection.close();
+        }
+        return valiny;
+    }
+
+    public Integer getCountHistorique_JetonsVentebyMonth() throws SQLException {
+
+        Integer valiny=0;
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try{
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String request="select COUNT(*) from HISTO_TRANSAC where to_char(datetransaction, 'mm') = to_char(sysdate, 'mm') and to_char(datetransaction, 'yyyy') = to_char(sysdate, 'yyyy') and nomtransaction = 'Vente' order by datetransaction";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                valiny=resultSet.getInt(1);
+            }
+        }
+        finally{
+            if(statement!=null)statement.close();
+            if(oracleConnection!=null)oracleConnection.close();
+        }
+        return valiny;
+    }
+
+    public ArrayList<Histo_jetons_View> getAllHistorique_JetonsVentebyMonth() throws SQLException {
+
+        ArrayList<Histo_jetons_View> list=new ArrayList<Histo_jetons_View>();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try{
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String request="select * from HISTO_TRANSAC where to_char(datetransaction, 'mm') = to_char(sysdate, 'mm') and to_char(datetransaction, 'yyyy') = to_char(sysdate, 'yyyy') and nomtransaction = 'Vente' order by datetransaction";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                Histo_jetons_View val=new Histo_jetons_View();
+                val.setId(resultSet.getInt(1));
+                val.setIdUtilisateur(resultSet.getInt(2));
+                val.setIdTransaction(resultSet.getString(3));
+                val.setDateTransaction(resultSet.getDate(4));
+                val.setMontant(resultSet.getInt(5));
+                val.setIdPari(resultSet.getInt(6));
+                list.add(val);
+            }
+        }
+        finally{
+            if(statement!=null)statement.close();
+            if(oracleConnection!=null)oracleConnection.close();
+        }
+        return list;
+    }
+
 }
