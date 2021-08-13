@@ -31,4 +31,8 @@ router.route('/user/:id')
 router.put('/updateuser', function (req, res) {
   auth.updateuser(req, res);
 });
+
+router.post('/loginadmin',function(req,res){
+  auth.loginAdmin(req,res);
+})
 module.exports = router;

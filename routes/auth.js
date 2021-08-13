@@ -40,6 +40,36 @@ function loginUser(req, res) {
     });
 } 
 
+function loginAdmin(req,res){
+    //http://grails-api.herokuapp.com/oracle/authentificationAdmin
+    console.log("loginadmin")
+    var pseudo = req.body.pseudo;
+    var pwd = req.body.password;
+    console.log("loginadmin " + pseudo +" "+pwd)
+    const options = {
+        url: url + '/authentificationAdmin',
+        json: true,
+        body: {
+            pseudo: pseudo,
+            password: pwd
+        }
+    }
+    request.post(options, (err, response, body) => {
+        if (err) {
+            return console.log(err);
+        }else if(body!=undefined){
+            console.log( JSON.stringify(body )+ ' LOGADMN USER')
+            const token = jwt.sign({ id: body.id }, config.token, {
+                expiresIn: 3600 // expires in 24 hours
+            });
+            res.status(200).send({ auth: true, user: body, token: token ,expiresIn:3600});
+        }else{
+            res.status(200).send({ auth: false, user: null, token: null });
+
+        }
+    });
+
+}
 
 function sign(req, res) {
     var parieur = req.body.parieur;
@@ -131,4 +161,4 @@ function getUserByID(req, res) {
         .catch(err =>
             console.log(err))
 }
-module.exports = { loginUser,sign ,fireauth,getUserByID,updateuser};
+module.exports = { loginAdmin,loginUser,sign ,fireauth,getUserByID,updateuser};
