@@ -20,7 +20,7 @@ export class MappingajoutComponent implements OnInit {
   coords: Point[] = [];
   p: Point = new Point();
   error: string = "";
-
+  success: boolean;
   constructor(private mapserv: MappingService) {
   }
 
@@ -111,6 +111,7 @@ export class MappingajoutComponent implements OnInit {
       this.mapserv.insertpoint(this.p)
         .subscribe(m => {
           if (m.insert.id) {
+            this.success=true;
             console.log(" OK");
           } else {
             console.log(" NOT OK")
@@ -129,8 +130,8 @@ export class MappingajoutComponent implements OnInit {
     this.p.lng = "";
   }
   ngOnInit(): void {
-
-    this.getpoints();
+    this.success = false,
+      this.getpoints();
     this.newHero();
   }
 
