@@ -1,0 +1,19 @@
+.map-container {
+    height: 60%;
+    position: absolute;
+    left: 10%;
+    top: 19%;
+    padding: 30px;
+    width: 85%;
+    margin: auto;
+  }
+  .map-frame {
+    border: 2px solid rgb(255 193 0);
+    height: 100%;
+    box-shadow: 4px 12px 12px#0000002b;  
+      padding: 0;
+  }
+  
+  #map {
+    height: 100%;
+  }
