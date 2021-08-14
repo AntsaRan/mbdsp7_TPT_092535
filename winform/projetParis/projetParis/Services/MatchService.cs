@@ -26,6 +26,26 @@ namespace projetParis.Services
                 throw e;
             }
         }
+
+        public List<Match> getMatchByIdMatch(string id)
+        {
+            try
+            {
+                HttpClient clint = new HttpClient();
+                clint.BaseAddress = new Uri(url);
+                HttpResponseMessage response = clint.GetAsync("match/" + id).Result;
+                //Object historiqueTransac = response.Content.ReadAsAsync<IEnumerable<HistoriqueTransac>>().Result;
+                //List<MyStok> myDeserializedObjList = (List<MyStok>)Newtonsoft.Json.JsonConvert.DeserializeObject(sc, typeof(List<MyStok>));
+                List<Match> valiny = response.Content.ReadAsAsync<List<Match>>().Result;
+                return valiny;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("EXEPTION " + e.Message);
+                throw e;
+            }
+        }
+
         public Object getMatchsToStart()
         {
             try

@@ -40,7 +40,7 @@ namespace projetParis
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(149, 49);
+            this.label1.Location = new System.Drawing.Point(124, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 36);
             this.label1.TabIndex = 1;

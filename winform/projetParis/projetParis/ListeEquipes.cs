@@ -97,8 +97,9 @@ namespace projetParis
                 btnSuppr.HeaderText = "Delete";
                 btnSuppr.Name = "buttonSupprimer";
                 btnSuppr.Text = "Supprimer";
+                //btnSuppr.ReadOnly = true;
                 btnSuppr.UseColumnTextForButtonValue = true;
-                this.dataGridViewEquipe.Columns.Add(btnSuppr);
+                //this.dataGridViewEquipe.Columns.Add(btnSuppr);
                 this.isFirstAffichage = false;
             }
         }

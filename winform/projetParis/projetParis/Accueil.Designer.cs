@@ -31,9 +31,6 @@ namespace projetParis
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.panelTopMenu = new System.Windows.Forms.Panel();
-            this.panelHome = new System.Windows.Forms.Panel();
-            this.labelHome = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -53,6 +50,7 @@ namespace projetParis
             this.buttonMatchs = new System.Windows.Forms.Button();
             this.buttonEquipes = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.historiqueUser1 = new projetParis.HistoriqueUser();
             this.listePari1 = new projetParis.ListePari();
             this.listeUtilisateur1 = new projetParis.ListeUtilisateur();
             this.lancerMatch1 = new projetParis.LancerMatch();
@@ -62,10 +60,7 @@ namespace projetParis
             this.listeEquipes1 = new projetParis.ListeEquipes();
             this.listeMatchs1 = new projetParis.ListeMatchs();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.historiqueUser1 = new projetParis.HistoriqueUser();
             this.panelTopMenu.SuspendLayout();
-            this.panelHome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelNavGauche.SuspendLayout();
@@ -85,7 +80,6 @@ namespace projetParis
             // 
             this.panelTopMenu.BackColor = System.Drawing.Color.Gold;
             this.panelTopMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTopMenu.Controls.Add(this.panelHome);
             this.panelTopMenu.Controls.Add(this.label1);
             this.panelTopMenu.Controls.Add(this.pictureBox1);
             this.panelTopMenu.Controls.Add(this.pictureBoxLogo);
@@ -95,54 +89,21 @@ namespace projetParis
             this.panelTopMenu.Size = new System.Drawing.Size(1024, 107);
             this.panelTopMenu.TabIndex = 1;
             // 
-            // panelHome
-            // 
-            this.panelHome.AutoSize = true;
-            this.panelHome.BackColor = System.Drawing.Color.Transparent;
-            this.panelHome.Controls.Add(this.labelHome);
-            this.panelHome.Controls.Add(this.pictureBox4);
-            this.panelHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panelHome.Location = new System.Drawing.Point(195, 65);
-            this.panelHome.Name = "panelHome";
-            this.panelHome.Size = new System.Drawing.Size(111, 42);
-            this.panelHome.TabIndex = 3;
-            // 
-            // labelHome
-            // 
-            this.labelHome.AutoSize = true;
-            this.labelHome.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelHome.Location = new System.Drawing.Point(45, 19);
-            this.labelHome.Name = "labelHome";
-            this.labelHome.Size = new System.Drawing.Size(48, 20);
-            this.labelHome.TabIndex = 4;
-            this.labelHome.Text = "Home";
-            this.labelHome.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(0, 4);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(39, 35);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(860, 31);
+            this.label1.Location = new System.Drawing.Point(860, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 20);
+            this.label1.Size = new System.Drawing.Size(119, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Administrateur 1";
+            this.label1.Text = "Administrateur ";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(804, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(805, 21);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(49, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -181,7 +142,7 @@ namespace projetParis
             this.panelNavGauche.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelNavGauche.Location = new System.Drawing.Point(0, 107);
             this.panelNavGauche.Name = "panelNavGauche";
-            this.panelNavGauche.Size = new System.Drawing.Size(195, 743);
+            this.panelNavGauche.Size = new System.Drawing.Size(195, 684);
             this.panelNavGauche.TabIndex = 2;
             // 
             // pictureBox10
@@ -360,15 +321,23 @@ namespace projetParis
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(195, 107);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(829, 743);
+            this.panel1.Size = new System.Drawing.Size(829, 684);
             this.panel1.TabIndex = 3;
+            // 
+            // historiqueUser1
+            // 
+            this.historiqueUser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.historiqueUser1.Location = new System.Drawing.Point(0, 0);
+            this.historiqueUser1.Name = "historiqueUser1";
+            this.historiqueUser1.Size = new System.Drawing.Size(829, 584);
+            this.historiqueUser1.TabIndex = 7;
             // 
             // listePari1
             // 
             this.listePari1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listePari1.Location = new System.Drawing.Point(0, 0);
             this.listePari1.Name = "listePari1";
-            this.listePari1.Size = new System.Drawing.Size(829, 643);
+            this.listePari1.Size = new System.Drawing.Size(829, 584);
             this.listePari1.TabIndex = 4;
             // 
             // listeUtilisateur1
@@ -376,7 +345,7 @@ namespace projetParis
             this.listeUtilisateur1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listeUtilisateur1.Location = new System.Drawing.Point(0, 0);
             this.listeUtilisateur1.Name = "listeUtilisateur1";
-            this.listeUtilisateur1.Size = new System.Drawing.Size(829, 643);
+            this.listeUtilisateur1.Size = new System.Drawing.Size(829, 584);
             this.listeUtilisateur1.TabIndex = 6;
             // 
             // lancerMatch1
@@ -384,7 +353,7 @@ namespace projetParis
             this.lancerMatch1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lancerMatch1.Location = new System.Drawing.Point(0, 0);
             this.lancerMatch1.Name = "lancerMatch1";
-            this.lancerMatch1.Size = new System.Drawing.Size(829, 643);
+            this.lancerMatch1.Size = new System.Drawing.Size(829, 584);
             this.lancerMatch1.TabIndex = 5;
             // 
             // listeRegles1
@@ -392,7 +361,7 @@ namespace projetParis
             this.listeRegles1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listeRegles1.Location = new System.Drawing.Point(0, 0);
             this.listeRegles1.Name = "listeRegles1";
-            this.listeRegles1.Size = new System.Drawing.Size(829, 643);
+            this.listeRegles1.Size = new System.Drawing.Size(829, 584);
             this.listeRegles1.TabIndex = 4;
             // 
             // panel2
@@ -401,7 +370,7 @@ namespace projetParis
             this.panel2.Controls.Add(this.labelFooter);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.ForeColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(0, 643);
+            this.panel2.Location = new System.Drawing.Point(0, 584);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(829, 100);
             this.panel2.TabIndex = 2;
@@ -410,12 +379,12 @@ namespace projetParis
             // 
             this.labelFooter.AutoSize = true;
             this.labelFooter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelFooter.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelFooter.Location = new System.Drawing.Point(358, 42);
+            this.labelFooter.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelFooter.Location = new System.Drawing.Point(264, 42);
             this.labelFooter.Name = "labelFooter";
-            this.labelFooter.Size = new System.Drawing.Size(56, 20);
+            this.labelFooter.Size = new System.Drawing.Size(267, 20);
             this.labelFooter.TabIndex = 4;
-            this.labelFooter.Text = "Footer";
+            this.labelFooter.Text = "© 2021 FootBet Madagascar , All right reserved";
             // 
             // listeEquipes1
             // 
@@ -423,7 +392,7 @@ namespace projetParis
             this.listeEquipes1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listeEquipes1.Location = new System.Drawing.Point(0, 0);
             this.listeEquipes1.Name = "listeEquipes1";
-            this.listeEquipes1.Size = new System.Drawing.Size(829, 743);
+            this.listeEquipes1.Size = new System.Drawing.Size(829, 684);
             this.listeEquipes1.TabIndex = 1;
             this.listeEquipes1.Load += new System.EventHandler(this.listeEquipes1_Load);
             // 
@@ -432,7 +401,7 @@ namespace projetParis
             this.listeMatchs1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listeMatchs1.Location = new System.Drawing.Point(0, 0);
             this.listeMatchs1.Name = "listeMatchs1";
-            this.listeMatchs1.Size = new System.Drawing.Size(829, 743);
+            this.listeMatchs1.Size = new System.Drawing.Size(829, 684);
             this.listeMatchs1.TabIndex = 0;
             // 
             // pictureBox8
@@ -445,19 +414,11 @@ namespace projetParis
             this.pictureBox8.TabIndex = 12;
             this.pictureBox8.TabStop = false;
             // 
-            // historiqueUser1
-            // 
-            this.historiqueUser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.historiqueUser1.Location = new System.Drawing.Point(0, 0);
-            this.historiqueUser1.Name = "historiqueUser1";
-            this.historiqueUser1.Size = new System.Drawing.Size(829, 643);
-            this.historiqueUser1.TabIndex = 7;
-            // 
             // Accueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 850);
+            this.ClientSize = new System.Drawing.Size(1024, 791);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelNavGauche);
             this.Controls.Add(this.panelTopMenu);
@@ -468,9 +429,6 @@ namespace projetParis
             this.Load += new System.EventHandler(this.Accueil_Load);
             this.panelTopMenu.ResumeLayout(false);
             this.panelTopMenu.PerformLayout();
-            this.panelHome.ResumeLayout(false);
-            this.panelHome.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelNavGauche.ResumeLayout(false);
@@ -503,9 +461,6 @@ namespace projetParis
         private ListeMatchs listeMatchs1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label labelHome;
-        private System.Windows.Forms.Panel panelHome;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelFooter;
         private System.Windows.Forms.PictureBox pictureBox5;

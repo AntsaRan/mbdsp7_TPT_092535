@@ -1,4 +1,5 @@
 ﻿using projetParis.Formulaires;
+using projetParis.Model;
 using projetParis.Services;
 using System;
 using System.Collections.Generic;
@@ -76,8 +77,30 @@ namespace projetParis
             this.dataGridViewMatch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewMatch.DataSource = matchService.getAllMatchs();
             //Add Bouton Modifier
-            this.addButton();
+            //this.addButton();
         }
 
+        public void loadDatabyIdMatch(string idMatch)
+        {
+            MatchService matchService = new MatchService();
+            this.dataGridViewMatch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            List<Match> val = new List<Match>();
+            val = matchService.getMatchByIdMatch(idMatch);
+            if (val == null)
+            {
+                MessageBox.Show("Pas de résultat pour l'Id " + idMatch);
+            }
+            dataGridViewMatch.DataSource = val;
+            //this.addButton();
+        }
+
+        /*private void buttonSearchIdMatch_Click(object sender, EventArgs e)
+        {
+            if (textBoxIdMatch.Text == null || textBoxIdMatch.Text == "") { MessageBox.Show("Id Match Necessaire"); }
+            else
+            {
+                this.loadDatabyIdMatch(textBoxIdMatch.Text);
+            }
+        } */
     }
 }
