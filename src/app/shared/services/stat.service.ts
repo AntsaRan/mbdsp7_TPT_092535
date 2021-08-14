@@ -10,8 +10,8 @@ export class StatService {
 
  
     // LIENS DE CONNEXION NODE : 
-    uri = "http://localhost:8010/stat";
-    //uri = "https://apinode-mbds.herokuapp.com/point"
+    //uri = "http://localhost:8010/stat";
+    uri = "https://apinode-mbds.herokuapp.com/stat"
   
     constructor(private http: HttpClient) { }
   

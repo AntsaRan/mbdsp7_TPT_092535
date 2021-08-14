@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class MappingService {
 
     // LIENS DE CONNEXION NODE : 
-  uri = "http://localhost:8010/point";
-  //uri = "https://apinode-mbds.herokuapp.com/point"
+  //uri = "http://localhost:8010/point";
+  uri = "https://apinode-mbds.herokuapp.com/point"
 
   constructor(private http: HttpClient) { }
 

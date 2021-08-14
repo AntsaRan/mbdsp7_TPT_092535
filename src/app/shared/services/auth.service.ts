@@ -13,10 +13,10 @@ import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 export class AuthService {
   // LIENS DE CONNEXION NODE : 
 
-  uri = "http://localhost:8010/auth";
+  //uri = "http://localhost:8010/auth";
   //uriPari = "http://localhost:8010/pari";
 
-  //uri = "https://apinode-mbds.herokuapp.com/auth"
+  uri = "https://apinode-mbds.herokuapp.com/auth"
   uriPari = "https://apinode-mbds.herokuapp.com/pari";
 
   miseTotale: Number = 0;
