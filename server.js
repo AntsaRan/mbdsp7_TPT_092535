@@ -14,6 +14,7 @@ let equipe = require('./routes/equipe');
 let jetonsController = require('./routes/jetonsController')
 let mailController= require('./routes/mailController.js')
 let pointcontroller= require('./routes/pointsController.js')
+let statController= require('./routes/statController.js')
 
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
@@ -28,6 +29,7 @@ app.use('/pari', pariController);
 app.use('/jetons',jetonsController);
 app.use('/mail',mailController);
 app.use('/point',pointcontroller);
+app.use('/stat',statController);
 
 app.route('/getAllMatches')
 .get(match.getMatchs);
