@@ -398,19 +398,23 @@ public class MatchController {
                 return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
             }
 
-            Timer t = new Timer();
+            Match match=new Match();
+            match.endmatch(matchData.get(),matchRepository);
 
-                TimerExample start = new TimerExample("start", matchData.get(),matchRepository);
-                t.scheduleAtFixedRate(start, 0, 10 * 1000);
+                //Timer t = new Timer();
+
+                //TimerExample start = new TimerExample("start", matchData.get(),matchRepository);
+                //t.scheduleAtFixedRate(start, 0, 10 * 1000);
 
 
-                TimerExample end = new TimerExample("end",matchData.get(),matchRepository);
-                t.scheduleAtFixedRate(end, 10000, 1000);
+               // TimerExample end = new TimerExample("end",matchData.get(),matchRepository);
+                //t.scheduleAtFixedRate(end, 10000, 1000);
 
                 ///////////////Ito no manao anlay Perte sy Gain/////////////
-                    String response=this.distribuerGain(id);
+            String response=this.distribuerGain(id);
+            ReturnMessage returnMessage =new ReturnMessage("done");
 
-            return new ResponseEntity<>(new String(response), HttpStatus.OK);
+            return new ResponseEntity<>(new Gson().toJson(returnMessage), HttpStatus.OK);
         } catch (Exception e) {
             throw e;
         }
@@ -441,7 +445,7 @@ public class MatchController {
                 //System.out.println("accroissement == "+accroissement);
                 //System.out.println("mise anlay User == "+pari1.getMise());
                 userController.AjoutJeton(accroissement,pari1.getIdUtilisateur());
-                Historique_Jetons historique_jetons=new Historique_Jetons(pari1.getIdUtilisateur(),3,pari1.getMise(),0);
+                Historique_Jetons historique_jetons=new Historique_Jetons(pari1.getIdUtilisateur(),3,accroissement,pari1.getId());
                 Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
                 String valinyHisto=historique_jetonsController.insertHistorique(historique_jetons);
                 sendNotificationWebToAllDeviceForUser(String.valueOf(pari1.getIdUtilisateur()),"FootBet","Felicitations vous avez gagné votre pari");
@@ -561,6 +565,8 @@ public class MatchController {
             if (match.getScoreEquipe1() > match.getScoreEquipe2()) valiny.add("S1");
             if (match.getScoreEquipe1() < match.getScoreEquipe2()) valiny.add("S2");
             if (match.getScoreEquipe1().equals(match.getScoreEquipe2())) valiny.add("S0");
+            System.out.println("Nombre Corner Eq1 " + match.getCornerEquipe1());
+            System.out.println("Nombre Corner Eq2 "  + match.getCornerEquipe2());
             if (match.getCornerEquipe1() > match.getCornerEquipe2()) valiny.add("C1");
             if (match.getCornerEquipe1() < match.getCornerEquipe2()) valiny.add("C2");
             if (match.getCornerEquipe1().equals(match.getCornerEquipe2())) valiny.add("C0");
@@ -568,12 +574,12 @@ public class MatchController {
             if (match.getPossessionEquipe1() < match.getPossessionEquipe2()) valiny.add("P2");
             if (match.getPossessionEquipe1().equals(match.getPossessionEquipe2())) valiny.add("P0");
 
-           // System.out.println("L'interieur 1 du String " + valiny.get(0));
-           // System.out.println("L'interieur 2 du String " + valiny.get(1));
-           // System.out.println("L'interieur 3 du String " + valiny.get(2));
+            System.out.println("L'interieur 1 du String " + valiny.get(0));
+            System.out.println("L'interieur 2 du String " + valiny.get(1));
+            System.out.println("L'interieur 3 du String " + valiny.get(2));
 
-             reponse = this.testGagnant(valiny, ordre);
-           // System.out.println("ISWINNER " + reponse);
+            reponse = this.testGagnant(valiny, ordre);
+            System.out.println("ISWINNER " + reponse);
         }
         catch (Exception e){
             throw e;

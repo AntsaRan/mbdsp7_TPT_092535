@@ -24,20 +24,20 @@ public class TimerExample  extends TimerTask {
     public void run() {
 
         if ("start".equalsIgnoreCase(name)) {
-            System.out.println("match etat avant start " + this.m.getEtat() + " " + new Date()); // TODO Auto-generated catch block
+           // System.out.println("match etat avant start " + this.m.getEtat() + " " + new Date()); // TODO Auto-generated catch block
             this.m.startmatch();
-            System.out.println("match etat start " + this.m.getEtat() + " " + new Date()); // TODO Auto-generated catch block
+            //System.out.println("match etat start " + this.m.getEtat() + " " + new Date()); // TODO Auto-generated catch block
 
             //////////////////////Eto ilay Update match to EnCours//////////////
             Match _match = new Match();
             _match=this.m;
-           System.out.println("ITO ILAY MATCH ID "+_match.getId());
+           //System.out.println("ITO ILAY MATCH ID "+_match.getId());
             _match.setEquipe1(this.m.getEquipe1());
-            System.out.println("ITO ILAY MATCH EQUIPE1 "+_match.getEquipe1().getId());
+            //System.out.println("ITO ILAY MATCH EQUIPE1 "+_match.getEquipe1().getId());
             _match.setEquipe2(this.m.getEquipe2());
             _match.setDate(this.m.getDate());
             _match.setEtat(this.m.getEtat());
-            System.out.println("ITO ILAY MATCH ETAT "+_match.getEtat());
+           // System.out.println("ITO ILAY MATCH ETAT "+_match.getEtat());
             _match.setLieu(this.m.getLieu());
             _match.setScoreEquipe1(this.m.getScoreEquipe1());
             _match.setScoreEquipe2(this.m.getScoreEquipe2());
@@ -51,7 +51,7 @@ public class TimerExample  extends TimerTask {
         }
         if ("end".equalsIgnoreCase(name)) {
             System.out.println("match avant etat end " + this.m.getEtat() + " " + new Date()); // TODO Auto-generated catch block
-            this.m.endmatch();
+            //this.m.endmatch();
             System.out.println("match  etat end " + this.m.getEtat() + " "
                     + Thread.currentThread().getName()
                     + " "

@@ -1,6 +1,7 @@
 package com.tpt.api_mbds.Controller;
 
 import com.tpt.api_mbds.model.Connexion;
+import com.tpt.api_mbds.model.HistoUserName;
 import com.tpt.api_mbds.model.Histo_jetons_View;
 import com.tpt.api_mbds.model.Historique_Jetons;
 import oracle.jdbc.OracleConnection;
@@ -60,6 +61,37 @@ public class Historique_jetonsController {
                 val.setDateTransaction(resultSet.getDate(4));
                 val.setMontant(resultSet.getInt(5));
                 val.setIdPari(resultSet.getInt(6));
+                list.add(val);
+            }
+        }
+        finally{
+            if(statement!=null)statement.close();
+            if(oracleConnection!=null)oracleConnection.close();
+        }
+        return list;
+    }
+
+
+    public ArrayList<HistoUserName> getAllHistorique_JetonsbyUserName(String name) throws SQLException {
+
+        ArrayList<HistoUserName> list=new ArrayList<HistoUserName>();
+        Statement statement = null;
+        OracleConnection oracleConnection = null;
+        try{
+            oracleConnection = Connexion.getConnection();
+            statement = oracleConnection.createStatement();
+            String request="select hj.id,hj.idUtilisateur,u.nom,hj.idTransaction,t.nom as nomTransaction,hj.dateTransaction,hj.montant from historique_jetons hj join utilisateur u on hj.idUtilisateur=u.id join transaction t on hj.idtransaction=t.id where u.nom like '%"+name+"%'";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                HistoUserName val=new HistoUserName();
+                val.setId(resultSet.getInt(1));
+                val.setIdUtilisateur(resultSet.getInt(2));
+                val.setNom(resultSet.getString(3));
+                val.setIdtransaction(resultSet.getInt(4));
+                val.setNomTransaction(resultSet.getString(5));
+                val.setDatetransaction(resultSet.getDate(6));
+                val.setMontant(resultSet.getInt(7));
                 list.add(val);
             }
         }

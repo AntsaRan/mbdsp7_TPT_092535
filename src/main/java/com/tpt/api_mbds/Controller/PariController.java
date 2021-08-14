@@ -156,6 +156,36 @@ public class PariController {
         return list;
     }
 
+    public ArrayList<PariUserName> getAllParisbyUserName(OracleConnection co,String nom) throws SQLException {
+
+        ArrayList<PariUserName> list=new ArrayList<PariUserName>();
+        Statement statement = null;
+        try{
+            statement = co.createStatement();
+            String request="select p.id,p.idutilisateur,u.nom,p.mise,p.datepari,p.idmatch,p.matchregle from pari p join utilisateur u on p.idutilisateur = u.id where u.nom like '%"+nom+"%'";
+            System.out.println(request);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()){
+                PariUserName val=new PariUserName();
+                val.setId(resultSet.getInt(1));
+                val.setIdUtilisateur(resultSet.getInt(2));
+                val.setNom(resultSet.getString(3));
+                val.setMise(resultSet.getInt(4));
+                val.setDatepari(resultSet.getDate(5));
+                val.setIdMatch(resultSet.getString(6));
+                val.setMatchRegle(resultSet.getString(7));
+
+
+                list.add(val);
+            }
+        }
+        finally{
+            if(statement!=null)
+                statement.close();
+        }
+        return list;
+    }
+
     public ArrayList<Pari> getAllParisbyIdMatch(OracleConnection co,String id) throws SQLException {
 
         ArrayList<Pari> list=new ArrayList<Pari>();

@@ -1,10 +1,7 @@
 package com.tpt.api_mbds;
 
 import com.google.gson.Gson;
-import com.tpt.api_mbds.Controller.Historique_jetonsController;
-import com.tpt.api_mbds.Controller.PariController;
-import com.tpt.api_mbds.Controller.SuperAdminController;
-import com.tpt.api_mbds.Controller.UserController;
+import com.tpt.api_mbds.Controller.*;
 import com.tpt.api_mbds.model.*;
 import com.tpt.api_mbds.repository.MatchRepository;
 import com.tpt.api_mbds.response.Response;
@@ -289,6 +286,28 @@ public class ApiMbdsApplication {
         }
     }
 
+    @GetMapping(path="/getAllParisbyUserName",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getAllParisbyUserName(@RequestParam(required = true) String nom) throws SQLException {
+        ArrayList<PariUserName> list=new ArrayList<PariUserName>();
+        OracleConnection oracleConnection = null;
+        try {
+            oracleConnection = Connexion.getConnection();
+            list = pariController.getAllParisbyUserName(oracleConnection,nom);
+            if(list.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste PariUserName n'est pas vide ex: " + list.get(0).getId());
+            return new ResponseEntity<>(new Gson().toJson(list), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+        finally {
+            if(oracleConnection!=null){oracleConnection.close();}
+        }
+    }
+
     @GetMapping(path="/getAllParisbyIdMatch/{id}",produces = "application/json")
     @ResponseBody
     public ResponseEntity<String> getAllParisbyIdMatch(@PathVariable("id") String id) throws SQLException {
@@ -461,6 +480,27 @@ public ResponseEntity<String> getHistoByUser(@PathVariable("id") int id) throws 
     }
 
 }
+
+    ////////////////////////////////Get Historique Jetons Par Nom User //////////////////////
+    @GetMapping(path="/getHistoByUserName",produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> getHistoByUserName(@RequestParam(required = false) String nom) throws SQLException {
+        ArrayList<HistoUserName> result= new ArrayList<>();
+        Historique_jetonsController historique_jetonsController=new Historique_jetonsController();
+        try {
+
+            result = historique_jetonsController.getAllHistorique_JetonsbyUserName(nom);
+            if(result.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            System.out.println("La liste HistoUserName n'est pas vide" + result.get(0).getNom());
+            return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+
+        } catch (Exception throwables) {
+            throw throwables;
+        }
+
+    }
 
 ////////////////////////////////GET HISTO ACHAT BY MONTH///////////////////////
     @GetMapping(path="/getAllHistoAchatbyMonth",produces = "application/json")

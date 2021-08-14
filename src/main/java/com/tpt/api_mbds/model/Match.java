@@ -1,6 +1,8 @@
 package com.tpt.api_mbds.model;
 
+import com.tpt.api_mbds.repository.MatchRepository;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -11,6 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Document(collection="match")
 public class Match {
+    @Autowired
+    MatchRepository matchRepository;
+
     @Id
     private String id;
 
@@ -169,9 +174,29 @@ public class Match {
         this.setEtat("2");
     }
 
-    public void endmatch() {
+    public void endmatch(Match m,MatchRepository repository) {
         this.setEtat("3");
-        this.setscores();
+        m.setscores();
+        this.matchRepository=repository;
+
+        Match _match = m;
+        //System.out.println("ITO ILAY MATCH ID "+_match.getId());
+        _match.setEquipe1(m.getEquipe1());
+        //System.out.println("ITO ILAY MATCH EQUIPE1 "+_match.getEquipe1().getId());
+        _match.setEquipe2(m.getEquipe2());
+        _match.setDate(m.getDate());
+        _match.setEtat(m.getEtat());
+        // System.out.println("ITO ILAY MATCH ETAT "+_match.getEtat());
+        _match.setLieu(m.getLieu());
+        _match.setScoreEquipe1(m.getScoreEquipe1());
+        _match.setScoreEquipe2(m.getScoreEquipe2());
+        _match.setCornerEquipe1(m.getCornerEquipe1());
+        _match.setCornerEquipe2(m.getCornerEquipe2());
+        _match.setPossessionEquipe1(m.getPossessionEquipe1());
+        _match.setPossessionEquipe2(m.getPossessionEquipe2());
+        matchRepository.save(_match);
+
+
     }
 
     public void setscores() {
