@@ -175,7 +175,7 @@ public class Match {
     }
 
     public void endmatch(Match m,MatchRepository repository) {
-        this.setEtat("3");
+        m.setEtat("3");
         m.setscores();
         this.matchRepository=repository;
 
