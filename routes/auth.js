@@ -70,6 +70,26 @@ function loginAdmin(req,res){
     });
 
 }
+function checkmail(req,res){
+    
+    var mail = req.body.mail;
+    console.log(JSON.stringify(mail) + " mail")
+    const options = {
+        url: url + '/checkMailUser?mail='+mail,
+    }
+    request.post(url + '/checkMailUser?mail='+mail, (err, response, body) => {
+        if (err) {
+            return console.log(err);
+        }else if(body!=undefined){
+            console.log(body +" MAIL EXISTANT?")
+            res.status(200).send({ user: body});
+        }else{
+            res.status(200).send({user: null});
+
+        }
+    });
+    
+}
 
 function sign(req, res) {
     var parieur = req.body.parieur;
@@ -161,4 +181,4 @@ function getUserByID(req, res) {
         .catch(err =>
             console.log(err))
 }
-module.exports = { loginAdmin,loginUser,sign ,fireauth,getUserByID,updateuser};
+module.exports = { checkmail,loginAdmin,loginUser,sign ,fireauth,getUserByID,updateuser};

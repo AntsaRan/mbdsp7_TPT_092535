@@ -35,4 +35,8 @@ router.put('/updateuser', function (req, res) {
 router.post('/loginadmin',function(req,res){
   auth.loginAdmin(req,res);
 })
+
+router.post('/checkmail',function(req,res){
+  auth.checkmail(req,res);
+})
 module.exports = router;
