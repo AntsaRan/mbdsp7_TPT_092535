@@ -1,7 +1,7 @@
 const url = "https://grails-api.herokuapp.com/api";
 const { response } = require('express');
 //const https = require('https');
-
+var request = require('request');
 // Récupérer tous les matchs (GET)
 const fetch = require('node-fetch');
 const headers = {
@@ -76,22 +76,22 @@ function getMatchRegles(req, res) {
 }
 
 function getMatchDate(req, res) {
-    //console.log(`getmatchsdate`+req.params.date);
-    fetch(url + "/matchespardate/" + req.params.date)
-        .then(response =>
-            console.log(JSON.stringify(JSON.parse(response.status)) + "response match par date")
-        )
-        .then(data => {
-            if (data) {
-                console.log(data + " data match dateo")
-                res.json(data);
+    console.log(`getmatchsdate` + req.params.date + "date");
+    let date = req.params.date;
+    request.get(url + "/matchespardate/" + date, (err, response, body) => {
+        // console.log("InsertPARI request");
+        if (err) {
+            // console.log("err");
+            return console.log(err);
+        } else {
+            if (body != undefined && body != null) {
+                res.status(200).send(body);
             } else {
-                console.log(" NO DATA");
-                res.json(null);
+                res.status(204).send(null);
             }
-        })
-        .catch(err =>
-            console.log(err))
+        }
+    });
+
 }
 
 function top5matchs(req, res) {
