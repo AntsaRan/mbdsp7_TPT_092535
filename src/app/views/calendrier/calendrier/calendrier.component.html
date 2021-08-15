@@ -22,7 +22,7 @@
                             <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
                         </div>
                         <mat-list class="example-card">
-                            <p>{{nodata}}</p>
+                            <p *ngIf="nodata">Aucun match</p>
                             <mat-list-item class="itemlist" *ngFor="let m of match">
                                 <div class="listitemcontent">
                                     <p class="nomequipe">{{m.equipe1.nom}}</p>

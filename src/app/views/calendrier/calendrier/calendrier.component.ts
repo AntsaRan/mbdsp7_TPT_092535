@@ -14,9 +14,9 @@ import { MatchServiceService } from 'src/app/shared/services/match-service.servi
 export class CalendrierComponent implements OnInit {
   match: Match[] = [];
   loading: boolean = false;
-  date: Date = null;
+  date: Date = new Date();
   datereceived: Date = null;
-  nodata:String;
+  nodata:boolean=false;
   constructor(private datePipe: DatePipe,
     private cartserv: CartService,
     private matchserv: MatchServiceService,
@@ -28,7 +28,6 @@ export class CalendrierComponent implements OnInit {
     }
   }
   getMatchByDate() {
-    console.log("Getmatchbydate cal "+ this.date.toISOString())
     this.loading=true;
     this.match=[];
     this.matchserv.getMatchByDate(this.date.toISOString())
@@ -40,7 +39,7 @@ export class CalendrierComponent implements OnInit {
             this.match.push(match);
           }) 
         }else{
-         this.nodata= "Aucun match";
+         this.nodata= true;
         }
         this.loading = false;
       })
