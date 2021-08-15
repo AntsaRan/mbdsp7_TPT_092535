@@ -1,9 +1,7 @@
 package com.example.bet.service;
 
-import com.example.bet.modele.RequestDevice;
-import com.example.bet.modele.RequestPari;
+import com.example.bet.model.RequestDevice;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

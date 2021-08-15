@@ -1,12 +1,10 @@
 package com.example.bet.service;
 
-import com.example.bet.modele.MatchRegle_Response;
-import com.example.bet.modele.Match_Response;
+import com.example.bet.model.MatchRegle_Response;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface MatchRegle_Service {
     //Match

@@ -1,8 +1,7 @@
 package com.example.bet.service;
 
-import com.example.bet.modele.Match_Response;
-import com.example.bet.modele.RequestUtilisateur;
-import com.example.bet.modele.Utilisateur;
+import com.example.bet.model.RequestUtilisateur;
+import com.example.bet.model.Utilisateur;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

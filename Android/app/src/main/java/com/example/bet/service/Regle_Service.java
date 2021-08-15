@@ -1,7 +1,6 @@
 package com.example.bet.service;
 
-import com.example.bet.modele.MatchRegle_Response;
-import com.example.bet.modele.Regle_Response;
+import com.example.bet.model.Regle_Response;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.example.bet.modele.Equipe;
+import com.example.bet.model.Equipe;
 import com.example.bet.R;
 import com.squareup.picasso.Picasso;
 

@@ -4,16 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bet.R;
-import com.example.bet.modele.Paris_Match;
-import com.squareup.picasso.Picasso;
+import com.example.bet.model.Paris_Match;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

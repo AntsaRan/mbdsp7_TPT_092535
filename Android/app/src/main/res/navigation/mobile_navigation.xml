@@ -8,27 +8,27 @@
 
     <fragment
         android:id="@+id/nav_liste_matchs"
-        android:name="com.example.bet.fragment.ListeMatchs_Fragment"
+        android:name="com.example.bet.views.fragment.ListeMatchs_Fragment"
         android:label="@string/listeMatch"
         tools:layout="@layout/fragment_liste_matchs" />
     <fragment
         android:id="@+id/nav_equipe"
-        android:name="com.example.bet.fragment.Equipe_Fragment"
+        android:name="com.example.bet.views.fragment.Equipe_Fragment"
         android:label="@string/equipe"
         tools:layout="@layout/fragment_equipe_list" />
     <fragment
         android:id="@+id/nav_profil"
-        android:name="com.example.bet.fragment.Profil_Fragment"
+        android:name="com.example.bet.views.fragment.Profil_Fragment"
         android:label="@string/profil"
         tools:layout="@layout/fragment_profil" />
     <fragment
         android:id="@+id/nav_achat"
-        android:name="com.example.bet.fragment.Achat_Fragment"
+        android:name="com.example.bet.views.fragment.Achat_Fragment"
         android:label="@string/achat"
         tools:layout="@layout/fragment_achat" />
     <fragment
         android:id="@+id/nav_calendrier"
-        android:name="com.example.bet.fragment.Calendrier_Fragment"
+        android:name="com.example.bet.views.fragment.Calendrier_Fragment"
         android:label="@string/calendrier"
         tools:layout="@layout/fragment_calendrier" />
     <fragment
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/nav_vente"
-        android:name="com.example.bet.fragment.Vente_Fragment"
+        android:name="com.example.bet.views.fragment.Vente_Fragment"
         android:label="@string/vente"
         tools:layout="@layout/fragment_vente" />
 

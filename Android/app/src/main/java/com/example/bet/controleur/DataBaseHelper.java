@@ -7,12 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.icu.text.SimpleDateFormat;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.example.bet.R;
-import com.example.bet.modele.Equipe;
-import com.example.bet.modele.Match;
-import com.example.bet.modele.Utilisateur;
+import com.example.bet.model.Equipe;
+import com.example.bet.model.Match;
+import com.example.bet.model.Utilisateur;
 
 
 import java.util.Date;
@@ -32,7 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String col6 = "pwd";
     private static final String col7 = "jetons";
     private static final String col8 = "mail";
-
+    private static final String col9 = "solde";
     public DataBaseHelper(Context context){
         super(context,TABLE_NAME,null,1);
     }
@@ -40,7 +38,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String creataTable = "CREATE TABLE " + TABLE_NAME + "(" + col1 + " TEXT,"+col2+" TEXT,"+col3+" TEXT,"+col4+" TEXT,"+col5+" TEXT,"+col6+" TEXT,"+col7+" TEXT,"+col8+" TEXT)";
+        String creataTable = "CREATE TABLE " + TABLE_NAME + "(" + col1 + " TEXT,"+col2+" TEXT,"+col3+" TEXT,"+col4+" TEXT,"+col5+" TEXT,"+col6+" TEXT,"+col7+" TEXT,"+col8+" TEXT,"+col9+" TEXT)";
         db.execSQL(creataTable);
     }
 
@@ -142,7 +140,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public void initializeUser(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String creataTable = "CREATE TABLE " + TABLE_NAME + "(" + col1 + " TEXT,"+col2+" TEXT,"+col3+" TEXT,"+col4+" TEXT,"+col5+" TEXT,"+col6+" TEXT,"+col7+" TEXT,"+col8+" TEXT)";
+        String creataTable = "CREATE TABLE " + TABLE_NAME + "(" + col1 + " TEXT,"+col2+" TEXT,"+col3+" TEXT,"+col4+" TEXT,"+col5+" TEXT,"+col6+" TEXT,"+col7+" TEXT,"+col8+" TEXT,"+col9+" TEXT)";
 
 
         db.execSQL(creataTable);
@@ -158,6 +156,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put("pwd",utilisateur.getPwd());
         contentValues.put("jetons",utilisateur.getJetons());
         contentValues.put("mail",utilisateur.getMail());
+        contentValues.put("solde",utilisateur.getSolde());
         db.insert("Utilisateur",null,contentValues);
         Log.e("INSERTED","Offline Utilisateur Table initialized");
     }
@@ -195,7 +194,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 utilisateur.setPwd(data.getString(5));
                 utilisateur.setJetons(Float.valueOf(data.getString(6)));
                 utilisateur.setMail(data.getString(7));
-
+                utilisateur.setSolde(Float.valueOf(data.getString(8)));
             } while (data.moveToNext());
         }
         data.close();

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".fragment.Achat_Fragment">
+    tools:context=".views.fragment.Achat_Fragment">
 
     <TextView
         android:id="@+id/label_solde"
@@ -102,6 +102,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_vendeur2" />
 
+    <TextView
+        android:id="@+id/label_achat_qr2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Nombre de jetons à acheter"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_devise" />
+
     <EditText
         android:id="@+id/nb_qr_vente"
         android:layout_width="130dp"
@@ -116,6 +127,20 @@
         android:theme="@style/EditStyle"
         app:layout_constraintStart_toEndOf="@+id/label_achat_qr"
         app:layout_constraintTop_toBottomOf="@+id/label_qr" />
+
+    <EditText
+        android:id="@+id/nb_qr_vente2"
+        android:layout_width="130dp"
+        android:layout_height="23dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/placeholder_grey"
+        android:inputType="number"
+        android:textColor="@color/colorBlack"
+        android:theme="@style/EditStyle"
+        app:layout_constraintStart_toEndOf="@+id/label_achat_qr2"
+        app:layout_constraintTop_toBottomOf="@+id/prix" />
 
     <TextView
         android:id="@+id/label_vendeur"
@@ -187,6 +212,16 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_achat_qr" />
+
+    <Button
+        android:id="@+id/bouton_achat_qr2"
+        android:layout_width="105dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:text="Acheter"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_achat_qr2" />
 
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scanner_view"

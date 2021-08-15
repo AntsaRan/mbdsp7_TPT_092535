@@ -41,18 +41,11 @@
                 android:id="@+id/nav_vente"
                 android:icon="@drawable/ic_vente"
                 android:title="Vente de jetons" />
-        </menu>
-    </item>
-    <item android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_settings"
-                android:title="Paramètres" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout"
                 android:title="Deconnexion" />
         </menu>
     </item>
+
 </menu>

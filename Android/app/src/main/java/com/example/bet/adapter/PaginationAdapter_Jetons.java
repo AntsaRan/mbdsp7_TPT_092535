@@ -10,10 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bet.R;
-import com.example.bet.modele.HistoriqueJetons;
-import com.example.bet.modele.Paris_Match;
+import com.example.bet.model.HistoriqueJetons;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 

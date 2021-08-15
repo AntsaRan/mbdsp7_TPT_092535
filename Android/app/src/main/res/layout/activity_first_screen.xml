@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
     android:foreground="@android:color/transparent"
-    tools:context=".First_screen">
+    tools:context=".views.fragment.activity.First_screen">
 
     <ImageView
         android:id="@+id/imageView5"

@@ -1,9 +1,6 @@
 package com.example.bet.service;
 
-import com.example.bet.modele.Equipe;
-import com.example.bet.modele.Equipe_Response;
-
-import java.util.List;
+import com.example.bet.model.Equipe_Response;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

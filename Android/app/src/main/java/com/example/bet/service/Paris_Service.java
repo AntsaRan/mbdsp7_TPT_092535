@@ -1,9 +1,7 @@
 package com.example.bet.service;
 
-import com.example.bet.modele.Equipe_Response;
-import com.example.bet.modele.Paris_Response;
-import com.example.bet.modele.RequestPari;
-import com.example.bet.modele.Utilisateur;
+import com.example.bet.model.Paris_Response;
+import com.example.bet.model.RequestPari;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -11,7 +9,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface Paris_Service {
     @GET("oracle/getAllParisbyUserM/{id}")
