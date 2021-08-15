@@ -30,6 +30,8 @@ namespace projetParis.Formulaires
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxEquipe2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxEquipe1 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,8 +41,6 @@ namespace projetParis.Formulaires
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxEquipe1 = new System.Windows.Forms.ComboBox();
-            this.comboBoxEquipe2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,22 @@ namespace projetParis.Formulaires
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(573, 403);
             this.panel1.TabIndex = 1;
+            // 
+            // comboBoxEquipe2
+            // 
+            this.comboBoxEquipe2.FormattingEnabled = true;
+            this.comboBoxEquipe2.Location = new System.Drawing.Point(243, 151);
+            this.comboBoxEquipe2.Name = "comboBoxEquipe2";
+            this.comboBoxEquipe2.Size = new System.Drawing.Size(266, 23);
+            this.comboBoxEquipe2.TabIndex = 14;
+            // 
+            // comboBoxEquipe1
+            // 
+            this.comboBoxEquipe1.FormattingEnabled = true;
+            this.comboBoxEquipe1.Location = new System.Drawing.Point(243, 107);
+            this.comboBoxEquipe1.Name = "comboBoxEquipe1";
+            this.comboBoxEquipe1.Size = new System.Drawing.Size(266, 23);
+            this.comboBoxEquipe1.TabIndex = 13;
             // 
             // dateTimePicker2
             // 
@@ -148,23 +164,6 @@ namespace projetParis.Formulaires
             this.label1.Size = new System.Drawing.Size(250, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ajout d\'un nouveau match";
-           
-            // 
-            // comboBoxEquipe1
-            // 
-            this.comboBoxEquipe1.FormattingEnabled = true;
-            this.comboBoxEquipe1.Location = new System.Drawing.Point(243, 107);
-            this.comboBoxEquipe1.Name = "comboBoxEquipe1";
-            this.comboBoxEquipe1.Size = new System.Drawing.Size(266, 23);
-            this.comboBoxEquipe1.TabIndex = 13;
-            // 
-            // comboBoxEquipe2
-            // 
-            this.comboBoxEquipe2.FormattingEnabled = true;
-            this.comboBoxEquipe2.Location = new System.Drawing.Point(243, 151);
-            this.comboBoxEquipe2.Name = "comboBoxEquipe2";
-            this.comboBoxEquipe2.Size = new System.Drawing.Size(266, 23);
-            this.comboBoxEquipe2.TabIndex = 14;
             // 
             // InsertMatch
             // 
@@ -177,7 +176,7 @@ namespace projetParis.Formulaires
             this.Name = "InsertMatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "InsertMatch";
-         
+            this.Load += new System.EventHandler(this.InsertMatch_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -21,9 +21,11 @@ namespace projetParis.Formulaires
             dateTimePicker2.Format = DateTimePickerFormat.Time;
             dateTimePicker2.ShowUpDown = true;
             //DateTime myDate = dateTimePicker1.Value.Date +
-                    //dateTimePicker2.Value.TimeOfDay;
+            //dateTimePicker2.Value.TimeOfDay;
             //System.Diagnostics.Debug.WriteLine("Ilay DATE Time Nampidirina "+myDate);
 
+
+            Cursor = Cursors.WaitCursor; // change cursor to hourglass type
             EquipeService equipeService = new EquipeService();
 
             Object dataTable= equipeService.getAllEquipe();
@@ -36,6 +38,7 @@ namespace projetParis.Formulaires
             comboBoxEquipe2.DisplayMember = "nom"; // Column Name
             comboBoxEquipe2.ValueMember = "id"; // Valeur
             System.Diagnostics.Debug.WriteLine("OBJECT GET EQUIPE  " + dataTable.ToString());
+            Cursor = Cursors.Arrow; // change cursor to hourglass type
 
         }
 
@@ -59,7 +62,8 @@ namespace projetParis.Formulaires
                 MessageBox.Show("Veuillez remplir les champs vide");
             }
             else
-            {                         
+            {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type                 
                 string selectedValue1 = (string)comboBoxEquipe1.SelectedValue;
                 string selectedValue2 = (string)comboBoxEquipe2.SelectedValue;
                
@@ -76,6 +80,7 @@ namespace projetParis.Formulaires
                     }
                 }
                 else { MessageBox.Show("Un match doit avoir 2 equipes différentes et une date superieur a la date d'aujourd'hui"); }
+                Cursor = Cursors.Arrow; // change cursor to hourglass type
             }
            
         }
@@ -86,6 +91,11 @@ namespace projetParis.Formulaires
         {
             UpdateEventArgs args = new UpdateEventArgs();
             UdpateEventHandler.Invoke(this, args);
+        }
+
+        private void InsertMatch_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

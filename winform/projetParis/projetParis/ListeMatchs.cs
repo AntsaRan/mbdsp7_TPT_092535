@@ -32,9 +32,11 @@ namespace projetParis
 
         private void buttonInsertMatch_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor; // change cursor to hourglass type
             InsertMatch insertForm = new InsertMatch();
             insertForm.UdpateEventHandler += F2_updateEventHandler1;
             insertForm.ShowDialog();
+            Cursor = Cursors.Arrow; // change cursor to hourglass type
         }
 
         private void F2_updateEventHandler1(object sender, InsertMatch.UpdateEventArgs args)

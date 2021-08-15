@@ -25,18 +25,21 @@ namespace projetParis
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor; // change cursor to hourglass type
+           
             EquipeService equipeService = new EquipeService();
             this.dataGridViewEquipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewEquipe.DataSource = equipeService.getAllEquipe();
             //Add Bouton Modifier
             this.addButton();
+            Cursor = Cursors.Arrow; // change cursor to normal type
 
         }
 
         private void dataGridViewEquipe_CellClick(object sender, DataGridViewCellEventArgs e)
         {
            
-            if (e.ColumnIndex==1)
+           /* if (e.ColumnIndex==1)
             {
                 EquipeService equipeService = new EquipeService();
                 DataGridViewRow row = this.dataGridViewEquipe.Rows[e.RowIndex];
@@ -47,7 +50,7 @@ namespace projetParis
                 this.dataGridViewEquipe.Update();
                 MessageBox.Show("Team with id: "+id+" deleted");
                 
-            }
+            } */
             if (e.ColumnIndex == 0)
             {
                 DataGridViewRow row = this.dataGridViewEquipe.Rows[e.RowIndex];

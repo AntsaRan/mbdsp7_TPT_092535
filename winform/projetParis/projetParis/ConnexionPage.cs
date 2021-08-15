@@ -47,16 +47,21 @@ namespace projetParis
             
             SuperUserService superUserService = new SuperUserService();
             if(textBoxPseudo.Text=="" || textBoxMdp.Text == "") { MessageBox.Show("Veuillez remplir les champ vide"); }
-            else { 
+            else {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type
                 SuperUser response = superUserService.login(textBoxPseudo.Text, textBoxMdp.Text);
                 if (response!=null)
                 {
                     this.Hide();
                     Accueil accueilPage = new Accueil();
                     accueilPage.ShowDialog();
+                    Cursor = Cursors.Arrow; // change cursor to normal type
                     this.Close();
                 }
-                else { MessageBox.Show("Pseudo ou mot de passe incorrect"); }
+                else { 
+                    MessageBox.Show("Pseudo ou mot de passe incorrect");
+                    Cursor = Cursors.Arrow; // change cursor to normal type
+                }
                
             }
         }

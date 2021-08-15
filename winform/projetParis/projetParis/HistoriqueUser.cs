@@ -22,7 +22,9 @@ namespace projetParis
             if(textBoxIdUser.Text==null || textBoxIdUser.Text == "") { MessageBox.Show("Id User Necessaire"); }
             else
             {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type    
                 this.loadDataByIdUser(textBoxIdUser.Text);
+                Cursor = Cursors.Arrow; // change cursor to hourglass type    
             }
         }
 
@@ -64,8 +66,10 @@ namespace projetParis
             if (textBoxNomUser.Text == null || textBoxNomUser.Text == "") { MessageBox.Show("Nom User Necessaire"); }
             else
             {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type    
                 System.Diagnostics.Debug.WriteLine("MAKATOO "+ textBoxNomUser.Text);
                 this.loadDataByIdUserName(textBoxNomUser.Text);
+                Cursor = Cursors.Arrow;
             }
         }
 

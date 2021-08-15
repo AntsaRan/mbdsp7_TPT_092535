@@ -43,6 +43,7 @@ namespace projetParis.Formulaires
             }
             else
             {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type
                 String val = equipeService.updateEquipe(this.id,textBoxName.Text, textBoxLogo.Text);
                 var confirmResult = MessageBox.Show("Equipe modifiée",
                                      "Message",
@@ -51,6 +52,7 @@ namespace projetParis.Formulaires
                 {
                     //System.Diagnostics.Debug.WriteLine("METY ILAY OK BUTTON");
                     this.Close();
+                    Cursor = Cursors.Arrow;
                     update();
                 }
             }
@@ -59,6 +61,11 @@ namespace projetParis.Formulaires
         {
             UpdateEventArgs args = new UpdateEventArgs();
             UdpateEventHandler.Invoke(this, args);
+        }
+
+        private void updateEquipe_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

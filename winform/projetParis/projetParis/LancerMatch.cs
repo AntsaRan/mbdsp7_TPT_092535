@@ -47,7 +47,7 @@ namespace projetParis
         {
             if (e.ColumnIndex == 10)
             {
-               
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type
                 DataGridViewRow row = this.dataGridViewMatchToStart.Rows[e.RowIndex];
                 string id = row.Cells["id"].Value.ToString();
                 string date = row.Cells["date"].Value.ToString();
@@ -59,10 +59,12 @@ namespace projetParis
                 //else { MessageBox.Show("Le match " + id + " pour le " + date + " est lancé"); }
                 MessageBox.Show("Le match " + id + " pour le " + date + " est lancé");
                 this.loadData();
+                Cursor = Cursors.Arrow; // change cursor to normal type
 
-              
+
 
             }
+            
         }
         public void loadData()
         {

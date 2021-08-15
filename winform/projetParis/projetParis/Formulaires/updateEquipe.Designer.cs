@@ -123,6 +123,7 @@ namespace projetParis.Formulaires
             this.Name = "updateEquipe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "updateEquipe";
+            this.Load += new System.EventHandler(this.updateEquipe_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

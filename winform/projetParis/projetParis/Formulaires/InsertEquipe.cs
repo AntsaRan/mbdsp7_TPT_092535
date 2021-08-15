@@ -35,6 +35,7 @@ namespace projetParis.Formulaires
             }
             else
             {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type
                 String val = equipeService.insertEquipe(textBoxName.Text, textBoxLogo.Text);
                 var confirmResult = MessageBox.Show("Nouvelle equipe inserée",
                                      "Message",
@@ -44,7 +45,8 @@ namespace projetParis.Formulaires
                     System.Diagnostics.Debug.WriteLine("METY ILAY OK BUTTON");
                     this.Close();
                     update();
-                }                            
+                }
+                Cursor = Cursors.Arrow; // change cursor to normal type
             }
            
            

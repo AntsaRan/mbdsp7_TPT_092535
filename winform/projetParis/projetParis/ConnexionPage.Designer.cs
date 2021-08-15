@@ -31,12 +31,8 @@ namespace projetParis
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnexionPage));
             this.panelBack = new System.Windows.Forms.Panel();
-            this.labelForInsription = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelMdpOublie = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonConnexion = new System.Windows.Forms.Button();
-            this.checkBoxSesouvenir = new System.Windows.Forms.CheckBox();
             this.textBoxMdp = new System.Windows.Forms.TextBox();
             this.textBoxPseudo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,9 +48,6 @@ namespace projetParis
             // 
             this.panelBack.AutoSize = true;
             this.panelBack.BackColor = System.Drawing.Color.Black;
-            this.panelBack.Controls.Add(this.labelForInsription);
-            this.panelBack.Controls.Add(this.label3);
-            this.panelBack.Controls.Add(this.labelMdpOublie);
             this.panelBack.Controls.Add(this.panel1);
             this.panelBack.Controls.Add(this.labelSlogan);
             this.panelBack.Controls.Add(this.pictureBox1);
@@ -63,48 +56,10 @@ namespace projetParis
             this.panelBack.Size = new System.Drawing.Size(797, 655);
             this.panelBack.TabIndex = 0;
             // 
-            // labelForInsription
-            // 
-            this.labelForInsription.AutoSize = true;
-            this.labelForInsription.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelForInsription.LinkColor = System.Drawing.Color.Aqua;
-            this.labelForInsription.Location = new System.Drawing.Point(504, 581);
-            this.labelForInsription.Name = "labelForInsription";
-            this.labelForInsription.Size = new System.Drawing.Size(28, 23);
-            this.labelForInsription.TabIndex = 5;
-            this.labelForInsription.TabStop = true;
-            this.labelForInsription.Text = "ici";
-            this.labelForInsription.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labelForInsription_LinkClicked);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(248, 581);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(264, 23);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nouveau membre ? Inscrivez-vous ";
-            // 
-            // labelMdpOublie
-            // 
-            this.labelMdpOublie.AutoSize = true;
-            this.labelMdpOublie.BackColor = System.Drawing.Color.Black;
-            this.labelMdpOublie.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMdpOublie.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelMdpOublie.Location = new System.Drawing.Point(248, 545);
-            this.labelMdpOublie.Name = "labelMdpOublie";
-            this.labelMdpOublie.Size = new System.Drawing.Size(169, 23);
-            this.labelMdpOublie.TabIndex = 3;
-            this.labelMdpOublie.Text = "Mot de passe oublié ?";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.buttonConnexion);
-            this.panel1.Controls.Add(this.checkBoxSesouvenir);
             this.panel1.Controls.Add(this.textBoxMdp);
             this.panel1.Controls.Add(this.textBoxPseudo);
             this.panel1.Controls.Add(this.label2);
@@ -125,17 +80,6 @@ namespace projetParis
             this.buttonConnexion.Text = "Connexion";
             this.buttonConnexion.UseVisualStyleBackColor = false;
             this.buttonConnexion.Click += new System.EventHandler(this.buttonConnexion_Click);
-            // 
-            // checkBoxSesouvenir
-            // 
-            this.checkBoxSesouvenir.AutoSize = true;
-            this.checkBoxSesouvenir.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxSesouvenir.Location = new System.Drawing.Point(74, 258);
-            this.checkBoxSesouvenir.Name = "checkBoxSesouvenir";
-            this.checkBoxSesouvenir.Size = new System.Drawing.Size(140, 22);
-            this.checkBoxSesouvenir.TabIndex = 4;
-            this.checkBoxSesouvenir.Text = "Se souvenir de moi";
-            this.checkBoxSesouvenir.UseVisualStyleBackColor = true;
             // 
             // textBoxMdp
             // 
@@ -204,6 +148,7 @@ namespace projetParis
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 650);
             this.Controls.Add(this.panelBack);
+            this.MaximizeBox = false;
             this.Name = "ConnexionPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConnexionPage";
@@ -229,10 +174,6 @@ namespace projetParis
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonConnexion;
-        private System.Windows.Forms.CheckBox checkBoxSesouvenir;
-        private System.Windows.Forms.Label labelMdpOublie;
-        private System.Windows.Forms.LinkLabel labelForInsription;
-        private System.Windows.Forms.Label label3;
     }
 }
 
