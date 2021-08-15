@@ -18,13 +18,14 @@ export class InscriptionComponent implements OnInit {
 
   nom = "";
   prenom = "";
-  Datedenaissance: Date = null;
+  Datedenaissance: string="";
   pseudo = "";
   mail = "";
   mdp = "";
   confirmmdp = "";
   error = "";
   hide = true;
+  hide2 =true;
   currentdate = new Date();
   date: string;
   parieur: Parieur = new Parieur();
@@ -40,7 +41,7 @@ export class InscriptionComponent implements OnInit {
 
     //check champs
     if (this.nom == ""
-      || this.Datedenaissance == null
+      || this.Datedenaissance == ""
       || this.prenom == ""
       || this.mail == ""
       || this.mdp == ""
@@ -65,24 +66,35 @@ export class InscriptionComponent implements OnInit {
       this.error = " Les mots de passes de coïncident pas";
       return;
     }
-    this.parieur.dateNaissance = this.Datedenaissance;
+    this.parieur.dateNaissance = new Date(this.Datedenaissance);
     this.parieur.nom = this.nom;
     this.parieur.prenom = this.prenom;
     this.parieur.pseudo = this.pseudo;
     this.parieur.pwd = this.mdp;
     this.parieur.mail = this.mail;
-    this.authserv.inscription(this.parieur, this.datePipe.transform(this.Datedenaissance, 'yyyy-MM-dd'))
-      .subscribe(data => {
-        if (data.msg.nom) {
-          this.openLoginDialog();
+    this.authserv.checkMail(this.mail)
+      .subscribe(u => {
+        if (u!==null) {
+          console.log("mail existant")
+          this.error="";
+          this.error = " Ce mail est déjà utilisé!";
+        } else {
+          this.authserv.inscription(this.parieur, this.datePipe.transform(this.Datedenaissance, 'yyyy-MM-dd'))
+            .subscribe(data => {
+              if (data.msg.nom) {
+                this.openLoginDialog();
+              }
+            });
         }
-      });
+      })
+
   }
 
   checkMajority(): Number {
     console.log(this.Datedenaissance + " datenaissance");
     console.log(this.currentdate + " date");
-    let age = Number(this.currentdate.getFullYear()) - Number(this.Datedenaissance.getFullYear());
+    let age = Number(this.currentdate.getFullYear()) - Number(new Date(this.Datedenaissance).getFullYear());
+    console.log(age + " age");
     return age;
   }
   openSnackBar() {

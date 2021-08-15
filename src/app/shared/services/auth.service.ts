@@ -107,6 +107,21 @@ export class AuthService {
       return of(result as T);
     }
   }
+  checkMail(mail){
+    console.log("checkmail auth "+ mail)
+    return this.http.post<any>(this.uri + "/checkmail", {mail})
+      .pipe(
+        map(user => {
+          if (user) {
+            console.log("checkmail auth  nisy")
+            return user;
+          } else {
+            return null;
+          }
+        }),
+        catchError(this.handleError<any>('### catchError: login'))
+      );
+  }
 
   inscription(parieur: Parieur, date) {
     console.log("inscription auth")
