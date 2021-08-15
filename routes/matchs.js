@@ -98,19 +98,17 @@ function top5matchs(req, res) {
     //console.log(`getmatchsdate`+req.params.date);
     fetch(url + "/matchesPlusParie")
         .then(response =>
-            response.json())
+            console.log(JSON.stringify(JSON.parse(response.status)) + "response match par date"))
         .then(data => {
-            console.log("data top5" + JSON.stringify(data[1]));
-            if (data[0] != null) {
+            if (data) {
                 res.json(data);
             } else {
-                res.json(response.status);
+                res.json(null);
             }
 
         })
         .catch(err =>
-            console.log(err + " errr "));
-    console.war
+            console.log(err))
 }
 
 
