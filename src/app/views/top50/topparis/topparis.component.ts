@@ -15,11 +15,11 @@ export class TopparisComponent implements OnInit {
   currentdate = new Date();
   date: string;
   loading:boolean=true;
+  nodata:string="";
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
     private matchserv: MatchServiceService) {
-
     this.date = this.datePipe.transform(this.currentdate, 'yyyy-MM-dd');
   }
 
@@ -31,14 +31,19 @@ export class TopparisComponent implements OnInit {
     console.log("getmatches");
     this.matchserv.getTop5matchs()
       .subscribe((response) => {
-        console.log(response + " DATA TOP 5");
-        response.forEach(match=>{         
-          console.log(match.id+ " match")
-          incr++;
-          var m={incr,match};
-          this.matches.push(m); 
-          console.log(m.match.date);
-        })
+        if(response){
+          console.log(response + " DATA TOP 5");
+          response.forEach(match=>{         
+            console.log(match.id+ " match")
+            incr++;
+            var m={incr,match};
+            this.matches.push(m); 
+            console.log(m.match.date);
+         
+          })
+        }else{
+          this.nodata=" Aucun match trouvé";
+        }
         this.loading=false;
       },
       (error)=>{
