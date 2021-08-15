@@ -31,7 +31,7 @@ export class TopparisComponent implements OnInit {
     console.log("getmatches");
     this.matchserv.getTop5matchs()
       .subscribe((response) => {
-        if(response){
+        if(response!=null){
           console.log(response + " DATA TOP 5");
           response.forEach(match=>{         
             console.log(match.id+ " match")
@@ -49,7 +49,7 @@ export class TopparisComponent implements OnInit {
       (error)=>{
         console.error('error caught in component '+ error);
         //window.location.reload();
-      });
+      }); 
   }
 
 }
