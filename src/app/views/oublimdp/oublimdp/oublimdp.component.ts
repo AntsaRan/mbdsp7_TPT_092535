@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
+import { InscriptionComponent } from 'src/app/views/inscription/inscription/inscription.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MailerService } from 'src/app/shared/services/mailer.service';
 import { NouveaumdpComponent } from '../nouveaumdp/nouveaumdp.component';

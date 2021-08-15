@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
-import { OublimdpComponent } from 'src/app/oublimdp/oublimdp/oublimdp.component';
+import { InscriptionComponent } from 'src/app/views/inscription/inscription/inscription.component';
+import { OublimdpComponent } from 'src/app/views/oublimdp/oublimdp/oublimdp.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MessagingService } from 'src/app/shared/services/messaging.service';
 

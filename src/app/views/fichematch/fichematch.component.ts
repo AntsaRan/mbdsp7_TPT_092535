@@ -9,7 +9,7 @@ import { ReglesCotes } from 'src/app/shared/models/reglescotes.model';
 import { MatchServiceService } from 'src/app/shared/services/match-service.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddcouponComponent } from 'src/app/addcoupon/addcoupon/addcoupon.component';
+import { AddcouponComponent } from 'src/app/views/addcoupon/addcoupon/addcoupon.component';
 import { Pari } from 'src/app/shared/models/pari.model';
 import { Parieur } from 'src/app/shared/models/parieur.model';
 import { Coupon } from 'src/app/shared/models/coupon.model';

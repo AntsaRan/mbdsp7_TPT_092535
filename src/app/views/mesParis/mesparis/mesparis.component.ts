@@ -4,7 +4,7 @@ import { Pari } from 'src/app/shared/models/pari.model';
 import { Parismatch } from 'src/app/shared/models/parismatch.model';
 import { MatchServiceService } from 'src/app/shared/services/match-service.service';
 import { ParisService } from 'src/app/shared/services/paris.service';
-import { InscriptionComponent } from 'src/app/inscription/inscription/inscription.component';
+import { InscriptionComponent } from 'src/app/views/inscription/inscription/inscription.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Regles } from 'src/app/shared/models/regles.model';
 

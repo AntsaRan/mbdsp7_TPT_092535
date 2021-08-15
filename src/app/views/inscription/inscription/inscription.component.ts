@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarokComponent } from 'src/app/coupons/snackbarok/snackbarok.component';
-import { LoginComponent } from 'src/app/login/login/login.component';
+import { SnackbarokComponent } from 'src/app/views/coupons/snackbarok/snackbarok.component';
+import { LoginComponent } from 'src/app/views/login/login.component';
 import { Parieur } from 'src/app/shared/models/parieur.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 

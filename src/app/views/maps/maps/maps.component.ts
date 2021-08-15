@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as L from 'leaflet';
 import { cpuUsage } from 'process';
-import { SnackbarokComponent } from 'src/app/coupons/snackbarok/snackbarok.component';
+import { SnackbarokComponent } from 'src/app/views/coupons/snackbarok/snackbarok.component';
 import { MailerService } from 'src/app/shared/services/mailer.service';
 
 @Component({

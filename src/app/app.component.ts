@@ -3,15 +3,15 @@ import { DatePipe } from '@angular/common';
 import { CartService } from './shared/services/cart.service';
 import { Match } from './shared/models/match.model';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from './login/login/login.component';
-import { InscriptionComponent } from './inscription/inscription/inscription.component';
+import { LoginComponent } from './views/login/login.component';
+import { InscriptionComponent } from './views/inscription/inscription/inscription.component';
 import { MatchServiceService } from './shared/services/match-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessagingService } from './shared/services/messaging.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Notifs } from './shared/models/notifs';
 import { Subscription } from 'rxjs';
-import { NouveaumdpComponent } from './oublimdp/nouveaumdp/nouveaumdp.component';
+import { NouveaumdpComponent } from './views/oublimdp/nouveaumdp/nouveaumdp.component';
 
 @Component({
   selector: 'app-root',
