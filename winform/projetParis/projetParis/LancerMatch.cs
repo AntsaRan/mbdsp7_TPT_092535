@@ -17,6 +17,7 @@ namespace projetParis
             InitializeComponent();
         }
         public bool isFirstAffichage = true;
+        public int forButtonLancer = 0;
 
         private void LancerMatch_Load(object sender, EventArgs e)
         {
@@ -45,25 +46,7 @@ namespace projetParis
 
         private void dataGridViewMatchToStart_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 10)
-            {
-                Cursor = Cursors.WaitCursor; // change cursor to hourglass type
-                DataGridViewRow row = this.dataGridViewMatchToStart.Rows[e.RowIndex];
-                string id = row.Cells["id"].Value.ToString();
-                string date = row.Cells["date"].Value.ToString();
-
-                MatchService matchService = new MatchService();
-                matchService.lancerMatch(id);
-
-                // if (response == null || response=="") { MessageBox.Show("une erreur est survenue , veuillez réesayer"); }
-                //else { MessageBox.Show("Le match " + id + " pour le " + date + " est lancé"); }
-                MessageBox.Show("Le match " + id + " pour le " + date + " est lancé");
-                this.loadData();
-                Cursor = Cursors.Arrow; // change cursor to normal type
-
-
-
-            }
+           
             
         }
         public void loadData()
@@ -72,11 +55,14 @@ namespace projetParis
             this.dataGridViewMatchToStart.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewMatchToStart.DataSource = matchService.getMatchsToStart();
             this.addButton();
+            this.forButtonLancer += 1;
+            System.Diagnostics.Debug.WriteLine("forButtonLancer " + forButtonLancer);
+
         }
 
         public void addButton()
         {
-            if (isFirstAffichage)
+            if (isFirstAffichage && dataGridViewMatchToStart.Rows.Count != 0)
             {
                 DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
                 btnEdit.HeaderText = "Lancer";
@@ -91,7 +77,33 @@ namespace projetParis
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor; // change cursor to hourglass type
             this.loadData();
+            Cursor = Cursors.Arrow; // change cursor to hourglass type
+        }
+
+        private void dataGridViewMatchToStart_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int variable = 10;
+            if (forButtonLancer>1) variable = 0;
+            System.Diagnostics.Debug.WriteLine("VARIABLE "+variable);
+            if (e.ColumnIndex == variable)
+            {
+                Cursor = Cursors.WaitCursor; // change cursor to hourglass type
+                DataGridViewRow row = this.dataGridViewMatchToStart.Rows[e.RowIndex];
+                string id = row.Cells["id"].Value.ToString();
+                string date = row.Cells["date"].Value.ToString();
+                string lieu = row.Cells["lieu"].Value.ToString();
+
+                MatchService matchService = new MatchService();
+                matchService.lancerMatch(id);
+
+                // if (response == null || response=="") { MessageBox.Show("une erreur est survenue , veuillez réesayer"); }
+                //else { MessageBox.Show("Le match " + id + " pour le " + date + " est lancé"); }
+                MessageBox.Show("Le match a " + lieu + " pour le " + date + " a commencé");
+                this.loadData();
+                Cursor = Cursors.Arrow; // change cursor to normal type
+            } 
         }
     }
     

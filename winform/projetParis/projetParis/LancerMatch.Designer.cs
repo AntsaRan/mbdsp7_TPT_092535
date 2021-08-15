@@ -43,6 +43,7 @@ namespace projetParis
             this.dataGridViewMatchToStart.RowTemplate.Height = 25;
             this.dataGridViewMatchToStart.Size = new System.Drawing.Size(805, 484);
             this.dataGridViewMatchToStart.TabIndex = 7;
+            this.dataGridViewMatchToStart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMatchToStart_CellClick);
             this.dataGridViewMatchToStart.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMatchToStart_CellContentClick);
             // 
             // buttonRefresh
