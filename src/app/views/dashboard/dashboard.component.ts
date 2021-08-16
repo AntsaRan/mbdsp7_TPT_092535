@@ -29,6 +29,13 @@ export class DashboardComponent implements OnInit {
   public mainChartData1: Array<number> = [];
   public mainChartData2: Array<number> = [];
   public mainChartData3: Array<number> = [];
+  public mainChartLegend = false;
+  public mainChartType = 'line';
+  totalParis: number = 0;
+  // Pie
+  public pieChartLabels: string[] = [];
+  public pieChartData: number[] = [];
+  public pieChartType = 'pie';
 
   public mainChartData: Array<any>;
   /* tslint:disable:max-line-length */
@@ -36,56 +43,7 @@ export class DashboardComponent implements OnInit {
   public nbparisdate: Array<any>;
   public mainChartLabels: Array<any> = [];
   /* tslint:enable:max-line-length */
-  public mainChartOptions: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips,
-      intersect: true,
-      mode: 'index',
-      position: 'nearest',
-      callbacks: {
-        labelColor: function (tooltipItem, chart) {
-          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-        }
-      }
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          drawOnChartArea: false,
-        },
-        ticks: {
-          callback: function (value: any) {
-            return value.charAt(0);
-          }
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          maxTicksLimit: 5,
-          stepSize: Math.ceil(10 / 5),
-          max: 10
-        }
-      }]
-    },
-    elements: {
-      line: {
-        borderWidth: 2
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-        hoverBorderWidth: 3,
-      }
-    },
-    legend: {
-      display: false
-    }
-  };
+  public mainChartOptions: any;
   public mainChartColours: Array<any> = [
     { // brandInfo
       backgroundColor: hexToRgba(getStyle('--info'), 10),
@@ -105,13 +63,6 @@ export class DashboardComponent implements OnInit {
       borderDash: [8, 5]
     }
   ];
-  public mainChartLegend = false;
-  public mainChartType = 'line';
-  totalParis:number=0;
-  // Pie
-  public pieChartLabels: string[] = [];
-  public pieChartData: number[] = [];
-  public pieChartType = 'pie';
 
   getDaysInMonthUTC(month, year) {
     var date = new Date(Date.UTC(year, month, 1));
@@ -132,11 +83,62 @@ export class DashboardComponent implements OnInit {
       console.log(tab[i] + " tab.i")
     }
   }
-
+  setMainchartoption(num) {
+    this.mainChartOptions = {
+      tooltips: {
+        enabled: false,
+        custom: CustomTooltips,
+        intersect: true,
+        mode: 'index',
+        position: 'nearest',
+        callbacks: {
+          labelColor: function (tooltipItem, chart) {
+            return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        xAxes: [{
+          gridLines: {
+            drawOnChartArea: false,
+          },
+          ticks: {
+            callback: function (value: any) {
+              return value.charAt(0);
+            }
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5,
+            stepSize: Math.ceil(num / 5),
+            max: num
+          }
+        }]
+      },
+      elements: {
+        line: { 
+          borderWidth: 2
+        },
+        point: {
+          radius: 0,
+          hitRadius: 10,
+          hoverRadius: 4,
+          hoverBorderWidth: 3,
+        }
+      },
+      legend: {
+        display: false
+      }
+    };
+  }
   ngOnInit(): void {
     if (localStorage.getItem('currentUser')) {
       this.datesdumois = this.getDaysInMonthUTC(this.Month, this.year);
-      this.nbparisdate =new Array<number>( this.datesdumois.length);
+      this.nbparisdate = new Array<number>(this.datesdumois.length);
       this.initializechartvalues(this.nbparisdate);
       this.stat.getParisMonth()
         .subscribe(data => {
@@ -145,9 +147,11 @@ export class DashboardComponent implements OnInit {
             let jour = date.getUTCDate();
             let val = this.nbparisdate[jour];
             this.nbparisdate[jour] = val + 1;
-            let mise:number=p.mise;
-            this.totalParis+=mise;
-          })
+            let mise: number = p.mise;
+            this.totalParis += mise;
+          }
+          )
+          this.setMainchartoption(data.length);
           this.mainChartData = [
             {
               data: this.nbparisdate,
