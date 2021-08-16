@@ -21,6 +21,7 @@ import com.example.bet.API.API;
 import com.example.bet.R;
 import com.example.bet.controleur.NetworkUtils;
 import com.example.bet.model.RequestUtilisateur;
+import com.example.bet.model.Utilisateur;
 import com.example.bet.service.Utilisateur_Service;
 
 import java.text.SimpleDateFormat;
@@ -119,24 +120,45 @@ public class Register extends AppCompatActivity {
                     progress.setCanceledOnTouchOutside(false);
                     progress.show();
                     if (NetworkUtils.networkStatus(Register.this)) {
-                        callToInscription(_mail,_date,_pseudo,_prenom,_nom,_pwd).enqueue(new Callback<ResponseBody>() {
+                        callToCheckMail(_mail).enqueue(new Callback<Utilisateur>() {
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            public void onResponse(Call<Utilisateur> call, Response<Utilisateur> response) {
+                                Utilisateur result= fetchResults(response);
+                                if(result==null){
+                                    callToInscription(_mail,_date,_pseudo,_prenom,_nom,_pwd).enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                                    progress.setMessage("Reussie....");
-                                Intent intent = new Intent(Register.this, Login.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            progress.setMessage("Reussie....");
+                                            Intent intent = new Intent(Register.this, Login.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                                startActivity(intent);
+                                            startActivity(intent);
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                            Log.e("Exception ato",t.getMessage());
+                                            Toast.makeText(Register.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
+                                            progress.dismiss();
+                                        }
+                                    });
+
+                                }else{
+                                    showError(email1, "Utilisateur dejà existant");
+
+
+                                    progress.dismiss();
+                                }
                             }
 
                             @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Log.e("Exception ato",t.getMessage());
-                                Toast.makeText(Register.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
-                                progress.dismiss();
+                            public void onFailure(Call<Utilisateur> call, Throwable t) {
+
                             }
                         });
+
+
 
 
                     }else{
@@ -165,7 +187,23 @@ public class Register extends AppCompatActivity {
         return service.inscription(util);
     }
 
+    private Call<Utilisateur> callToCheckMail(String mail){
+        return service.checkMail(mail);
+    }
+    private Utilisateur fetchResults(retrofit2.Response<Utilisateur> response) {
+        System.out.println("Ito le response" + response.body());
+        Utilisateur utilisateur = null;
 
+        if (response.body()!=null){
+
+            utilisateur = response.body();
+        }
+
+
+        //ASORINA AVEO
+
+        return utilisateur;
+    }
     private void updateLabel() {
         String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat,Locale.FRENCH);

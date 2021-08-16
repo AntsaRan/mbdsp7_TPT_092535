@@ -348,8 +348,6 @@ private Utilisateur utilisateur;
 
 
 
-
-
     @Override
     public void onResume() {
         super.onResume();

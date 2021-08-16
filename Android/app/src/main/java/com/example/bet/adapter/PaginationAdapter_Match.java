@@ -102,10 +102,10 @@ public class PaginationAdapter_Match extends Adapter<RecyclerView.ViewHolder> im
 
                    // System.out.println("LOGO "+result.getLogo());
 
-                    Picasso.get().load( BASE_URL_IMG+"/nAU74GmpUk7t5iklEp3bufwDq4n.jpg")
+                    Picasso.get().load( result.getEquipe1().getLogo())
                             .placeholder(R.drawable.ic_launcher_foreground)
                             .into(matchVH.mPosterImg1);
-                    Picasso.get().load(BASE_URL_IMG+"/tbVZ3Sq88dZaCANlUcewQuHQOaE.jpg")
+                    Picasso.get().load(result.getEquipe2().getLogo())
                             .placeholder(R.drawable.ic_launcher_foreground)
                             .into(matchVH.mPosterImg2);
                     /**

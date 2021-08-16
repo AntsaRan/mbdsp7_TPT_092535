@@ -28,6 +28,7 @@ import com.example.bet.service.MatchRegle_Service;
 import com.example.bet.service.Paris_Service;
 import com.example.bet.service.Utilisateur_Service;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class Match_Details extends AppCompatActivity {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9,buttonParier;
     ImageView background1, background2, background3, background_mini1, background_mini2, background_mini3, background_mise;
 
+    Match match;
     ImageButton close;
     EditText nbr_mise;
     List<TextView> listQuotes;
@@ -69,9 +71,13 @@ public class Match_Details extends AppCompatActivity {
         service = API.getClient().create(MatchRegle_Service.class);
         service_Pari = API.getClient().create(Paris_Service.class);
         serviceUtil = API.getClient().create(Utilisateur_Service.class);
-        Match match = (Match) getIntent().getExtras().getParcelable("match");
+        match = (Match) getIntent().getExtras().getParcelable("match");
         score1 = (TextView) findViewById(R.id.score1);
         score2 = (TextView) findViewById(R.id.score2);
+        img1=findViewById(R.id.movie_poster);
+        img2=findViewById(R.id.movie_poster2);
+
+
         nomTeam1 = (TextView) findViewById(R.id.nomEquipe1);
         nomTeam2 = (TextView) findViewById(R.id.nomEquipe2);
         corner1 = (TextView) findViewById(R.id.corner1);
@@ -89,7 +95,13 @@ public class Match_Details extends AppCompatActivity {
         corner2.setText(String.valueOf(match.getCornerEquipe2()));
         possession1.setText(String.valueOf(match.getPossessionEquipe1()) + "%");
         possession2.setText(String.valueOf(match.getPossessionEquipe2()) + "%");
-        lieu.setText(match.getEtat());
+
+        if(match.getEtat().equals("1"))
+            lieu.setText("Pas encore lancé");
+        if(match.getEtat().equals("2"))
+            lieu.setText("En cours");
+        if(match.getEtat().equals("3"))
+            lieu.setText("Terminé");
         etat.setText(match.getLieu());
         ////---------------------///////
 
@@ -227,6 +239,13 @@ public class Match_Details extends AppCompatActivity {
         Initialise();
         DisableButton();
         loadFirstPage();
+
+        Picasso.get().load( match.getEquipe1().getLogo())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(img1);
+        Picasso.get().load( match.getEquipe2().getLogo())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(img2);
        /* Picasso.get()
                 .load(post_URL+intent.getStringExtra("bannerpath"))
                 .into(banner);
@@ -275,7 +294,12 @@ public class Match_Details extends AppCompatActivity {
                     });
 
                 }
-                EnableButton();
+               if( !match.getEtat().equals("3")){
+                    EnableButton();
+
+               }else{
+                   DisableQuotes();
+               }
                 System.out.println("RESULTS "+results.get(0).getRegles().size());
                 bar.setVisibility(View.GONE);
 
@@ -394,6 +418,13 @@ public class Match_Details extends AppCompatActivity {
         }
     }
 
+    public void DisableQuotes(){
+        if (!listQuotes.isEmpty()) {
+            for (int i = 0; i<listQuotes.size();i++) {
+                listQuotes.get(i).setVisibility(View.GONE);
+            }
+        }
+    }
     public boolean testMise(String mise){
         int val= Integer.valueOf(mise);
         if(utilisateur.getJetons()-val>=0){

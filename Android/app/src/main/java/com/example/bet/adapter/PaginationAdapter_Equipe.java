@@ -93,7 +93,7 @@ public class PaginationAdapter_Equipe extends RecyclerView.Adapter<RecyclerView.
 
                 System.out.println("LOGO "+result.getLogo());
 
-                Picasso.get().load(BASE_URL_IMG+"/nAU74GmpUk7t5iklEp3bufwDq4n.jpg")
+                Picasso.get().load(result.getLogo())
                         .placeholder(R.drawable.image_placeholder)
                         .into(movieVH.mPosterImg);
                 /**

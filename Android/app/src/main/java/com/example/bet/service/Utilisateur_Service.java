@@ -16,6 +16,9 @@ public interface Utilisateur_Service {
     @POST("oracle/authentification")
     Call<Utilisateur> authentification(@Query("mail") String mail, @Query("pwd") String pwd);
 
+    @POST("oracle/checkMailUser")
+    Call<Utilisateur> checkMail(@Query("mail") String mail);
+
     @GET("oracle/getUserbyId/{id}")//A changer lorsque l'APi sera disponible
     Call<Utilisateur> getByID(@Path("id") String id);
 
