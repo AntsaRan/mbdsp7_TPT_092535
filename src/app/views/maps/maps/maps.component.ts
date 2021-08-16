@@ -4,6 +4,8 @@ import * as L from 'leaflet';
 import { cpuUsage } from 'process';
 import { SnackbarokComponent } from 'src/app/views/coupons/snackbarok/snackbarok.component';
 import { MailerService } from 'src/app/shared/services/mailer.service';
+import { MapService } from 'src/app/shared/services/map.service';
+import { Point } from 'src/app/shared/models/Point.model';
 
 @Component({
   selector: 'app-maps',
@@ -19,8 +21,9 @@ export class MapsComponent implements OnInit {
   error = "";
   nom = "";
   durationInSeconds = 2;
+  coords: Point[] = [];
 
-  constructor(private mail: MailerService, private _snackBar: MatSnackBar) { }
+  constructor(private mapserv:MapService, private mail: MailerService, private _snackBar: MatSnackBar) { }
 
   private initMap(): void {
     this.map = L.map('map', {
@@ -36,22 +39,39 @@ export class MapsComponent implements OnInit {
 
     // create 5 random jitteries and add them to map
 
-    const jittery = Array(4).fill(this.centroid).map(
-      x => [x[0] + (Math.random() - .5) / 10, x[1] + (Math.random() - .5) / 10]
-    ).map(
-      x => L.marker(x as L.LatLngExpression)
-    ).forEach(
-      x => x.addTo(this.map)
-    );
-    var mah: L.LatLngExpression = [-18.878594066916172, 47.552341677709514];
-    L.marker(mah).bindPopup("Chez Maharo")
-      .on('mouseover', function (e) {
-        this.openPopup();
-      }).on('mouseout', function (e) {
-        this.closePopup();
-      }).addTo(this.map);
+
+    if (this.coords.length > 0) {
+      this.coords.forEach(point => {
+        var lat: number = +point.lat;
+        var lng: number = +point.lng;
+        var mah: L.LatLngExpression = [lat, lng];
+        L.marker(mah).bindPopup(point.adresse)
+          .on('mouseover', function (e) {
+            this.openPopup();
+          }).on('mouseout', function (e) {
+            this.closePopup();
+          }).addTo(this.map);
+      })
+    }
 
     tiles.addTo(this.map);
+
+  }
+
+  getpoints() {
+    this.mapserv.getpoints()
+      .subscribe(p => {
+        if (p) {
+          p.forEach(point => {
+            this.coords.push(point);
+          })
+          this.initMap()
+        } else {
+
+          this.initMap();
+
+        }
+      })
 
   }
   onSubmit(event) {
@@ -64,7 +84,7 @@ export class MapsComponent implements OnInit {
       })
   }
   ngOnInit(): void {
-    this.initMap();
+    this.getpoints();
   }
   title = 'Contact';
   openSnackBar() {
