@@ -1,0 +1,16 @@
+C:\Users\andyr\Desktop\release\projetParis.exe
+C:\Users\andyr\Desktop\release\projetParis.dll
+C:\Users\andyr\Desktop\release\projetParis.deps.json
+C:\Users\andyr\Desktop\release\projetParis.runtimeconfig.json
+C:\Users\andyr\Desktop\release\projetParis.pdb
+C:\Users\andyr\Desktop\release\Antlr3.Runtime.dll
+C:\Users\andyr\Desktop\release\Json.dll
+C:\Users\andyr\Desktop\release\MongoDB.Bson.dll
+C:\Users\andyr\Desktop\release\Newtonsoft.Json.dll
+C:\Users\andyr\Desktop\release\System.Net.Http.Extensions.dll
+C:\Users\andyr\Desktop\release\System.Net.Http.Formatting.dll
+C:\Users\andyr\Desktop\release\System.Net.Http.Primitives.dll
+C:\Users\andyr\Desktop\release\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\andyr\Desktop\release\System.Text.Encodings.Web.dll
+C:\Users\andyr\Desktop\release\System.Text.Json.dll
+C:\Users\andyr\Desktop\release\WebGrease.dll
