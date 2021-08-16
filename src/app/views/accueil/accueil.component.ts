@@ -16,7 +16,7 @@ export class AccueilComponent implements OnInit {
   currentdate = new Date();
   date: string;
   loading: boolean = true;
-  nodata:string;
+  nodata: string;
   constructor(
     private datePipe: DatePipe,
     private cartserv: CartService,
@@ -31,14 +31,22 @@ export class AccueilComponent implements OnInit {
     // this.cartserv.format();
   }
 
+
   getMatches() {
     console.log("getmatches");
     this.matchserv.getMatches()
       .subscribe(data => {
-        data.forEach(match => {
-          this.matches.push(match);
-
-        })
+        if (data) {
+          console.log(" daataaaa");
+          for(let i=0;i<5;i++){
+            let etat = this.getetat(data[i].etat);
+            data[i].etat=etat;
+            this.matches.push(data[i]);
+          }
+        } else {
+          console.log("no daataaaa");
+          this.nodata = "No data";
+        }
         this.loading = false;
       });
   }
@@ -49,15 +57,33 @@ export class AccueilComponent implements OnInit {
         if (data) {
           console.log(" daataaaa");
           data.forEach(match => {
+            let etat = this.getetat(match.etat);
+            match.etat=etat;
             this.matchesdujour.push(match);
           })
-        }else{
+        } else {
           console.log("no daataaaa");
-          this.nodata="No data";
+          this.nodata = "No data";
         }
 
         this.loading = false;
       });
   }
 
+  getetat(num) {
+    switch (num) {
+      case 1: {
+        return " A venir"
+        break;
+      }
+      case 2: {
+        return " En cours"
+        break;
+      }
+      case 3: {
+        return "Terminé"
+        break;
+      }
+    }
+  }
 }

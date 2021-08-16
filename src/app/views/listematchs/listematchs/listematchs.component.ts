@@ -36,8 +36,10 @@ export class ListematchsComponent implements OnInit {
         if (data) {
           this.rearrangeDates(data);
           data.forEach(match => {
-            console.log(match.date + " matchdate")
-            this.matches.push(match);
+              let etat = this.getetat(match.etat);
+              match.etat=etat;
+              console.log("etat "+ etat)
+              this.matches.push(match);
           })
         } else {
           console.log("no daataaaa");
@@ -47,6 +49,24 @@ export class ListematchsComponent implements OnInit {
       });
   }
 
+  getetat(num):string {
+    console.log(num + "num")
+    let etat="";
+    switch (num) {
+      case "1": {
+        return etat="A venir"
+        break;
+      }
+      case "2": {
+        return etat=" En cours"
+        break;
+      }
+      case "3": {
+        return etat="Terminé"
+        break;
+      }
+    }
+  }
   rearrangeDates(m: Match[]) {
     m.sort((a: Match, b: Match) => {
       return new Date(a.date).getTime() - new Date(b.date).getTime();

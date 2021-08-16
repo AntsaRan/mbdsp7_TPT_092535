@@ -9,4 +9,5 @@ export class Match {
     etat: string
     scoreEquipe1:Number
     scoreEquipe2: Number
+    etatlibel:string
 }

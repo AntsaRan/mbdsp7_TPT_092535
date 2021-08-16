@@ -18,8 +18,11 @@
                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                     <p class="colonne">Date</p>
                                 </div>
-                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <p class="colonne">Match</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p class="colonne">Etat</p>
                                 </div>
                             </div>
                             <mat-divider></mat-divider>
@@ -29,13 +32,15 @@
                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                     <p>{{match.date | date: 'yyyy-MM-dd'}}</p>
                                 </div>
-                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <p class="nomequipe">{{match.equipe1.nom}}</p>
                                     <img src="{{match.equipe1.logo}}" class="logoequipe">
                                     <span> VS </span>
                                     <img src="{{match.equipe2.logo}}" class="logoequipe">
                                     <p class="nomequipe">{{match.equipe2.nom}}</p>
-
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>{{match.etat}}</p>
                                 </div>
                                 <mat-divider></mat-divider>
                             </div>
